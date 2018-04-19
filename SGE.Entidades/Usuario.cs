@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SGE.Entidades
 {
     public abstract class Usuario
     {
+        public Usuario()
+        {
+            this.FechaAlta = DateTime.Now;
+        }
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }

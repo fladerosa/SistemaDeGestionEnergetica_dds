@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SGE.Entidades
 {
@@ -15,6 +12,12 @@ namespace SGE.Entidades
         public string Telefono { get; set; }
         public Categoria Categoria { get; set; }
         public List<Dispositivo> Dispositivos { get; set; }
+
+
+        public Cliente()
+        {
+            this.Dispositivos = new List<Dispositivo>();
+        }
 
         public bool TieneDispositivosEncendidos
         {
