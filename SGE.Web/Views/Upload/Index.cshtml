@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Cuentas";
+}
+
+<h3>Archivo de Cuentas</h3>
+
+@using (Html.BeginForm("CargarArchivo", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="width: 40%; float:left; ">
+        <input type="file" name="file" class="filestyle" data-buttonName="btn-primary" data-buttonBefore="true" data-buttonText="Seleccionar..." />
+    </div>
+    <div style="width: 60%; float:left; ">
+        <input type="submit" name="CargarDatos" id="CargarDatos" value="Cargar" class="btn btn-primary" />
+        @Html.ActionLink("Procesar", "Process", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Limpiar", "Clear", null, new { @class = "btn btn-danger" })
+
+    </div>
+}
+
+
+<br />
+<br />
+<br />
+
+@if (Model != null && Model.Count() > 0)
+{
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Número
+            </th>
+            <th>
+                Empresa
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Encode(item.Id)
+                </td>
+                <td>
+                    @Html.Encode(item.Name)
+                </td>
+                <td>
+                    @Html.Encode(item.Number)
+                </td>
+                <td>
+                    @Html.Encode(item.Enterprise)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
