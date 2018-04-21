@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<SGE.Entidades.Cliente>
+@{
     ViewBag.Title = "Carga de Datos";
 }
 
@@ -11,8 +12,7 @@
     </div>
     <div style="width: 60%; float:left; ">
         <input type="submit" name="CargarDatos" id="CargarDatos" value="Cargar" class="btn btn-primary" />
-        @Html.ActionLink("Procesar", "Procesar", null, new { @class = "btn btn-success" })
-        @Html.ActionLink("Limpiar", "Limpiar", null, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Restablecer", "Restablecer", null, new { @class = "btn btn-danger" })
 
     </div>
 }
@@ -34,10 +34,16 @@
                 Nombre
             </th>
             <th>
-                Número
+                Apellido
             </th>
             <th>
-                Empresa
+                Password
+            </th>
+            <th>
+                Fecha de Alta
+            </th>
+            <th>
+                Direccion
             </th>
         </tr>
 
@@ -45,16 +51,69 @@
         {
             <tr>
                 <td>
-                    @Html.Encode(item.Id)
+                    @Html.Raw(item.Id)
                 </td>
                 <td>
-                    @Html.Encode(item.Name)
+                    @Html.Raw(item.Nombre)
                 </td>
                 <td>
-                    @Html.Encode(item.Number)
+                    @Html.Raw(item.Apellido)
                 </td>
                 <td>
-                    @Html.Encode(item.Enterprise)
+                    @Html.Raw(item.Password)
+                </td>
+                <td>
+                    @Html.Raw(item.FechaAlta)
+                </td>
+                <td>
+                    @Html.Raw(item.Direccion)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Fecha de Alta
+            </th>
+            <th>
+                Direccion
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.Id)
+                </td>
+                <td>
+                    @Html.Raw(item.Nombre)
+                </td>
+                <td>
+                    @Html.Raw(item.Apellido)
+                </td>
+                <td>
+                    @Html.Raw(item.Password)
+                </td>
+                <td>
+                    @Html.Raw(item.FechaAlta)
+                </td>
+                <td>
+                    @Html.Raw(item.Direccion)
                 </td>
             </tr>
         }

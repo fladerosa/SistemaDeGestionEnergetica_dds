@@ -17,36 +17,36 @@ namespace SGE.Web.Controllers
         /// <summary>
         /// Listado de cuentas procesadas hasta el momento
         /// </summary>
-        public List<Dispositivo> Dispositivos
+        public List<Cliente> Clientes
         {
             get
             {
-                if (Session["Dispositivos"] == null)
-                    Session["Dispositivos"] = new List<Dispositivo>();
+                if (Session["Clientes"] == null)
+                    Session["Clientes"] = new List<Cliente>();
 
-                return (List<Dispositivo>)Session["Dispositivos"];
+                return (List<Cliente>)Session["Clientes"];
             }
             set
             {
-                Session["Dispositivos"] = value;
+                Session["Clientes"] = value;
             }
         }
 
         /// <summary>
         /// Indica la cantidad de archivos subidos hasta el momento
         /// </summary>
-        public int FilesQuantity
+        public int CantidadArchivos
         {
             get
             {
-                if (Session["FilesQuantity"] == null)
-                    Session["FilesQuantity"] = 0;
+                if (Session["CantidadArchivos"] == null)
+                    Session["CantidadArchivos"] = 0;
 
-                return (int)Session["FilesQuantity"];
+                return (int)Session["CantidadArchivos"];
             }
             set
             {
-                Session["FilesQuantity"] = value;
+                Session["CantidadArchivos"] = value;
             }
         }
 
@@ -55,17 +55,18 @@ namespace SGE.Web.Controllers
         // GET: Upload
         public ActionResult Index()
         {
-            return View();
+            ViewBag.FilesQuantity = this.CantidadArchivos;
+            return View(this.Clientes);
         }
 
         /// <summary>
         /// Permite eliminar los datos de los dispositivos y los usuarios procesados hasta el momento.
         /// </summary>
-        public ActionResult Limpiar()
+        public ActionResult Restablecer()
         {
-            this.Dispositivos = null;
+            this.Clientes = null;
 
-            this.FilesQuantity = 0;
+            this.CantidadArchivos = 0;
 
             DirectoryInfo di = new DirectoryInfo(ConfiguracionHelper.AccountFilesPath);
 
@@ -94,32 +95,46 @@ namespace SGE.Web.Controllers
         }
 
         /// <summary>
-        /// Permite subir un archivo de cuentas a la carpeta destinada a los mismos.
+        /// Permite subir un archivo con los dispositivos y usuarios para deserializar los datos en memoria.
         /// </summary>
         [HttpPost]
         public ActionResult CargarArchivo()
         {
-            if (Request.Files.Count > 0)
+            try
             {
-                var file = Request.Files[0];
-
-                if (file != null && file.ContentLength > 0 && file.FileName.EndsWith(".json"))
+                if (Request.Files.Count > 0)
                 {
-                    CargarArchivo(file);
+                    var archivo = Request.Files[0];
+
+                    string extensionArchivo = Path.GetExtension(archivo.FileName);
+
+                    if (archivo != null && archivo.ContentLength > 0 && extensionArchivo == ".json")
+                    {
+                        string contenido = string.Empty;
+
+                        using (var ms = new MemoryStream())
+                        {
+                            archivo.InputStream.CopyTo(ms);
+                            ms.Position = 0;
+
+                            contenido = new StreamReader(ms).ReadToEnd();
+                        }
+
+                        this.Clientes = JsonConvert.DeserializeObject<List<Cliente>>(contenido);
+                    }
+                    else
+                        LogHelper.LogErrorMessage("El archivo que intenta cargar el usuario está vacío o no es un archivo con extensión 'json'");
                 }
+                else
+                    LogHelper.LogErrorMessage("Se intentando realizar la carga sin especificar ningún archivo. Por favor, verifique que el usuario este cargando bien el archivo.");
+            }
+            catch(Exception ex)
+            {
+                LogHelper.LogErrorMessage(ex.Message, ex);
+                ModelState.AddModelError("Error", ex);
             }
             
             return RedirectToAction("Index");
-        }
-
-        public void CargarArchivo(HttpPostedFileBase file)
-        {
-            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file.FileName);
-            string fileExtension = Path.GetExtension(file.FileName);
-            var fileName = string.Format("{0}{1}{2}", fileNameWithoutExtension, this.FilesQuantity, fileExtension);
-            var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
-            file.SaveAs(path);
-            this.FilesQuantity++;
         }
     }
 }
