@@ -10,6 +10,6 @@ namespace SGE.Entidades
     {
         public string Nombre { get; set; }
         public decimal ConsumoEnergia { get; set; }
-        public bool Estado { get; set; }      
+        public bool EstaEncendido { get; set; }      
     }
 }
