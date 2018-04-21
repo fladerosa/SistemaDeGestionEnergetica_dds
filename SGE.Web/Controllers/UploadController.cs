@@ -17,18 +17,18 @@ namespace SGE.Web.Controllers
         /// <summary>
         /// Listado de cuentas procesadas hasta el momento
         /// </summary>
-        public List<Cliente> Clientes
+        public List<Usuario> Usuarios
         {
             get
             {
-                if (Session["Clientes"] == null)
-                    Session["Clientes"] = new List<Cliente>();
+                if (Session["Usuarios"] == null)
+                    Session["Usuarios"] = new List<Usuario>();
 
-                return (List<Cliente>)Session["Clientes"];
+                return (List<Usuario>)Session["Usuarios"];
             }
             set
             {
-                Session["Clientes"] = value;
+                Session["Usuarios"] = value;
             }
         }
 
@@ -56,7 +56,7 @@ namespace SGE.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.FilesQuantity = this.CantidadArchivos;
-            return View(this.Clientes);
+            return View(this.Usuarios);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace SGE.Web.Controllers
         /// </summary>
         public ActionResult Restablecer()
         {
-            this.Clientes = null;
+            this.Usuarios = null;
 
             this.CantidadArchivos = 0;
 
@@ -120,7 +120,15 @@ namespace SGE.Web.Controllers
                             contenido = new StreamReader(ms).ReadToEnd();
                         }
 
-                        this.Clientes = JsonConvert.DeserializeObject<List<Cliente>>(contenido);
+                        var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+                        this.Usuarios = JsonConvert.DeserializeObject<List<Usuario>>(contenido, settings);
+
+                        //object o = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
+                        //{
+                        //    TypeNameHandling = TypeNameHandling.All,
+                            
+                        //    MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
+                        //});
                     }
                     else
                         LogHelper.LogErrorMessage("El archivo que intenta cargar el usuario está vacío o no es un archivo con extensión 'json'");
