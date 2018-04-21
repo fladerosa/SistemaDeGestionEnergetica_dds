@@ -72,52 +72,7 @@
         }
     </table>
 
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Apellido
-            </th>
-            <th>
-                Password
-            </th>
-            <th>
-                Fecha de Alta
-            </th>
-            <th>
-                Direccion
-            </th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.Raw(item.Id)
-                </td>
-                <td>
-                    @Html.Raw(item.Nombre)
-                </td>
-                <td>
-                    @Html.Raw(item.Apellido)
-                </td>
-                <td>
-                    @Html.Raw(item.Password)
-                </td>
-                <td>
-                    @Html.Raw(item.FechaAlta)
-                </td>
-                <td>
-                    @Html.Raw(item.Direccion)
-                </td>
-            </tr>
-        }
-    </table>
 }
 
 @section Scripts

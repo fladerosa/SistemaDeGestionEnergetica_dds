@@ -68,13 +68,6 @@ namespace SGE.Web.Controllers
 
             this.CantidadArchivos = 0;
 
-            DirectoryInfo di = new DirectoryInfo(ConfiguracionHelper.AccountFilesPath);
-
-            foreach (FileInfo file in di.GetFiles())
-            {
-                file.Delete();
-            }
-
             return RedirectToAction("Index");
         }
 
