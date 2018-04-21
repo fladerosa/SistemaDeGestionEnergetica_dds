@@ -115,13 +115,6 @@ namespace SGE.Web.Controllers
 
                         var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
                         this.Usuarios = JsonConvert.DeserializeObject<List<Usuario>>(contenido, settings);
-
-                        //object o = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
-                        //{
-                        //    TypeNameHandling = TypeNameHandling.All,
-                            
-                        //    MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
-                        //});
                     }
                     else
                         LogHelper.LogErrorMessage("El archivo que intenta cargar el usuario está vacío o no es un archivo con extensión 'json'");
