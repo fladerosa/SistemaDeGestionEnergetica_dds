@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Entidades
 {
-    public class Usuario
+    public abstract class Usuario
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

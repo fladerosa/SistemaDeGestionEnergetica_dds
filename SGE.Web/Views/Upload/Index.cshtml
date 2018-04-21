@@ -45,30 +45,36 @@
             <th>
                 Direccion
             </th>
+            <th>
+                Tipo
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.Raw(item.Id)
-                </td>
-                <td>
-                    @Html.Raw(item.Nombre)
-                </td>
-                <td>
-                    @Html.Raw(item.Apellido)
-                </td>
-                <td>
-                    @Html.Raw(item.Password)
-                </td>
-                <td>
-                    @Html.Raw(item.FechaAlta)
-                </td>
-                <td>
-                    @Html.Raw(item.Direccion)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.Raw(item.Id)
+            </td>
+            <td>
+                @Html.Raw(item.Nombre)
+            </td>
+            <td>
+                @Html.Raw(item.Apellido)
+            </td>
+            <td>
+                @Html.Raw(item.Password)
+            </td>
+            <td>
+                @Html.Raw(item.FechaAlta)
+            </td>
+            <td>
+                @Html.Raw(item.Direccion)
+            </td>
+            <td>
+                @Html.Raw(item.GetType().Name)
+            </td>
+        </tr>
         }
     </table>
 
