@@ -24,11 +24,11 @@
 
 @if (Model != null && Model.Count() > 0)
 {
-
+    <h3>Listado de Usuarios del Sistema</h3>
     <table class="table table-hover">
         <tr>
             <th>
-                Id
+                #
             </th>
             <th>
                 Nombre
@@ -52,34 +52,83 @@
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.Raw(item.Id)
-            </td>
-            <td>
-                @Html.Raw(item.Nombre)
-            </td>
-            <td>
-                @Html.Raw(item.Apellido)
-            </td>
-            <td>
-                @Html.Raw(item.Password)
-            </td>
-            <td>
-                @Html.Raw(item.FechaAlta)
-            </td>
-            <td>
-                @Html.Raw(item.Direccion)
-            </td>
-            <td>
-                @Html.Raw(item.GetType().Name)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.Raw(item.Id)
+                </td>
+                <td>
+                    @Html.Raw(item.Nombre)
+                </td>
+                <td>
+                    @Html.Raw(item.Apellido)
+                </td>
+                <td>
+                    @Html.Raw(item.Password)
+                </td>
+                <td>
+                    @Html.Raw(item.FechaAlta)
+                </td>
+                <td>
+                    @Html.Raw(item.Direccion)
+                </td>
+                <td>
+                    @Html.Raw(item.GetType().Name)
+                </td>
+            </tr>
         }
     </table>
+    <br />
 
+    <h3>Listado de Dispositivos</h3>
 
+    <table class="table table-hover">
+        <tr>
+            <th>
+                # Cliente
+            </th>
+            <th>
+                Nombre y Apellido
+            </th>
+            <th>
+                Dispositivo
+            </th>
+            <th>
+                Consumo
+            </th>
+            <th>
+                Esta Encendido?
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.GetType().Name == "Cliente")
+            {
+                foreach (var dispositivo in ((SGE.Entidades.Cliente)item).Dispositivos)
+                {
+                    <tr>
+                        <td>
+                            @Html.Raw(item.Id)
+                        </td>
+                        <td>
+                            @Html.Raw(string.Format("{0} {1}", item.Nombre, item.Apellido))
+                        </td>
+                        <td>
+                            @Html.Raw(dispositivo.Nombre)
+                        </td>
+                        <td>
+                            @Html.Raw(dispositivo.ConsumoEnergia)
+                        </td>
+                        <td>
+                            @Html.Raw(dispositivo.EstaEncendido ? "SI" : "NO")
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </table>
 }
+
 
 @section Scripts
 {
