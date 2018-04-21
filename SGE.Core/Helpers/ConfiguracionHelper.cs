@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Core.Helpers
 {
-    class ConfiguracionHelper
+    public class ConfiguracionHelper
     {
         #region Propiedades
 

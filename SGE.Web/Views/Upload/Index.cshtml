@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Cuentas";
+    ViewBag.Title = "Carga de Datos";
 }
 
-<h3>Archivo de Cuentas</h3>
+<h3>Archivo de Dispositivos y Usuarios</h3>
 
 @using (Html.BeginForm("CargarArchivo", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -11,8 +11,8 @@
     </div>
     <div style="width: 60%; float:left; ">
         <input type="submit" name="CargarDatos" id="CargarDatos" value="Cargar" class="btn btn-primary" />
-        @Html.ActionLink("Procesar", "Process", null, new { @class = "btn btn-success" })
-        @Html.ActionLink("Limpiar", "Clear", null, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Procesar", "Procesar", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Limpiar", "Limpiar", null, new { @class = "btn btn-danger" })
 
     </div>
 }
