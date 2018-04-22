@@ -1,189 +1,508 @@
 [
+  //se agrega usuario administrador para archivo de carga json
+  {
+    "$type": "SGE.Entidades.Administrador, SGE.Entidades",
+    "id": "1",
+    "nombre": "Gabriela",
+    "apellido": "Lopez",
+    "nombreUsuario": "fladerosa",
+    "password": "abcdef",
+    "fechaAlta": "2018-04-22 13:25",
+    "direccion": "Medrano 951",
+    "antiguedad": "10"
+  },
+  {
+    "$type": "SGE.Entidades.Cliente, SGE.Entidades",
+    "id": "1",
+    "tipoDocumento": "DNI",
+    "nombre": "Pablo",
+    "apellido": "Garcia",
+    "nombreUsuario": "jstrelczuk",
+    "password": "123456",
+    "fechaAlta": "2018-04-21 12:25",
+    "direccion": "Pasco 100",
+    "numeroDocumento": "26787635",
+    "telefono": "+5491145671928",
+    "categoria": {
+      "Codigo": "R1",
+      "ConsumoMinimo": "0",
+      "ConsumoMaximo": "150",
+      "CostoFijo": "18.76",
+      "CostoVariable": "0.644"
+    },
+
+    "dispositivos": [
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "1.613",
+        "nombre": "Aire Acondicionado 3500 fg BGH"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "1.013",
+        "nombre": "Aire Acondicionado 2200 fg SAMSUNG"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.180",
+        "nombre": "Televisor LCD de 40 SONY"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "2",
+        "nombre": "Secador de cabellos WAGON"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Cargador de celular SONY"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Cargador de celular IPHONE"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.875",
+        "nombre": "Lavarropas Aut. de 5 kg. con calentamiento de agua"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.64",
+        "nombre": "Microondas BGH"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.09",
+        "nombre": "Heladera con freezer PATRICK"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.4",
+        "nombre": "Computadora (Solo la CPU)"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.022",
+        "nombre": "Monitor LED de 19"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.75",
+        "nombre": "Plancha"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.9",
+        "nombre": "Cafetera de filtro eléctrica"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.022",
+        "nombre": "Notebook"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.025",
+        "nombre": "Router"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.025",
+        "nombre": "Modem CABLEVISION"
+      }
+    ]
+  },
+  {
+    "$type": "SGE.Entidades.Cliente, SGE.Entidades",
+    "id": "2",
+    "tipoDocumento": "DNI",
+    "nombre": "Lucas",
+    "apellido": "Montenegro",
+    "nombreUsuario": "fladerosa",
+    "password": "dds2018",
+    "fechaAlta": "2018-04-22 15:15",
+    "direccion": "Av. Cordoba 4120",
+    "numeroDocumento": "27295313",
+    "telefono": "+5491135142100",
+    "categoria": {
+      "Codigo": "R2",
+      "ConsumoMinimo": "150",
+      "ConsumoMaximo": "325",
+      "CostoFijo": "35.32",
+      "CostoVariable": "0.644"
+    },
+
+    "dispositivos": [
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "1.613",
+        "nombre": "Aire Acondicionado 3500 fg BGH"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "1.013",
+        "nombre": "Aire Acondicionado 2200 fg SAMSUNG"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.180",
+        "nombre": "Televisor LCD de 40 SONY"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "2",
+        "nombre": "Secador de cabellos WAGON"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Cargador de celular SONY"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Cargador de celular IPHONE"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "1.847",
+        "nombre": "Microondas Whirpool"
+      },
+
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.875",
+        "nombre": "Lavarropas Aut. de 5 kg. con calentamiento de agua"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.64",
+        "nombre": "Microondas BGH"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.09",
+        "nombre": "Heladera con freezer PATRICK"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.4",
+        "nombre": "Computadora (Solo la CPU)"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.022",
+        "nombre": "Monitor LED de 19"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.75",
+        "nombre": "Plancha"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.9",
+        "nombre": "Cafetera de filtro eléctrica"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.022",
+        "nombre": "Notebook"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.025",
+        "nombre": "Router"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.025",
+        "nombre": "Modem CABLEVISION"
+      }
+    ]
+  },
     {
-        "$type": "SGE.Entidades.Cliente, SGE.Entidades",
-        "id": "1",
-        "tipoDocumento": "DNI",
-        "nombre": "Pablo",
-        "apellido": "Garcia",
-        "nombreUsuario": "jstrelczuk",
-        "password": "123456",
-        "fechaAlta": "2018-04-21 12:25",
-        "direccion": "Pasco 100",
-        "numeroDocumento": "26787635",
-        "telefono": "+5491145671928",
-        "categoria": {
-            "Codigo": "R1",
-            "ConsumoMinimo": "0",
-            "ConsumoMaximo": "150",
-            "CostoFijo": "18.76",
-            "CostoVariable": "0.644"
-        },
-        "dispositivos": [
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "1.613",
-                "nombre": "Aire Acondicionado 3500 fg BGH"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "1.013",
-                "nombre": "Aire Acondicionado 2200 fg SAMSUNG"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.180",
-                "nombre": "Televisor LCD de 40 SONY"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "2",
-                "nombre": "Secador de cabellos WAGON"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.005",
-                "nombre": "Cargador de celular SONY"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Cargador de celular IPHONE"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.005",
-                "nombre": "Lámpara de bajo consumo de 5W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.008",
-                "nombre": "Lámpara de bajo consumo de 8W"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.875",
-                "nombre": "Lavarropas Aut. de 5 kg. con calentamiento de agua"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.64",
-                "nombre": "Microondas BGH"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.09",
-                "nombre": "Heladera con freezer PATRICK"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.4",
-                "nombre": "Computadora (Solo la CPU)"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.022",
-                "nombre": "Monitor LED de 19"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.75",
-                "nombre": "Plancha"
-            },
-            {
-                "estaEncendido": "false",
-                "consumoEnergia": "0.9",
-                "nombre": "Cafetera de filtro eléctrica"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.022",
-                "nombre": "Notebook"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.025",
-                "nombre": "Router"
-            },
-            {
-                "estaEncendido": "true",
-                "consumoEnergia": "0.025",
-                "nombre": "Modem CABLEVISION"
-            }
-        ]
-    }
-]
+    "$type": "SGE.Entidades.Cliente, SGE.Entidades",
+    "id": "3",
+    "tipoDocumento": "DNI",
+    "nombre": "Mauro",
+    "apellido": "Rocca",
+    "nombreUsuario": "mrocha",
+    "password": "dds2018",
+    "fechaAlta": "2018-04-22 18:15",
+    "direccion": "Av. Gral. Francisco Fernández de la Cruz 5000",
+    "numeroDocumento": "253554555",
+    "telefono": "+5491100000000",
+    "categoria": {
+      "Codigo": "R3",
+      "ConsumoMinimo": "325",
+      "ConsumoMaximo": "400",
+      "CostoFijo": "60.71",
+      "CostoVariable": "0.681"
+    },
+
+    "dispositivos": [
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "1.613",
+        "nombre": "Aire Acondicionado 3500 fg BGH"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "1.013",
+        "nombre": "Aire Acondicionado 2200 fg SAMSUNG"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.180",
+        "nombre": "Televisor LCD de 40 SONY"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "2",
+        "nombre": "Secador de cabellos WAGON"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Cargador de celular SONY"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Cargador de celular IPHONE"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "1.847",
+        "nombre": "Microondas Whirpool"
+      },
+
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.005",
+        "nombre": "Lámpara de bajo consumo de 5W"
+      },
+
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.008",
+        "nombre": "Lámpara de bajo consumo de 8W"
+      },
+
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.875",
+        "nombre": "Lavarropas Aut. de 5 kg. con calentamiento de agua"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.64",
+        "nombre": "Microondas BGH"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.09",
+        "nombre": "Heladera con freezer PATRICK"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.4",
+        "nombre": "Computadora (Solo la CPU)"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.022",
+        "nombre": "Monitor LED de 19"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.75",
+        "nombre": "Plancha"
+      },
+      {
+        "estaEncendido": "false",
+        "consumoEnergia": "0.9",
+        "nombre": "Cafetera de filtro eléctrica"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.022",
+        "nombre": "Notebook"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.025",
+        "nombre": "Router"
+      },
+      {
+        "estaEncendido": "true",
+        "consumoEnergia": "0.025",
+        "nombre": "Modem CABLEVISION"
+      }
+    ]
+   }
+ ]
+ 
+
