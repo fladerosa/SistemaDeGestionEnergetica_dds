@@ -9,7 +9,7 @@ namespace SGE.Tests.Entidades
         [TestMethod]
         public void TieneAntiguedadIgualACero()
         {
-            Assert.IsFalse((new Administrador()).Antiguedad > 0);
+            Assert.IsFalse((new Administrador()).Antiguedad() > 0);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace SGE.Tests.Entidades
 
             d1.Accionar();
 
-            Assert.IsTrue(cliente.TieneDispositivosEncendidos);
+            Assert.IsTrue(cliente.TieneDispositivosEncendidos());
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace SGE.Tests.Entidades
             cliente.Dispositivos.Add(d2);
             cliente.Dispositivos.Add(d3);
 
-            Assert.IsFalse(cliente.TieneDispositivosEncendidos);
+            Assert.IsFalse(cliente.TieneDispositivosEncendidos());
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace SGE.Tests.Entidades
             d1.Accionar();
             d2.Accionar();
 
-            Assert.AreEqual(cliente.CantidadDispositivosEncendidos, 2);
+            Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace SGE.Tests.Entidades
 
             d1.Accionar();
 
-            Assert.AreEqual(cliente.CantidadDispositivosApagados, 2);
+            Assert.AreEqual(cliente.CantidadDispositivosApagados(), 2);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace SGE.Tests.Entidades
             cliente.Dispositivos.Add(d1);
             cliente.Dispositivos.Add(d2);
 
-            Assert.AreEqual(cliente.CantidadTotalDispositivos, 2);
+            Assert.AreEqual(cliente.CantidadTotalDispositivos(), 2);
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace SGE.Tests.Entidades
 
             cliente.Dispositivos.ForEach(d => d.Accionar());
 
-            Assert.AreEqual(cliente.CantidadDispositivosEncendidos, 2);
+            Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }
     }
 }

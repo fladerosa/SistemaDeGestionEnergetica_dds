@@ -12,8 +12,8 @@ namespace SGE.Tests.Entidades
         {
             Categoria categoria = new Categoria();
             categoria.Codigo = "R2";
-            categoria.CostoFijo = 32.52;
-            categoria.CostoVariable = 0.644;
+            categoria.CostoFijo = 32.5m;
+            categoria.CostoVariable = 0.644m;
 
             Assert.AreEqual(Math.Round(categoria.CalcularFacturaMensual(100), 2), 96.92);
         }

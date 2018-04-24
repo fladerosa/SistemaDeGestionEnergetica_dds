@@ -16,5 +16,6 @@ namespace SGE.Entidades
         public string Password { get; set; }
         public DateTime FechaAlta { get; set; }
         public string Direccion { get; set; }
+
     }
 }

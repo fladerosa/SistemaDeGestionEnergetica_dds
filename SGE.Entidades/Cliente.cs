@@ -19,38 +19,34 @@ namespace SGE.Entidades
             this.Dispositivos = new List<Dispositivo>();
         }
 
-        public bool TieneDispositivosEncendidos
+        public bool TieneDispositivosEncendidos()
         {
-            get
-            {
-                return this.Dispositivos.Any(d => d.EstaEncendido);
-            }
+            return this.Dispositivos.Any(d => d.EstaEncendido);
         }
 
-        public int CantidadDispositivosEncendidos
+        public int CantidadDispositivosEncendidos()
         {
-            get
-            {
-                return this.Dispositivos.FindAll(d => d.EstaEncendido).Count;
-            }
+            return this.Dispositivos.FindAll(d => d.EstaEncendido).Count;
         }
 
-        public int CantidadDispositivosApagados
+        public int CantidadDispositivosApagados()
         {
-            get
-            {
-                return this.Dispositivos.FindAll(d => !d.EstaEncendido).Count;
-            }
+            return this.Dispositivos.FindAll(d => !d.EstaEncendido).Count;
         }
 
-        public int CantidadTotalDispositivos
+        public int CantidadTotalDispositivos()
         {
-            get
-            {
-                return this.Dispositivos.Count;
-            }
+            return this.Dispositivos.Count;
         }
 
         #endregion
+
+        public Categoria Categoria1
+        {
+            get => default(Categoria);
+            set
+            {
+            }
+        }
     }
 }

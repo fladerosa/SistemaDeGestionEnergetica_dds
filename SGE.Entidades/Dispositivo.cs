@@ -15,5 +15,20 @@
         {
             this.EstaEncendido = !this.EstaEncendido;
         }
+
+        public bool EstaPrendido()
+        {
+            return this.EstaEncendido;
+        }
+
+        public decimal obtenerConsumoEnergia()
+        {
+            return this.ConsumoEnergia;
+        }
+
+        public string ObtenerNombre()
+        {
+            return this.Nombre;
+        }
     }
 }
