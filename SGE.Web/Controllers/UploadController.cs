@@ -7,11 +7,18 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using SGE.Core.Helpers;
 using SGE.Entidades;
+using SGE.Servicios;
 
 namespace SGE.Web.Controllers
 {
     public class UploadController : Controller
     {
+        #region Campos
+
+        ServicioUsuarios servicioUsuarios;
+
+        #endregion
+
         #region Propiedades
 
         /// <summary>
@@ -52,6 +59,17 @@ namespace SGE.Web.Controllers
 
         #endregion
 
+        #region Constructores
+
+        public UploadController()
+        {
+            this.servicioUsuarios = new ServicioUsuarios();
+        }
+
+        #endregion
+
+        #region Acciones
+
         // GET: Upload
         public ActionResult Index()
         {
@@ -71,22 +89,6 @@ namespace SGE.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Procesar()
-        {
-            try
-            {
-                List<Dispositivo> accountList = new List<Dispositivo>();
-                LogHelper.LogInformationMessage("Prueba");
-            }
-            catch (Exception ex)
-            {
-                LogHelper.LogErrorMessage(ex.Message, ex);
-                ModelState.AddModelError("Error", ex);
-            }
-
-            return RedirectToAction("Index");
-        }
-
         /// <summary>
         /// Permite subir un archivo con los dispositivos y usuarios para deserializar los datos en memoria.
         /// </summary>
@@ -96,29 +98,7 @@ namespace SGE.Web.Controllers
             try
             {
                 if (Request.Files.Count > 0)
-                {
-                    var archivo = Request.Files[0];
-
-                    string extensionArchivo = Path.GetExtension(archivo.FileName);
-
-                    if (archivo != null && archivo.ContentLength > 0 && extensionArchivo == ".json")
-                    {
-                        string contenido = string.Empty;
-
-                        using (var ms = new MemoryStream())
-                        {
-                            archivo.InputStream.CopyTo(ms);
-                            ms.Position = 0;
-
-                            contenido = new StreamReader(ms).ReadToEnd();
-                        }
-
-                        var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
-                        this.Usuarios = JsonConvert.DeserializeObject<List<Usuario>>(contenido, settings);
-                    }
-                    else
-                        LogHelper.LogErrorMessage("El archivo que intenta cargar el usuario está vacío o no es un archivo con extensión 'json'");
-                }
+                    this.Usuarios = this.servicioUsuarios.ObtenerUsuarios(Request.Files[0].InputStream, Request.Files[0].FileName);
                 else
                     LogHelper.LogErrorMessage("Se intentando realizar la carga sin especificar ningún archivo. Por favor, verifique que el usuario este cargando bien el archivo.");
             }
@@ -130,5 +110,7 @@ namespace SGE.Web.Controllers
             
             return RedirectToAction("Index");
         }
+
+        #endregion
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGE.Web", "SGE.Web\SGE.Web.csproj", "{53B5CD1D-4C25-4548-AAEB-B50028BFA29C}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGE.Datos", "SGE.Datos\SGE.Datos.csproj", "{5F66EF73-C62D-4FD4-BD13-462EA37A86BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGE.Core", "SGE.Core\SGE.Core.csproj", "{460EBD10-8EB3-47A7-9B87-400482115396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGE.Servicios", "SGE.Servicios\SGE.Servicios.csproj", "{C3ACEE49-E706-49A4-8CA6-A883BC046434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +41,15 @@ Global
 		{460EBD10-8EB3-47A7-9B87-400482115396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{460EBD10-8EB3-47A7-9B87-400482115396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{460EBD10-8EB3-47A7-9B87-400482115396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3ACEE49-E706-49A4-8CA6-A883BC046434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3ACEE49-E706-49A4-8CA6-A883BC046434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3ACEE49-E706-49A4-8CA6-A883BC046434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3ACEE49-E706-49A4-8CA6-A883BC046434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40ED04B9-E3EA-4034-9C28-28640E37BB8D}
 	EndGlobalSection
 EndGlobal

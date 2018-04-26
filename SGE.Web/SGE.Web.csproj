@@ -235,6 +235,10 @@
       <Project>{943DDEFD-ADE3-4A8C-9CFA-5BCEF9A624F1}</Project>
       <Name>SGE.Entidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SGE.Servicios\SGE.Servicios.csproj">
+      <Project>{c3acee49-e706-49a4-8ca6-a883bc046434}</Project>
+      <Name>SGE.Servicios</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
