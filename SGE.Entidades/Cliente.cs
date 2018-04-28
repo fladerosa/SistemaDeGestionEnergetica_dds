@@ -40,13 +40,5 @@ namespace SGE.Entidades
         }
 
         #endregion
-
-        public Categoria Categoria1
-        {
-            get => default(Categoria);
-            set
-            {
-            }
-        }
     }
 }
