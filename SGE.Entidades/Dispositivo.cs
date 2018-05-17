@@ -1,6 +1,16 @@
 ﻿namespace SGE.Entidades
 {
-    public class Dispositivo
+    public abstract class Dispositivo
+    {
+        public string Nombre { get; set; }
+
+        public abstract decimal obtenerConsumoEnergia();
+        public string ObtenerNombre()
+        {
+            return this.Nombre;
+        }
+    }
+    /*public class Dispositivo
     {
         public Dispositivo()
         {
@@ -30,5 +40,5 @@
         {
             return this.Nombre;
         }
-    }
+    }*/
 }
