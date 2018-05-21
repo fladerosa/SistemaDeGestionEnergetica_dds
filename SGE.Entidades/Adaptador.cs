@@ -4,21 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades
+namespace SGE.Tests.Entidades
 {
-    public class Adaptador: Decorator
+    public class Adaptador : IEstandar
     {
-        public Dispositivo Estedispositivo;
-
-        public Adaptador(Dispositivo dispositivo)
+        Adaptador estandarAdaptado;
+        public Adaptador(Adaptador a)
         {
-            this.Estedispositivo = dispositivo;
+            this.estandarAdaptado = a;
         }
-
-         public override decimal obtenerConsumoEnergia()
+        public void mostrar_dispositivo()
         {
-            return this.Estedispositivo.obtenerConsumoEnergia();
-                
+            this.estandarAdaptado.mostrar_dispositivo();
         }
+       
     }
 }

@@ -12,6 +12,7 @@ namespace SGE.Entidades
         
         public decimal ConsumoEnergia { get; set; }
 
+        
         public override decimal obtenerConsumoEnergia()
         {
             return this.Estedispositivo.obtenerConsumoEnergia();

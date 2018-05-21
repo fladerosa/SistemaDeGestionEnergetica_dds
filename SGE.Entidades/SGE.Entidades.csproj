@@ -40,12 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adaptador.cs" />
     <Compile Include="Administrador.cs" />
     <Compile Include="Categoria.cs" />
-    <Compile Include="Adaptador.cs" />
+    <Compile Include="EstandarAdaptado.cs" />
+    <Compile Include="IEstandar.cs" />
     <Compile Include="Inteligente.cs" />
     <Compile Include="Estandar.cs" />
-    <Compile Include="Decorator.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Dispositivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

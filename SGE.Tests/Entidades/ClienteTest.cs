@@ -2,7 +2,7 @@
 using SGE.Entidades;
 
 namespace SGE.Tests.Entidades
-{
+{ //21/05 se modificaron los dispositivos, teniendo en cuenta los nuevos tipos y el EstandarAdaptado
     [TestClass]
     public class ClienteTest
     {
@@ -10,15 +10,15 @@ namespace SGE.Tests.Entidades
         public void TieneDispositivosEncendidosTest()
         {
             Cliente cliente = new Cliente();
-            Dispositivo d1 = new Dispositivo();
-            Dispositivo d2 = new Dispositivo();
-            Dispositivo d3 = new Dispositivo();
-            
-            cliente.Dispositivos.Add(d1);
-            cliente.Dispositivos.Add(d2);
-            cliente.Dispositivos.Add(d3);
-
-            d1.Accionar();
+            Inteligente d1 = new Inteligente();
+            EstandarAdaptado d2 = new EstandarAdaptado();
+            Estandar d3 = new Estandar();
+         
+            cliente.Inteligentes.Add(d1);
+            cliente.EstandarAdaptados.Add(d2);
+            cliente.Estandars.Add(d3);
+           
+            d1.EncenderA();
 
             Assert.IsTrue(cliente.TieneDispositivosEncendidos());
         }
@@ -27,13 +27,13 @@ namespace SGE.Tests.Entidades
         public void TieneDispositivosApagadosTest()
         {
             Cliente cliente = new Cliente();
-            Dispositivo d1 = new Dispositivo();
-            Dispositivo d2 = new Dispositivo();
-            Dispositivo d3 = new Dispositivo();
+            Inteligente d1 = new Inteligente();
+            Estandar d2 = new Estandar();
+            EstandarAdaptado d3 = new EstandarAdaptado();
 
-            cliente.Dispositivos.Add(d1);
-            cliente.Dispositivos.Add(d2);
-            cliente.Dispositivos.Add(d3);
+            cliente.Inteligentes.Add(d1);
+            cliente.Estandars.Add(d2);
+            cliente.EstandarAdaptados.Add(d3);
 
             Assert.IsFalse(cliente.TieneDispositivosEncendidos());
         }
@@ -42,16 +42,16 @@ namespace SGE.Tests.Entidades
         public void TieneDosDispositivosEncendidosTest()
         {
             Cliente cliente = new Cliente();
-            Dispositivo d1 = new Dispositivo();
-            Dispositivo d2 = new Dispositivo();
-            Dispositivo d3 = new Dispositivo();
+            Inteligente d1 = new Inteligente();
+            EstandarAdaptado d2 = new EstandarAdaptado();
+            Estandar d3 = new Estandar();
 
-            cliente.Dispositivos.Add(d1);
-            cliente.Dispositivos.Add(d2);
-            cliente.Dispositivos.Add(d3);
+            cliente.Inteligentes.Add(d1);
+            cliente.EstandarAdaptados.Add(d2);
+            cliente.Estandars.Add(d3);
 
-            d1.Accionar();
-            d2.Accionar();
+            d1.EncenderA();
+            d2.EncenderA();
 
             Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }
@@ -60,15 +60,15 @@ namespace SGE.Tests.Entidades
         public void TieneDosDispositivosApagadosTest()
         {
             Cliente cliente = new Cliente();
-            Dispositivo d1 = new Dispositivo();
-            Dispositivo d2 = new Dispositivo();
-            Dispositivo d3 = new Dispositivo();
+            Inteligente d1 = new Inteligente();
+            EstandarAdaptado d2 = new EstandarAdaptado();
+            Estandar    d3 = new Estandar();
 
-            cliente.Dispositivos.Add(d1);
-            cliente.Dispositivos.Add(d2);
-            cliente.Dispositivos.Add(d3);
+            cliente.Inteligentes.Add(d1);
+            cliente.EstandarAdaptados.Add(d2);
+            cliente.Estandars.Add(d3);
 
-            d1.Accionar();
+            d1.ApagarA();
 
             Assert.AreEqual(cliente.CantidadDispositivosApagados(), 2);
         }
@@ -77,26 +77,26 @@ namespace SGE.Tests.Entidades
         public void TieneDosDispositivosATest()
         {
             Cliente cliente = new Cliente();
-            Dispositivo d1 = new Dispositivo();
-            Dispositivo d2 = new Dispositivo();
+            Inteligente d1 = new Inteligente();
+            Estandar d2 = new Estandar();
 
-            cliente.Dispositivos.Add(d1);
-            cliente.Dispositivos.Add(d2);
+            cliente.Inteligentes.Add(d1);
+            cliente.Estandars.Add(d2);
 
             Assert.AreEqual(cliente.CantidadTotalDispositivos(), 2);
         }
 
         [TestMethod]
-        public void EncenderDosDispositivos()
+        public void EncenderSoloDIDispositivos()
         {
             Cliente cliente = new Cliente();
-            Dispositivo d1 = new Dispositivo();
-            Dispositivo d2 = new Dispositivo();
+            Inteligente d1 = new Inteligente();
+            Estandar d2 = new Estandar();
 
-            cliente.Dispositivos.Add(d1);
-            cliente.Dispositivos.Add(d2);
+            cliente.Inteligentes.Add(d1);
+            cliente.Estandars.Add(d2);
 
-            cliente.Dispositivos.ForEach(d => d.Accionar());
+            cliente.Inteligentes.ForEach(d => d.EncenderA());
 
             Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }
