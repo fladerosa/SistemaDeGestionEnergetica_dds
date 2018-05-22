@@ -53,6 +53,7 @@
     <Compile Include="Dispositivos\Estandar.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Dispositivos\Dispositivo.cs" />
+    <Compile Include="Dispositivos\IEstandar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reglas\Regla.cs" />
     <Compile Include="Reglas\Medicion.cs" />

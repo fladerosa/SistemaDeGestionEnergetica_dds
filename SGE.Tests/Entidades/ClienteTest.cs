@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades;
+using SGE.Entidades.Dispositivos;
 
 namespace SGE.Tests.Entidades
 { //21/05 se modificaron los dispositivos, teniendo en cuenta los nuevos tipos y el EstandarAdaptado
@@ -18,7 +19,7 @@ namespace SGE.Tests.Entidades
             cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
            
-            d1.EncenderA();
+            d1.Encender();
 
             Assert.IsTrue(cliente.TieneDispositivosEncendidos());
         }
@@ -50,8 +51,8 @@ namespace SGE.Tests.Entidades
             cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
 
-            d1.EncenderA();
-            d2.EncenderA();
+            d1.Encender();
+            d2.Encender();
 
             Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }
@@ -68,7 +69,7 @@ namespace SGE.Tests.Entidades
             cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
 
-            d1.ApagarA();
+            d1.Apagar();
 
             Assert.AreEqual(cliente.CantidadDispositivosApagados(), 2);
         }
@@ -96,7 +97,7 @@ namespace SGE.Tests.Entidades
             cliente.Inteligentes.Add(d1);
             cliente.Estandars.Add(d2);
 
-            cliente.Inteligentes.ForEach(d => d.EncenderA());
+            cliente.Inteligentes.ForEach(d => d.Encender());
 
             Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }

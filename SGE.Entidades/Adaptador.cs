@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Tests.Entidades
+namespace SGE.Entidades.Dispositivos
+
 {
     public class Adaptador : IEstandar
     {
