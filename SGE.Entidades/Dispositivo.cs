@@ -4,7 +4,7 @@
     {
         public string Nombre { get; set; }
 
-        public abstract decimal obtenerConsumoEnergia();
+        public abstract decimal ObtenerConsumoEnergia();
         public string ObtenerNombre()
         {
             return this.Nombre;

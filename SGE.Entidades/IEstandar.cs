@@ -9,6 +9,6 @@ namespace SGE.Tests.Entidades
     public interface IEstandar
     {
   
-        void mostrar_dispositivo();
+        void MostrarDispositivo();
     }
 }

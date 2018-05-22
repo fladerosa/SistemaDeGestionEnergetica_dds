@@ -40,12 +40,12 @@ namespace SGE.Entidades
         {
             return this.EstaEncendido == false;
         }
-        public bool cambiarModo()
+        public bool CambiarModo()
         {
 
             return this.EstaEncendido = true;
         }
-        public override decimal obtenerConsumoEnergia()
+        public override decimal ObtenerConsumoEnergia()
         {
             return this.ConsumoEnergia;
         }

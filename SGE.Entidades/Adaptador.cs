@@ -13,9 +13,9 @@ namespace SGE.Tests.Entidades
         {
             this.estandarAdaptado = a;
         }
-        public void mostrar_dispositivo()
+        public void MostrarDispositivo()
         {
-            this.estandarAdaptado.mostrar_dispositivo();
+            this.estandarAdaptado.MostrarDispositivo();
         }
        
     }
