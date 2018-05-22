@@ -8,6 +8,9 @@ namespace SGE.Entidades.Actuadores
 {
     public class AccionApagar
     {
+        public AccionApagar()
+        {
+        }
 
         public void EjecutarAccion()
         {

@@ -54,6 +54,8 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Dispositivos\Dispositivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reglas\Medicion.cs" />
+    <Compile Include="Reglas\Sensor.cs" />
     <Compile Include="TipoDocumento.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
