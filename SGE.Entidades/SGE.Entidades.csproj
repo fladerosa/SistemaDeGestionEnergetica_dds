@@ -40,17 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actuadores\Comando.cs" />
+    <Compile Include="Actuadores\IComando.cs" />
     <Compile Include="Adaptador.cs" />
     <Compile Include="Administrador.cs" />
     <Compile Include="Categoria.cs" />
-    <Compile Include="Comando.cs" />
     <Compile Include="Dispositivos\EstadoDispositivo.cs" />
     <Compile Include="Dispositivos\EstandarAdaptado.cs" />
     <Compile Include="Dispositivos\Inteligente.cs" />
     <Compile Include="Dispositivos\Estandar.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Dispositivos\Dispositivo.cs" />
-    <Compile Include="IComando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoDocumento.cs" />
     <Compile Include="Usuario.cs" />
