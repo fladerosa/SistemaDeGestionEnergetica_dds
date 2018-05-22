@@ -9,10 +9,12 @@ namespace SGE.Tests.Entidades
     public class Adaptador : IEstandar
     {
         Adaptador estandarAdaptado;
+
         public Adaptador(Adaptador a)
         {
             this.estandarAdaptado = a;
         }
+
         public void MostrarDispositivo()
         {
             this.estandarAdaptado.MostrarDispositivo();

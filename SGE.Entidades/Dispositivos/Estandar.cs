@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades
+namespace SGE.Entidades.Dispositivos
 {
     public class Estandar: Dispositivo{
 

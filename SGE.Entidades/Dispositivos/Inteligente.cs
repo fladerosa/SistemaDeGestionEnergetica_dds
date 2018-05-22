@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades
+namespace SGE.Entidades.Dispositivos
 {
-    public class EstandarAdaptado
-    {
+    public class Inteligente: Dispositivo
+    {   
         public decimal ConsumoEnergia { get; set; }
         public bool EstaEncendido { get; set; }
-        public string Nombre { get; set; }
-        public EstandarAdaptado()
+        public String indicador_fab { get; set; }
+        public Inteligente()
         {
             this.EstaEncendido = false;
         }
 
         public void EncenderA()
         {
-            if (this.EstaEncendido == false)
+            if(this.EstaEncendido == false)
             {
                 this.EstaEncendido = true;
             }
@@ -40,20 +40,17 @@ namespace SGE.Entidades
         {
             return this.EstaEncendido == false;
         }
-        public bool cambiarModo()
+        public bool CambiarModo()
         {
 
             return this.EstaEncendido = true;
         }
-        public  decimal obtenerConsumoEnergia()
+        public override decimal ObtenerConsumoEnergia()
         {
             return this.ConsumoEnergia;
         }
-
-        public void mostrar_dispositivoAdaptado()
-        {
-            Console.WriteLine("\nDispositivo:  ------ ", Nombre);
-        }
+     
     }
 
 }
+
