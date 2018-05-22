@@ -45,6 +45,8 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="Dispositivos\EstadoDispositivo.cs" />
     <Compile Include="Dispositivos\EstandarAdaptado.cs" />
+    <Compile Include="IEstandarAdaptado.cs" />
+    <Compile Include="IInteligente.cs" />
     <Compile Include="IEstandar.cs" />
     <Compile Include="Dispositivos\Inteligente.cs" />
     <Compile Include="Dispositivos\Estandar.cs" />
