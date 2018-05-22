@@ -7,49 +7,87 @@ using System.Threading.Tasks;
 namespace SGE.Entidades.Dispositivos
 {
     public class Inteligente: Dispositivo
-    {   
-        public decimal ConsumoEnergia { get; set; }
-        public bool EstaEncendido { get; set; }
-        public String indicador_fab { get; set; }
-        public Inteligente()
-        {
-            this.EstaEncendido = false;
-        }
+    {
+        #region Campos
 
-        public void EncenderA()
+        /// <summary>
+        /// Indica el estado del dispositivo
+        /// </summary>
+        private EstadoDispositivo Estado = EstadoDispositivo.Encendido;
+
+        #endregion
+
+        #region Propiedades
+
+        /// <summary>
+        /// Indica el nombre del dispositivo
+        /// </summary>
+        public string Nombre { get; set; }
+
+        /// <summary>
+        /// Devuelve el estado de energia del dispositivo
+        /// </summary>
+        public override decimal ConsumoEnergia { get; set; }
+
+        /// <summary>
+        /// Devuelve un valor que indica si el equipo esta encendido
+        /// </summary>
+        public bool EstaEncendido
         {
-            if(this.EstaEncendido == false)
+            get
             {
-                this.EstaEncendido = true;
+                return this.Estado == EstadoDispositivo.Encendido;
             }
         }
 
-        public void ApagarA()
+        /// <summary>
+        /// Devuelve un valor que indica si el equipo esta encendido
+        /// </summary>
+        public bool EstaApagado
         {
-            if (this.EstaEncendido == true)
+            get
             {
-                this.EstaEncendido = false;
+                return this.Estado == EstadoDispositivo.Apagado;
             }
         }
 
-        public bool EstaPrendido()
-        {
-            return this.EstaEncendido == true;
-        }
-        public bool EstaApagado()
-        {
-            return this.EstaEncendido == false;
-        }
-        public bool CambiarModo()
-        {
+        public string IdentificadorFabrica { get; set; }
 
-            return this.EstaEncendido = true;
-        }
-        public override decimal ObtenerConsumoEnergia()
+        #endregion
+
+        #region Funcionamiento
+
+        /// <summary>
+        /// Enciendo el equipo
+        /// </summary>
+        public void Encender()
         {
-            return this.ConsumoEnergia;
+            if (this.Estado != EstadoDispositivo.Encendido)
+            {
+                this.Estado = EstadoDispositivo.Encendido;
+            }
         }
-     
+
+        /// <summary>
+        /// Apaga el equipo
+        /// </summary>
+        public void Apagar()
+        {
+            if (this.Estado != EstadoDispositivo.Apagado && this.Estado != EstadoDispositivo.AhorroEnergia)
+            {
+                this.Estado = EstadoDispositivo.Apagado;
+            }
+        }
+
+        /// <summary>
+        /// Coloca el dispositivo en modo ahorro energía
+        /// </summary>
+        public void CambiarModo()
+        {
+            this.Estado = EstadoDispositivo.AhorroEnergia;
+        }
+
+        #endregion
     }
 
 }

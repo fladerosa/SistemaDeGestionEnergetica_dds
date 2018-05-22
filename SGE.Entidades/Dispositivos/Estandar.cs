@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace SGE.Entidades.Dispositivos
 {
-    public class Estandar: Dispositivo{
+    public class Estandar: Dispositivo
+    {
+        #region Propiedades
 
-        public Dispositivo Estedispositivo;
-        
-        public decimal ConsumoEnergia { get; set; }
+        public override decimal ConsumoEnergia {get; set;}
 
-        
-        public override decimal ObtenerConsumoEnergia()
-        {
-            return this.Estedispositivo.ObtenerConsumoEnergia();
-                
-        }
-       
+        public decimal PromedioUsoDiario { get; set; }
 
+        #endregion
     }   
     
 }
