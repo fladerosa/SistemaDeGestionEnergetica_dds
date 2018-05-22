@@ -88,6 +88,15 @@ namespace SGE.Entidades.Dispositivos
         }
 
         #endregion
+
+        #region Estadísticas
+
+        public decimal ObtenerConsumoEnergiaNHoras()
+        {
+            return 0;
+        }
+
+        #endregion
     }
 
 }
