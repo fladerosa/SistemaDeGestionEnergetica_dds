@@ -8,6 +8,11 @@ namespace SGE.Entidades.Reglas
 {
     public class Medicion
     {
+        public Medicion(Sensor xSensor)
+        {
+            Sensor = xSensor;
+        }
+
         public Sensor Sensor { get; set; }
         public decimal Valor { get; set; }
     }
