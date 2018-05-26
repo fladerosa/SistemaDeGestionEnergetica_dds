@@ -93,6 +93,11 @@ namespace SGE.Entidades.Dispositivos
             throw new NotImplementedException();
         }
 
+        public EstadoDispositivo ObtenerEstado()
+        {
+            return this.Estado;
+        }
+
         #endregion
 
         #region Estadísticas

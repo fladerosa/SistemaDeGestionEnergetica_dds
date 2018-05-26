@@ -15,7 +15,7 @@ namespace SGE.Tests.Entidades
             categoria.CostoFijo = 32.5m;
             categoria.CostoVariable = 0.644m;
 
-            Assert.AreEqual(Math.Round(categoria.CalcularFacturaMensual(100), 2), 96.92);
+            Assert.AreEqual(Math.Round(categoria.CalcularFacturaMensual(100), 2), 96.90m);
         }
 
         [TestMethod]

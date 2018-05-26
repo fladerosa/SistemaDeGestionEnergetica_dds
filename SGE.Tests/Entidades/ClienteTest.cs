@@ -3,18 +3,29 @@ using SGE.Entidades;
 using SGE.Entidades.Dispositivos;
 
 namespace SGE.Tests.Entidades
-{ //21/05 se modificaron los dispositivos, teniendo en cuenta los nuevos tipos y el EstandarAdaptado
+{
     [TestClass]
     public class ClienteTest
     {
+        Cliente cliente;
+        Inteligente d1;
+        EstandarAdaptado d2;
+        Estandar d3;
+
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            this.cliente = new Cliente();
+            this.d1 = new Inteligente();
+            this.d2 = new EstandarAdaptado();
+            this.d3 = new Estandar();
+        }
+
+
         [TestMethod]
         public void TieneDispositivosEncendidosTest()
         {
-            Cliente cliente = new Cliente();
-            Inteligente d1 = new Inteligente();
-            EstandarAdaptado d2 = new EstandarAdaptado();
-            Estandar d3 = new Estandar();
-         
             cliente.Inteligentes.Add(d1);
             cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
@@ -27,26 +38,19 @@ namespace SGE.Tests.Entidades
         [TestMethod]
         public void TieneDispositivosApagadosTest()
         {
-            Cliente cliente = new Cliente();
-            Inteligente d1 = new Inteligente();
-            Estandar d2 = new Estandar();
-            EstandarAdaptado d3 = new EstandarAdaptado();
-
             cliente.Inteligentes.Add(d1);
-            cliente.Estandars.Add(d2);
-            cliente.EstandarAdaptados.Add(d3);
+            cliente.Estandars.Add(d3);
+            cliente.EstandarAdaptados.Add(d2);
 
+            d1.Apagar();
+            d2.Apagar();
+            
             Assert.IsFalse(cliente.TieneDispositivosEncendidos());
         }
 
         [TestMethod]
         public void TieneDosDispositivosEncendidosTest()
         {
-            Cliente cliente = new Cliente();
-            Inteligente d1 = new Inteligente();
-            EstandarAdaptado d2 = new EstandarAdaptado();
-            Estandar d3 = new Estandar();
-
             cliente.Inteligentes.Add(d1);
             cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
@@ -60,46 +64,33 @@ namespace SGE.Tests.Entidades
         [TestMethod]
         public void TieneDosDispositivosApagadosTest()
         {
-            Cliente cliente = new Cliente();
-            Inteligente d1 = new Inteligente();
-            EstandarAdaptado d2 = new EstandarAdaptado();
-            Estandar    d3 = new Estandar();
-
             cliente.Inteligentes.Add(d1);
             cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
 
             d1.Apagar();
 
-            Assert.AreEqual(cliente.CantidadDispositivosApagados(), 2);
+            Assert.AreEqual(cliente.CantidadDispositivosApagados(), 1);
         }
 
         [TestMethod]
         public void TieneDosDispositivosATest()
         {
-            Cliente cliente = new Cliente();
-            Inteligente d1 = new Inteligente();
-            Estandar d2 = new Estandar();
-
             cliente.Inteligentes.Add(d1);
-            cliente.Estandars.Add(d2);
+            cliente.Estandars.Add(d3);
 
-            Assert.AreEqual(cliente.CantidadTotalDispositivos(), 2);
+            Assert.AreEqual(cliente.CantidadTotalDispositivos(), 1);
         }
 
         [TestMethod]
         public void EncenderSoloDIDispositivos()
         {
-            Cliente cliente = new Cliente();
-            Inteligente d1 = new Inteligente();
-            Estandar d2 = new Estandar();
-
             cliente.Inteligentes.Add(d1);
-            cliente.Estandars.Add(d2);
+            cliente.Estandars.Add(d3);
 
             cliente.Inteligentes.ForEach(d => d.Encender());
 
-            Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
+            Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 1);
         }
     }
 }

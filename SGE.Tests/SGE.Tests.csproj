@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actuadores\ActuadoresTests.cs" />
     <Compile Include="Entidades\AdministradorTest.cs" />
     <Compile Include="Entidades\ClienteTest.cs" />
     <Compile Include="Entidades\CategoriaTest.cs" />
