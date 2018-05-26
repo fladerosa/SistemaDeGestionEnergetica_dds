@@ -12,7 +12,7 @@ namespace SGE.Entidades.Actuadores.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            this.dispositivo = new Inteligente();
+            this.dispositivo = new Inteligente("TV LG", 100m);
         }
 
         [TestMethod()]
@@ -41,7 +41,7 @@ namespace SGE.Entidades.Actuadores.Tests
             this.actuador = new AccionCambiarModoOperacion("Cambia-dor", this.dispositivo);
             
             this.actuador.Ejecutar();
-            Assert.IsTrue(this.dispositivo.ObtenerEstado().Equals(EstadoDispositivo.AhorroEnergia));
+            Assert.IsTrue(this.dispositivo.EstaEnModoAhorro);
         }
     }
 }

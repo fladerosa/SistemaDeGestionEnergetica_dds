@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Newtonsoft.Json;
-using SGE.Core.Helpers;
-using SGE.Entidades;
+﻿using SGE.Core.Helpers;
+using SGE.Entidades.Usuarios;
 using SGE.Servicios;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace SGE.Web.Controllers
 {

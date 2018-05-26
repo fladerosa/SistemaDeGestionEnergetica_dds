@@ -3,10 +3,16 @@
     public abstract class Dispositivo
     {
         #region Propiedades
-
         public string Nombre { get; set; }
-        public abstract decimal ConsumoEnergia { get; set; }
+        public decimal ConsumoEnergia { get; set; }
+        #endregion Propiedades
 
-        #endregion
+        #region Constructor
+        protected Dispositivo(string nombre, decimal consumo)
+        {
+            this.Nombre = nombre;
+            this.ConsumoEnergia = ConsumoEnergia;
+        }
+        #endregion Constructor
     }
 }

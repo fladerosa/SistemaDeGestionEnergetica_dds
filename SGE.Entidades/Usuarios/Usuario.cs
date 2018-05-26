@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SGE.Entidades
+namespace SGE.Entidades.Usuarios
 {
     public abstract class Usuario
     {

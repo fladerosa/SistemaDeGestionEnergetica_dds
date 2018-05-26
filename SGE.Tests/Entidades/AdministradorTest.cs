@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades;
+using SGE.Entidades.Usuarios;
 
 namespace SGE.Tests.Entidades
 {

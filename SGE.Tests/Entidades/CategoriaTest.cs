@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SGE.Entidades.Categorias;
+using System;
 
 namespace SGE.Tests.Entidades
 {

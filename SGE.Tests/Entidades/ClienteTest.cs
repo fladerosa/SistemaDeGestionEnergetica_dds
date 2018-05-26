@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades;
+using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
 
 namespace SGE.Tests.Entidades
@@ -17,9 +17,9 @@ namespace SGE.Tests.Entidades
         public void TestInitialize()
         {
             this.cliente = new Cliente();
-            this.d1 = new Inteligente();
-            this.d2 = new EstandarAdaptado();
-            this.d3 = new Estandar();
+            this.d1 = new Inteligente("TV LG", 100m);
+            this.d2 = new EstandarAdaptado(new Estandar("TV Samsung", 120m));
+            this.d3 = new Estandar("TV", 200m);
         }
 
 

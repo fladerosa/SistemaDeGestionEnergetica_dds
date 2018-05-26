@@ -1,4 +1,4 @@
-﻿namespace SGE.Entidades
+﻿namespace SGE.Entidades.Categorias
 {
     public class Categoria
     {

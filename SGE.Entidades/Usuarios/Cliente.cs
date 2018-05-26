@@ -1,8 +1,9 @@
-﻿using SGE.Entidades.Dispositivos;
+﻿using SGE.Entidades.Categorias;
+using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SGE.Entidades
+namespace SGE.Entidades.Usuarios
 {
     public class Cliente: Usuario
     {

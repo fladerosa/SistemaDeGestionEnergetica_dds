@@ -4,26 +4,12 @@ namespace SGE.Entidades.Dispositivos
 {
     public class Inteligente: Dispositivo
     {
-        #region Campos
-
+        #region Propiedades
         /// <summary>
         /// Indica el estado del dispositivo
         /// </summary>
-        private EstadoDispositivo Estado = EstadoDispositivo.Encendido;
-
-        #endregion Campos
-
-        #region Propiedades
-
-        /// <summary>
-        /// Indica el nombre del dispositivo
-        /// </summary>
-        public string Nombre { get; set; }
-
-        /// <summary>
-        /// Devuelve el estado de energia del dispositivo
-        /// </summary>
-        public override decimal ConsumoEnergia { get; set; }
+        protected EstadoDispositivo Estado = EstadoDispositivo.Encendido;
+        public string IdentificadorFabrica { get; set; }
 
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
@@ -47,12 +33,28 @@ namespace SGE.Entidades.Dispositivos
             }
         }
 
-        public string IdentificadorFabrica { get; set; }
+        /// <summary>
+        /// Devuelve un valor que indicasiel equipo esta en modo ahorro de energia
+        /// </summary>
+        public bool EstaEnModoAhorro
+        {
+            get
+            {
+                return this.Estado == EstadoDispositivo.AhorroEnergia;
+            }
+        }
+        #endregion Propiedades
 
-        #endregion
+
+        #region Constructor
+        public Inteligente(string nombre, decimal consumo) : base(nombre, consumo)
+        {
+
+        }
+        #endregion Constructor
+
 
         #region Funcionamiento
-
         /// <summary>
         /// Enciendo el equipo
         /// </summary>
@@ -92,16 +94,10 @@ namespace SGE.Entidades.Dispositivos
         {
             throw new NotImplementedException();
         }
+        #endregion Funcionamiento
 
-        public EstadoDispositivo ObtenerEstado()
-        {
-            return this.Estado;
-        }
 
-        #endregion
-
-        #region Estadísticas
-
+        #region Estadisticas
         public decimal ObtenerConsumoUltimasHoras(int cantidadHoras)
         {
             return 0;
@@ -111,9 +107,6 @@ namespace SGE.Entidades.Dispositivos
         {
             return 0;
         }
-
-        #endregion
+        #endregion Estadisticas
     }
-
 }
-
