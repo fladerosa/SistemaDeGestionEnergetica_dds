@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actuadores\AccionApagar.cs" />
+    <Compile Include="Actuadores\AccionBajarIntensidad.cs" />
     <Compile Include="Actuadores\AccionCambiarModoOperacion.cs" />
     <Compile Include="Actuadores\AccionEncender.cs" />
+    <Compile Include="Actuadores\AccionSubirIntensidad.cs" />
     <Compile Include="Actuadores\Actuador.cs" />
     <Compile Include="Adaptador.cs" />
     <Compile Include="Administrador.cs" />

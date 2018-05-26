@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SGE.Entidades.Dispositivos
 {
@@ -15,7 +11,7 @@ namespace SGE.Entidades.Dispositivos
         /// </summary>
         private EstadoDispositivo Estado = EstadoDispositivo.Encendido;
 
-        #endregion
+        #endregion Campos
 
         #region Propiedades
 
@@ -85,6 +81,16 @@ namespace SGE.Entidades.Dispositivos
         public void CambiarModo()
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
+        }
+
+        public void SubirIntensidad()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void BajarIntensidad()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
