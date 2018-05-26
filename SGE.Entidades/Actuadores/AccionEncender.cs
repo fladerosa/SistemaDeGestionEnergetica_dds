@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Actuadores
 {
-    public class AccionEncender
+    public class AccionEncender : Actuador
     {
-        public void EjecutarAccion()
+        public AccionEncender(string nombre, Inteligente dispositivo) : base(nombre, dispositivo)
         {
         }
-        public void DeshacerAccion()
+
+        public override void Ejecutar()
         {
+            this.Dispositivo.Encender();
         }
     }
 }

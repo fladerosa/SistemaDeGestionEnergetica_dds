@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actuadores\AccionApagar.cs" />
+    <Compile Include="Actuadores\AccionCambiarModoOperacion.cs" />
     <Compile Include="Actuadores\AccionEncender.cs" />
-    <Compile Include="Actuadores\Comando.cs" />
-    <Compile Include="Actuadores\IComando.cs" />
+    <Compile Include="Actuadores\Actuador.cs" />
     <Compile Include="Adaptador.cs" />
     <Compile Include="Administrador.cs" />
     <Compile Include="Categoria.cs" />

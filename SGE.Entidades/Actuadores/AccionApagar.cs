@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Actuadores
 {
-    public class AccionApagar
+    public class AccionApagar : Actuador
     {
-        public AccionApagar()
+        public AccionApagar(string nombre, Inteligente dispositivo) : base(nombre, dispositivo)
         {
         }
 
-        public void EjecutarAccion()
+        public override void Ejecutar()
         {
-        }
-        public void DeshacerAccion()
-        {
+            this.Dispositivo.Apagar();
         }
     }
 }
