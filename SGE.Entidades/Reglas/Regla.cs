@@ -20,6 +20,19 @@ namespace SGE.Entidades.Reglas
         #region Metodos
         public void Ejecutar()
         {
+            //verifico que se cumpla todas las condiciones
+            bool condicionesCumplidas=true;
+            foreach (Condicion condicion in Condiciones)
+            {
+                condicionesCumplidas = condicion.Evaluar();
+            }
+            if (condicionesCumplidas)
+            {
+                foreach (var Actuador in Actuadores)
+                {
+                    
+                }
+            }
         }
        
         #endregion Metodos

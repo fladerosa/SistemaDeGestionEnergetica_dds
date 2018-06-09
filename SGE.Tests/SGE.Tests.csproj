@@ -87,6 +87,8 @@
     <Compile Include="Entidades\AdministradorTest.cs" />
     <Compile Include="Entidades\ClienteTest.cs" />
     <Compile Include="Entidades\CategoriaTest.cs" />
+    <Compile Include="Entidades\Reglas\CondicionTest.cs" />
+    <Compile Include="Entidades\Reglas\ReglaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -106,6 +108,7 @@
       <Name>SGE.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

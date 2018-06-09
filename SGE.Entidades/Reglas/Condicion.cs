@@ -12,7 +12,7 @@ namespace SGE.Entidades.Reglas
         #region Propiedades
         public Sensor Sensor { get; set; }
         public decimal Valor { get; set; }
-        public Enum OperacionEnum { get; set; }
+        public OperadorEnum Operador { get; set; }
 
         #endregion Propiedades
 
@@ -20,7 +20,17 @@ namespace SGE.Entidades.Reglas
         #region Metodos
         public bool Evaluar()
         {
-            return true;
+            switch (Operador)
+            {
+                case OperadorEnum.Mayor:
+                    return Sensor.Medir() > Valor;
+                case OperadorEnum.Menor:
+                    return Sensor.Medir() < Valor;
+                case OperadorEnum.Igual:
+                    return Sensor.Medir() == Valor;
+                default:
+                    return Sensor.Medir() != Valor;
+            }
         }
 
         #endregion Metodos
