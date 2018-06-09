@@ -55,6 +55,7 @@
     <Compile Include="Dispositivos\Dispositivo.cs" />
     <Compile Include="Dispositivos\IEstandar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reglas\Condicion.cs" />
     <Compile Include="Reglas\Regla.cs" />
     <Compile Include="Reglas\Medicion.cs" />
     <Compile Include="Reglas\Sensor.cs" />

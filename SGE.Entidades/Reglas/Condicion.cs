@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace SGE.Entidades.Reglas
 {
-    public class Regla
+    public class Condicion
     {
+
         #region Propiedades
-        public string Nombre { get; set; }
-        public List<Condicion> Condiciones { get; set; }
-        //mientras no exista la clase Actuador va con Condicion para que compile 
-        public List<Condicion> Actuadores { get; set; }
-        
+        public Sensor Sensor { get; set; }
+        public decimal Valor { get; set; }
+        public Enum OperacionEnum { get; set; }
+
         #endregion Propiedades
 
 
         #region Metodos
-        public void Ejecutar()
+        public bool Evaluar()
         {
+            return true;
         }
-       
+
         #endregion Metodos
     }
 }

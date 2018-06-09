@@ -9,22 +9,36 @@ namespace SGE.Entidades.Reglas
 {
     public class Sensor
     {
-        public string Nombre { get; set; }
-        public decimal ValorMedido { get; set; }
-        public string TipoMagnitud { get; set; }
-        public Dispositivo Dispositivo { get; set; }
-        public Medicion Medicion { get; set; }
+
+        #region Propiedades
+        //public string Nombre { get; set; }
+        //public string TipoMagnitud { get; set; }
+        //public Dispositivo Dispositivo { get; set; }
+        //public Medicion Medicion { get; set; }
+
+        public decimal Valor { get; set; }
+        public string Unidad { get; set; }
+
+        #endregion Propiedades
 
 
-        public decimal ObtenerMedicion()
+        #region Metodos
+        //public decimal ObtenerMedicion()
+        //{
+        //    return this.Medicion.Valor;
+        //}
+
+        //public void ComunicarMedicion()
+        //{
+        //    Medicion medicionAcutual = new Medicion(this);
+        //    this.Medicion = medicionAcutual;
+        //}
+
+        public decimal Medir()
         {
-            return this.Medicion.Valor;
+            return decimal.MaxValue;
         }
 
-        public void ComunicarMedicion()
-        {
-            Medicion medicionAcutual = new Medicion(this);
-            this.Medicion = medicionAcutual;
-        }
+        #endregion Metodos
     }
 }
