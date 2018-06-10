@@ -97,7 +97,12 @@ namespace SGE.Entidades.Dispositivos
 
         #region Estadísticas
 
-        public decimal ObtenerConsumoEnergiaNHoras()
+        public decimal ObtenerConsumoUltimasHoras(int cantidadHoras)
+        {
+            return 0;
+        }
+
+        public decimal ObtenerConsumoPeriodo(DateTime fechaDesde, DateTime fechaHasta)
         {
             return 0;
         }

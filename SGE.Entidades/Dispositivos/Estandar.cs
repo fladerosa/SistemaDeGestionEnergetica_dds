@@ -15,6 +15,15 @@ namespace SGE.Entidades.Dispositivos
         public decimal PromedioUsoDiario { get; set; }
 
         #endregion
+
+        #region Adaptación
+
+        public Inteligente AgregarAdaptador()
+        {
+            return new Inteligente();
+        }
+
+        #endregion
     }   
     
 }
