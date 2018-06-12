@@ -89,8 +89,8 @@
     <Compile Include="Entidades\AdministradorTest.cs" />
     <Compile Include="Entidades\ClienteTest.cs" />
     <Compile Include="Entidades\CategoriaTest.cs" />
-    <Compile Include="Reglas\CondicionTest.cs" />
-    <Compile Include="Reglas\ReglaTest.cs" />
+    <Compile Include="Entidades\Reglas\CondicionTest.cs" />
+    <Compile Include="Entidades\Reglas\ReglaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>

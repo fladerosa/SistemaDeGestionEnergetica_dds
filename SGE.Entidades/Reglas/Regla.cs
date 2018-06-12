@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SGE.Entidades.Reglas
 {
@@ -7,10 +8,16 @@ namespace SGE.Entidades.Reglas
         #region Propiedades
         public string Nombre { get; set; }
         public List<Condicion> Condiciones { get; set; }
-        //mientras no exista la clase Actuador va con Condicion para que compile 
         public List<Actuador> Actuadores { get; set; }
-        
+
         #endregion Propiedades
+
+        public Regla(String xNombre, List<Condicion> xCondiciones, List<Actuador> xActuadores)
+        {
+            this.Nombre = xNombre;
+            this.Condiciones = xCondiciones;
+            this.Actuadores = xActuadores;
+        }
 
 
         #region Metodos

@@ -47,6 +47,7 @@
     <Compile Include="Actuadores\AccionSubirIntensidad.cs" />
     <Compile Include="Actuadores\Actuador.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
+    <Compile Include="Reglas\TipoUnidadEnum.cs" />
     <Compile Include="Reglas\UnidadEnum.cs" />
     <Compile Include="Usuarios\Administrador.cs" />
     <Compile Include="Categorias\Categoria.cs" />

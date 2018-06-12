@@ -4,6 +4,7 @@
     {
         VOLTIOS,
         KILOGRAMOS,
-        PSI
+        PSI,
+        CENTIGRADOS
     }
 }

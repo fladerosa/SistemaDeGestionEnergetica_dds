@@ -8,7 +8,17 @@ namespace SGE.Entidades.Reglas
         #region Propiedades
         public UnidadEnum Unidad { get; set; }
         public List<Medicion> HistoricoMediciones { get; set; }
+
+        public TipoUnidadEnum TipoUnidad { get; set; }
+
+
         #endregion Propiedades
+
+        public Sensor(TipoUnidadEnum tipoUnidad,UnidadEnum unidad)
+        {
+            this.TipoUnidad = tipoUnidad;
+            this.Unidad = unidad;
+        }
 
         public Sensor(UnidadEnum unidad)
         {
