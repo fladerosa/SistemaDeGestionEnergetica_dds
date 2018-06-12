@@ -1,38 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SGE.Entidades.Reglas
+﻿namespace SGE.Entidades.Reglas
 {
     public class Condicion
     {
-
         #region Propiedades
         public Sensor Sensor { get; set; }
         public decimal Valor { get; set; }
         public OperadorEnum Operador { get; set; }
-
         #endregion Propiedades
 
+
+        public Condicion(Sensor sensor, decimal valor, OperadorEnum operador)
+        {
+            this.Sensor = sensor;
+            this.Valor = valor;
+            this.Operador = operador;
+        }
 
         #region Metodos
         public bool Evaluar()
         {
             switch (Operador)
             {
-                case OperadorEnum.Mayor:
+                case OperadorEnum.MAYOR:
                     return Sensor.Medir() > Valor;
-                case OperadorEnum.Menor:
+                case OperadorEnum.MENOR:
                     return Sensor.Medir() < Valor;
-                case OperadorEnum.Igual:
+                case OperadorEnum.IGUAL:
                     return Sensor.Medir() == Valor;
                 default:
                     return Sensor.Medir() != Valor;
             }
         }
-
         #endregion Metodos
     }
 }

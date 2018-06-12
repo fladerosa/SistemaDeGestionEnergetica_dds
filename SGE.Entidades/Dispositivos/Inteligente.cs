@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SGE.Entidades.Dispositivos
 {
@@ -8,8 +10,9 @@ namespace SGE.Entidades.Dispositivos
         /// <summary>
         /// Indica el estado del dispositivo
         /// </summary>
-        protected EstadoDispositivo Estado = EstadoDispositivo.Encendido;
+        protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
         public string IdentificadorFabrica { get; set; }
+        public List<Activacion> RegistroDeActivaciones { get; set; }
 
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
@@ -49,7 +52,7 @@ namespace SGE.Entidades.Dispositivos
         #region Constructor
         public Inteligente(string nombre, decimal consumo) : base(nombre, consumo)
         {
-
+            this.RegistroDeActivaciones = new List<Activacion>();
         }
         #endregion Constructor
 
@@ -63,6 +66,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Encendido)
             {
                 this.Estado = EstadoDispositivo.Encendido;
+                this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
             }
         }
 
@@ -74,6 +78,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Apagado && this.Estado != EstadoDispositivo.AhorroEnergia)
             {
                 this.Estado = EstadoDispositivo.Apagado;
+                this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
             }
         }
 
@@ -83,6 +88,7 @@ namespace SGE.Entidades.Dispositivos
         public void CambiarModo()
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
+            this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
         }
 
         public void SubirIntensidad()
@@ -98,14 +104,43 @@ namespace SGE.Entidades.Dispositivos
 
 
         #region Estadisticas
-        public decimal ObtenerConsumoUltimasHoras(int cantidadHoras)
+        public decimal ObtenerConsumoDeUltimasNHoras(int cantidadHoras)
         {
-            return 0;
+            DateTime fechaBusqueda = (DateTime.Now).AddHours((-1) * cantidadHoras);
+            List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaBusqueda).ToList<Activacion>();
+            return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
         }
 
         public decimal ObtenerConsumoPeriodo(DateTime fechaDesde, DateTime fechaHasta)
         {
-            return 0;
+            List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaDesde && x.FechaDeRegistro <= fechaHasta).ToList<Activacion>();
+            return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
+        }
+
+        private decimal CalcularHorasDeUso(List<Activacion> lista)
+        {
+            int horas = 0;
+            bool flag = false;
+            Activacion activacionAnterior = null;
+            
+            foreach (Activacion registro in lista)
+            {
+                if (registro.Estado != EstadoDispositivo.Apagado)
+                {
+                    activacionAnterior = registro;
+                    flag = true;
+                }
+                else if (registro.Estado == EstadoDispositivo.Apagado && flag)
+                {
+                    horas += Math.Abs(registro.FechaDeRegistro.Subtract(activacionAnterior.FechaDeRegistro).Hours);
+                    flag = false;
+                }
+            }
+
+            if (activacionAnterior.Estado != EstadoDispositivo.Apagado && flag)
+                horas += Math.Abs(activacionAnterior.FechaDeRegistro.Subtract(DateTime.Now).Hours);
+
+            return horas;
         }
         #endregion Estadisticas
     }

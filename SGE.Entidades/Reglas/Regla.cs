@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SGE.Entidades.Reglas
 {
@@ -12,7 +8,7 @@ namespace SGE.Entidades.Reglas
         public string Nombre { get; set; }
         public List<Condicion> Condiciones { get; set; }
         //mientras no exista la clase Actuador va con Condicion para que compile 
-        public List<Condicion> Actuadores { get; set; }
+        public List<Actuador> Actuadores { get; set; }
         
         #endregion Propiedades
 
@@ -21,18 +17,11 @@ namespace SGE.Entidades.Reglas
         public void Ejecutar()
         {
             //verifico que se cumpla todas las condiciones
-            bool condicionesCumplidas=true;
             foreach (Condicion condicion in Condiciones)
-            {
-                condicionesCumplidas = condicion.Evaluar();
-            }
-            if (condicionesCumplidas)
-            {
-                foreach (var Actuador in Actuadores)
-                {
-                    
-                }
-            }
+                if (!condicion.Evaluar()) return;
+
+            foreach (Actuador actuador in Actuadores)
+                actuador.Ejecutar();
         }
        
         #endregion Metodos

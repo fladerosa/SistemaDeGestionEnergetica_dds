@@ -11,7 +11,7 @@
         protected Dispositivo(string nombre, decimal consumo)
         {
             this.Nombre = nombre;
-            this.ConsumoEnergia = ConsumoEnergia;
+            this.ConsumoEnergia = consumo;
         }
         #endregion Constructor
     }
