@@ -14,6 +14,8 @@ namespace SGE.Entidades.Reglas
 
         #endregion Propiedades
 
+        #region Constructores
+
         public Sensor(TipoUnidadEnum tipoUnidad,UnidadEnum unidad)
         {
             this.TipoUnidad = tipoUnidad;
@@ -24,6 +26,8 @@ namespace SGE.Entidades.Reglas
         {
             this.Unidad = unidad;
         }
+
+        #endregion
 
         #region Metodos
         public decimal Medir()

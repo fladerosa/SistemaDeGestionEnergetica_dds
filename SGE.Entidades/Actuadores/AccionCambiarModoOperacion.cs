@@ -10,7 +10,7 @@ namespace SGE.Entidades.Actuadores
 
         public override void Ejecutar()
         {
-            this.Dispositivo.CambiarModo();
+            
         }
     }
 }

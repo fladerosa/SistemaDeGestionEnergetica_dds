@@ -12,6 +12,8 @@ namespace SGE.Entidades.Reglas
 
         #endregion Propiedades
 
+        #region Constructores
+
         public Regla(String xNombre, List<Condicion> xCondiciones, List<Actuador> xActuadores)
         {
             this.Nombre = xNombre;
@@ -19,6 +21,7 @@ namespace SGE.Entidades.Reglas
             this.Actuadores = xActuadores;
         }
 
+        #endregion
 
         #region Metodos
         public void Ejecutar()

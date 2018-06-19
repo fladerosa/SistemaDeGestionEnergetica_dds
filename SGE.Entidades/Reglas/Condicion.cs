@@ -3,11 +3,14 @@
     public class Condicion
     {
         #region Propiedades
+
         public Sensor Sensor { get; set; }
         public decimal Valor { get; set; }
         public OperadorEnum Operador { get; set; }
-        #endregion Propiedades
 
+        #endregion
+
+        #region Constructores
 
         public Condicion(Sensor sensor, decimal valor, OperadorEnum operador)
         {
@@ -16,7 +19,10 @@
             this.Operador = operador;
         }
 
-        #region Metodos
+        #endregion
+
+        #region Evaluación
+
         public bool Evaluar()
         {
             switch (Operador)
@@ -31,6 +37,7 @@
                     return Sensor.Medir() != Valor;
             }
         }
-        #endregion Metodos
+
+        #endregion
     }
 }

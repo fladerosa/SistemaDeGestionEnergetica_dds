@@ -27,17 +27,17 @@ namespace SGE.Entidades.Usuarios
 
         public bool TieneDispositivosEncendidos()
         {
-            return this.Inteligentes.Any(d => d.EstaEncendido) || this.EstandarAdaptados.Any(d => d.EstaEncendido);
+            return this.Inteligentes.Any(d => d.EstaPrendido) || this.EstandarAdaptados.Any(d => d.EstaPrendido);
         }
 
         public int CantidadDispositivosEncendidos()
         {
-            return this.Inteligentes.FindAll(d => d.EstaEncendido).Count + this.EstandarAdaptados.FindAll(d => d.EstaEncendido).Count;
+            return this.Inteligentes.FindAll(d => d.EstaPrendido).Count + this.EstandarAdaptados.FindAll(d => d.EstaPrendido).Count;
         }
 
         public int CantidadDispositivosApagados()
         {
-            return this.Inteligentes.FindAll(d => !d.EstaEncendido).Count + this.EstandarAdaptados.FindAll(d => !d.EstaEncendido).Count;
+            return this.Inteligentes.FindAll(d => !d.EstaPrendido).Count + this.EstandarAdaptados.FindAll(d => !d.EstaPrendido).Count;
         }
 
         public int CantidadTotalDispositivos()

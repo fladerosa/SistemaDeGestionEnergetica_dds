@@ -47,6 +47,16 @@
     <Compile Include="Actuadores\AccionSubirIntensidad.cs" />
     <Compile Include="Actuadores\Actuador.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
+    <Compile Include="Dispositivos\AireAcondicionado.cs" />
+    <Compile Include="Dispositivos\Lavarropas.cs" />
+    <Compile Include="Dispositivos\Televisor.cs" />
+    <Compile Include="Drivers\DreanLavarropas.cs" />
+    <Compile Include="Drivers\Interfaces\IAireAcondicionadoDriver.cs" />
+    <Compile Include="Drivers\Interfaces\IDriver.cs" />
+    <Compile Include="Drivers\Interfaces\ILavarropasDriver.cs" />
+    <Compile Include="Drivers\Interfaces\ITelevisorDriver.cs" />
+    <Compile Include="Drivers\SamsungAireAcondicionado.cs" />
+    <Compile Include="Drivers\SonyTV.cs" />
     <Compile Include="Reglas\TipoUnidadEnum.cs" />
     <Compile Include="Reglas\UnidadEnum.cs" />
     <Compile Include="Usuarios\Administrador.cs" />

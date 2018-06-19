@@ -22,7 +22,7 @@ namespace SGE.Entidades.Actuadores.Tests
 
             this.dispositivo.Apagar();
             this.actuador.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaEncendido);
+            Assert.IsTrue(this.dispositivo.EstaPrendido);
         }
 
         [TestMethod()]
@@ -41,7 +41,7 @@ namespace SGE.Entidades.Actuadores.Tests
             this.actuador = new AccionCambiarModoOperacion("Cambia-dor", this.dispositivo);
             
             this.actuador.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaEnModoAhorro);
+            Assert.IsTrue(this.dispositivo.EstaEnModoAhorroEnergia);
         }
     }
 }
