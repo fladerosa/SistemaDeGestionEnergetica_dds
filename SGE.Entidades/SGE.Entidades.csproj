@@ -40,10 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Acciones\CambiarCanal.cs" />
-    <Compile Include="Acciones\EstablecerTemperaturaAireAcondicionado.cs" />
+    <Compile Include="Acciones\AA\AumentarVelocidadVentilador.cs" />
+    <Compile Include="Acciones\TV\CambiarCanal.cs" />
+    <Compile Include="Acciones\AA\CambiarDireccion.cs" />
+    <Compile Include="Acciones\AA\DecrementarVelocidadVentilador.cs" />
+    <Compile Include="Acciones\AA\EstablecerModoCool.cs" />
+    <Compile Include="Acciones\AA\EstablecerModoDry.cs" />
+    <Compile Include="Acciones\AA\EstablecerModoHeat.cs" />
+    <Compile Include="Acciones\AA\EstablecerTemperaturaAireAcondicionado.cs" />
     <Compile Include="Acciones\IAccion.cs" />
-    <Compile Include="Acciones\LavarRopaAlgodon.cs" />
+    <Compile Include="Acciones\Lavarropa\LavarRopaAlgodon.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
     <Compile Include="Dispositivos\AireAcondicionado.cs" />
     <Compile Include="Dispositivos\Lavarropas.cs" />

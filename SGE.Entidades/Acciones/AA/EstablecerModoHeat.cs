@@ -5,23 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using SGE.Entidades.Dispositivos;
 
-namespace SGE.Entidades.Acciones
+namespace SGE.Entidades.Acciones.AA
 {
-    public class CambiarCanal: IAccion
+    class EstablecerModoHeat: IAccion
     {
         #region Campos
 
-        private Televisor dispositivo;
-        private decimal canal;
+        private AireAcondicionado dispositivo;
 
         #endregion
 
         #region Constructores
 
-        public CambiarCanal(Televisor dispositivo, decimal canal)
+        public EstablecerModoHeat(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;
-            this.canal = canal;
         }
 
         #endregion
@@ -30,7 +28,7 @@ namespace SGE.Entidades.Acciones
 
         public void Ejecutar()
         {
-            this.dispositivo.CambiarCanal(this.canal);
+            this.dispositivo.EstablecerModoHeat();
         }
 
         #endregion

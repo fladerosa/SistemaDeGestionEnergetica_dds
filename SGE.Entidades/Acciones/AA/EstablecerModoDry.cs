@@ -5,23 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using SGE.Entidades.Dispositivos;
 
-namespace SGE.Entidades.Acciones
+namespace SGE.Entidades.Acciones.AA
 {
-    public class EstablecerTemperaturaAireAcondicionado : IAccion
+    public class EstablecerModoDry: IAccion
     {
         #region Campos
 
         private AireAcondicionado dispositivo;
-        private int temperatura;
 
         #endregion
 
         #region Constructores
 
-        public EstablecerTemperaturaAireAcondicionado(AireAcondicionado dispositivo, int valorTemperatura)
+        public EstablecerModoDry(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;
-            this.temperatura = valorTemperatura;
         }
 
         #endregion
@@ -30,7 +28,7 @@ namespace SGE.Entidades.Acciones
 
         public void Ejecutar()
         {
-            this.dispositivo.EstablecerTemperatura(this.temperatura);
+            this.dispositivo.EstablecerModoDry();
         }
 
         #endregion

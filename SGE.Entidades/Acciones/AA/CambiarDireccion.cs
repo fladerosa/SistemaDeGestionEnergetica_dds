@@ -5,19 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using SGE.Entidades.Dispositivos;
 
-namespace SGE.Entidades.Acciones
+namespace SGE.Entidades.Acciones.AA
 {
-    public class LavarRopaAlgodon: IAccion
+    public class CambiarDireccion: IAccion
     {
         #region Campos
 
-        private Lavarropas dispositivo;
+        private AireAcondicionado dispositivo;
 
         #endregion
 
         #region Constructores
 
-        public LavarRopaAlgodon(Lavarropas dispositivo)
+        public CambiarDireccion(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;
         }
@@ -28,7 +28,7 @@ namespace SGE.Entidades.Acciones
 
         public void Ejecutar()
         {
-            this.dispositivo.LavarRopaAlgodon();
+            this.dispositivo.CambiarDireccion();
         }
 
         #endregion
