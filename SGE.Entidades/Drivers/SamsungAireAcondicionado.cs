@@ -12,55 +12,60 @@ namespace SGE.Entidades.Drivers
     {
         public List<Actuador> Actuadores { get; set; }
         public List<Sensor> Sensores { get; set; }
+        public string Mensaje { get; set; }
 
         public void Apagar()
         {
-            throw new NotImplementedException();
-        }
-
-        public void AumentarVelocidadVentilador()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CambiarDireccion()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DecrementarVelocidadVentilador()
-        {
-            throw new NotImplementedException();
+            this.Mensaje = "Apagando...";
         }
 
         public void Encender()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Encendiendo...";
         }
+
+
+        public void PonerEnModoAhorroEnergia()
+        {
+            this.Mensaje = "Colocando en modo ahorro energía..";
+        }
+
+
+        public void AumentarVelocidadVentilador()
+        {
+            this.Mensaje = "Aumentando velocidad de ventilador...";
+        }
+
+        public void CambiarDireccion()
+        {
+            this.Mensaje = "Cambiando dirección aire...";
+        }
+
+        public void DecrementarVelocidadVentilador()
+        {
+            this.Mensaje = "Decrementando velocidad ventilador...";
+        }
+
 
         public void EstablecerModoCool()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Estableciendo modo cool...";
         }
 
         public void EstablecerModoDry()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Estableciendo modo dry...";
         }
 
         public void EstablecerModoHeat()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Estableciendo modo heat...";
         }
 
         public void EstablecerTemperatura(int valor)
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Estableciendo temperatura..." + valor.ToString();
         }
 
-        public void PonerEnModoAhorroEnergia()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

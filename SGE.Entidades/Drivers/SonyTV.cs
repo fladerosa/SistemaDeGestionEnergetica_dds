@@ -12,45 +12,48 @@ namespace SGE.Entidades.Drivers
     {
         public List<Actuador> Actuadores { get; set; }
         public List<Sensor> Sensores { get; set; }
+        public string Mensaje { get; set; }
 
         public void Apagar()
         {
-            throw new NotImplementedException();
-        }
-
-        public void BajarVolumen()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CambiarCanal(decimal canal)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CambiarEntrada()
-        {
-            throw new NotImplementedException();
+            this.Mensaje = "Apagando...";
         }
 
         public void Encender()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Encendiendo...";
         }
 
-        public void Mute()
-        {
-            throw new NotImplementedException();
-        }
 
         public void PonerEnModoAhorroEnergia()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Colocando en modo ahorro energía..";
+        }
+
+        public void BajarVolumen()
+        {
+            this.Mensaje = "Bajando volúmen...";
+        }
+
+        public void CambiarCanal(decimal canal)
+        {
+            this.Mensaje = "Cambiando canal a..." + canal.ToString();
+        }
+
+        public void CambiarEntrada()
+        {
+            this.Mensaje = "Cambiando entrada TV...";
+        }
+
+
+        public void Mute()
+        {
+            this.Mensaje = "Muteando...";
         }
 
         public void SubirVolumen()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Subiendo volúmen..";
         }
     }
 }

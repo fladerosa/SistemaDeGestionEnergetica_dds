@@ -12,25 +12,26 @@ namespace SGE.Entidades.Drivers
     {
         public List<Actuador> Actuadores { get; set; }
         public List<Sensor> Sensores { get; set; }
+        public string Mensaje { get; set; }
 
         public void Apagar()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Apagando...";
         }
 
         public void Encender()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Encendiendo...";
         }
 
         public void LavarRopaAlgodon()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Iniciando lavado de ropa de algodón...";
         }
 
         public void PonerEnModoAhorroEnergia()
         {
-            throw new NotImplementedException();
+            this.Mensaje = "Colocando en modo ahorro energía..";
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SGE.Entidades.Dispositivos
 
         #region Constructores
 
-        public Lavarropas(ILavarropasDriver driver, string nombre, decimal consumo): base(nombre, consumo)
+        public Lavarropas(ILavarropasDriver driver, string nombre, decimal consumo): base(nombre, consumo, driver)
         {
             this.Driver = driver;
         }

@@ -17,7 +17,7 @@ namespace SGE.Entidades.Dispositivos
 
         #region Constructores
 
-        public AireAcondicionado(IAireAcondicionadoDriver driver, string nombre, decimal consumo): base(nombre, consumo)
+        public AireAcondicionado(IAireAcondicionadoDriver driver, string nombre, decimal consumo): base(nombre, consumo, driver)
         {
             this.Driver = driver;
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SGE.Entidades.Drivers;
 
 namespace SGE.Entidades.Dispositivos.Tests
 {
@@ -8,7 +9,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoDeUltimasNHoras_2_activacionesTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m);
+            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTV());
             decimal valor;
 
             dispositivo.Encender();
@@ -22,7 +23,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoDeUltimasNHoras_3_activacionesTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m);
+            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTV());
             decimal valor;
 
             dispositivo.Encender();
@@ -54,7 +55,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoPeriodoTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m);
+            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTV());
             decimal valor;
 
             dispositivo.Encender();

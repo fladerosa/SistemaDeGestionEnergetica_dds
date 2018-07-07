@@ -17,7 +17,7 @@ namespace SGE.Entidades.Dispositivos
 
         #region Constructores
 
-        public Televisor(ITelevisorDriver driver, string nombre, decimal consumo): base(nombre, consumo)
+        public Televisor(ITelevisorDriver driver, string nombre, decimal consumo): base(nombre, consumo, driver)
         {
             this.Driver = driver;
         }
@@ -50,6 +50,7 @@ namespace SGE.Entidades.Dispositivos
         {
             this.Driver.Mute();
         }
+
 
         #endregion
     }

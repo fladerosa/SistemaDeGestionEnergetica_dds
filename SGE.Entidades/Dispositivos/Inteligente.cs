@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SGE.Entidades.Drivers.Interfaces;
 
 namespace SGE.Entidades.Dispositivos
 {
@@ -16,6 +17,7 @@ namespace SGE.Entidades.Dispositivos
         public string IdentificadorFabrica { get; set; }
 
         public List<Activacion> RegistroDeActivaciones { get; set; }
+        public IDriver Driver { get; set; }
 
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
@@ -54,9 +56,10 @@ namespace SGE.Entidades.Dispositivos
 
         #region Constructor
 
-        public Inteligente(string nombre, decimal consumo) : base(nombre, consumo)
+        public Inteligente(string nombre, decimal consumo, IDriver driver) : base(nombre, consumo)
         {
             this.RegistroDeActivaciones = new List<Activacion>();
+            this.Driver = driver;
         }
 
         #endregion
@@ -71,6 +74,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Encendido)
             {
                 this.Estado = EstadoDispositivo.Encendido;
+                this.Driver.Encender();
                 this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
             }
         }
@@ -83,6 +87,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Apagado && this.Estado != EstadoDispositivo.AhorroEnergia)
             {
                 this.Estado = EstadoDispositivo.Apagado;
+                this.Driver.Apagar();
                 this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
             }
         }
@@ -93,6 +98,7 @@ namespace SGE.Entidades.Dispositivos
         public void ColcarEnAhorroDeEnergia()
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
+            this.Driver.PonerEnModoAhorroEnergia();
             this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
         }
 
