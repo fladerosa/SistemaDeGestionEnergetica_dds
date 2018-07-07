@@ -40,12 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actuadores\AccionApagar.cs" />
-    <Compile Include="Actuadores\AccionBajarIntensidad.cs" />
-    <Compile Include="Actuadores\AccionCambiarModoOperacion.cs" />
-    <Compile Include="Actuadores\AccionEncender.cs" />
-    <Compile Include="Actuadores\AccionSubirIntensidad.cs" />
-    <Compile Include="Actuadores\Actuador.cs" />
+    <Compile Include="Acciones\CambiarCanal.cs" />
+    <Compile Include="Acciones\EstablecerTemperaturaAireAcondicionado.cs" />
+    <Compile Include="Acciones\IAccion.cs" />
+    <Compile Include="Acciones\LavarRopaAlgodon.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
     <Compile Include="Dispositivos\AireAcondicionado.cs" />
     <Compile Include="Dispositivos\Lavarropas.cs" />

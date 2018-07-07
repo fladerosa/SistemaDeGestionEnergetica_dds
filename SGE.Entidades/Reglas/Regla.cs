@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SGE.Entidades.Acciones;
 
 namespace SGE.Entidades.Reglas
 {
@@ -8,7 +9,7 @@ namespace SGE.Entidades.Reglas
         #region Propiedades
         public string Nombre { get; set; }
         public List<Condicion> Condiciones { get; set; }
-        public List<Actuador> Actuadores { get; set; }
+        public List<IAccion> Acciones { get; set; }
 
         #endregion Propiedades
 
@@ -18,7 +19,7 @@ namespace SGE.Entidades.Reglas
         {
             this.Nombre = xNombre;
             this.Condiciones = xCondiciones;
-            this.Actuadores = xActuadores;
+            this.Acciones = xActuadores;
         }
 
         #endregion
@@ -30,7 +31,7 @@ namespace SGE.Entidades.Reglas
             foreach (Condicion condicion in Condiciones)
                 if (!condicion.Evaluar()) return;
 
-            foreach (Actuador actuador in Actuadores)
+            foreach (Actuador actuador in Acciones)
                 actuador.Ejecutar();
         }
        
