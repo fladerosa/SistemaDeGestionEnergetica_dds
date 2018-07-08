@@ -95,7 +95,7 @@ namespace SGE.Entidades.Dispositivos
         /// <summary>
         /// Coloca el dispositivo en modo ahorro energía
         /// </summary>
-        public void ColcarEnAhorroDeEnergia()
+        public void ColocarEnAhorroEnergia()
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
             this.Driver.PonerEnModoAhorroEnergia();

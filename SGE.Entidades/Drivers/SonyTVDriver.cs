@@ -8,10 +8,8 @@ using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Drivers
 {
-    public class DreanLavarropas : ILavarropasDriver
+    public class SonyTVDriver : ITelevisorDriver
     {
-        public List<Actuador> Actuadores { get; set; }
-        public List<Sensor> Sensores { get; set; }
         public string Mensaje { get; set; }
 
         public void Apagar()
@@ -24,14 +22,36 @@ namespace SGE.Entidades.Drivers
             this.Mensaje = "Encendiendo...";
         }
 
-        public void LavarRopaAlgodon()
-        {
-            this.Mensaje = "Iniciando lavado de ropa de algodón...";
-        }
 
         public void PonerEnModoAhorroEnergia()
         {
             this.Mensaje = "Colocando en modo ahorro energía..";
+        }
+
+        public void BajarVolumen()
+        {
+            this.Mensaje = "Bajando volúmen...";
+        }
+
+        public void CambiarCanal(decimal canal)
+        {
+            this.Mensaje = "Cambiando canal a..." + canal.ToString();
+        }
+
+        public void CambiarEntrada()
+        {
+            this.Mensaje = "Cambiando entrada TV...";
+        }
+
+
+        public void Mute()
+        {
+            this.Mensaje = "Muteando...";
+        }
+
+        public void SubirVolumen()
+        {
+            this.Mensaje = "Subiendo volúmen..";
         }
     }
 }

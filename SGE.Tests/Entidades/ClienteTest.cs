@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
 
 namespace SGE.Tests.Entidades
 {
@@ -9,7 +10,6 @@ namespace SGE.Tests.Entidades
     {
         Cliente cliente;
         Inteligente d1;
-        EstandarAdaptado d2;
         Estandar d3;
 
 
@@ -17,8 +17,7 @@ namespace SGE.Tests.Entidades
         public void TestInitialize()
         {
             this.cliente = new Cliente();
-            this.d1 = new Inteligente("TV LG", 100m);
-            this.d2 = new EstandarAdaptado(new Estandar("TV Samsung", 120m));
+            this.d1 = new Inteligente("TV LG", 100m, new SonyTVDriver());
             this.d3 = new Estandar("TV", 200m);
         }
 
@@ -27,7 +26,6 @@ namespace SGE.Tests.Entidades
         public void TieneDispositivosEncendidosTest()
         {
             cliente.Inteligentes.Add(d1);
-            cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
            
             d1.Encender();
@@ -40,10 +38,8 @@ namespace SGE.Tests.Entidades
         {
             cliente.Inteligentes.Add(d1);
             cliente.Estandars.Add(d3);
-            cliente.EstandarAdaptados.Add(d2);
 
             d1.Apagar();
-            d2.Apagar();
             
             Assert.IsFalse(cliente.TieneDispositivosEncendidos());
         }
@@ -52,11 +48,9 @@ namespace SGE.Tests.Entidades
         public void TieneDosDispositivosEncendidosTest()
         {
             cliente.Inteligentes.Add(d1);
-            cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
 
             d1.Encender();
-            d2.Encender();
 
             Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
         }
@@ -65,7 +59,6 @@ namespace SGE.Tests.Entidades
         public void TieneDosDispositivosApagadosTest()
         {
             cliente.Inteligentes.Add(d1);
-            cliente.EstandarAdaptados.Add(d2);
             cliente.Estandars.Add(d3);
 
             d1.Apagar();

@@ -15,5 +15,6 @@ namespace SGE.Entidades.Drivers.Interfaces
         void EstablecerModoCool();
         void EstablecerModoHeat();
         void EstablecerModoDry();
+        decimal ObtenerTemperaturaActual();
     }
 }

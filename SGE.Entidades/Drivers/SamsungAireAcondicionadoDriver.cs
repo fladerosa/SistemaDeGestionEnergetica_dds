@@ -8,11 +8,18 @@ using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Drivers
 {
-    public class SamsungAireAcondicionado : IAireAcondicionadoDriver
+    public class SamsungAireAcondicionadoDriver : IAireAcondicionadoDriver
     {
-        public List<Actuador> Actuadores { get; set; }
-        public List<Sensor> Sensores { get; set; }
         public string Mensaje { get; set; }
+
+        private decimal temperaturaActual = 10;
+        public decimal TemperaturaActual
+        {
+            get
+            {
+                return this.temperaturaActual;
+            }
+        }
 
         public void Apagar()
         {
@@ -65,6 +72,11 @@ namespace SGE.Entidades.Drivers
         public void EstablecerTemperatura(int valor)
         {
             this.Mensaje = "Estableciendo temperatura..." + valor.ToString();
+        }
+
+        public decimal ObtenerTemperaturaActual()
+        {
+            return this.temperaturaActual;
         }
 
     }

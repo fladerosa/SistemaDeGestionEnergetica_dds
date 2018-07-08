@@ -11,7 +11,7 @@ namespace SGE.Entidades.Dispositivos
     {
         #region Propiedades
 
-        public IAireAcondicionadoDriver Driver { get; set; }
+        private IAireAcondicionadoDriver driver;
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace SGE.Entidades.Dispositivos
 
         public AireAcondicionado(IAireAcondicionadoDriver driver, string nombre, decimal consumo): base(nombre, consumo, driver)
         {
-            this.Driver = driver;
+            this.driver = driver;
         }
 
         #endregion
@@ -28,37 +28,42 @@ namespace SGE.Entidades.Dispositivos
 
         public void EstablecerTemperatura(int valor)
         {
-            this.Driver.EstablecerTemperatura(valor);
+            this.driver.EstablecerTemperatura(valor);
         }
 
         public void CambiarDireccion()
         {
-            this.Driver.CambiarDireccion();
+            this.driver.CambiarDireccion();
         }
 
         public void AumentarVelocidadVentilador()
         {
-            this.Driver.AumentarVelocidadVentilador();
+            this.driver.AumentarVelocidadVentilador();
         }
 
         public void DecrementarVelocidadVentilador()
         {
-            this.Driver.DecrementarVelocidadVentilador();
+            this.driver.DecrementarVelocidadVentilador();
         }
 
         public void EstablecerModoCool()
         {
-            this.Driver.EstablecerModoCool();
+            this.driver.EstablecerModoCool();
         }
 
         public void EstablecerModoHeat()
         {
-            this.Driver.EstablecerModoHeat();
+            this.driver.EstablecerModoHeat();
         }
 
         public void EstablecerModoDry()
         {
-            this.Driver.EstablecerModoDry();
+            this.driver.EstablecerModoDry();
+        }
+
+        public decimal ObtenerTemperaturaActual()
+        {
+            return this.driver.ObtenerTemperaturaActual();
         }
 
         #endregion

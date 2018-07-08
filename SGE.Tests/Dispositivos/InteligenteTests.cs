@@ -9,7 +9,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoDeUltimasNHoras_2_activacionesTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTV());
+            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTVDriver());
             decimal valor;
 
             dispositivo.Encender();
@@ -23,7 +23,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoDeUltimasNHoras_3_activacionesTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTV());
+            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTVDriver());
             decimal valor;
 
             dispositivo.Encender();
@@ -37,25 +37,11 @@ namespace SGE.Entidades.Dispositivos.Tests
             Assert.IsTrue(valor == 200m);
         }
 
-        [TestMethod()]
-        public void ObtenerConsumoDeUltimasNHoras_EstandarAdaptadoTest()
-        {
-            Estandar d1 = new Estandar("tv", 100m);
-            Inteligente dispositivo = new EstandarAdaptado(d1);
-            decimal valor;
-
-            dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[0].FechaDeRegistro = dispositivo.RegistroDeActivaciones[0].FechaDeRegistro.AddHours(-1);
-            dispositivo.Apagar();
-
-            valor = dispositivo.ObtenerConsumoDeUltimasNHoras(8);
-            Assert.IsTrue(valor == 100m);
-        }
 
         [TestMethod()]
         public void ObtenerConsumoPeriodoTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTV());
+            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTVDriver());
             decimal valor;
 
             dispositivo.Encender();

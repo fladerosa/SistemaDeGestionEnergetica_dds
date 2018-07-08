@@ -11,7 +11,7 @@ namespace SGE.Entidades.Dispositivos
     {
         #region Propiedades
 
-        public ILavarropasDriver Driver { get; set; }
+        private ILavarropasDriver driver;
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace SGE.Entidades.Dispositivos
 
         public Lavarropas(ILavarropasDriver driver, string nombre, decimal consumo): base(nombre, consumo, driver)
         {
-            this.Driver = driver;
+            this.driver = driver;
         }
 
         #endregion
@@ -28,7 +28,7 @@ namespace SGE.Entidades.Dispositivos
 
         public void LavarRopaAlgodon()
         {
-            this.Driver.LavarRopaAlgodon();
+            this.driver.LavarRopaAlgodon();
         }
 
         #endregion

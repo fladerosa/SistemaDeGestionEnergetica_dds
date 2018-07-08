@@ -8,19 +8,19 @@ namespace SGE.Entidades.Reglas
     {
         #region Propiedades
 
-        public string Nombre { get; set; }
-        public List<Condicion> Condiciones { get; set; }
-        public List<IAccion> Acciones { get; set; }
+        string nombre { get; set; }
+        List<Condicion> condiciones { get; set; }
+        List<IAccion> acciones { get; set; }
 
         #endregion Propiedades
 
         #region Constructores
 
-        public Regla(String nombre, List<Condicion> condiciones, List<IAccion> acciones)
+        public Regla(string nombre, List<Condicion> condiciones, List<IAccion> acciones)
         {
-            this.Nombre = nombre;
-            this.Condiciones = condiciones;
-            this.Acciones = acciones;
+            this.nombre = nombre;
+            this.condiciones = condiciones;
+            this.acciones = acciones;
         }
 
         #endregion
@@ -29,12 +29,22 @@ namespace SGE.Entidades.Reglas
 
         public void Ejecutar()
         {
-            //verifico que se cumpla todas las condiciones
-            foreach (Condicion condicion in Condiciones)
-                if (!condicion.Evaluar()) return;
+            bool seVerificanCondiciones = true;
 
-            foreach (Actuador actuador in Acciones)
-                actuador.Ejecutar();
+            for (int i = 0; i < this.condiciones.Count; i++)
+            {
+                if (!this.condiciones[0].Evaluar())
+                {
+                    seVerificanCondiciones = false;
+                    i = this.condiciones.Count;
+                }
+            }
+
+            if (seVerificanCondiciones)
+            {
+                foreach (IAccion accion in this.acciones)
+                    accion.Ejecutar();
+            }
         }
        
         #endregion Metodos

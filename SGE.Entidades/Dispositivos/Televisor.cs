@@ -11,7 +11,7 @@ namespace SGE.Entidades.Dispositivos
     {
         #region Propiedades
 
-        public ITelevisorDriver Driver { get; set; }
+        private ITelevisorDriver driver;
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace SGE.Entidades.Dispositivos
 
         public Televisor(ITelevisorDriver driver, string nombre, decimal consumo): base(nombre, consumo, driver)
         {
-            this.Driver = driver;
+            this.driver = driver;
         }
 
         #endregion
@@ -28,27 +28,27 @@ namespace SGE.Entidades.Dispositivos
 
         public void CambiarCanal(decimal canal)
         {
-            this.Driver.CambiarCanal(canal);
+            this.driver.CambiarCanal(canal);
         }
 
         public void CambiarEntrada()
         {
-            this.Driver.CambiarEntrada();
+            this.driver.CambiarEntrada();
         }
 
         public void SubirVolumen()
         {
-            this.Driver.SubirVolumen();
+            this.driver.SubirVolumen();
         }
 
         public void BajarVolumen()
         {
-            this.Driver.BajarVolumen();
+            this.driver.BajarVolumen();
         }
         
         public void Mute()
         {
-            this.Driver.Mute();
+            this.driver.Mute();
         }
 
 
