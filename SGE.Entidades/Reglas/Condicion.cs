@@ -1,36 +1,37 @@
-﻿namespace SGE.Entidades.Reglas
+﻿using SGE.Entidades.Reglas.Operadores;
+using SGE.Entidades.Reglas.ValueProviders;
+
+namespace SGE.Entidades.Reglas
 {
     public class Condicion
     {
         #region Propiedades
-        public Sensor Sensor { get; set; }
-        public decimal Valor { get; set; }
-        public OperadorEnum Operador { get; set; }
-        #endregion Propiedades
 
+        private IValueProvider provider;
+        private IOperador operador;
+        private decimal valorReferencia;
 
-        public Condicion(Sensor sensor, decimal valor, OperadorEnum operador)
+        #endregion
+
+        #region Constructores
+
+        public Condicion(IValueProvider provider, IOperador operador, decimal valorReferencia)
         {
-            this.Sensor = sensor;
-            this.Valor = valor;
-            this.Operador = operador;
+            this.provider = provider;
+            this.operador = operador;
+            this.valorReferencia = valorReferencia;
         }
 
-        #region Metodos
+        #endregion
+
+        #region Evaluación
+
         public bool Evaluar()
         {
-            switch (Operador)
-            {
-                case OperadorEnum.MAYOR:
-                    return Sensor.Medir() > Valor;
-                case OperadorEnum.MENOR:
-                    return Sensor.Medir() < Valor;
-                case OperadorEnum.IGUAL:
-                    return Sensor.Medir() == Valor;
-                default:
-                    return Sensor.Medir() != Valor;
-            }
+            decimal valor = this.provider.ObtenerValor();
+            return this.operador.Verificar(valorReferencia, valor);
         }
-        #endregion Metodos
+
+        #endregion
     }
 }

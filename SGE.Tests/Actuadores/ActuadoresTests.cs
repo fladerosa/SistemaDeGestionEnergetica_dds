@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SGE.Entidades.Acciones;
+using SGE.Entidades.Acciones.TV;
 using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
 
 namespace SGE.Entidades.Actuadores.Tests
 {
@@ -7,41 +10,41 @@ namespace SGE.Entidades.Actuadores.Tests
     public class ActuadoresTests
     {
         private Inteligente dispositivo;
-        private Actuador actuador;
+        private IAccion accion;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.dispositivo = new Inteligente("TV LG", 100m);
+            this.dispositivo = new Inteligente("TV LG", 100m, new SonyTVDriver());
         }
 
         [TestMethod()]
         public void EjecutarEncenderTest()
         {
-            this.actuador = new AccionEncender("Encende-dor", this.dispositivo);
+            this.accion = new Encender(this.dispositivo);
 
             this.dispositivo.Apagar();
-            this.actuador.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaEncendido);
+            this.accion.Ejecutar();
+            Assert.IsTrue(this.dispositivo.EstaPrendido);
         }
 
         [TestMethod()]
         public void EjecutarApagarTest()
         {
-            this.actuador = new AccionApagar("Apaga-dor", this.dispositivo);
+            this.accion = new Apagar(this.dispositivo);
 
             this.dispositivo.Encender();
-            this.actuador.Ejecutar();
+            this.accion.Ejecutar();
             Assert.IsTrue(this.dispositivo.EstaApagado);
         }
 
         [TestMethod()]
         public void EjecutarCambiarModoTest()
         {
-            this.actuador = new AccionCambiarModoOperacion("Cambia-dor", this.dispositivo);
+            this.accion = new ColocarEnAhorroEnergia(this.dispositivo);
             
-            this.actuador.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaEnModoAhorro);
+            this.accion.Ejecutar();
+            Assert.IsTrue(this.dispositivo.EstaEnModoAhorroEnergia);
         }
     }
 }

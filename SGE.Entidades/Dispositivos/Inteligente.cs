@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SGE.Entidades.Drivers.Interfaces;
 
 namespace SGE.Entidades.Dispositivos
 {
     public class Inteligente: Dispositivo
     {
         #region Propiedades
+
         /// <summary>
         /// Indica el estado del dispositivo
         /// </summary>
         protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
+
         public string IdentificadorFabrica { get; set; }
+
         public List<Activacion> RegistroDeActivaciones { get; set; }
+        public IDriver Driver { get; set; }
 
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
         /// </summary>
-        public bool EstaEncendido
+        public bool EstaPrendido
         {
             get
             {
@@ -39,25 +44,28 @@ namespace SGE.Entidades.Dispositivos
         /// <summary>
         /// Devuelve un valor que indicasiel equipo esta en modo ahorro de energia
         /// </summary>
-        public bool EstaEnModoAhorro
+        public bool EstaEnModoAhorroEnergia
         {
             get
             {
                 return this.Estado == EstadoDispositivo.AhorroEnergia;
             }
         }
-        #endregion Propiedades
 
+        #endregion
 
         #region Constructor
-        public Inteligente(string nombre, decimal consumo) : base(nombre, consumo)
+
+        public Inteligente(string nombre, decimal consumo, IDriver driver) : base(nombre, consumo)
         {
             this.RegistroDeActivaciones = new List<Activacion>();
+            this.Driver = driver;
         }
-        #endregion Constructor
 
+        #endregion
 
         #region Funcionamiento
+
         /// <summary>
         /// Enciendo el equipo
         /// </summary>
@@ -66,6 +74,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Encendido)
             {
                 this.Estado = EstadoDispositivo.Encendido;
+                this.Driver.Encender();
                 this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
             }
         }
@@ -78,6 +87,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Apagado && this.Estado != EstadoDispositivo.AhorroEnergia)
             {
                 this.Estado = EstadoDispositivo.Apagado;
+                this.Driver.Apagar();
                 this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
             }
         }
@@ -85,25 +95,17 @@ namespace SGE.Entidades.Dispositivos
         /// <summary>
         /// Coloca el dispositivo en modo ahorro energía
         /// </summary>
-        public void CambiarModo()
+        public void ColocarEnAhorroEnergia()
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
+            this.Driver.PonerEnModoAhorroEnergia();
             this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
         }
 
-        public void SubirIntensidad()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BajarIntensidad()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion Funcionamiento
-
+        #endregion
 
         #region Estadisticas
+
         public decimal ObtenerConsumoDeUltimasNHoras(int cantidadHoras)
         {
             DateTime fechaBusqueda = (DateTime.Now).AddHours((-1) * cantidadHoras);
@@ -142,6 +144,7 @@ namespace SGE.Entidades.Dispositivos
 
             return horas;
         }
-        #endregion Estadisticas
+
+        #endregion
     }
 }

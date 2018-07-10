@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DispositivosManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReglasManager.cs" />
     <Compile Include="ServicioUsuarios.cs" />
   </ItemGroup>
   <ItemGroup>
