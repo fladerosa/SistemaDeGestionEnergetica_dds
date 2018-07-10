@@ -1,62 +1,72 @@
 [
-{
-id: 1,
-latitud: 5.4,
-longitud: 5.44,
-zona: 9
-},
-{
-id: 2,
-latitud: 5.4,
-longitud: 5.4,
-zona: 9
-},
-{
-id: 3,
-latitud: 5.42,
-longitud: 5.42,
-zona: 9
-},
-{
-id: 4,
-latitud: 5.38,
-longitud: 5.42,
-zona: 9
-},
-{
-id: 5,
-latitud: 5.42,
-longitud: 5.44,
-zona: 9
-},
-{
-id: 6,
-latitud: 5.2,
-longitud: 5.22,
-zona: 9
-},
-{
-id: 7,
-latitud: 0,
-longitud: 0.2,
-zona: 1
-},
-{
-id: 8,
-latitud: 0,
-longitud: -0.2,
-zona: 1
-},
-{
-id: 9,
-latitud: 0.2,
-longitud: 0,
-zona: 1
-},
-{
-id: 10,
-latitud: -0.2,
-longitud: 0,
-zona: 1
-}
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "1",
+    "latitud": "5.4",
+    "longitud": "5.44",
+    "zona": "9"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "2",
+    "latitud": "5.4",
+    "longitud": "5.4",
+    "zona": "9"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "3",
+    "latitud": "5.42",
+    "longitud": "5.42",
+    "zona": "9"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "4",
+    "latitud": "5.38",
+    "longitud": "5.42",
+    "zona": "9"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "5",
+    "latitud": "5.42",
+    "longitud": "5.44",
+    "zona": "9"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "6",
+    "latitud": "5.2",
+    "longitud": "5.22",
+    "zona": "9"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "7",
+    "latitud": "0",
+    "longitud": "0.2",
+    "zona": "1"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "8",
+    "latitud": "0",
+    "longitud": "-0.2",
+    "zona": "1"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "9",
+    "latitud": "0.2",
+    "longitud": "0",
+    "zona": "1"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+    "id": "10",
+    "latitud": "-0.2",
+    "longitud": "0",
+    "zona": "1"
+  }
 ]

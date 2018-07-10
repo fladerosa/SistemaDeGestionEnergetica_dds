@@ -12,7 +12,7 @@ namespace SGE.Core.Helpers
 
         public TransformadoresHelper()
         {
-            this.Transformadores = JsonConvert.DeserializeObject<List<Zona>>(File.ReadAllText(@"Resources/transformadores.json"));
+            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"Resources/transformadores.json"));
         }
 
         public Transformador GetDispositivo(string id)
