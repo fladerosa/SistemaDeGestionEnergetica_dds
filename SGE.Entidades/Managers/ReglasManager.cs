@@ -6,41 +6,37 @@ using System.Threading.Tasks;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Reglas;
 
-namespace SGE.Servicios
+namespace SGE.Entidades.Managers
 {
     public class ReglasManager
     {
         #region Campos
 
-        private static object syncLock = new object();
+        private static object reglasManagerSyncLock = new object();
 
         #endregion
 
         #region Propiedades
 
-        #region Propiedades
-
-        private ReglasManager instance;
-        public ReglasManager Instance
+        private static ReglasManager instance;
+        public static ReglasManager Instance
         {
             get
             {
-                if (this.instance == null)
+                if (ReglasManager.instance == null)
                 {
-                    lock (ReglasManager.syncLock)
+                    lock (ReglasManager.reglasManagerSyncLock)
                     {
-                        if (this.instance == null)
+                        if (ReglasManager.instance == null)
                         {
-                            this.instance = new ReglasManager();
+                            ReglasManager.instance = new ReglasManager();
                         }
                     }
                 }
 
-                return this.instance;
+                return ReglasManager.instance;
             }
         }
-
-        #endregion
 
         #endregion
 
@@ -58,6 +54,15 @@ namespace SGE.Servicios
         public void RegistrarReglas(Dispositivo dispositivo, List<Regla> reglas)
         {
 
+        }
+
+        #endregion
+
+        #region Obtención
+
+        public List<Regla> ObtenerReglas(Inteligente dispositivo)
+        {
+            return new List<Regla>();
         }
 
         #endregion
