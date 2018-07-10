@@ -24,6 +24,7 @@ namespace SGE.Tests.Entidades
             Estandar d2 = new Estandar("TV", 200m);
             cliente1.Inteligentes.Add(d1);
             cliente1.Estandars.Add(d2);
+            cliente1.TransformadorId = 1;
 
             Cliente cliente2 = new Cliente();
             Inteligente d3 = new Inteligente("TV LG 55", 200m, new SonyTVDriver());
@@ -32,6 +33,7 @@ namespace SGE.Tests.Entidades
             cliente2.Inteligentes.Add(d3);
             cliente2.Estandars.Add(d4);
             cliente2.Estandars.Add(d5);
+            cliente2.TransformadorId = 10;
 
             this.Clientes = new List<Cliente>
             {
@@ -42,6 +44,8 @@ namespace SGE.Tests.Entidades
             this.transformador = new Transformador();
             this.transformador.Clientes = this.Clientes;
 
+            //TransformadoresHelper th =new TransformadoresHelper();
+            //List<Transformador> transformadores =(List<Transformador>) th.Transformadores;
         }
 
 

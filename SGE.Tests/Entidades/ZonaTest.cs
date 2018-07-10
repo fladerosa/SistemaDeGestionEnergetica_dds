@@ -42,6 +42,8 @@ namespace SGE.Tests.Entidades
 
             this.clientes1 = new List<Cliente> { cliente1, cliente2 };
 
+
+            //si se carga los transformadores con json comentar estoo
             Transformador trasformador1 = new Transformador();
             trasformador1.Id = 1;
             trasformador1.Latitud = 5.4;
@@ -56,7 +58,7 @@ namespace SGE.Tests.Entidades
             cliente3.Estandars.Add(d7);
             cliente3.Latitud = -0.3;
             cliente3.Longitud = -0.1;
-            cliente3.TransformadorId = 2;
+            cliente3.TransformadorId = 10;
 
             Cliente cliente4 = new Cliente();
             Inteligente d8 = new Inteligente("TV LG 55", 200m, new SonyTVDriver());
@@ -67,10 +69,11 @@ namespace SGE.Tests.Entidades
             cliente4.Estandars.Add(d10);
             cliente4.Latitud = -0.1;
             cliente4.Longitud = 0.1;
-            cliente4.TransformadorId = 2;
+            cliente4.TransformadorId = 10;
 
             this.clientes2 = new List<Cliente> { cliente3, cliente4 };
 
+            //si se carga los transformadores con json comentar estoo
             Transformador trasformador2 = new Transformador();
             trasformador2.Id = 2;
             trasformador2.Latitud = -0.2;
@@ -79,8 +82,23 @@ namespace SGE.Tests.Entidades
 
 
             this.transformadores = new List<Transformador> { trasformador1, trasformador2 };
-            this.zona=new Zona();
+            this.zona = new Zona();
             this.zona.Transformadores = transformadores;
+
+
+            //TransformadoresHelper th = new TransformadoresHelper();
+            //List<Transformador> transformadores = (List<Transformador>)th.Transformadores;
+            //foreach (Transformador transformador in transformadores)
+            //{
+            //    if (transformador.Id==1)
+            //    {
+            //        transformador.Clientes = clientes1;
+            //    }
+            //    if (transformador.Id == 10)
+            //    {
+            //        transformador.Clientes = clientes2;
+            //    }
+            //}
         }
 
 
@@ -100,14 +118,14 @@ namespace SGE.Tests.Entidades
             //verifico que se mantienen los transformadores asignados a los clientes
             foreach (Cliente cliente in this.clientes1)
             {
-                Assert.AreNotEqual(cliente.TransformadorId,2);
+                Assert.AreNotEqual(cliente.TransformadorId,10);
                 Assert.AreEqual(cliente.TransformadorId, 1);
             }
 
             foreach (Cliente cliente in this.clientes2)
             {
                 Assert.AreNotEqual(cliente.TransformadorId, 1);
-                Assert.AreEqual(cliente.TransformadorId, 2);
+                Assert.AreEqual(cliente.TransformadorId, 10);
             }
         }
 
@@ -129,7 +147,6 @@ namespace SGE.Tests.Entidades
                         cliente.TransformadorId = transformador.Id;
                     }
                 }
-
             }
         }
 
