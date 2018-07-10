@@ -73,6 +73,7 @@
     <Compile Include="Drivers\SamsungAireAcondicionadoDriver.cs" />
     <Compile Include="Drivers\SonyTVDriver.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
+    <Compile Include="Transformador.cs" />
     <Compile Include="ValueProviders\IValueProvider.cs" />
     <Compile Include="Reglas\Operadores\Igual.cs" />
     <Compile Include="Reglas\Operadores\MayorOIgual.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ValueProviders\SensorTemperaturaAireAcondicionado.cs" />
     <Compile Include="Usuarios\TipoDocumento.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
+    <Compile Include="Zona.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
