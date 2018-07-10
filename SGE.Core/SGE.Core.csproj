@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Dispositivo.cs" />
+    <Compile Include="Entidades\Transformador.cs" />
+    <Compile Include="Entidades\Zona.cs" />
     <Compile Include="Helpers\ConfiguracionHelper.cs" />
     <Compile Include="Helpers\TransformadoresHelper.cs" />
     <Compile Include="Helpers\ZonasHelper.cs" />
