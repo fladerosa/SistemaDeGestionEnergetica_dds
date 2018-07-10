@@ -55,6 +55,9 @@
   <ItemGroup>
     <Compile Include="Entidades\Dispositivo.cs" />
     <Compile Include="Helpers\ConfiguracionHelper.cs" />
+    <Compile Include="Helpers\TransformadoresHelper.cs" />
+    <Compile Include="Helpers\ZonasHelper.cs" />
+    <Compile Include="Helpers\DistanciaHelper.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\DispositivosHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +73,8 @@
     <None Include="Resources\Dispositivos.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\transformadores.json" />
+    <None Include="Resources\zonas.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
