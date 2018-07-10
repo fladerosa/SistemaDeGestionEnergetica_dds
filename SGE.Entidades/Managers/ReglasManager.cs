@@ -13,6 +13,7 @@ namespace SGE.Entidades.Managers
         #region Campos
 
         private static object reglasManagerSyncLock = new object();
+        Dictionary<Inteligente, List<Regla>> reglas;
 
         #endregion
 
@@ -44,25 +45,25 @@ namespace SGE.Entidades.Managers
 
         private ReglasManager()
         {
-
+            this.reglas = new Dictionary<Inteligente, List<Regla>>();
         }
 
         #endregion
 
         #region Registro de Reglas
 
-        public void RegistrarReglas(Dispositivo dispositivo, List<Regla> reglas)
+        public void RegistrarReglas(Inteligente dispositivo, List<Regla> reglas)
         {
-
+            this.reglas.Add(dispositivo, reglas);
         }
 
         #endregion
 
         #region Obtención
 
-        public List<Regla> ObtenerReglas(Inteligente dispositivo)
+        public List<Regla> ObtenerReglasParaDispositivo(Inteligente dispositivo)
         {
-            return new List<Regla>();
+            return this.reglas[dispositivo];
         }
 
         #endregion

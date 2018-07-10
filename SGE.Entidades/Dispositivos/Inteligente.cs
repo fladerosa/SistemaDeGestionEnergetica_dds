@@ -173,7 +173,7 @@ namespace SGE.Entidades.Dispositivos
 
         public void NotificarMedicion(decimal valor)
         {
-            DispositivosManager.Instance.NotificarNuevaMedicion(valor);
+            DispositivosManager.Instance.NotificarNuevaMedicion(this);
         }
 
         #endregion

@@ -64,7 +64,7 @@ namespace SGE.Entidades.Managers
 
         public void NotificarNuevaMedicion(Inteligente dispositivo)
         {
-            List<Regla> reglas = ReglasManager.Instance.ObtenerReglas(dispositivo);
+            List<Regla> reglas = ReglasManager.Instance.ObtenerReglasParaDispositivo(dispositivo);
 
             foreach (Regla regla in reglas)
             {
