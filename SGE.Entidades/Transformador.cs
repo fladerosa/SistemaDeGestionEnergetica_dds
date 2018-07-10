@@ -10,8 +10,8 @@ namespace SGE.Entidades
     {
         #region Propiedades
         public int Id { get; set; }
-        public decimal Latitud { get; set; }
-        public decimal Longitud { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
         public List<Cliente> Clientes { get; set; }
 
         public Transformador()

@@ -41,6 +41,7 @@ namespace SGE.Tests.Entidades
 
             this.transformador = new Transformador();
             this.transformador.Clientes = this.Clientes;
+
         }
 
 

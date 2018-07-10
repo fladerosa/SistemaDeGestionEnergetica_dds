@@ -7,7 +7,7 @@ namespace SGE.Core.Helpers
 {
     public class DistanciaHelper
     {
-        private double CalcularDistancia(double lat1, double lon1, double lat2, double lon2, string unit)
+        public double CalcularDistancia(double lat1, double lon1, double lat2, double lon2, string unit)
         {
             double theta = lon1 - lon2;
             double dist = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta));
