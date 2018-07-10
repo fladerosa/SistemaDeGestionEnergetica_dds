@@ -12,7 +12,6 @@ namespace SGE.Servicios
     {
         #region Campos
 
-        private List<Regla> reglas;
 
         #endregion
 
@@ -20,7 +19,7 @@ namespace SGE.Servicios
 
         private ReglasManager()
         {
-            this.reglas = new List<Regla>();
+
         }
 
         #endregion

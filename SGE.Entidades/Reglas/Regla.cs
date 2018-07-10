@@ -12,7 +12,7 @@ namespace SGE.Entidades.Reglas
         List<Condicion> condiciones { get; set; }
         List<IAccion> acciones { get; set; }
 
-        #endregion Propiedades
+        #endregion
 
         #region Constructores
 
@@ -47,6 +47,6 @@ namespace SGE.Entidades.Reglas
             }
         }
        
-        #endregion Metodos
+        #endregion
     }
 }

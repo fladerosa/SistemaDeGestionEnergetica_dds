@@ -146,5 +146,14 @@ namespace SGE.Entidades.Dispositivos
         }
 
         #endregion
+
+        #region Nuevas Mediciones
+
+        public void NotificarNuevaMedicion(decimal valor)
+        {
+
+        }
+
+        #endregion
     }
 }

@@ -10,6 +10,8 @@ namespace SGE.Entidades.Drivers
 {
     public class SamsungAireAcondicionadoDriver : IAireAcondicionadoDriver
     {
+        #region Propiedades
+
         public string Mensaje { get; set; }
 
         private decimal temperaturaActual = 10;
@@ -20,6 +22,10 @@ namespace SGE.Entidades.Drivers
                 return this.temperaturaActual;
             }
         }
+
+        #endregion
+
+        #region Acciones
 
         public void Apagar()
         {
@@ -74,10 +80,15 @@ namespace SGE.Entidades.Drivers
             this.Mensaje = "Estableciendo temperatura..." + valor.ToString();
         }
 
+        #endregion
+
+        #region Sensado
+
         public decimal ObtenerTemperaturaActual()
         {
             return this.temperaturaActual;
         }
 
+        #endregion
     }
 }
