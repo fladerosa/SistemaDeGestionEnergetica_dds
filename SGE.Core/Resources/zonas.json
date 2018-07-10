@@ -1,0 +1,81 @@
+[
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "1",
+    "nombre": "A",
+    "latitud": "0",
+    "longitud": "0",
+    "radio": "150"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "2",
+    "nombre": "B",
+    "latitud": "0",
+    "longitud": "2.7",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "3",
+    "nombre": "C",
+    "latitud": "0",
+    "longitud": "5.4",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "4",
+    "nombre": "D",
+    "latitud": "2.7",
+    "longitud": "0",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "5",
+    "nombre": "E",
+    "latitud": "2.7",
+    "longitud": "2.7",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "6",
+    "nombre": "F",
+    "latitud": "2.7",
+    "longitud": "5.4",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "7",
+    "nombre": "G",
+    "latitud": "5.4",
+    "longitud": "0",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": 8,
+    "nombre": "H",
+    "latitud": "5.4",
+    "longitud": "2.71",
+    "radio": "150"
+  },
+
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "id": "9",
+    "nombre": "I",
+    "latitud": "5.4",
+    "longitud": "5.42",
+    "radio": "150"
+  }
+]

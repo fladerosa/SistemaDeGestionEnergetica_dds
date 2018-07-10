@@ -1,4 +1,5 @@
-﻿using SGE.Entidades.Categorias;
+﻿using System;
+using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace SGE.Entidades.Usuarios
         public Categoria Categoria { get; set; }
         public List<Inteligente> Inteligentes { get; set; }
         public List<Estandar> Estandars { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
+        public int TransformadorId { get; set; }
 
 
         public Cliente()

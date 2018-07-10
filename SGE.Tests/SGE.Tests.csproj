@@ -88,6 +88,8 @@
     <Compile Include="Actuadores\ActuadoresTests.cs" />
     <Compile Include="Dispositivos\InteligenteTests.cs" />
     <Compile Include="Entidades\AdministradorTest.cs" />
+    <Compile Include="Entidades\TransformadorTest.cs" />
+    <Compile Include="Entidades\ZonaTest.cs" />
     <Compile Include="Entidades\ClienteTest.cs" />
     <Compile Include="Entidades\CategoriaTest.cs" />
     <Compile Include="Entidades\Reglas\CondicionTest.cs" />
