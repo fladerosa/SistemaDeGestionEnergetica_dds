@@ -12,6 +12,35 @@ namespace SGE.Servicios
     {
         #region Campos
 
+        private static object syncLock = new object();
+
+        #endregion
+
+        #region Propiedades
+
+        #region Propiedades
+
+        private ReglasManager instance;
+        public ReglasManager Instance
+        {
+            get
+            {
+                if (this.instance == null)
+                {
+                    lock (ReglasManager.syncLock)
+                    {
+                        if (this.instance == null)
+                        {
+                            this.instance = new ReglasManager();
+                        }
+                    }
+                }
+
+                return this.instance;
+            }
+        }
+
+        #endregion
 
         #endregion
 

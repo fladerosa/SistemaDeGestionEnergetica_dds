@@ -155,5 +155,27 @@ namespace SGE.Entidades.Dispositivos
         }
 
         #endregion
+
+        #region Observer
+
+        //public void Agregar(DispositivosManager manager)
+        //{
+        //    this.dispositivos.Add(dispositivo);
+        //}
+
+        //public void Quitar(Inteligente dispositivo)
+        //{
+        //    this.dispositivos.Remove(dispositivo);
+        //}
+
+        //public void NotificarCambio()
+        //{
+        //    foreach (Inteligente dispositivo in this.dispositivos)
+        //    {
+        //        dispositivo.NotificarNuevaMedicion(this.ultimaMedicion);
+        //    }
+        //}
+
+        #endregion
     }
 }

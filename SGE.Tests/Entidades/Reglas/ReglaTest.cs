@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
 using SGE.Entidades.Reglas;
 using SGE.Entidades.Reglas.Operadores;
-using SGE.Entidades.Reglas.ValueProviders;
+using SGE.Entidades.ValueProviders;
 
 namespace SGE.Tests.Reglas
 {
@@ -38,7 +38,7 @@ namespace SGE.Tests.Reglas
         {
             List<Condicion> returnCondiciones = new List<Condicion>
             {
-                new Condicion(new SensorTemperaturaAireAcondicionado(new AireAcondicionado(new SamsungAireAcondicionadoDriver(), "AA Samsung", 100)), new Mayor(), 30)
+                new Condicion(new SensorTemperaturaAA(new SamsungAireAcondicionadoDriver()), new Mayor(), 30)
             };
             return returnCondiciones;
         }

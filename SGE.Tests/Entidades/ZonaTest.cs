@@ -5,6 +5,7 @@ using SGE.Entidades;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
+using SGE.Core.Entidades;
 
 namespace SGE.Tests.Entidades
 {
