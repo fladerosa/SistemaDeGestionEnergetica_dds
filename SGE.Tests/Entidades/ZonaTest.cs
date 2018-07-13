@@ -5,15 +5,15 @@ using SGE.Entidades;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
-using SGE.Core.Entidades;
+//using SGE.Core.Entidades;
 
 namespace SGE.Tests.Entidades
 {
     [TestClass]
     public class ZonaTest
     {
-        Zona zona;
-        List<Transformador> transformadores;
+        SGE.Entidades.Zona zona;
+        List<SGE.Entidades.Transformador> transformadores;
         private List<Cliente> clientes1;
         private List<Cliente> clientes2;
 
@@ -45,7 +45,7 @@ namespace SGE.Tests.Entidades
 
 
             //si se carga los transformadores con json comentar estoo
-            Transformador trasformador1 = new Transformador();
+            SGE.Entidades.Transformador trasformador1 = new Transformador();
             trasformador1.Id = 1;
             trasformador1.Latitud = 5.4;
             trasformador1.Longitud = 5.44;
@@ -76,7 +76,7 @@ namespace SGE.Tests.Entidades
 
             //si se carga los transformadores con json comentar estoo
             Transformador trasformador2 = new Transformador();
-            trasformador2.Id = 2;
+            trasformador2.Id = 10;
             trasformador2.Latitud = -0.2;
             trasformador2.Longitud = 0;
             trasformador2.Clientes = clientes2;

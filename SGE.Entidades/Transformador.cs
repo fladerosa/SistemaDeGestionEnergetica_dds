@@ -24,7 +24,8 @@ namespace SGE.Entidades
             decimal consumo = 0;
             foreach (Cliente cliente in Clientes)
             {
-                consumo = consumo ;
+                //falta el 
+                //consumo = consumo + cliente.ObtenerConsumo() ;
             }
             return consumo;
         }
