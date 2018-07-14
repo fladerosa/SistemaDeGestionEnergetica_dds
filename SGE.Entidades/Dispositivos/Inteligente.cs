@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using SGE.Entidades.Drivers.Interfaces;
+using SGE.Entidades.Managers;
 
 namespace SGE.Entidades.Dispositivos
 {
     public class Inteligente: Dispositivo
     {
         #region Propiedades
+
+        DispositivosManager dispositivosManager;
 
         /// <summary>
         /// Indica el estado del dispositivo
@@ -152,6 +155,25 @@ namespace SGE.Entidades.Dispositivos
         public void NotificarNuevaMedicion(decimal valor)
         {
 
+        }
+
+        #endregion
+
+        #region Observer
+
+        public void Agregar(DispositivosManager manager)
+        {
+            this.dispositivosManager = manager;
+        }
+
+        public void Quitar(Inteligente dispositivo)
+        {
+            this.dispositivosManager = null;
+        }
+
+        public void NotificarMedicion(decimal valor)
+        {
+            DispositivosManager.Instance.NotificarNuevaMedicion(this);
         }
 
         #endregion

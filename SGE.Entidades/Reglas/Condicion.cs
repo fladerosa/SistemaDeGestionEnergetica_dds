@@ -1,5 +1,5 @@
 ﻿using SGE.Entidades.Reglas.Operadores;
-using SGE.Entidades.Reglas.ValueProviders;
+using SGE.Entidades.ValueProviders;
 
 namespace SGE.Entidades.Reglas
 {

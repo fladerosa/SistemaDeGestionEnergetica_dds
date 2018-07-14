@@ -72,6 +72,8 @@
     <Compile Include="Drivers\Interfaces\ITelevisorDriver.cs" />
     <Compile Include="Drivers\SamsungAireAcondicionadoDriver.cs" />
     <Compile Include="Drivers\SonyTVDriver.cs" />
+    <Compile Include="Managers\DispositivosManager.cs" />
+    <Compile Include="Managers\ReglasManager.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
     <Compile Include="ValueProviders\IValueProvider.cs" />
     <Compile Include="Reglas\Operadores\Igual.cs" />

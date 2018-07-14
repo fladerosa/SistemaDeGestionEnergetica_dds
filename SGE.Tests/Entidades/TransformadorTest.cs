@@ -5,13 +5,14 @@ using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
 using SGE.Core.Helpers;
 using SGE.Entidades;
+using SGE.Core.Entidades;
 
 namespace SGE.Tests.Entidades
 {
     [TestClass]
     public class TransformadorTest
     {
-        Transformador transformador;
+        SGE.Entidades.Transformador transformador;
         List<Cliente> Clientes;
         decimal Latitud;
         decimal Longitud;
@@ -41,7 +42,7 @@ namespace SGE.Tests.Entidades
                 cliente2
             };
 
-            this.transformador = new Transformador();
+            this.transformador = new SGE.Entidades.Transformador();
             this.transformador.Clientes = this.Clientes;
 
             //TransformadoresHelper th =new TransformadoresHelper();
