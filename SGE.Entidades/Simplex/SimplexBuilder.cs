@@ -1,11 +1,13 @@
 ﻿using Microsoft.SolverFoundation.Services;
-using System.Collections.Generic;
+using SGE.Core.Entidades;
+using SGE.Core.Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace SGE.Entidades.Simplex
 {
     /// <summary>
-    /// Clase encargada de resolver la optimizacion energetica del uso dedispositivos.
+    /// Clase encargada de resolver la optimizacion energetica del uso de dispositivos.
     /// Tener en cuenta que:
     ///     1) Los dispositivos disponibles son determinados exclusivamente por el sistema.
     ///     2) Todo dispositivo tiene su coeficiente de consumo energetico correspondiente.
@@ -13,16 +15,14 @@ namespace SGE.Entidades.Simplex
     /// </summary>
     public class SimplexBuilder
     {
-        private double? ConsumoOptimo;
-        private double MAXIMO_CO2 = 32.5;
-        private double COEFICIENTE_CO2 = 0.076;
-
-        private SolverContext Context;
-        private Model Model;
-        private int Minimos, Maximos;
-        private List<string> Co2;
-        private Dictionary<string, double> Coeficientes;
+        private double? ValorOptimo { get; set; }
+        private SolverContext Context { get; set; }
+        private Model Model { get; set; }
+        private int Minimos { get; set; }
+        private int Maximos { get; set; }
+        private Dictionary<string, double> Coeficientes { get; set; }
         public Dictionary<string, double> Resultado { get; private set; }
+
 
         public SimplexBuilder()
         {
@@ -30,36 +30,50 @@ namespace SGE.Entidades.Simplex
             this.Model = Context.CreateModel();
             this.Minimos = 0;
             this.Maximos = 0;
-            this.ConsumoOptimo = null;
-            this.Co2 = new List<string>();
+            this.ValorOptimo = null;
             this.CargarCoeficientes();
         }
 
 
         #region METODOS_PUBLICOS
-        public SimplexBuilder AgregarConsumoOptimo(double valor)
+
+        /// <summary>
+        /// Agrega el valor optimo para la restriccion de consumo mensual.
+        /// </summary>
+        public SimplexBuilder AgregarValorOptimo(double valor)
         {
-            this.ConsumoOptimo = valor;
+            this.ValorOptimo = valor;
             return this;
         }
 
+        /// <summary>
+        /// Agrega una restriccion minima para un determinado dispositivo.
+        /// En caso de que el identificador del dispositivo suministrado no exista en el modelo, se agrega y luego se agrega la restriccion minima.
+        /// </summary>
         public SimplexBuilder AgregarRestriccionMinimo(string id, double valor)
         {
+            // Busca el ID del dispositivo en la lista de variables y agrega una restriccion.
             foreach (Decision d in this.Model.Decisions)
                 if (id.ToUpper().Equals(d.Name))
                 {
                     this.Model.AddConstraint("Minimo" + this.Minimos++, d >= valor);
                     return this;
                 }
-            
+
+            // De no encontrar el dipositivo, lo agrega como nueva variable y agrega una restriccion.
             Decision decision = new Decision(Domain.RealNonnegative, id.ToUpper());
             this.Model.AddDecision(decision);
             this.Model.AddConstraint("Minimo" + this.Minimos++, decision >= valor);
             return this;
         }
 
+        /// <summary>
+        /// Agrega una restriccion maxima para un determinado dispositivo.
+        /// En caso de que el identificador del dispositivo suministrado no exista en el modelo, se agrega y luego se agrega la restriccion maxima.
+        /// </summary>
         public SimplexBuilder AgregarRestriccionMaximo(string id, double valor)
         {
+            // Busca el ID del dispositivo en la lista de variables y agrega una restriccion.
             foreach (Decision d in this.Model.Decisions)
                 if (id.ToUpper().Equals(d.Name))
                 {
@@ -67,42 +81,70 @@ namespace SGE.Entidades.Simplex
                     return this;
                 }
 
+            // De no encontrar el dipositivo, lo agrega como nueva variable y agrega una restriccion.
             Decision decision = new Decision(Domain.RealNonnegative, id.ToUpper());
             this.Model.AddDecision(decision);
             this.Model.AddConstraint("Maximo" + this.Maximos++, decision <= valor);
             return this;
         }
 
-        public SimplexBuilder AgregarDispositivoEmisorCO2(string id)
-        {
-            this.Co2.Add(id.ToUpper());
-            return this;
-        }
-
+        /// <summary>
+        /// Genera la solucion del modelo planteado, dejando el resultado en la propiedad correspondiente.
+        /// </summary>
         public void Resolver()
         {
-            List<Goal> listaObjetivos = new List<Goal>();
-
-            if (this.ConsumoOptimo == null)
-                throw new NotImplementedException();
+            if (this.ValorOptimo == null)
+                throw new Exception("Debe definir el valor de la funcion economica.");
             else
             {
-                this.GenerarFuncionEconomica();
+                this.AgregarRestriccionExtremosAbsolutos();
+                this.AgregarRestriccionConsumoMensualMaximo();
+                this.AgregarFuncionEconomica();
 
                 Solution solution = Context.Solve(new SimplexDirective());
+                List<Goal> listaObjetivos = new List<Goal>();
                 listaObjetivos.AddRange(solution.Goals);
-                Resultado = ObtenerConsumoMensuales(solution.Decisions);
+                Resultado = ParsearResultado(solution.Decisions);
                 Resultado.Add("Total", listaObjetivos[0].ToDouble());
-                
             }
         }
+
         #endregion METODOS_PUBLICOS
 
 
 
         #region METODOS_PRIVADOS
 
-        private Dictionary<string, double> ObtenerConsumoMensuales(IEnumerable<Decision> decisiones)
+        private void AgregarRestriccionExtremosAbsolutos()
+        {
+            int max = 0, min = 0;
+            // Por cada variable agrego una restriccion minima y maxima absolutas.
+            // Ya que nunca se puede, por mes, dar un uso < 0hs o > 720hs
+            foreach (Decision d in this.Model.Decisions)
+            {
+                this.Model.AddConstraint("MinimoAbsoluto" + min++, d >= 0);
+                this.Model.AddConstraint("MaximoAbsoluto" + max++, d <= 720);
+            }
+        }
+
+        private void AgregarRestriccionConsumoMensualMaximo()
+        {
+            Term term = 0;
+            foreach (Decision d in this.Model.Decisions)
+                term += d * this.Coeficientes[d.Name];
+            this.Model.AddConstraint("ConsumoMensualMaximo", term <= this.ValorOptimo);
+        }
+
+        private void AgregarFuncionEconomica()
+        {
+            Term term = 0;
+            foreach (Decision d in this.Model.Decisions)
+                term += d * this.Coeficientes[d.Name];
+
+            this.Model.AddGoal("Objetivo", GoalKind.Maximize, term);
+        }
+
+        private Dictionary<string, double> ParsearResultado(IEnumerable<Decision> decisiones)
         {
             Dictionary<string, double> resultado = new Dictionary<string, double>();
             string[] vec;
@@ -119,61 +161,14 @@ namespace SGE.Entidades.Simplex
             return resultado;
         }
 
-        private void AgregarRestriccionCO2() // ESTO NO ME CIERRA
-        {
-            Term term = 0;
-            foreach (Decision d in this.Model.Decisions)
-                if (this.Co2.Contains(d.Name))
-                    term += d * COEFICIENTE_CO2;
-            term = term <= MAXIMO_CO2;
-            this.Model.AddConstraint("MaximaEmisionCO2", term);
-        }
-
         private void CargarCoeficientes()
         {
-            //TODO: Esto se tiene que levantar desde un JSON a traves de un servicio en SGE.Core
-            /*
-             * DispositivosHelper helper = new DispositivosHelper();
-             * 
-             */
-
             this.Coeficientes = new Dictionary<string, double>();
 
-            this.Coeficientes.Add("A1", 1.613);
-            this.Coeficientes.Add("A2", 1.013);
-            this.Coeficientes.Add("A3", 0.075);
-            this.Coeficientes.Add("A4", 0.175);
-            this.Coeficientes.Add("A5", 0.18);
-            this.Coeficientes.Add("A6", 0.04);
-            this.Coeficientes.Add("A7", 0.055);
-            this.Coeficientes.Add("A8", 0.08);
-            this.Coeficientes.Add("A9", 0.09);
-            this.Coeficientes.Add("A10", 0.075);
-            this.Coeficientes.Add("A11", 0.875);
-            this.Coeficientes.Add("A12", 0.175);
-            this.Coeficientes.Add("A13", 0.1275);
-            this.Coeficientes.Add("A14", 0.09);
-            this.Coeficientes.Add("A15", 0.06);
-            this.Coeficientes.Add("A16", 0.04);
-            this.Coeficientes.Add("A17", 0.06);
-            this.Coeficientes.Add("A18", 0.15);
-            this.Coeficientes.Add("A19", 0.11);
-            this.Coeficientes.Add("A20", 0.015);
-            this.Coeficientes.Add("A21", 0.02);
-            this.Coeficientes.Add("A22", 0.075);
-            this.Coeficientes.Add("A23", 0.99);
-            this.Coeficientes.Add("A24", 0.122);
+            foreach(Dispositivo d in DispositivosHelper.GetInstace().Dispositivos)
+                this.Coeficientes.Add(d.Id.ToUpper(), d.Consumo);
         }
 
-        private void GenerarFuncionEconomica()
-        {
-            Term term = 0;
-            foreach (Decision d in this.Model.Decisions)
-                term += d * this.Coeficientes[d.Name];
-            this.Model.AddConstraint("ConsumoMensualMaximo", term <= this.ConsumoOptimo);
-
-            this.Model.AddGoal("Objetivo", GoalKind.Maximize, term);
-        }
 
         #endregion METODOS_PRIVADOS
     }

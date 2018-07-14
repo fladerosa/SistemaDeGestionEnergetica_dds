@@ -11,27 +11,24 @@ namespace SGE.Entidades.Simplex.Tests
         {
             SimplexBuilder s = new SimplexBuilder();
 
-            s.AgregarRestriccionMinimo("a1", 90)
-                .AgregarRestriccionMinimo("a2", 90)
-                .AgregarRestriccionMinimo("a3", 90)
-                .AgregarRestriccionMinimo("a4", 6)
-                .AgregarRestriccionMinimo("a5", 60)
-                .AgregarRestriccionMinimo("a6", 3)
-                .AgregarRestriccionMinimo("a7", 3)
-                .AgregarRestriccionMinimo("a8", 120)
-                .AgregarRestriccionMaximo("a1", 360)
-                .AgregarRestriccionMaximo("a2", 360)
-                .AgregarRestriccionMaximo("a3", 360)
-                .AgregarRestriccionMaximo("a4", 30)
-                .AgregarRestriccionMaximo("a5", 360)
-                .AgregarRestriccionMaximo("a6", 15)
-                .AgregarRestriccionMaximo("a7", 30)
-                .AgregarRestriccionMaximo("a8", 360)
-                .AgregarDispositivoEmisorCO2("a1")
-                .AgregarDispositivoEmisorCO2("a2")
-                .AgregarDispositivoEmisorCO2("a4")
-                .AgregarConsumoOptimo(440)
-                .Resolver();
+            s.AgregarRestriccionMinimo("A06C86E69C7A4858A38B3CBB5F5F881C", 90)
+             .AgregarRestriccionMinimo("A2DC1DAA5B104DC88E564D49D5FAFE39", 90)
+             .AgregarRestriccionMinimo("E0BD49B5FC4D48F1B66B55F543238E1E", 90)
+             .AgregarRestriccionMinimo("DDEAEA7C1ADE458991D496812D5D41FA", 6)
+             .AgregarRestriccionMinimo("E6533BACF5A74210A5D9708C8A0B3EE8", 60)
+             .AgregarRestriccionMinimo("AA63D8C46C8344A19B034995555C49CD", 3)
+             .AgregarRestriccionMinimo("A0BA3245EAFC4EC994CC841698B835C0", 3)
+             .AgregarRestriccionMinimo("E82D0A8FF83F4287878B0B88EDA5FACC", 120)
+             .AgregarRestriccionMaximo("A06C86E69C7A4858A38B3CBB5F5F881C", 360)
+             .AgregarRestriccionMaximo("A2DC1DAA5B104DC88E564D49D5FAFE39", 360)
+             .AgregarRestriccionMaximo("E0BD49B5FC4D48F1B66B55F543238E1E", 360)
+             .AgregarRestriccionMaximo("DDEAEA7C1ADE458991D496812D5D41FA", 30)
+             .AgregarRestriccionMaximo("E6533BACF5A74210A5D9708C8A0B3EE8", 360)
+             .AgregarRestriccionMaximo("AA63D8C46C8344A19B034995555C49CD", 15)
+             .AgregarRestriccionMaximo("A0BA3245EAFC4EC994CC841698B835C0", 30)
+             .AgregarRestriccionMaximo("E82D0A8FF83F4287878B0B88EDA5FACC", 360)
+             .AgregarValorOptimo(440)
+             .Resolver();
 
             Console.WriteLine(s.Resultado.ToString());
         }
