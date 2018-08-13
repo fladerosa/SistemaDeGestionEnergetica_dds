@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Solver.Foundation, Version=3.0.2.10889, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Solver.Foundation.3.1.0\lib\Microsoft.Solver.Foundation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Solver.Foundation">
+      <HintPath>bin\Microsoft.Solver.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -75,6 +74,7 @@
     <Compile Include="Managers\DispositivosManager.cs" />
     <Compile Include="Managers\ReglasManager.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
+    <Compile Include="Transformador.cs" />
     <Compile Include="ValueProviders\IValueProvider.cs" />
     <Compile Include="Reglas\Operadores\Igual.cs" />
     <Compile Include="Reglas\Operadores\MayorOIgual.cs" />
@@ -99,6 +99,7 @@
     <Compile Include="Usuarios\TipoDocumento.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
     <Compile Include="ValueProviders\SensorTemperaturaAA.cs" />
+    <Compile Include="Zona.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
