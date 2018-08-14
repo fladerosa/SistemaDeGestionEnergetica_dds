@@ -18,7 +18,7 @@ namespace SGE.Core.Helpers
         public Zona GetDispositivo(string id)
         {
             foreach(Zona zona in this.Zonas)
-                if (zona.id.Equals(id))
+                if (zona.Id.Equals(id))
                     return zona;
             return null;
         }

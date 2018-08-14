@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace SGE.Core.Entidades
+﻿namespace SGE.Core.Entidades
 {
     public class Zona
     {
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public decimal latitud { get; set; }
-        public decimal longitud { get; set; }
-        public int radio { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public decimal Latitud { get; set; }
+        public decimal Longitud { get; set; }
+        public int Radio { get; set; }
     }
 }

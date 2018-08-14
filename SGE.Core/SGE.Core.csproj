@@ -78,12 +78,6 @@
     <None Include="Resources\transformadores.json" />
     <None Include="Resources\zonas.json" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SGE.Entidades\SGE.Entidades.csproj">
-      <Project>{943DDEFD-ADE3-4A8C-9CFA-5BCEF9A624F1}</Project>
-      <Name>SGE.Entidades</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,4 @@
 ﻿using System;
-using SGE.Core.Entidades;
-using System.Collections.Generic;
-using System.IO;
 
 namespace SGE.Core.Helpers
 {
