@@ -68,6 +68,7 @@
     <Compile Include="Acciones\TV\CambiarEntrada.cs" />
     <Compile Include="Acciones\TV\Mute.cs" />
     <Compile Include="Acciones\TV\SubirVolumen.cs" />
+    <Compile Include="Contexto\SGEContext.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
     <Compile Include="Dispositivos\AireAcondicionado.cs" />
     <Compile Include="Dispositivos\Lavarropas.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="Managers\ReglasManager.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
     <Compile Include="Transformador.cs" />
+    <Compile Include="Usuarios\Direccion.cs" />
+    <Compile Include="Usuarios\Telefono.cs" />
+    <Compile Include="Usuarios\UsuarioMap.cs" />
     <Compile Include="ValueProviders\IValueProvider.cs" />
     <Compile Include="Reglas\Operadores\Igual.cs" />
     <Compile Include="Reglas\Operadores\MayorOIgual.cs" />

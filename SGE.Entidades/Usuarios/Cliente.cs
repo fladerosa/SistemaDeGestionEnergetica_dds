@@ -3,22 +3,30 @@ using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace SGE.Entidades.Usuarios
 {
-    public class Cliente: Usuario
+    [Table(name: "Cliente")]
+    public class Cliente : Usuario
     {
         #region Propiedades
-
-        public TipoDocumento TipoDocumento { get; set; }
-        public string NumeroDocumento { get; set; }
-        public string Telefono { get; set; }
-        public Categoria Categoria { get; set; }
-        public List<Inteligente> Inteligentes { get; set; }
-        public List<Estandar> Estandars { get; set; }
+        // public TipoDocumento TipoDocumento { get; set; } 
+        [MaxLength(12)]
+        public new string NumeroDocumento { get; set; }
+        // public string Telefono { get; set; }
+        // public Categoria Categoria { get; set; }
+        public List<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
+        public List<Estandar> Estandars { get; set; } //many to many con Dispositivo
         public double Latitud { get; set; }
         public double Longitud { get; set; }
         public int TransformadorId { get; set; }
+
+        public virtual TipoDocumento TipoDocumento { get; set; } //one to one
+        public List<Telefono> Telefonos { get; set; } // one to many con Cliente
+        public int CategoriaId { get; set; } //fk con tabla cliente
+        public Categoria Categoria { get; set; } // one to many con  Categoria
 
 
         public Cliente()
@@ -44,7 +52,7 @@ namespace SGE.Entidades.Usuarios
 
         public int CantidadTotalDispositivos()
         {
-            return this.Inteligentes.Count;
+            return this.Estandars.Count;
         }
 
         #endregion

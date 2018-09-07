@@ -1,0 +1,65 @@
+﻿using SGE.Entidades.Categorias;
+using SGE.Entidades.Usuarios;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SGE.Entidades.Contexto
+{
+    public class SGEContext : DbContext
+    {
+
+        public SGEContext(string connString) : base("ConnSGEDb")
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
+        }
+
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Direccion> Direcciones { get; set; }
+        public DbSet<TipoDocumento> TipoDocumentos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Telefono> Telefonos { get; set; }
+       /* public DbSet<Dispositivos.Dispositivo> Dispositivos { get; set; }
+        public DbSet<Dispositivos.inteligente> Inteligentes { get; set; }
+        public DbSet<Dispositivos.Estandar> Estandars { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Administrador> Administradores { get; set; }
+*/
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Configurations.Add(new UsuarioMap()); //mapeo herencia Usuario
+          //  modelBuilder.Configurations.Add(new DispositivoMap()); // mapeo herencia Dispositivo
+
+            // mapeo relacion usuario -direccion one to one
+            modelBuilder.Entity<Usuario>()
+                        .HasRequired(s => s.Direccion)
+                        .WithRequiredPrincipal(ad => ad.Usuario);
+
+
+            // mapeo relacion cliente -tipodocumento one to one
+            modelBuilder.Entity<Cliente>()
+                        .HasRequired(s => s.TipoDocumento)
+                        .WithRequiredPrincipal(ad => ad.Cliente);
+
+            // mapeo  relacion categoria -cliente one to many
+            modelBuilder.Entity<Categoria>()
+                        .HasMany<Cliente>(g => g.Clientes)
+                        .WithRequired(s => s.Categoria)
+                        .HasForeignKey<int>(s => s.CategoriaId);
+
+            // mapeo  relacion cliente -telefono one to many
+            modelBuilder.Entity<Cliente>()
+                        .HasMany<Telefono>(g => g.Telefonos)
+                        .WithRequired(s => s.Cliente)
+                        .HasForeignKey<int>(s => s.ClienteId);
+
+        }
+    }
+}
