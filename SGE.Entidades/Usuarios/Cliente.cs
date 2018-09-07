@@ -15,7 +15,7 @@ namespace SGE.Entidades.Usuarios
         // public TipoDocumento TipoDocumento { get; set; } 
         // public string Telefono { get; set; }
         // public Categoria Categoria { get; set; }
-        public new string NumeroDocumento { get; set; }
+        public string NumeroDocumento { get; set; }
         public List<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
         public List<Estandar> Estandars { get; set; } //many to many con Dispositivo
 

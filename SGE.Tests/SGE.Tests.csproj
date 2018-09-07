@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actuadores\ActuadoresTests.cs" />
+    <Compile Include="Categorias\CategoriaTest.cs" />
     <Compile Include="Dispositivos\InteligenteTests.cs" />
     <Compile Include="Entidades\AdministradorTest.cs" />
     <Compile Include="Entidades\TransformadorTest.cs" />

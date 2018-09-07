@@ -14,12 +14,12 @@ namespace SGE.Entidades.Usuarios
             //mapeo de la herencia de usuario
 
             HasKey(x => x.Id);
-            Property(x => x.NumeroDocumento).HasMaxLength(25).IsRequired();
+            Property(x => x.Nombre).HasMaxLength(25).IsRequired();
             Property(x => x.Apellido).HasMaxLength(25).IsRequired();
             Property(x => x.NombreUsuario).HasMaxLength(10).IsRequired();
             Property(x => x.Password).HasMaxLength(8).IsRequired();
 
-            Property(x => x.NumeroDocumento).HasMaxLength(10);
+            Property(x => x.Nombre).HasMaxLength(10);
 
             Map<Cliente>(x => x.Requires("Tipo_Usuario")
                                             .HasValue("CLI")

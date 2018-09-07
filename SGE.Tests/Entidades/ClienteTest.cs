@@ -52,7 +52,7 @@ namespace SGE.Tests.Entidades
 
             d1.Encender();
 
-            Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 2);
+            Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 1);
         }
 
         [TestMethod]

@@ -9,6 +9,7 @@ namespace SGE.Entidades.Categorias
     public class Categoria
     {
         [Key]
+        public int CategoriaId { get; set; }
         public string Codigo { get; set; }
         public decimal ConsumoMinimo { get; set; }
         public decimal ConsumoMaximo { get; set; }
@@ -16,6 +17,7 @@ namespace SGE.Entidades.Categorias
         public decimal CostoVariable { get; set; }
 
         public List<Cliente> Clientes { get; set; } // one to many con Categoria
+        
 
         public bool ConsumoDentroDeLosLimites(decimal consumo)
         {

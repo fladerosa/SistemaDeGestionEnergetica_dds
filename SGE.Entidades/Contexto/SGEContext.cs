@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,17 +13,19 @@ namespace SGE.Entidades.Contexto
 {
     public class SGEContext : DbContext
     {
-
-        public SGEContext(string connString) : base("ConnSGEDb")
+        public SGEContext() : base("ConnSGEDb")
         {
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
-        }
+            // Database.SetInitializer<SGEContext>(new CreateDatabaseIfNotExists<SGEContext>());
 
+            /*  this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
+            */
+
+        }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<TipoDocumento> TipoDocumentos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Categorias.Categoria> Categorias { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
         public DbSet<Dispositivos.Dispositivo> Dispositivos { get; set; }
         public DbSet<Dispositivos.Inteligente> Inteligentes { get; set; }
@@ -53,8 +56,8 @@ namespace SGE.Entidades.Contexto
 
             // mapeo  relacion categoria -cliente one to many
             modelBuilder.Entity<Categoria>()
-                        .HasMany<Cliente>(g => g.Clientes)
-                        .WithRequired(s => s.Categoria)
+                        .HasMany<Cliente>((Categoria g) => g.Clientes)
+                        .WithRequired((System.Linq.Expressions.Expression<Func<Cliente, Categoria>>)(s => s.Categoria))
                         .HasForeignKey<int>(s => s.CategoriaId);
 
             // mapeo  relacion cliente -telefono one to many
@@ -71,7 +74,7 @@ namespace SGE.Entidades.Contexto
 
             //mapeo Relacion zona - direccion
             modelBuilder.Entity<Zona>()
-                .HasOptional(s => s.Direccion) 
+                .HasOptional(s => s.Direccion)
                 .WithRequired(ad => ad.Zona);
 
             //mapeo Relacion Zona - Transformador
@@ -79,12 +82,15 @@ namespace SGE.Entidades.Contexto
                          .HasMany<Transformador>(g => g.Transformadores)
                          .WithRequired(s => s.Zona)
                          .HasForeignKey<int>(s => s.ZonaId);
-           
+
             //mapeo Transformador - Cliente
             modelBuilder.Entity<Transformador>()
                         .HasMany<Cliente>(g => g.Clientes)
                         .WithRequired(s => s.Transformador)
                         .HasForeignKey<int>(s => s.TransformadorId);
         }
+       
+        
+
     }
 }
