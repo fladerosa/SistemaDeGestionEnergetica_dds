@@ -17,8 +17,9 @@ namespace SGE.Entidades.Dispositivos
         Encendido,
         Apagado,
         AhorroEnergia
-              //public virtual Activacion Activacion { get; set; } //one to one Activacion
-               // public int InteligenteId { get; set; } //fk con tabla Inteligente
-               // public Inteligente Inteligente { get; set; } // one to many con  Inteligente
-       }
+        //public virtual Activacion Activacion { get; set; } //one to one Activacion
+        // public int InteligenteId { get; set; } //fk con tabla Inteligente
+        // public Inteligente Inteligente { get; set; } // one to many con  Inteligente
+        
+    }
 }

@@ -3,9 +3,11 @@ using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.Linq;
 using SGE.Entidades.Usuarios;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades
 {
+    [Table("Transformador")]
     public class Transformador
     {
         #region Propiedades
@@ -13,6 +15,8 @@ namespace SGE.Entidades
         public double Latitud { get; set; }
         public double Longitud { get; set; }
         public List<Cliente> Clientes { get; set; }
+        public int ZonaId { get; set; } //fk con tabla Zona
+        public Zona Zona { get; set; } // one to many con  Zona
 
         public Transformador()
         {

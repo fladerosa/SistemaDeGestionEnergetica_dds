@@ -30,7 +30,8 @@ namespace SGE.Entidades.Contexto
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Activacion> Activaciones { get; set; }
-
+        public DbSet<Transformador> Transformadores { get; set; }
+        public DbSet<Zona> Zonas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -68,6 +69,22 @@ namespace SGE.Entidades.Contexto
                        .WithRequired(s => s.Inteligente)
                        .HasForeignKey<int>(s => s.InteligenteId);
 
+            //mapeo Relacion zona - direccion
+            modelBuilder.Entity<Zona>()
+                .HasOptional(s => s.Direccion) 
+                .WithRequired(ad => ad.Zona);
+
+            //mapeo Relacion Zona - Transformador
+            modelBuilder.Entity<Zona>()
+                         .HasMany<Transformador>(g => g.Transformadores)
+                         .WithRequired(s => s.Zona)
+                         .HasForeignKey<int>(s => s.ZonaId);
+           
+            //mapeo Transformador - Cliente
+            modelBuilder.Entity<Transformador>()
+                        .HasMany<Cliente>(g => g.Clientes)
+                        .WithRequired(s => s.Transformador)
+                        .HasForeignKey<int>(s => s.TransformadorId);
         }
     }
 }
