@@ -13,7 +13,6 @@ namespace SGE.Entidades.Usuarios
     {
         #region Propiedades
         // public TipoDocumento TipoDocumento { get; set; } 
-        [MaxLength(12)]
         public new string NumeroDocumento { get; set; }
         // public string Telefono { get; set; }
         // public Categoria Categoria { get; set; }

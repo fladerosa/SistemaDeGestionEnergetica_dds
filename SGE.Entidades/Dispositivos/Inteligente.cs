@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using SGE.Entidades.Drivers.Interfaces;
 using SGE.Entidades.Managers;
+using SGE.Entidades.Usuarios;
 
 namespace SGE.Entidades.Dispositivos
 {
-    public class Inteligente: Dispositivo
+    [Table(name: "Inteligente")]
+    public class Inteligente : Dispositivo
     {
         #region Propiedades
 
@@ -16,12 +19,14 @@ namespace SGE.Entidades.Dispositivos
         /// Indica el estado del dispositivo
         /// </summary>
         protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
-
-        public string IdentificadorFabrica { get; set; }
+        private string identificadorFabrica { get; set; }
 
         public List<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
-
+        public virtual List<Cliente> Clientes { get; set; } //many to many con Clientes
+        public virtual List<Administrador> Administradores { get; set; } //many to many con Administrador
+        public virtual List<Activacion> Activaciones { get; set; } //many to many con Activacion
+        
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
         /// </summary>

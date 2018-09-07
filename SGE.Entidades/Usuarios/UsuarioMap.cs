@@ -19,7 +19,7 @@ namespace SGE.Entidades.Usuarios
             Property(x => x.NombreUsuario).HasMaxLength(10).IsRequired();
             Property(x => x.Password).HasMaxLength(8).IsRequired();
 
-            Property(x => x.NumeroDocumento).HasMaxLength(60);
+            Property(x => x.NumeroDocumento).HasMaxLength(10);
 
             Map<Cliente>(x => x.Requires("Tipo_Usuario")
                                             .HasValue("CLI")

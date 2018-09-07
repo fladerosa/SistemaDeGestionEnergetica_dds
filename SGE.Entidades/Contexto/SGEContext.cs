@@ -1,4 +1,5 @@
 ﻿using SGE.Entidades.Categorias;
+using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -23,19 +24,20 @@ namespace SGE.Entidades.Contexto
         public DbSet<TipoDocumento> TipoDocumentos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
-       /* public DbSet<Dispositivos.Dispositivo> Dispositivos { get; set; }
-        public DbSet<Dispositivos.inteligente> Inteligentes { get; set; }
+        public DbSet<Dispositivos.Dispositivo> Dispositivos { get; set; }
+        public DbSet<Dispositivos.Inteligente> Inteligentes { get; set; }
         public DbSet<Dispositivos.Estandar> Estandars { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
-*/
+        public DbSet<Activacion> Activaciones { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new UsuarioMap()); //mapeo herencia Usuario
-          //  modelBuilder.Configurations.Add(new DispositivoMap()); // mapeo herencia Dispositivo
+            modelBuilder.Configurations.Add(new DispositivoMap()); // mapeo herencia Dispositivo
 
             // mapeo relacion usuario -direccion one to one
             modelBuilder.Entity<Usuario>()
@@ -59,6 +61,12 @@ namespace SGE.Entidades.Contexto
                         .HasMany<Telefono>(g => g.Telefonos)
                         .WithRequired(s => s.Cliente)
                         .HasForeignKey<int>(s => s.ClienteId);
+
+            //mapeo relacion Inteligente - Activacion
+            modelBuilder.Entity<Inteligente>()
+                       .HasMany<Activacion>(g => g.Activaciones)
+                       .WithRequired(s => s.Inteligente)
+                       .HasForeignKey<int>(s => s.InteligenteId);
 
         }
     }

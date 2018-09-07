@@ -71,6 +71,7 @@
     <Compile Include="Contexto\SGEContext.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
     <Compile Include="Dispositivos\AireAcondicionado.cs" />
+    <Compile Include="Dispositivos\DispositivoMap.cs" />
     <Compile Include="Dispositivos\Lavarropas.cs" />
     <Compile Include="Dispositivos\Televisor.cs" />
     <Compile Include="Drivers\DreanLavarropasDriver.cs" />
