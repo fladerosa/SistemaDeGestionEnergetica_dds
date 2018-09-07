@@ -19,14 +19,14 @@ namespace SGE.Entidades.Dispositivos
         /// Indica el estado del dispositivo
         /// </summary>
         protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
-        private string identificadorFabrica { get; set; }
+        private string IdentificadorFabrica { get; set; }
 
         public List<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
         public virtual List<Cliente> Clientes { get; set; } //many to many con Clientes
         public virtual List<Administrador> Administradores { get; set; } //many to many con Administrador
         public virtual List<Activacion> Activaciones { get; set; } //many to many con Activacion
-        
+        //public virtual List<EstadoDispositivo> EstadoDispositivo { get; set; } //one to many EstadoDispositivo
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
         /// </summary>

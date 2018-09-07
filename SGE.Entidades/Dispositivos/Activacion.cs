@@ -15,6 +15,7 @@ namespace SGE.Entidades.Dispositivos
 
         public int InteligenteId { get; set; } //fk con tabla Inteligente
         public Inteligente Inteligente { get; set; } // one to many con  Inteligente
+        public virtual EstadoDispositivo EstadoDispositivo { get; set; } //one to one EstadoDispositivo
 
         public Activacion(EstadoDispositivo estado)
         {
