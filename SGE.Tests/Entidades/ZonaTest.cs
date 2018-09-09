@@ -107,7 +107,7 @@ namespace SGE.Tests.Entidades
         public void ObtenerConsumoTest()
         {
             decimal consumo = this.zona.ObtenerConsumo();
-            Assert.Equals(consumo, 1800);
+            Assert.AreEqual(consumo, 1800);
         }
 
         [TestMethod]

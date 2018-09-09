@@ -54,7 +54,7 @@ namespace SGE.Tests.Entidades
         public void ObtenerConsumoTest()
         {
             decimal consumo = this.transformador.ObtenerConsumo();
-            Assert.Equals(consumo, 900);
+            Assert.AreEqual(consumo, 900);
         }
     }
 }

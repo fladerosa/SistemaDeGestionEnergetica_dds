@@ -1,9 +1,7 @@
-﻿using SGE.Entidades.Categorias;
-using SGE.Entidades.Dispositivos;
+﻿using SGE.Entidades.Usuarios;
 using System.Collections.Generic;
-using System.Linq;
-using SGE.Entidades.Usuarios;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace SGE.Entidades
 {
@@ -28,7 +26,8 @@ namespace SGE.Entidades
             decimal consumo = 0;
             foreach (Cliente cliente in Clientes)
             {
-                consumo = consumo;
+                consumo += cliente.Estandars.Sum(e => e.ConsumoEnergia);
+                consumo += cliente.Inteligentes.Sum(i => i.ConsumoEnergia);
             }
             return consumo;
         }

@@ -32,7 +32,7 @@ namespace SGE.Entidades
             decimal consumo = 0;
             foreach (Transformador transformador in Transformadores)
             {
-                consumo = consumo + transformador.ObtenerConsumo();
+                consumo += transformador.ObtenerConsumo();
             }
             return consumo;
         }
