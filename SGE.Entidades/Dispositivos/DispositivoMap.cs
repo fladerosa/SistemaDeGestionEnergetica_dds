@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace SGE.Entidades.Dispositivos
 {
@@ -20,12 +15,16 @@ namespace SGE.Entidades.Dispositivos
             Property(x => x.IdentificadorFabrica).HasMaxLength(15).IsRequired();
 
             Map<Estandar>(x => x.Requires("Tipo_Dispositivo")
-                                            .HasValue("E")
-                                            .HasColumnType("char")
-                                            .HasMaxLength(1));
+                                            .HasValue("E"));
 
-            Map<Inteligente>(x => x.Requires("Tipo_Dispositivo")
-                                            .HasValue("I"));
+            Map<AireAcondicionado>(x => x.Requires("Tipo_Inteligente")
+                                            .HasValue("AA"));
+
+            Map<Lavarropas>(x => x.Requires("Tipo_Inteligente")
+                                            .HasValue("LV"));
+
+            Map<Televisor>(x => x.Requires("Tipo_Inteligente")
+                                            .HasValue("TV"));
 
         }
     }

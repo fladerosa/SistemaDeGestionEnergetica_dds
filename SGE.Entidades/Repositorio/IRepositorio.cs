@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SGE.Entidades.Repositorio
 {
     //La clase del repositorio permitirá definir las acciones sobre la persistencia que serán comunes para todas las entidades.
-    interface IRepositorio<T> where T : class
+    public interface IRepositorio<T> where T : class
     {
         List<T> GetAll();
         List<T> GetAll(List<Expression<Func<T, object>>> includes);

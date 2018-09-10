@@ -7,9 +7,7 @@ namespace SGE.Entidades.Dispositivos
     [Table("Activacion")]
     public class Activacion
     {
-        [Key]
         public int Id { get; set; }
-        [MaxLength(20)]
         public EstadoDispositivo Estado { get; private set; }
         public DateTime FechaDeRegistro { get; set; }
 

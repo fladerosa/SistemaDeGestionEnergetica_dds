@@ -85,8 +85,6 @@
     <Compile Include="Managers\ReglasManager.cs" />
     <Compile Include="Repositorio\BaseRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
-    <Compile Include="Repositorio\RepositorioCategoria\CategoriaRepositorio.cs" />
-    <Compile Include="Repositorio\RepositorioCategoria\ICategoriaRepositorio.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
     <Compile Include="Transformador.cs" />
     <Compile Include="Usuarios\Direccion.cs" />

@@ -1,17 +1,14 @@
 ﻿using SGE.Entidades.Contexto;
-using SGE.Entidades.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SGE.Entidades.Repositorio
 {
-    public abstract class BaseRepositorio<T> : IRepositorio<T> where T : class
+    public class BaseRepositorio<T> : IRepositorio<T> where T : class
     {
 
         public List<T> GetAll()
@@ -45,6 +42,16 @@ namespace SGE.Entidades.Repositorio
             }
 
         }
+
+        public T GetById(int Id)
+        {
+            using (SGEContext context = new SGEContext())
+            {
+                return context.Set<T>().FirstOrDefault(x => (int)x.GetType().GetProperty(Id.GetType().Name).GetValue(x, null) == Id);
+            }
+
+        }
+
         public T Single(Expression<Func<T, bool>> predicate)
         {
             using (SGEContext context = new SGEContext())

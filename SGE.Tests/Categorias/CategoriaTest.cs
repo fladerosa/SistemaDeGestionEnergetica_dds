@@ -1,12 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Usuarios;
-using SGE.Entidades.Repositorio.RepositorioCategoria;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SGE.Entidades.Categorias;
+using SGE.Entidades.Repositorio;
 
 namespace SGE.Tests.Categorias
 {
@@ -24,7 +18,7 @@ namespace SGE.Tests.Categorias
         [TestMethod()]
         public void Get_All_Category()
         {
-            CategoriaRepositorio repoCategoria = new CategoriaRepositorio();
+            BaseRepositorio<Categoria> repoCategoria = new BaseRepositorio<Categoria>();
             Categoria categoriaNueva = new Categoria()
             {
                 Codigo = "R2",

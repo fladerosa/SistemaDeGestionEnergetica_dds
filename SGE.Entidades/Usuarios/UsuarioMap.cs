@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace SGE.Entidades.Usuarios
 {
@@ -19,12 +14,8 @@ namespace SGE.Entidades.Usuarios
             Property(x => x.NombreUsuario).HasMaxLength(10).IsRequired();
             Property(x => x.Password).HasMaxLength(8).IsRequired();
 
-            Property(x => x.Nombre).HasMaxLength(10);
-
             Map<Cliente>(x => x.Requires("Tipo_Usuario")
-                                            .HasValue("CLI")
-                                            .HasColumnType("char")
-                                            .HasMaxLength(6));
+                                            .HasValue("CLI"));
 
             Map<Administrador>(x => x.Requires("Tipo_Usuario")
                                             .HasValue("ADMIN"));

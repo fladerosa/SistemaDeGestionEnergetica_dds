@@ -2,12 +2,7 @@
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Usuarios;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SGE.Entidades.Contexto
 {
@@ -15,7 +10,9 @@ namespace SGE.Entidades.Contexto
     {
         public SGEContext() : base("ConnSGEDb")
         {
-            // Database.SetInitializer<SGEContext>(new CreateDatabaseIfNotExists<SGEContext>());
+            Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
+
+            //Database.SetInitializer<SGEContext>(new CreateDatabaseIfNotExists<SGEContext>());
 
             /*  this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
@@ -25,11 +22,11 @@ namespace SGE.Entidades.Contexto
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<TipoDocumento> TipoDocumentos { get; set; }
-        public DbSet<Categorias.Categoria> Categorias { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
-        public DbSet<Dispositivos.Dispositivo> Dispositivos { get; set; }
-        public DbSet<Dispositivos.Inteligente> Inteligentes { get; set; }
-        public DbSet<Dispositivos.Estandar> Estandars { get; set; }
+        public DbSet<Dispositivo> Dispositivos { get; set; }
+        public DbSet<Inteligente> Inteligentes { get; set; }
+        public DbSet<Estandar> Estandars { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Activacion> Activaciones { get; set; }
@@ -88,9 +85,7 @@ namespace SGE.Entidades.Contexto
                         .HasMany<Cliente>(g => g.Clientes)
                         .WithRequired(s => s.Transformador)
                         .HasForeignKey<int>(s => s.TransformadorId);
-        }
-       
-        
 
+        }
     }
 }

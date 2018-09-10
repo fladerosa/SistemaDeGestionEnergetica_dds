@@ -8,8 +8,7 @@ namespace SGE.Entidades.Categorias
     [Table("Categoria")]
     public class Categoria
     {
-        [Key]
-        public int CategoriaId { get; set; }
+        public int Id { get; set; }
         public string Codigo { get; set; }
         public decimal ConsumoMinimo { get; set; }
         public decimal ConsumoMaximo { get; set; }
