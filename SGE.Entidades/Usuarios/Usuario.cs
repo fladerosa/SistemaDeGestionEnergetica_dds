@@ -12,7 +12,6 @@ namespace SGE.Entidades.Usuarios
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
         public DateTime FechaAlta { get; set; }
-        //   public string Direccion { get; set; }
         public virtual Direccion Direccion { get; set; } //one to one
 
         public Usuario()

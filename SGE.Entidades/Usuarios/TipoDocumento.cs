@@ -13,11 +13,4 @@ namespace SGE.Entidades.Usuarios
 
         public virtual Cliente Cliente { get; set; } //one to one
     }
-    /*  public enum TipoDocumento
-    {
-        DNI,
-        CI,
-        LE,
-        LC
-    }*/
 }

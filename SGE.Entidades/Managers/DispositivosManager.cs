@@ -1,19 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SGE.Entidades.Acciones;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Managers
 {
+    [Table("Actuador")]
     public class DispositivosManager
     {
         #region Campos
+        [Key]
+        public int ActuadorId { get; set; }
+        [MaxLength(25)]
+        public string nombre { get; set; }
+        public List<Inteligente> dispositivos { get; set; } //one to many con Inteligentes
+        public List<Accion> Accions { get; set; } //one to many con Accion
+   
+        public List<IAccion> Acciones { get; set; }
 
-        private List<Inteligente> dispositivos;
         private static object dispositivosManagerSyncLock = new object();
+
 
         #endregion
 

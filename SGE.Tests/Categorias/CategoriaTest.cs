@@ -7,14 +7,7 @@ namespace SGE.Tests.Categorias
     [TestClass()]
     public class CategoriaTest
     {
-        /*public Cliente usuario;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            this.usuario = new Cliente("33.461.873");
-        }
-        */
+        
         [TestMethod()]
         public void Get_All_Category()
         {

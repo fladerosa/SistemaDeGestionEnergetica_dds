@@ -15,10 +15,12 @@ namespace SGE.Entidades.Usuarios
             Property(x => x.Password).HasMaxLength(8).IsRequired();
 
             Map<Cliente>(x => x.Requires("Tipo_Usuario")
-                                            .HasValue("CLI"));
+                                            .HasValue("CLI")
+                                            .HasMaxLength(6));
 
             Map<Administrador>(x => x.Requires("Tipo_Usuario")
-                                            .HasValue("ADMIN"));
+                                            .HasValue("ADMIN")
+                                            .HasMaxLength(6));
 
         }
 

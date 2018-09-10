@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acciones\AA\AumentarVelocidadVentilador.cs" />
+    <Compile Include="Acciones\Accion.cs" />
     <Compile Include="Acciones\Apagar.cs" />
     <Compile Include="Acciones\ColocarEnAhorroEnergia.cs" />
     <Compile Include="Acciones\Encender.cs" />

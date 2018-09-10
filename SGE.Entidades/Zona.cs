@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.ComponentModel.DataAnnotations.Schema;
 using SGE.Entidades.Usuarios;
+using System.ComponentModel.DataAnnotations;
 
 namespace SGE.Entidades
 {
@@ -13,8 +14,9 @@ namespace SGE.Entidades
     public class Zona
     {
         #region Propiedades
-
+        [Key]
         public int Id { get; set; }
+        [MaxLength(15)]
         public string Nombre { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }

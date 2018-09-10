@@ -1,5 +1,6 @@
 ﻿using SGE.Entidades.Usuarios;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
@@ -9,6 +10,7 @@ namespace SGE.Entidades
     public class Transformador
     {
         #region Propiedades
+        [Key]
         public int Id { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }

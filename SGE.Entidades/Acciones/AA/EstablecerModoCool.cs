@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.AA
 {
-    public class EstablecerModoCool: IAccion
+    public class EstablecerModoCool: Accion
     {
         #region Campos
 

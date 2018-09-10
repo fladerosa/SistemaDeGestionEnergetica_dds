@@ -1,6 +1,10 @@
-﻿using SGE.Entidades.Categorias;
+﻿using SGE.Entidades.Acciones;
+using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Managers;
+using SGE.Entidades.Reglas;
 using SGE.Entidades.Usuarios;
+using SGE.Entidades.ValueProviders;
 using System;
 using System.Data.Entity;
 
@@ -32,6 +36,12 @@ namespace SGE.Entidades.Contexto
         public DbSet<Activacion> Activaciones { get; set; }
         public DbSet<Transformador> Transformadores { get; set; }
         public DbSet<Zona> Zonas { get; set; }
+        public DbSet<Sensor> Sensores { get; set; }
+        public DbSet<Medicion> Mediciones { get; set; }
+        public DbSet<Accion> Acciones { get; set; }
+        public DbSet<DispositivosManager> Actuador { get; set; }
+        public DbSet<Regla> Reglas { get; set; }
+        public DbSet<Condicion> Condiciones { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -65,7 +75,7 @@ namespace SGE.Entidades.Contexto
 
             //mapeo relacion Inteligente - Activacion
             modelBuilder.Entity<Inteligente>()
-                       .HasMany<Activacion>(g => g.Activaciones)
+                       .HasMany<Activacion>(g => g.RegistroDeActivaciones)
                        .WithRequired(s => s.Inteligente)
                        .HasForeignKey<int>(s => s.InteligenteId);
 
@@ -85,6 +95,25 @@ namespace SGE.Entidades.Contexto
                         .HasMany<Cliente>(g => g.Clientes)
                         .WithRequired(s => s.Transformador)
                         .HasForeignKey<int>(s => s.TransformadorId);
+
+            // mapeo  relacion Sensor - Inteligente one to many
+            modelBuilder.Entity<Sensor>()
+                        .HasMany<Inteligente>(g => g.Inteligentes)
+                        .WithRequired(s => s.Sensor)
+                        .HasForeignKey<int>(s => s.SensorId);
+
+            // mapeo relacion Sensor -Medicion one to one
+            modelBuilder.Entity<Sensor>()
+                        .HasMany<Medicion>(g => g.Mediciones)
+                        .WithRequired(s => s.Sensor)
+                        .HasForeignKey<int>(s => s.SensorId);
+
+            //mapeo relacion regla - condicion 
+            modelBuilder.Entity<Regla>()
+                       .HasMany<Condicion>(g => g.Condiciones)
+                       .WithRequired(s => s.Regla)
+                       .HasForeignKey<int>(s => s.ReglaId);
+
 
         }
     }

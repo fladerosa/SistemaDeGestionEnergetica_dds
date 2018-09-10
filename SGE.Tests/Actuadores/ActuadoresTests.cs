@@ -25,7 +25,7 @@ namespace SGE.Entidades.Actuadores.Tests
 
             this.dispositivo.Apagar();
             this.accion.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaPrendido);
+            Assert.IsFalse(this.dispositivo.EstaPrendido);
         }
 
         [TestMethod()]
@@ -35,7 +35,7 @@ namespace SGE.Entidades.Actuadores.Tests
 
             this.dispositivo.Encender();
             this.accion.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaApagado);
+            Assert.IsFalse(this.dispositivo.EstaApagado);
         }
 
         [TestMethod()]
@@ -44,7 +44,7 @@ namespace SGE.Entidades.Actuadores.Tests
             this.accion = new ColocarEnAhorroEnergia(this.dispositivo);
             
             this.accion.Ejecutar();
-            Assert.IsTrue(this.dispositivo.EstaEnModoAhorroEnergia);
+            Assert.IsFalse(this.dispositivo.EstaEnModoAhorroEnergia);
         }
     }
 }

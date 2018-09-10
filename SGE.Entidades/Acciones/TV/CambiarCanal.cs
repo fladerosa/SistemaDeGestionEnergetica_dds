@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.TV
 {
-    public class CambiarCanal: IAccion
+    public class CambiarCanal: Accion
     {
         #region Campos
 

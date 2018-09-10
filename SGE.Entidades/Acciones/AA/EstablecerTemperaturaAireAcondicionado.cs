@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.AA
 {
-    public class EstablecerTemperaturaAireAcondicionado : IAccion
+    public class EstablecerTemperaturaAireAcondicionado : Accion
     {
         #region Campos
 

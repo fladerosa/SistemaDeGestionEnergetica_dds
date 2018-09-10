@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.AA
 {
-    public class DecrementarVelocidadVentilador: IAccion
+    public class DecrementarVelocidadVentilador: Accion
     {
         #region Campos
 

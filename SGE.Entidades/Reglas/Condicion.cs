@@ -1,16 +1,24 @@
-﻿using SGE.Entidades.Reglas.Operadores;
+﻿using SGE.Entidades.Acciones;
+using SGE.Entidades.Reglas.Operadores;
 using SGE.Entidades.ValueProviders;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Reglas
 {
+    [Table("Condicion")]
     public class Condicion
     {
         #region Propiedades
-
+        [Key]
+        public int CondicionId { get; set; }
         private IValueProvider provider;
         private IOperador operador;
         private decimal valorReferencia;
-
+        public int ReglaId { get; set; } // fk con tabla regla
+        public Regla Regla { get; set; } // one to many con  regla 
+        public int AccionId { get; set; } // fk con tabla Accion
+        public Accion Accion { get; set; } // one to many con  Accion 
         #endregion
 
         #region Constructores

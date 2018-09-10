@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.TV
 {
-    public class SubirVolumen: IAccion
+    public class SubirVolumen: Accion
     {
         #region Campos
 

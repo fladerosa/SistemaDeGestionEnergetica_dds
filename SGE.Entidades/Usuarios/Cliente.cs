@@ -10,16 +10,13 @@ namespace SGE.Entidades.Usuarios
     public class Cliente : Usuario
     {
         #region Propiedades
-        // public TipoDocumento TipoDocumento { get; set; } 
-        // public string Telefono { get; set; }
-        // public Categoria Categoria { get; set; }
         public string NumeroDocumento { get; set; }
         public List<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
         public List<Estandar> Estandars { get; set; } //many to many con Dispositivo
 
         /*los atributos latitud y longitud , no deben ir aca. El cliente posee una direccion(tabla)
          * buscar una funcion que transforme una direccion en coordenadas(latitud, longitud),
-         * revisar los test de zona y transformadores */
+         */
         public double Latitud { get; set; }  
         public double Longitud { get; set; }
         //

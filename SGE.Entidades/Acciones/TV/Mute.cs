@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.TV
 {
-    public class Mute: IAccion
+    public class Mute: Accion
     {
         #region Campos
 

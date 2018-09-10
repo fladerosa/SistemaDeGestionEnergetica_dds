@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.Lavarropa
 {
-    public class LavarRopaAlgodon: IAccion
+    public class LavarRopaAlgodon: Accion
     {
         #region Campos
 

@@ -7,7 +7,7 @@ using SGE.Entidades.Dispositivos;
 
 namespace SGE.Entidades.Acciones.AA
 {
-    public class CambiarDireccion: IAccion
+    public class CambiarDireccion: Accion
     {
         #region Campos
 

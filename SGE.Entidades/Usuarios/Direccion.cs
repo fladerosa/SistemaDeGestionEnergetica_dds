@@ -23,7 +23,7 @@ namespace SGE.Entidades.Usuarios
         public virtual Zona Zona { get; set; } // one to many con  Zona
 
          /*  // one to many con  Zona funcion que calcule la direccion como coordenadas geograficas
-            * en lugar de tener latitu y longitud en cliente..*/
+            * en lugar de tener latitud y longitud en cliente..*/
 
     }
 }
