@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SGE.Entidades
+namespace SGE.Entidades.Transformadores
 {
     [Table("Transformador")]
     public class Transformador

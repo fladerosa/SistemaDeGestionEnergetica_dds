@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using SGE.Entidades.Usuarios;
 using System.ComponentModel.DataAnnotations;
 
-namespace SGE.Entidades
+namespace SGE.Entidades.Zonas
 {
     [Table("Zona")]
     public class Zona

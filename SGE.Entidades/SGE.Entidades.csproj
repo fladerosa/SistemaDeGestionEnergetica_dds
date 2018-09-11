@@ -87,7 +87,7 @@
     <Compile Include="Repositorio\BaseRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
-    <Compile Include="Transformador.cs" />
+    <Compile Include="Transformadores\Transformador.cs" />
     <Compile Include="Usuarios\Direccion.cs" />
     <Compile Include="Usuarios\Telefono.cs" />
     <Compile Include="Usuarios\UsuarioMap.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Usuarios\TipoDocumento.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
     <Compile Include="ValueProviders\SensorTemperaturaAA.cs" />
-    <Compile Include="Zona.cs" />
+    <Compile Include="Zonas\Zona.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGE.Core\SGE.Core.csproj">
@@ -127,6 +127,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
