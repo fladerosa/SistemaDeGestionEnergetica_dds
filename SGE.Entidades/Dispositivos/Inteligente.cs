@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using SGE.Entidades.Drivers.Interfaces;
+﻿using SGE.Entidades.Drivers.Interfaces;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace SGE.Entidades.Dispositivos
 {
@@ -91,7 +91,7 @@ namespace SGE.Entidades.Dispositivos
             }
         }
 
-        public List<string> obtenerIntervalosEncendidoPorPeriodo(DateTime fechaDesde, DateTime fechaHasta) {
+        public List<string> ObtenerIntervalosEncendidoPorPeriodo(DateTime fechaDesde, DateTime fechaHasta) {
             List<string> intervalosEncendido = new List<string>();
 
             List<Activacion> activacionesDentroPeriodo = this.RegistroDeActivaciones.Where(a => a.FechaDeRegistro >= fechaDesde && a.FechaDeRegistro <= fechaHasta).ToList();
@@ -178,6 +178,11 @@ namespace SGE.Entidades.Dispositivos
             return horas;
         }
 
+
+        public double ObtenerCantidadDeHoraDeUsoMensual()
+        {
+            return 10; //TODO todo...
+        }
         #endregion
 
         #region Nuevas Mediciones

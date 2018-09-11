@@ -113,7 +113,7 @@ namespace SGE.Tests.Entrega {
             dispositivo.Apagar();
             dispositivo.RegistroDeActivaciones[3].FechaDeRegistro = dispositivo.RegistroDeActivaciones[3].FechaDeRegistro.AddHours(-1);
 
-            List<string> intervalosEncendido = dispositivo.obtenerIntervalosEncendidoPorPeriodo(DateTime.Now.AddMonths(-1), DateTime.Now);
+            List<string> intervalosEncendido = dispositivo.ObtenerIntervalosEncendidoPorPeriodo(DateTime.Now.AddMonths(-1), DateTime.Now);
 
             foreach (string intervaloEncendido in intervalosEncendido) {
                 Console.WriteLine(intervaloEncendido);
