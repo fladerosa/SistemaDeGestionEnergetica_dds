@@ -54,8 +54,8 @@ namespace SGE.Entidades.Contexto
 
             // mapeo relacion usuario -direccion one to one
             modelBuilder.Entity<Usuario>()
-                        .HasRequired(s => s.Direccion)
-                        .WithRequiredPrincipal(ad => ad.Usuario);
+                        .HasOptional (s => s.Direccion)
+                        .WithRequired(ad => ad.Usuario);
 
 
             // mapeo relacion cliente -tipodocumento one to one

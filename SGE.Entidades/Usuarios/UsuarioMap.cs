@@ -11,8 +11,8 @@ namespace SGE.Entidades.Usuarios
             HasKey(x => x.Id);
             Property(x => x.Nombre).HasMaxLength(25).IsRequired();
             Property(x => x.Apellido).HasMaxLength(25).IsRequired();
-            Property(x => x.NombreUsuario).HasMaxLength(10).IsRequired();
-            Property(x => x.Password).HasMaxLength(8).IsRequired();
+            Property(x => x.NombreUsuario).HasMaxLength(25).IsRequired();
+            Property(x => x.Password).HasMaxLength(18).IsRequired();
 
             Map<Cliente>(x => x.Requires("Tipo_Usuario")
                                             .HasValue("CLI")

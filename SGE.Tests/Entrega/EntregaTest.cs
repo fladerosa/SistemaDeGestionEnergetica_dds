@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades.Acciones;
+using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
 using SGE.Entidades.Reglas;
@@ -9,6 +10,7 @@ using SGE.Entidades.Repositorio;
 using SGE.Entidades.Transformadores;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
+using SGE.Entidades.Zonas;
 using System;
 using System.Collections.Generic;
 
@@ -16,9 +18,14 @@ namespace SGE.Tests.Entrega {
     [TestClass]
     public class EntregaTest
     {
+        BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>();
+        BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
+
         //TODO: se crean los casos de pruebas mínimos para la entrega 3. Para facilitar la lectura se los agrupa en esta clase,
         //sin embargo luego se acomodarán las pruebas en las clases correspondientes.
+
         [TestMethod]
+        
         public void CasoDePrueba1() {
             ///Crear 1 usuario nuevo.
             ///Persistirlo.
@@ -26,23 +33,50 @@ namespace SGE.Tests.Entrega {
             ///grabarlo.
             ///Recuperarlo y evaluar que el cambio se haya realizado.
 
+            //se carga una zona para evitar que rompa por fk de transformador
+            Zona zona = new Zona()
+            {
+                Nombre = "zona_02",
+                Latitud = 35,
+                Longitud = 45,
+                Radio = 5
+            };
+            repoZona.Create(zona);
+
             Cliente cliente = new Cliente() {
                 Nombre = "Nombre_test_cp1",
-                NombreUsuario = "NombreUsuario_test_cp1",
                 Apellido = "Apellido_test_cp1",
+                NombreUsuario = "NombreUsuario_test_cp1",
+                Password = "Password_test_01",
+
                 NumeroDocumento = "12345678",
-                Latitud = 1,
-                Longitud = 2,
+                Latitud = 3,
+                Longitud = 4,
                 Telefonos = new List<Telefono>()
             };
             cliente.Direccion = new Direccion() {
-                Calle = "calle_cp1"
+                Calle = "calle_cp1",
+                Nro = "2468"
             };
             cliente.Telefonos.Add(new Telefono() {
                 Numero = "12345"
             });
 
-            BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>();
+            cliente.Transformador = new Transformador()
+            {
+                Latitud = 45,
+                Longitud = 55,
+                ZonaId = zona.Id
+            };
+
+            cliente.Categoria = new Categoria()
+            {
+                Codigo = "R3",
+                ConsumoMinimo = 1500,
+                ConsumoMaximo = 2200,
+                CostoFijo = 300,
+                CostoVariable = 550
+            };
 
             repoCliente.Create(cliente);
 
