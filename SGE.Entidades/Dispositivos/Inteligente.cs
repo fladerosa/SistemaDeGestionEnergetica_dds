@@ -24,7 +24,7 @@ namespace SGE.Entidades.Dispositivos
         public List<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
         public virtual List<Cliente> Clientes { get; set; } //many to many con Clientes
-        public virtual List<Administrador> Administradores { get; set; } //many to many con Administrador
+        //public virtual List<Administrador> Administradores { get; set; } //many to many con Administrador
                                                                          //    public virtual List<Activacion> Activaciones { get; set; } //many to many con Activacion
         public int SensorId { get; set; } // fk con tabla Sensor
         public Sensor Sensor { get; set; } // one to many con  Sensor
