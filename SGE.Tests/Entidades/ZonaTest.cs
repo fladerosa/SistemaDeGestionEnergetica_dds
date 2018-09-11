@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Core.Helpers;
-using SGE.Entidades;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
+using SGE.Entidades.Zonas;
+using SGE.Entidades.Transformadores;
 //using SGE.Core.Entidades;
 
 namespace SGE.Tests.Entidades
@@ -12,8 +13,8 @@ namespace SGE.Tests.Entidades
     [TestClass]
     public class ZonaTest
     {
-        SGE.Entidades.Zona zona;
-        List<SGE.Entidades.Transformador> transformadores;
+        Zona zona;
+        List<Transformador> transformadores;
         private List<Cliente> clientes1;
         private List<Cliente> clientes2;
 
@@ -45,7 +46,7 @@ namespace SGE.Tests.Entidades
 
 
             //si se carga los transformadores con json comentar estoo
-            SGE.Entidades.Transformador trasformador1 = new Transformador();
+            Transformador trasformador1 = new Transformador();
             trasformador1.Id = 1;
             trasformador1.Latitud = 5.4;
             trasformador1.Longitud = 5.44;

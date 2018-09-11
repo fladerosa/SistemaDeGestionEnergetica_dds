@@ -1,5 +1,6 @@
 ﻿using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Transformadores;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;

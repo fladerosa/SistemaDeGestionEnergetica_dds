@@ -22,7 +22,8 @@ namespace SGE.Entidades.Reglas
         #endregion
 
         #region Constructores
-
+        public Regla() {
+        }
         public Regla(string nombre, List<Condicion> condiciones, List<IAccion> acciones)
         {
             this.Nombre = nombre;

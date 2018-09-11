@@ -43,15 +43,6 @@ namespace SGE.Entidades.Repositorio
 
         }
 
-        public T GetById(int Id)
-        {
-            using (SGEContext context = new SGEContext())
-            {
-                return context.Set<T>().FirstOrDefault(x => (int)x.GetType().GetProperty(Id.GetType().Name).GetValue(x, null) == Id);
-            }
-
-        }
-
         public T Single(Expression<Func<T, bool>> predicate)
         {
             using (SGEContext context = new SGEContext())

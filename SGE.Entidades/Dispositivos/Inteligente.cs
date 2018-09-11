@@ -91,6 +91,27 @@ namespace SGE.Entidades.Dispositivos
             }
         }
 
+        public List<string> obtenerIntervalosEncendidoPorPeriodo(DateTime fechaDesde, DateTime fechaHasta) {
+            List<string> intervalosEncendido = new List<string>();
+
+            List<Activacion> activacionesDentroPeriodo = this.RegistroDeActivaciones.Where(a => a.FechaDeRegistro >= fechaDesde && a.FechaDeRegistro <= fechaHasta).ToList();
+            Activacion activacion = null;
+
+            for (var i = 0; i < activacionesDentroPeriodo.Count; i++) {
+                activacion = activacionesDentroPeriodo[i];
+                if(activacion.Estado == EstadoDispositivo.Encendido) {
+                    //Busco la posicion siguiente para saber cuando se apagó, si no la encuentro asumo que nunca se apagó, por lo que asumo que sigue encendido hasta la fecha máxima indicada
+                    if(activacionesDentroPeriodo.ElementAtOrDefault(i+1) != null) {
+                        intervalosEncendido.Add("Encendido desde '" + activacion.FechaDeRegistro.ToShortDateString() + "' hasta '" + activacionesDentroPeriodo[i + 1].FechaDeRegistro.ToShortDateString());
+                    } else {
+                        intervalosEncendido.Add("Encendido desde '" + activacion.FechaDeRegistro.ToShortDateString() + "' hasta (al menos) '" + fechaHasta.ToShortDateString());
+                    }
+                }
+            }
+
+            return intervalosEncendido;
+        }
+
         /// <summary>
         /// Apaga el equipo
         /// </summary>

@@ -101,6 +101,7 @@
     <Compile Include="Entidades\CategoriaTest.cs" />
     <Compile Include="Entidades\Reglas\CondicionTest.cs" />
     <Compile Include="Entidades\Reglas\ReglaTest.cs" />
+    <Compile Include="Entrega\EntregaTest.cs" />
     <Compile Include="Helpers\DispositivosHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

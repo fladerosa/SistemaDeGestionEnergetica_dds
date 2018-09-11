@@ -7,6 +7,7 @@ using System.Runtime.Remoting.Messaging;
 using System.ComponentModel.DataAnnotations.Schema;
 using SGE.Entidades.Usuarios;
 using System.ComponentModel.DataAnnotations;
+using SGE.Entidades.Transformadores;
 
 namespace SGE.Entidades.Zonas
 {

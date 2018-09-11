@@ -3,8 +3,10 @@ using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Reglas;
+using SGE.Entidades.Transformadores;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
+using SGE.Entidades.Zonas;
 using System;
 using System.Data.Entity;
 

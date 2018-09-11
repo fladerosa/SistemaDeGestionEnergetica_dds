@@ -84,6 +84,7 @@
     <Compile Include="Drivers\SonyTVDriver.cs" />
     <Compile Include="Managers\DispositivosManager.cs" />
     <Compile Include="Managers\ReglasManager.cs" />
+    <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Repositorio\BaseRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
