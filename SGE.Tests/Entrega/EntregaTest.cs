@@ -12,6 +12,7 @@ using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
 using SGE.Entidades.Zonas;
 using System;
+using SGE.Core.Helpers;
 using System.Collections.Generic;
 
 namespace SGE.Tests.Entrega {
@@ -154,22 +155,77 @@ namespace SGE.Tests.Entrega {
         }
 
         [TestMethod]
-        public void CasoDePrueba4() {
-            ///Recuperar todos los transformadores persistidos. 
-            ///Registrar la cantidad.
-            ///Agregar una instancia de Transformador al JSON de entradas.
-            ///Ejecutar el método de lectura y persistencia.
-            ///Evaluar que la cantidad actual sea la anterior+1.
+        public void CasoDePrueba4()
+        {
+            //persisto las zonas para poder luego persistir los transformadores
+            ZonasHelper zonaHelper = new ZonasHelper();
+            BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
+            foreach (Core.Entidades.Zona z in zonaHelper.Zonas)
+            {
+                repoZona.Create(AsignarAtributosZona(z));
+            }
+
+
+            //Persisto los transformadores que el ENRE envia
+            TransformadoresHelper transHelper = new TransformadoresHelper();
             BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
+            foreach (Core.Entidades.Transformador t in transHelper.Transformadores)
+            {
+                repoTransformador.Create(AsignarAtributosTransformador(t));
+            }
 
-            List<Transformador> transformadores = repoTransformador.GetAll();
+            //Recupero los transformadores persistidos
+            List<Transformador> transPer = repoTransformador.GetAll();
 
-            Console.WriteLine("Se encontraron '" + transformadores.Count + "' transformadores persistidos.");
+            //cargamos los transformadores desde el json con una instancia de transformador mas
+            string nombreArchivoJsonMasUno = "transformadoresConUnoMas.json";
+            TransformadoresHelper transHelperMasUno = new TransformadoresHelper(nombreArchivoJsonMasUno);
+            //persistimos los transformadores
+            foreach (Core.Entidades.Transformador t in transHelperMasUno.Transformadores)
+            {
+                var retorno = repoTransformador.Single(s => s.Id == t.Id);
+                if (retorno != null)
+                {
+                    repoTransformador.Update(AsignarAtributosTransformador(t));
+                }
+                else
+                {
+                    repoTransformador.Create(AsignarAtributosTransformador(t));
+                }
 
-            //TODO: se desconoce como agregar un registro al JSON
+            }
+            List<Transformador> transPerMasUno = repoTransformador.GetAll();
 
-            //TODO: no se entiende el punto: Ejecutar el método de lectura y persistencia.
+            // Evaluo que la cantidad actual sea la anterior + 1
+            Assert.AreEqual(transPer.Count + 1, transPerMasUno.Count);
+
+            //eliminamos los registros con los que hicimos las pruebas
+            foreach (Core.Entidades.Zona z in zonaHelper.Zonas)
+            {
+                repoZona.Delete(AsignarAtributosZona(z));
+            }
         }
+        private Transformador AsignarAtributosTransformador(Core.Entidades.Transformador xT)
+        {
+            Transformador transformadorReturn = new Transformador();
+            transformadorReturn.Id = xT.Id;
+            transformadorReturn.Latitud = (double)xT.Latitud;
+            transformadorReturn.Longitud = (double)xT.Longitud;
+            transformadorReturn.ZonaId = xT.Zona;
+            return transformadorReturn;
+
+        }
+        private Zona AsignarAtributosZona(Core.Entidades.Zona xZ)
+        {
+            Zona zonaReturn = new Zona();
+            zonaReturn.Id = xZ.Id;
+            zonaReturn.Nombre = xZ.Nombre;
+            zonaReturn.Latitud = (double)xZ.Latitud;
+            zonaReturn.Longitud = (double)xZ.Longitud;
+            zonaReturn.Radio = xZ.Radio;
+            return zonaReturn;
+        }
+
 
         [TestMethod]
         public void CasoDePrueba5() {

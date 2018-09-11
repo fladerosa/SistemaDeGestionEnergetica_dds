@@ -9,7 +9,7 @@ namespace SGE.Tests.Categorias
     {
         
         [TestMethod()]
-        public void Get_All_Category()
+        public void Inicializar()
         {
             BaseRepositorio<Categoria> repoCategoria = new BaseRepositorio<Categoria>();
             Categoria categoriaNueva = new Categoria()

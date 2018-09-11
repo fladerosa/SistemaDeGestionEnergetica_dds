@@ -15,6 +15,11 @@ namespace SGE.Core.Helpers
             this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"Resources/transformadores.json"));
         }
 
+        public TransformadoresHelper(string nombreTransformadorJson)
+        {
+            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"Resources/" + nombreTransformadorJson));
+        }
+
         public Transformador GetDispositivo(string id)
         {
             foreach(Transformador transformador in this.Transformadores)

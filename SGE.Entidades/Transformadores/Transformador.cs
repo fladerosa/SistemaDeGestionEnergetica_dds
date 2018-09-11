@@ -11,7 +11,7 @@ namespace SGE.Entidades.Transformadores
     public class Transformador
     {
         #region Propiedades
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }

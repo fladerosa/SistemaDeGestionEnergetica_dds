@@ -16,13 +16,7 @@ namespace SGE.Entidades.Contexto
     {
         public SGEContext() : base("ConnSGEDb")
         {
-            Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
-
-            //Database.SetInitializer<SGEContext>(new CreateDatabaseIfNotExists<SGEContext>());
-
-            /*  this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
-            */
+          //  Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
 
         }
         public DbSet<Usuario> Usuarios { get; set; }

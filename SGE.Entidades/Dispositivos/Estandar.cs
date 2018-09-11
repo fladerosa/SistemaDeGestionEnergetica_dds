@@ -8,7 +8,7 @@ namespace SGE.Entidades.Dispositivos
     public class Estandar : Dispositivo
     {
         public virtual List<Cliente> Clientes { get; set; } //many to many con Clientes
-        public virtual List<Administrador> Administradores { get; set; } //many to many con Administrador
+    //    public virtual List<Administrador> Administradores { get; set; } //many to many con Administrador
         #region Constructor
         public Estandar(string nombre, decimal consumo) : base(nombre, consumo)
         {
