@@ -16,8 +16,7 @@ namespace SGE.Entidades.Contexto
     {
         public SGEContext() : base("ConnSGEDb")
         {
-          //  Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
-
+          Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
         }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Direccion> Direcciones { get; set; }
@@ -25,10 +24,6 @@ namespace SGE.Entidades.Contexto
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
         public DbSet<Dispositivo> Dispositivos { get; set; }
-        public DbSet<Inteligente> Inteligentes { get; set; }
-        public DbSet<Estandar> Estandars { get; set; }
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Activacion> Activaciones { get; set; }
         public DbSet<Transformador> Transformadores { get; set; }
         public DbSet<Zona> Zonas { get; set; }
@@ -51,16 +46,39 @@ namespace SGE.Entidades.Contexto
                         .HasOptional (s => s.Direccion)
                         .WithRequired(ad => ad.Usuario);
 
+            //mapeo relacion usuario dispositivo estandar
+            modelBuilder.Entity<Usuario>()
+                .HasMany<Estandar>(s => s.Estandars)
+                .WithMany(c => c.Usuarios)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("EstandarId");
+                    cs.MapRightKey("UsuarioId");
+                    cs.ToTable("Estandar_X_Usuario");
+                });
 
-            // mapeo relacion cliente -tipodocumento one to one
-            modelBuilder.Entity<Cliente>()
-                        .HasRequired(s => s.TipoDocumento)
-                        .WithRequiredPrincipal(ad => ad.Cliente);
+            //mapeo relacion usuario dispositivo inteligente
+            modelBuilder.Entity<Usuario>()
+                .HasMany<Inteligente>(s => s.Inteligentes)
+                .WithMany(c => c.Usuarios)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("InteligenteId");
+                    cs.MapRightKey("UsuarioId");
+                    cs.ToTable("Inteligente_X_Usuario");
+                });
+
+
+            // mapeo relacion cliente -tipodocumento one many to one
+            modelBuilder.Entity<TipoDocumento>()
+                        .HasMany<Cliente>(s => s.Clientes)
+                        .WithRequired(ad => ad.TipoDocumento)
+                        .HasForeignKey<int>(ad => ad.TipoDocumentoId);
 
             // mapeo  relacion categoria -cliente one to many
             modelBuilder.Entity<Categoria>()
-                        .HasMany<Cliente>((Categoria g) => g.Clientes)
-                        .WithRequired((System.Linq.Expressions.Expression<Func<Cliente, Categoria>>)(s => s.Categoria))
+                        .HasMany<Cliente>(g => g.Clientes)
+                        .WithRequired(s => s.Categoria)
                         .HasForeignKey<int>(s => s.CategoriaId);
 
             // mapeo  relacion cliente -telefono one to many
@@ -74,11 +92,6 @@ namespace SGE.Entidades.Contexto
                        .HasMany<Activacion>(g => g.RegistroDeActivaciones)
                        .WithRequired(s => s.Inteligente)
                        .HasForeignKey<int>(s => s.InteligenteId);
-
-            //mapeo Relacion zona - direccion
-            modelBuilder.Entity<Zona>()
-                .HasOptional(s => s.Direccion)
-                .WithRequired(ad => ad.Zona);
 
             //mapeo Relacion Zona - Transformador
             modelBuilder.Entity<Zona>()

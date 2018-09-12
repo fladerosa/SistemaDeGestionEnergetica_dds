@@ -45,19 +45,24 @@ namespace SGE.Tests.Entrega {
             repoZona.Create(zona);
 
             Cliente cliente = new Cliente() {
-                Nombre = "Nombre_test_cp1",
-                Apellido = "Apellido_test_cp1",
-                NombreUsuario = "NombreUsuario_test_cp1",
-                Password = "Password_test_01",
+                Nombre = "Nombre_test_cp2",
+                Apellido = "Apellido_test_cp2",
+                NombreUsuario = "NombreUsuario_test_cp2",
+                Password = "Password_test_02",
 
-                NumeroDocumento = "12345678",
+                NumeroDocumento = "2345678",
                 Latitud = 3,
                 Longitud = 4,
                 Telefonos = new List<Telefono>()
             };
+            cliente.TipoDocumento = new TipoDocumento()
+            {
+                Tipo = "CI",
+                Descripcion = "Documento Nacional de Identidad"
+            };
             cliente.Direccion = new Direccion() {
-                Calle = "calle_cp1",
-                Nro = "2468"
+                Calle = "calle_cp2",
+                Nro = "468"
             };
             cliente.Telefonos.Add(new Telefono() {
                 Numero = "12345"
@@ -65,8 +70,8 @@ namespace SGE.Tests.Entrega {
 
             cliente.Transformador = new Transformador()
             {
-                Latitud = 45,
-                Longitud = 55,
+                Latitud = 5,
+                Longitud = 15,
                 ZonaId = zona.Id
             };
 

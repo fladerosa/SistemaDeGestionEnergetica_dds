@@ -22,9 +22,9 @@ namespace SGE.Entidades.Zonas
         public double Latitud { get; set; }
         public double Longitud { get; set; }
         public decimal Radio { get; set; }
-        public List<Transformador> Transformadores { get; set; } //one to many con Transformador
-        public virtual Direccion Direccion { get; set; } // one to many con  Direccion
 
+        public List<Transformador> Transformadores { get; set; } //one to many con Transformador
+   
         public Zona()
         {
             this.Transformadores = new List<Transformador>();

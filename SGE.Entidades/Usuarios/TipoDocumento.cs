@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Usuarios
@@ -10,7 +11,10 @@ namespace SGE.Entidades.Usuarios
         public int Id { get; set; }
         [MaxLength(15)]
         public string Tipo { get; set; }
+        [MaxLength(40)]
+        public string Descripcion { get; set; }
+        // public virtual Cliente Cliente { get; set; } //one to one
 
-        public virtual Cliente Cliente { get; set; } //one to one
+        public List<Cliente> Clientes { get; set; } // one to many con Cliente
     }
 }

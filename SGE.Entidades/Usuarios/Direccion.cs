@@ -21,10 +21,6 @@ namespace SGE.Entidades.Usuarios
         public string Nro { get; set; }
 
         public virtual Usuario Usuario { get; set; } //one to one
-        public virtual Zona Zona { get; set; } // one to many con  Zona
-
-         /*  // one to many con  Zona funcion que calcule la direccion como coordenadas geograficas
-            * en lugar de tener latitud y longitud en cliente..*/
 
     }
 }

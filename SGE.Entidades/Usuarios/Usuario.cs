@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SGE.Entidades.Dispositivos;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Usuarios
@@ -12,7 +14,10 @@ namespace SGE.Entidades.Usuarios
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
         public DateTime FechaAlta { get; set; }
+
         public virtual Direccion Direccion { get; set; } //one to one
+        public List<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
+        public List<Estandar> Estandars { get; set; } //many to many con Dispositivo
 
         public Usuario()
         {
