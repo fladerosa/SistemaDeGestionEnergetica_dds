@@ -8,11 +8,11 @@ using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Drivers
 {
-    public class SamsungAireAcondicionadoDriver : IAireAcondicionadoDriver
+    public class SamsungAireAcondicionadoDriver : Driver
     {
         #region Propiedades
 
-        public string Mensaje { get; set; }
+   //     public string Mensaje { get; set; }
 
         private decimal temperaturaActual = 10;
         public decimal TemperaturaActual

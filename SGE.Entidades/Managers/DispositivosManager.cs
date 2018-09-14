@@ -11,16 +11,12 @@ using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Managers
 {
-    [Table("Actuador")]
+  
     public class DispositivosManager
     {
         #region Campos
-        [Key]
-        public int ActuadorId { get; set; }
-        [MaxLength(25)]
-        public string nombre { get; set; }
-        public List<Inteligente> dispositivos { get; set; } //one to many con Inteligentes
-        public List<Accion> Accions { get; set; } //one to many con Accion
+
+        public List<Inteligente> dispositivos;
    
         public List<IAccion> Acciones { get; set; }
 

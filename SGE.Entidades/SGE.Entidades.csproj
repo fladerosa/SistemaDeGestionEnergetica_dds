@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Acciones\AA\AumentarVelocidadVentilador.cs" />
     <Compile Include="Acciones\Accion.cs" />
+    <Compile Include="Acciones\AccionMap.cs" />
     <Compile Include="Acciones\Apagar.cs" />
     <Compile Include="Acciones\ColocarEnAhorroEnergia.cs" />
     <Compile Include="Acciones\Encender.cs" />
@@ -83,6 +84,8 @@
     <Compile Include="Dispositivos\Lavarropas.cs" />
     <Compile Include="Dispositivos\Televisor.cs" />
     <Compile Include="Drivers\DreanLavarropasDriver.cs" />
+    <Compile Include="Drivers\Driver.cs" />
+    <Compile Include="Drivers\DriverMap.cs" />
     <Compile Include="Drivers\Interfaces\IAireAcondicionadoDriver.cs" />
     <Compile Include="Drivers\Interfaces\IDriver.cs" />
     <Compile Include="Drivers\Interfaces\ILavarropasDriver.cs" />
@@ -124,6 +127,7 @@
     <Compile Include="ValueProviders\Sensor.cs" />
     <Compile Include="Usuarios\TipoDocumento.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
+    <Compile Include="ValueProviders\SensorMap.cs" />
     <Compile Include="ValueProviders\SensorTemperaturaAA.cs" />
     <Compile Include="Zonas\Zona.cs" />
   </ItemGroup>

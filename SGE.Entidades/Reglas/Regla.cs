@@ -14,7 +14,8 @@ namespace SGE.Entidades.Reglas
         public int ReglaId { get; set; }
         [MaxLength(25)]
         public string Nombre { get; set; }
-        public virtual List<Accion> Accions{ get; set; } //one to many con Inteligentes  
+
+        public virtual List<Accion> Accions{ get; set; } //one to many con Accion  
         public virtual List<Condicion> Condiciones { get; set; } //one to many con condicion
 
         List<IAccion> Acciones { get; set; }

@@ -8,9 +8,9 @@ using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Drivers
 {
-    public class DreanLavarropasDriver : ILavarropasDriver
+    public class DreanLavarropasDriver : Driver
     {
-        public string Mensaje { get; set; }
+      //  public string Mensaje { get; set; }
 
         public void Apagar()
         {

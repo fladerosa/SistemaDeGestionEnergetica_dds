@@ -14,7 +14,7 @@ namespace SGE.Entidades.ValueProviders
         #region Campos
         [Key]
         public int SensorId { get; set; }
-        decimal ultimaMedicion;
+        public decimal ultimaMedicion { get; set; }
         public virtual Medicion Medicion { get; set; } //one to one
         public List<Inteligente> Inteligentes { get; set; } // one to many  
         public List<Medicion> Mediciones { get; set; } // one to many 

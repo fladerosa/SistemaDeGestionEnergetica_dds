@@ -1,4 +1,5 @@
-﻿using SGE.Entidades.Reglas;
+﻿using SGE.Entidades.Drivers;
+using SGE.Entidades.Reglas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace SGE.Entidades.Acciones
 {
+    //Esta clase se genera para establecer una Accion generica y poder mapear los diferentes tipos
     [Table("Accion")]
     public abstract class Accion : IAccion
-    {
-        [Key]
+    { 
         public int AccionId { get; set; }
-        [MaxLength(15)]
-        public string Tipo { get; set; }
-        [MaxLength(40)]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
-        public virtual List<Condicion> Condiciones { get; set; }
+        public int ReglaId { get; set; } // fk con tabla regla
+        public Regla Regla { get; set; } // one to many con  regla 
+        public int ActuadorId { get; set; } //fk con Driver
+        public Driver Actuador { get; set; } // one to many con Actuador (Driver)
 
         public void Ejecutar()
         {

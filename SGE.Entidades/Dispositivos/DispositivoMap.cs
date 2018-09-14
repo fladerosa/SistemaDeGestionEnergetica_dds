@@ -12,19 +12,23 @@ namespace SGE.Entidades.Dispositivos
             Property(x => x.Nombre).HasMaxLength(25).IsRequired();
             Property(x => x.ConsumoEnergia).IsRequired();
 
-            Property(x => x.IdentificadorFabrica).HasMaxLength(15).IsRequired();
+            Property(x => x.IdentificadorFabrica).HasMaxLength(15);
 
             Map<Estandar>(x => x.Requires("Tipo_Dispositivo")
-                                            .HasValue("E"));
+                                            .HasValue("E")
+                                            .HasMaxLength(3));
 
             Map<AireAcondicionado>(x => x.Requires("Tipo_Inteligente")
-                                            .HasValue("AA"));
+                                            .HasValue("AA")
+                                            .HasMaxLength(3));
 
             Map<Lavarropas>(x => x.Requires("Tipo_Inteligente")
-                                            .HasValue("LV"));
+                                            .HasValue("LV")
+                                            .HasMaxLength(3));
 
             Map<Televisor>(x => x.Requires("Tipo_Inteligente")
-                                            .HasValue("TV"));
+                                            .HasValue("TV")
+                                            .HasMaxLength(3));
 
         }
     }

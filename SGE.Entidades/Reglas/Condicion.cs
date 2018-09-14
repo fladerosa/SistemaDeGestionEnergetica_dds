@@ -15,10 +15,10 @@ namespace SGE.Entidades.Reglas
         private IValueProvider provider;
         private IOperador operador;
         private decimal valorReferencia;
+
         public int ReglaId { get; set; } // fk con tabla regla
         public Regla Regla { get; set; } // one to many con  regla 
-        public int AccionId { get; set; } // fk con tabla Accion
-        public Accion Accion { get; set; } // one to many con  Accion 
+        
         #endregion
 
         #region Constructores

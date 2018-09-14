@@ -1,6 +1,7 @@
 ﻿using SGE.Entidades.Acciones;
 using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Reglas;
 using SGE.Entidades.Transformadores;
@@ -30,7 +31,7 @@ namespace SGE.Entidades.Contexto
         public DbSet<Sensor> Sensores { get; set; }
         public DbSet<Medicion> Mediciones { get; set; }
         public DbSet<Accion> Acciones { get; set; }
-        public DbSet<DispositivosManager> Actuador { get; set; }
+        public DbSet<Driver> Actuador { get; set; }
         public DbSet<Regla> Reglas { get; set; }
         public DbSet<Condicion> Condiciones { get; set; }
 
@@ -40,6 +41,9 @@ namespace SGE.Entidades.Contexto
 
             modelBuilder.Configurations.Add(new UsuarioMap()); //mapeo herencia Usuario
             modelBuilder.Configurations.Add(new DispositivoMap()); // mapeo herencia Dispositivo
+            modelBuilder.Configurations.Add(new SensorMap()); // mapeo herencia sensor
+            modelBuilder.Configurations.Add(new DriverMap()); // mapeo herencia Actuador
+            modelBuilder.Configurations.Add(new AccionMap()); // mapeo herencia Accion
 
             // mapeo relacion usuario -direccion one to one
             modelBuilder.Entity<Usuario>()
@@ -67,7 +71,6 @@ namespace SGE.Entidades.Contexto
                     cs.MapRightKey("UsuarioId");
                     cs.ToTable("Inteligente_X_Usuario");
                 });
-
 
             // mapeo relacion cliente -tipodocumento one many to one
             modelBuilder.Entity<TipoDocumento>()
@@ -123,7 +126,27 @@ namespace SGE.Entidades.Contexto
                        .WithRequired(s => s.Regla)
                        .HasForeignKey<int>(s => s.ReglaId);
 
+            //mapeo relacion n:n usuario - estandar
+            modelBuilder.Entity<Usuario>()
+                .HasMany<Estandar>(s => s.Estandars)
+                .WithMany(c => c.Usuarios)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("EstandarId");
+                    cs.MapRightKey("UsuarioId");
+                    cs.ToTable("Estandar_X_Usuario");
+                });
 
+            //mapeo relacion n:n usuario - inteligente
+            modelBuilder.Entity<Usuario>()
+                .HasMany<Inteligente>(s => s.Inteligentes)
+                .WithMany(c => c.Usuarios)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("InteligenteId");
+                    cs.MapRightKey("UsuarioId");
+                    cs.ToTable("Inteligente_X_Usuario");
+                });
         }
     }
 }

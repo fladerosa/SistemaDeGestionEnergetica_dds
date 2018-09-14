@@ -1,4 +1,5 @@
-﻿using SGE.Entidades.Drivers.Interfaces;
+﻿using SGE.Entidades.Drivers;
+using SGE.Entidades.Drivers.Interfaces;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
@@ -27,7 +28,7 @@ namespace SGE.Entidades.Dispositivos
         public int SensorId { get; set; } // fk con tabla Sensor
         public Sensor Sensor { get; set; } // one to many con  Sensor
         public int ActuadorId { get; set; } //fk con tabla Actuador
-        public DispositivosManager Actuador { get; set; } // one to many con  Actuador
+        public Driver Actuador { get; set; } // one to many con  Actuador
 
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido

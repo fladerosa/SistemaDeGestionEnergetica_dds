@@ -8,9 +8,9 @@ using SGE.Entidades.Reglas;
 
 namespace SGE.Entidades.Drivers
 {
-    public class SonyTVDriver : ITelevisorDriver
+    public class SonyTVDriver : Driver
     {
-        public string Mensaje { get; set; }
+    //    public string Mensaje { get; set; }
 
         public void Apagar()
         {

@@ -13,7 +13,6 @@ namespace SGE.Entidades.Usuarios
         public string Tipo { get; set; }
         [MaxLength(40)]
         public string Descripcion { get; set; }
-        // public virtual Cliente Cliente { get; set; } //one to one
 
         public List<Cliente> Clientes { get; set; } // one to many con Cliente
     }
