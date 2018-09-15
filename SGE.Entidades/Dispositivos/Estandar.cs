@@ -7,9 +7,12 @@ namespace SGE.Entidades.Dispositivos
     [Table(name: "Estandar")]
     public class Estandar : Dispositivo
     {
-        public virtual List<Usuario> Usuarios { get; set; } //many to many con Usuario
-   
+        public virtual ICollection<Usuario> Usuarios { get; set; } //many to many con Usuario
+
         #region Constructor
+        public Estandar() {
+
+        }
         public Estandar(string nombre, decimal consumo) : base(nombre, consumo)
         {
 

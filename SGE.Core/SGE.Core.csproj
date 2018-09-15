@@ -84,6 +84,7 @@
     <None Include="Resources\Dispositivos.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\transformadoresConUnoMas.json" />
     <None Include="Resources\transformadores.json" />
     <None Include="Resources\zonas.json" />
   </ItemGroup>

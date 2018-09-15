@@ -75,8 +75,10 @@ namespace SGE.Entidades.Reportes
 
             Transformador transformador = repoTransformador.Single(t => t.Id == idTransformador);
 
-            foreach (Cliente cliente in transformador.Clientes) {
-                consumo += consumoPorHogarYPeriodo(cliente.Id, fechaDesde, fechaHasta);
+            if(transformador != null) {
+                foreach (Cliente cliente in transformador.Clientes) {
+                    consumo += consumoPorHogarYPeriodo(cliente.Id, fechaDesde, fechaHasta);
+                }
             }
 
             return consumo;

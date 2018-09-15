@@ -22,13 +22,15 @@ namespace SGE.Entidades.Dispositivos
         /// </summary>
         protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
 
-        public List<Activacion> RegistroDeActivaciones { get; set; }
+        public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
-        public virtual List<Usuario> Usuarios { get; set; } //many to many con Usuarios
-        public int SensorId { get; set; } // fk con tabla Sensor
-        public Sensor Sensor { get; set; } // one to many con  Sensor
-        public int ActuadorId { get; set; } //fk con tabla Actuador
-        public Driver Actuador { get; set; } // one to many con  Actuador
+        public virtual ICollection<Usuario> Usuarios { get; set; } //many to many con Usuarios
+        public int? SensorId { get; set; } // fk con tabla Sensor
+        [ForeignKey("SensorId")]
+        public virtual Sensor Sensor { get; set; } // one to many con  Sensor
+        public int? ActuadorId { get; set; } //fk con tabla Actuador
+        [ForeignKey("ActuadorId")]
+        public virtual Driver Actuador { get; set; } // one to many con  Actuador
 
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
@@ -67,6 +69,9 @@ namespace SGE.Entidades.Dispositivos
 
         #region Constructor
 
+        public Inteligente() {
+        }
+
         public Inteligente(string nombre, decimal consumo, IDriver driver) : base(nombre, consumo)
         {
             this.RegistroDeActivaciones = new List<Activacion>();
@@ -86,7 +91,14 @@ namespace SGE.Entidades.Dispositivos
             {
                 this.Estado = EstadoDispositivo.Encendido;
                 this.Driver.Encender();
-                this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
+                Activacion activacion = new Activacion() {
+                    Estado = this.Estado,
+                    Inteligente = this,
+                    FechaDeRegistro = DateTime.Now,
+                    InteligenteId = this.Id
+                };
+
+                this.RegistroDeActivaciones.Add(activacion);
             }
         }
 
@@ -120,7 +132,11 @@ namespace SGE.Entidades.Dispositivos
             {
                 this.Estado = EstadoDispositivo.Apagado;
                 this.Driver.Apagar();
-                this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
+                this.RegistroDeActivaciones.Add(new Activacion(this.Estado) {
+                    Inteligente = this,
+                    FechaDeRegistro = DateTime.Now,
+                    InteligenteId = this.Id
+                });
             }
         }
 
@@ -131,7 +147,11 @@ namespace SGE.Entidades.Dispositivos
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
             this.Driver.PonerEnModoAhorroEnergia();
-            this.RegistroDeActivaciones.Add(new Activacion(this.Estado));
+            this.RegistroDeActivaciones.Add(new Activacion(this.Estado) {
+                Inteligente = this,
+                FechaDeRegistro = DateTime.Now,
+                InteligenteId = this.Id
+            });
         }
 
         #endregion
@@ -171,7 +191,7 @@ namespace SGE.Entidades.Dispositivos
                 }
             }
 
-            if (activacionAnterior.Estado != EstadoDispositivo.Apagado && flag)
+            if (activacionAnterior != null && activacionAnterior.Estado != EstadoDispositivo.Apagado && flag)
                 horas += Math.Abs(activacionAnterior.FechaDeRegistro.Subtract(DateTime.Now).Hours);
 
             return horas;

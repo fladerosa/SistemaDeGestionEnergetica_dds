@@ -18,18 +18,21 @@ namespace SGE.Entidades.Dispositivos
                                             .HasValue("E")
                                             .HasMaxLength(3));
 
-            Map<AireAcondicionado>(x => x.Requires("Tipo_Inteligente")
-                                            .HasValue("AA")
+            Map<Inteligente>(x => x.Requires("Tipo_Dispositivo")
+                                            .HasValue("I")
                                             .HasMaxLength(3));
 
-            Map<Lavarropas>(x => x.Requires("Tipo_Inteligente")
-                                            .HasValue("LV")
-                                            .HasMaxLength(3));
+            //Map<AireAcondicionado>(x => x.Requires("Tipo_Inteligente")
+            //                                .HasValue("AA")
+            //                                .HasMaxLength(3));
 
-            Map<Televisor>(x => x.Requires("Tipo_Inteligente")
-                                            .HasValue("TV")
-                                            .HasMaxLength(3));
+            //Map<Lavarropas>(x => x.Requires("Tipo_Inteligente")
+            //                                .HasValue("LV")
+            //                                .HasMaxLength(3));
 
+            //Map<Televisor>(x => x.Requires("Tipo_Inteligente")
+            //                                .HasValue("TV")
+            //                                .HasMaxLength(3));
         }
     }
 }

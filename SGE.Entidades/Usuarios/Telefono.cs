@@ -16,7 +16,8 @@ namespace SGE.Entidades.Usuarios
         [MaxLength(16)]
         public string Numero { get; set; }
 
-        public int ClienteId { get; set; } //fk con tabla cliente
-        public Cliente Cliente { get; set; } // one to many con  Cliente
+        //public int ClienteId { get; set; } //fk con tabla cliente
+        //[ForeignKey("ClienteId")]
+        public virtual Cliente Cliente { get; set; } // one to many con  Cliente
     }
 }

@@ -1,7 +1,9 @@
 ﻿using SGE.Entidades.Drivers.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Dispositivos
 {
+    [NotMapped]
     public class Televisor: Inteligente
     {
         #region Propiedades

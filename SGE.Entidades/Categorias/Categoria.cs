@@ -15,7 +15,7 @@ namespace SGE.Entidades.Categorias
         public decimal CostoFijo { get; set; }
         public decimal CostoVariable { get; set; }
 
-        public List<Cliente> Clientes { get; set; } // one to many con Categoria
+        public virtual ICollection<Cliente> Clientes { get; set; } // one to many con Categoria
         
 
         public bool ConsumoDentroDeLosLimites(decimal consumo)

@@ -1,26 +1,21 @@
 ﻿using SGE.Entidades.Acciones;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SGE.Entidades.Drivers
-{
+namespace SGE.Entidades.Drivers {
     //Se crea esta clase abstracta Driver para poder establecer un Actuador generico y cuando se realice la carga, se puede elegir entre los disponibles (TV, Lavarropas, AA)
     // Todo : Habria que evaluar una mejor forma de establecer los actuadores
 
     [Table("Actuador")]
     public  abstract class Driver : IAireAcondicionadoDriver, ITelevisorDriver, ILavarropasDriver
     {
-        public int ActuadorId { get; set; }
+        public int Id { get; set; }
         public string Mensaje { get; set; }
         public decimal temperaturaActual;
 
-        public List<Inteligente> Inteligentes { get; set; } // one to many con Inteligente
+        public virtual ICollection<Inteligente> Inteligentes { get; set; } // one to many con Inteligente
         public List<Accion> Acciones { get; set; } // one to many con Accion
         // interface Idriver
         public void Apagar()

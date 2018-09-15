@@ -1,7 +1,10 @@
 ﻿using SGE.Entidades.Drivers.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace SGE.Entidades.Dispositivos
 {
+    [NotMapped]
     public class AireAcondicionado: Inteligente
     {
         #region Propiedades

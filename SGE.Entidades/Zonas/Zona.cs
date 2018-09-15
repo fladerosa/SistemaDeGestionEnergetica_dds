@@ -23,7 +23,7 @@ namespace SGE.Entidades.Zonas
         public double Longitud { get; set; }
         public decimal Radio { get; set; }
 
-        public List<Transformador> Transformadores { get; set; } //one to many con Transformador
+        public virtual ICollection<Transformador> Transformadores { get; set; } //one to many con Transformador
    
         public Zona()
         {

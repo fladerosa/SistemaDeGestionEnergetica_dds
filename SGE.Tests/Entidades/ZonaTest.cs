@@ -7,7 +7,6 @@ using SGE.Entidades.Drivers;
 using SGE.Entidades.Zonas;
 using SGE.Entidades.Transformadores;
 using SGE.Entidades.Repositorio;
-//using SGE.Core.Entidades;
 
 namespace SGE.Tests.Entidades
 {
@@ -18,7 +17,6 @@ namespace SGE.Tests.Entidades
         List<Transformador> transformadores;
         private List<Cliente> clientes1;
         private List<Cliente> clientes2;
-
 
         [TestInitialize]
         public void TestInitialize()
@@ -153,26 +151,26 @@ namespace SGE.Tests.Entidades
             }
         }
         //11-09
-            [TestMethod()]
-            public void CargaZona()
+        [TestMethod()]
+        public void CargaZona()
+        {
+            BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
+            Zona zonaNueva = new Zona()
             {
-                BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
-                Zona zonaNueva = new Zona()
-                {
-                    Nombre = "zona_01",
-                    Latitud = 25,
-                    Longitud = 45,
-                    Radio = 4,
+                Nombre = "zona_01",
+                Latitud = 25,
+                Longitud = 45,
+                Radio = 4,
                  
-                };
+            };
 
-                repoZona.Create(zonaNueva);
+            repoZona.Create(zonaNueva);
 
-                var ListaZonas = repoZona.GetAll();
+            var ListaZonas = repoZona.GetAll();
 
-                Assert.AreEqual(ListaZonas.Count, 1);
-            }
+            Assert.AreEqual(ListaZonas.Count, 1);
+            repoZona.Delete(zonaNueva);
         }
-
     }
+}
 

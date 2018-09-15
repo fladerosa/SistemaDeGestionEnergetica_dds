@@ -2,6 +2,7 @@
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Drivers;
+using System.Linq;
 
 namespace SGE.Tests.Entidades
 {
@@ -81,7 +82,10 @@ namespace SGE.Tests.Entidades
             cliente.Inteligentes.Add(d1);
             cliente.Estandars.Add(d3);
 
-            cliente.Inteligentes.ForEach(d => d.Encender());
+            
+            foreach (Inteligente inteligente in cliente.Inteligentes) {
+                inteligente.Encender();
+            }
 
             Assert.AreEqual(cliente.CantidadDispositivosEncendidos(), 1);
         }

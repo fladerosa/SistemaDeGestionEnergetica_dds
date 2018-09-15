@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades.Drivers;
+using System.Linq;
 
 namespace SGE.Entidades.Dispositivos.Tests
 {
@@ -13,7 +14,7 @@ namespace SGE.Entidades.Dispositivos.Tests
             decimal valor;
 
             dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[0].FechaDeRegistro = dispositivo.RegistroDeActivaciones[0].FechaDeRegistro.AddHours(-1);
+            dispositivo.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-1);
             dispositivo.Apagar();
 
             valor = dispositivo.ObtenerConsumoDeUltimasNHoras(8);
@@ -27,11 +28,11 @@ namespace SGE.Entidades.Dispositivos.Tests
             decimal valor;
 
             dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[0].FechaDeRegistro = dispositivo.RegistroDeActivaciones[0].FechaDeRegistro.AddHours(-3);
+            dispositivo.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-3);
             dispositivo.Apagar();
-            dispositivo.RegistroDeActivaciones[1].FechaDeRegistro = dispositivo.RegistroDeActivaciones[1].FechaDeRegistro.AddHours(-2);
+            dispositivo.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-2);
             dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[2].FechaDeRegistro = dispositivo.RegistroDeActivaciones[2].FechaDeRegistro.AddHours(-1);
+            dispositivo.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-1);
 
             valor = dispositivo.ObtenerConsumoDeUltimasNHoras(8);
             Assert.IsTrue(valor == 200m);
@@ -49,13 +50,13 @@ namespace SGE.Entidades.Dispositivos.Tests
             ///previo "encendido" pero que inicio antes de las horas indicadas no lo trae y no contabiliza las horas. No se corrige ya que se desconoce
             ///si esta contemplado o no, por el momento solo se cambia el valor de la prueba para que no falle
             dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[0].FechaDeRegistro = dispositivo.RegistroDeActivaciones[0].FechaDeRegistro.AddHours(-25);
+            dispositivo.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-25);
             dispositivo.Apagar();
-            dispositivo.RegistroDeActivaciones[1].FechaDeRegistro = dispositivo.RegistroDeActivaciones[1].FechaDeRegistro.AddHours(-4);
+            dispositivo.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-4);
             dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[2].FechaDeRegistro = dispositivo.RegistroDeActivaciones[2].FechaDeRegistro.AddHours(-3);
+            dispositivo.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-3);
             dispositivo.Apagar();
-            dispositivo.RegistroDeActivaciones[3].FechaDeRegistro = dispositivo.RegistroDeActivaciones[3].FechaDeRegistro.AddHours(-1);
+            dispositivo.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivo.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-1);
 
             valor = dispositivo.ObtenerConsumoDeUltimasNHoras(8);
             Assert.IsTrue(valor == 200m);

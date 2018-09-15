@@ -17,6 +17,7 @@ namespace SGE.Entidades.Reglas
         private decimal valorReferencia;
 
         public int ReglaId { get; set; } // fk con tabla regla
+        [ForeignKey("ReglaId")]
         public Regla Regla { get; set; } // one to many con  regla 
         
         #endregion

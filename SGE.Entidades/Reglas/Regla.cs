@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SGE.Entidades.Acciones;
+using System.Linq;
 
 namespace SGE.Entidades.Reglas
 {
@@ -16,7 +17,7 @@ namespace SGE.Entidades.Reglas
         public string Nombre { get; set; }
 
         public virtual List<Accion> Accions{ get; set; } //one to many con Accion  
-        public virtual List<Condicion> Condiciones { get; set; } //one to many con condicion
+        public virtual ICollection<Condicion> Condiciones { get; set; } //one to many con condicion
 
         List<IAccion> Acciones { get; set; }
 
@@ -42,7 +43,7 @@ namespace SGE.Entidades.Reglas
 
             for (int i = 0; i < this.Condiciones.Count; i++)
             {
-                if (!this.Condiciones[0].Evaluar())
+                if (!this.Condiciones.FirstOrDefault().Evaluar())
                 {
                     seVerificanCondiciones = false;
                     i = this.Condiciones.Count;

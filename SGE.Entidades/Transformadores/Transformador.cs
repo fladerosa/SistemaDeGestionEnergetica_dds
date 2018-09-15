@@ -11,14 +11,14 @@ namespace SGE.Entidades.Transformadores
     public class Transformador
     {
         #region Propiedades
-        [Key]
         public int Id { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }
 
-        public List<Cliente> Clientes { get; set; }
+        public virtual ICollection<Cliente> Clientes { get; set; }
         public int ZonaId { get; set; } //fk con tabla Zona
-        public Zona Zona { get; set; } // one to many con  Zona
+        [ForeignKey("ZonaId")]
+        public virtual Zona Zona { get; set; } // one to many con  Zona
 
         public Transformador()
         {

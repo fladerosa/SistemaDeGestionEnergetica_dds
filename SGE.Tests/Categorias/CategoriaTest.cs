@@ -26,6 +26,7 @@ namespace SGE.Tests.Categorias
             var ListaCategorias = repoCategoria.GetAll();
 
             Assert.AreEqual(ListaCategorias.Count, 1);
+            repoCategoria.Delete(categoriaNueva);
         }
     }
 }

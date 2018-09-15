@@ -13,7 +13,7 @@ namespace SGE.Entidades.ValueProviders
         {
             //mapeo de la herencia de sensor
 
-            HasKey(x => x.SensorId);
+            HasKey(s => s.Id);
             Property(x => x.ultimaMedicion);
 
             Map<SensorTemperaturaAA>(x => x.Requires("Tipo_Sensor")

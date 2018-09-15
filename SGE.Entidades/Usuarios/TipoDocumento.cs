@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Usuarios
 {
-    [Table("TipoDocumento")]
     public class TipoDocumento
     {
         [Key]
@@ -15,5 +14,6 @@ namespace SGE.Entidades.Usuarios
         public string Descripcion { get; set; }
 
         public List<Cliente> Clientes { get; set; } // one to many con Cliente
+        //TODO: no es necesario una relación uno a muchos, con un ENUM se resuelve, se deja, se plantea el enum y luego se debería eliminar esta clase
     }
 }

@@ -16,6 +16,7 @@ namespace SGE.Entidades.Reglas
         public DateTime FechaRegistro { get; set; }
 
         public int SensorId { get; set; } // fk con tabla Sensor
+        [ForeignKey("SensorId")]
         public Sensor Sensor { get; set; } // one to many con  Sensor
 
         #endregion

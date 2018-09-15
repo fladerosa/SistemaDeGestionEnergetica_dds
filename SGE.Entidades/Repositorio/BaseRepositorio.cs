@@ -15,10 +15,8 @@ namespace SGE.Entidades.Repositorio
 
         public List<T> GetAll()
         {
-            using (SGEContext context = new SGEContext())
-            {
-                return (List<T>)context.Set<T>().ToList();
-            }
+            SGEContext context = new SGEContext();
+            return (List<T>)context.Set<T>().ToList();
         }
 
         public List<T> GetAll(List<Expression<Func<T, object>>> includes)
@@ -47,10 +45,8 @@ namespace SGE.Entidades.Repositorio
 
         public T Single(Expression<Func<T, bool>> predicate)
         {
-            using (SGEContext context = new SGEContext())
-            {
-                return context.Set<T>().FirstOrDefault(predicate);
-            }
+            SGEContext context = new SGEContext();
+            return context.Set<T>().FirstOrDefault(predicate);
         }
 
         public T Single(Expression<Func<T, bool>> predicate, List<Expression<Func<T, object>>> includes)
@@ -141,7 +137,23 @@ namespace SGE.Entidades.Repositorio
             using (SGEContext context = new SGEContext())
             {
                 context.Entry(entity).State = EntityState.Modified;
-                context.SaveChanges();
+                try {
+                    context.SaveChanges();
+                } catch (DbEntityValidationException ex) {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                }
             }
         }
 
@@ -150,7 +162,29 @@ namespace SGE.Entidades.Repositorio
             using (SGEContext context = new SGEContext())
             {
                 context.Entry(entity).State = EntityState.Deleted;
-                context.SaveChanges();
+                try {
+                    context.SaveChanges();
+                } catch (DbEntityValidationException ex) {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                } catch (Exception ex) {
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", ex.Message);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage);
+                }
             }
         }
 

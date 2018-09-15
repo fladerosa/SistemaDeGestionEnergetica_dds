@@ -16,17 +16,22 @@ namespace SGE.Entidades.Usuarios
         public double Longitud { get; set; }
 
         public int TransformadorId { get; set; } // fk con tabla transformador
-        public Transformador Transformador { get; set; } // one to many con  Transformador
+        [ForeignKey("TransformadorId")]
+        public virtual Transformador Transformador { get; set; } // one to many con  Transformador
         public virtual int  TipoDocumentoId { get; set; } //one to many
-        public virtual TipoDocumento TipoDocumento { get; set; } //one to many
-        public List<Telefono> Telefonos { get; set; } // one to many con Cliente
+        //public virtual TipoDocumento TipoDocumento { get; set; } //one to many
+        public virtual enum_TipoDocumento TipoDocumento { get; set; } 
+        
+        public virtual ICollection<Telefono> Telefonos { get; set; } // one to many con Cliente
         public int CategoriaId { get; set; } //fk con tabla cliente
-        public Categoria Categoria { get; set; } // one to many con  Categoria
+        [ForeignKey("CategoriaId")]
+        public virtual Categoria Categoria { get; set; } // one to many con  Categoria
 
         public Cliente()
         {
             this.Inteligentes = new List<Inteligente>();
             this.Estandars = new List<Estandar>();
+            this.Telefonos = new List<Telefono>();
         }
 
         public bool TieneDispositivosEncendidos()
@@ -36,17 +41,23 @@ namespace SGE.Entidades.Usuarios
 
         public int CantidadDispositivosEncendidos()
         {
-            return this.Inteligentes.FindAll(d => d.EstaPrendido).Count;
+            return this.Inteligentes.Count(d => d.EstaPrendido);
         }
 
         public int CantidadDispositivosApagados()
         {
-            return this.Inteligentes.FindAll(d => !d.EstaPrendido).Count;
+            return this.Inteligentes.Count(d => !d.EstaPrendido);
         }
 
         public int CantidadTotalDispositivos()
         {
             return this.Estandars.Count;
+        }
+
+        public enum enum_TipoDocumento {
+            DNI,
+            CUIL,
+            PASAPORTE
         }
 
         #endregion

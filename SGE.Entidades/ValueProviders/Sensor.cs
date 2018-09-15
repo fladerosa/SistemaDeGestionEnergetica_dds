@@ -12,15 +12,14 @@ namespace SGE.Entidades.ValueProviders
     public abstract class Sensor: IValueProvider
     {
         #region Campos
-        [Key]
-        public int SensorId { get; set; }
+        public int Id { get; set; }
         public decimal ultimaMedicion { get; set; }
-        public virtual Medicion Medicion { get; set; } //one to one
+        //public virtual Medicion Medicion { get; set; } //one to one
         public List<Inteligente> Inteligentes { get; set; } // one to many  
-        public List<Medicion> Mediciones { get; set; } // one to many 
+        public virtual ICollection<Medicion> Mediciones { get; set; } // one to many 
 
         public List<Inteligente> dispositivos = new List<Inteligente>();
-
+        //TODO: porque tiene dos listados de dispositivos inteligentes?
         #endregion
 
         #region Observer

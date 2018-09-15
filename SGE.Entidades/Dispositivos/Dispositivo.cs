@@ -14,6 +14,8 @@ namespace SGE.Entidades.Dispositivos
         #endregion
 
         #region Constructor
+        protected Dispositivo() {
+        }
 
         protected Dispositivo(string nombre, decimal consumo)
         {

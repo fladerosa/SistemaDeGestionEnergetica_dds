@@ -12,7 +12,7 @@ namespace SGE.Core.Helpers
 
         private DispositivosHelper()
         {
-            this.Dispositivos = JsonConvert.DeserializeObject<List<Dispositivo>>(File.ReadAllText(@"Resources/dispositivos.json"));
+            this.Dispositivos = JsonConvert.DeserializeObject<List<Dispositivo>>(File.ReadAllText(@"C:\Users\kenny\source\repos\dds-tp-2018-grupo-01\SGE.Core\Resources\dispositivos.json"));
         }
 
         /// <summary>

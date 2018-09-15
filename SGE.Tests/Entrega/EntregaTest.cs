@@ -14,6 +14,7 @@ using SGE.Entidades.Zonas;
 using System;
 using SGE.Core.Helpers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SGE.Tests.Entrega {
     [TestClass]
@@ -21,30 +22,26 @@ namespace SGE.Tests.Entrega {
     {
         BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>();
         BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
+        BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
+        BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+        BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
+        Zona zona = null;
+        Cliente cliente = null;
+        Inteligente dispositivoInteligente = null;
 
         //TODO: se crean los casos de pruebas mínimos para la entrega 3. Para facilitar la lectura se los agrupa en esta clase,
         //sin embargo luego se acomodarán las pruebas en las clases correspondientes.
-
-        [TestMethod]
-        
-        public void CasoDePrueba1() {
-            ///Crear 1 usuario nuevo.
-            ///Persistirlo.
-            ///Recuperarlo, modificar la geolocalización
-            ///grabarlo.
-            ///Recuperarlo y evaluar que el cambio se haya realizado.
-
+        [TestInitialize]
+        public void TestInitialize() {
             //se carga una zona para evitar que rompa por fk de transformador
-            Zona zona = new Zona()
-            {
+            zona = new Zona() {
                 Nombre = "zona_02",
                 Latitud = 35,
                 Longitud = 45,
                 Radio = 5
             };
-            repoZona.Create(zona);
 
-            Cliente cliente = new Cliente() {
+            cliente = new Cliente() {
                 Nombre = "Nombre_test_cp2",
                 Apellido = "Apellido_test_cp2",
                 NombreUsuario = "NombreUsuario_test_cp2",
@@ -55,11 +52,7 @@ namespace SGE.Tests.Entrega {
                 Longitud = 4,
                 Telefonos = new List<Telefono>()
             };
-            cliente.TipoDocumento = new TipoDocumento()
-            {
-                Tipo = "CI",
-                Descripcion = "Documento Nacional de Identidad"
-            };
+            cliente.TipoDocumento = Cliente.enum_TipoDocumento.DNI;
             cliente.Direccion = new Direccion() {
                 Calle = "calle_cp2",
                 Nro = "468"
@@ -68,15 +61,13 @@ namespace SGE.Tests.Entrega {
                 Numero = "12345"
             });
 
-            cliente.Transformador = new Transformador()
-            {
+            cliente.Transformador = new Transformador() {
                 Latitud = 5,
                 Longitud = 15,
                 ZonaId = zona.Id
             };
 
-            cliente.Categoria = new Categoria()
-            {
+            cliente.Categoria = new Categoria() {
                 Codigo = "R3",
                 ConsumoMinimo = 1500,
                 ConsumoMaximo = 2200,
@@ -84,6 +75,19 @@ namespace SGE.Tests.Entrega {
                 CostoVariable = 550
             };
 
+            dispositivoInteligente = new Inteligente("TV_cp2", 100m, new SonyTVDriver());
+        }
+
+        [TestMethod]
+        
+        public void CasoDePrueba1() {
+            ///Crear 1 usuario nuevo.
+            ///Persistirlo.
+            ///Recuperarlo, modificar la geolocalización
+            ///grabarlo.
+            ///Recuperarlo y evaluar que el cambio se haya realizado.
+            repoZona.Create(zona);
+            cliente.Transformador.ZonaId = zona.Id;
             repoCliente.Create(cliente);
 
             Cliente clienteConsultado = repoCliente.Single(c => c.Id == cliente.Id);
@@ -97,6 +101,7 @@ namespace SGE.Tests.Entrega {
 
             Assert.AreEqual(clienteConsultado2.Latitud, 3);
             Assert.AreEqual(clienteConsultado2.Longitud, 4);
+            //TODO: verificar las eliminaciones
         }
 
         [TestMethod]
@@ -105,31 +110,33 @@ namespace SGE.Tests.Entrega {
             ///Mostrar por consola todos los intervalos que estuvo encendido durante el último mes.
             ///Modificar su nombre(o cualquier otro atributo editable) y grabarlo.
             ///Recuperarlo y evaluar que el nombre coincida con el esperado.
-            Inteligente dispositivo = new Inteligente("TV_cp2", 100m, new SonyTVDriver());
-            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
+            repoInteligente.Create(dispositivoInteligente);
 
-            repoInteligente.Create(dispositivo);
+            dispositivoInteligente.Encender();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-25);
+            dispositivoInteligente.Apagar();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-4);
+            dispositivoInteligente.Encender();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-3);
+            dispositivoInteligente.Apagar();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-1);
 
-            dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[0].FechaDeRegistro = dispositivo.RegistroDeActivaciones[0].FechaDeRegistro.AddHours(-25);
-            dispositivo.Apagar();
-            dispositivo.RegistroDeActivaciones[1].FechaDeRegistro = dispositivo.RegistroDeActivaciones[1].FechaDeRegistro.AddHours(-4);
-            dispositivo.Encender();
-            dispositivo.RegistroDeActivaciones[2].FechaDeRegistro = dispositivo.RegistroDeActivaciones[2].FechaDeRegistro.AddHours(-3);
-            dispositivo.Apagar();
-            dispositivo.RegistroDeActivaciones[3].FechaDeRegistro = dispositivo.RegistroDeActivaciones[3].FechaDeRegistro.AddHours(-1);
-
-            List<string> intervalosEncendido = dispositivo.ObtenerIntervalosEncendidoPorPeriodo(DateTime.Now.AddMonths(-1), DateTime.Now);
+            List<string> intervalosEncendido = dispositivoInteligente.ObtenerIntervalosEncendidoPorPeriodo(DateTime.Now.AddMonths(-1), DateTime.Now);
 
             foreach (string intervaloEncendido in intervalosEncendido) {
                 Console.WriteLine(intervaloEncendido);
             }
 
-            dispositivo.Nombre = "nombre modificado";
+            dispositivoInteligente.Nombre = "nombre modificado";
 
-            repoInteligente.Update(dispositivo);
+            //TODO: Se debe persistir en el momento en el que cambia de estado, no aca
+            foreach (Activacion activacion in dispositivoInteligente.RegistroDeActivaciones) {
+                repoActivacion.Create(activacion);
+            }
 
-            Inteligente dispositivoModificado = repoInteligente.Single(i => i.Id == dispositivo.Id);
+            repoInteligente.Update(dispositivoInteligente);
+
+            Inteligente dispositivoModificado = repoInteligente.Single(i => i.Id == dispositivoInteligente.Id);
 
             Assert.AreEqual(dispositivoModificado.Nombre, "nombre modificado");
 
@@ -145,10 +152,8 @@ namespace SGE.Tests.Entrega {
             ///Modificar alguna condición y persistirla.
             ///Recuperarla y evaluar que la condición modificada posea la última modificación.
             Inteligente dispositivo = new Inteligente("TV_cp3", 100m, new SonyTVDriver());
-            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
 
             repoInteligente.Create(dispositivo);
-
 
             Regla regla = new Regla();
             regla.Nombre = "ReglaCalorEncenderAire";
@@ -242,32 +247,19 @@ namespace SGE.Tests.Entrega {
             ///Nuevamente mostrar el consumo para ese transformador
             DateTime fechaHasta = DateTime.Now.AddDays(1);
             DateTime fechaDesde = fechaHasta.AddMonths(-1);
-            BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>();
-            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
-            BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
 
-            Inteligente inteligente = new Inteligente("TV_cp5", 100m, new SonyTVDriver());
-            repoInteligente.Create(inteligente);
+            cliente.Nombre = "Test_cp5";
+            cliente.Id = 0;
 
-            Cliente cliente = new Cliente() {
-                Nombre = "nombre_cp5",
-                NombreUsuario = "nombreUsuario_cp5",
-                Apellido = "Apellido_cp5",
-                Latitud = 10,
-                Longitud = 11
-            };
+            cliente.Inteligentes.Add(dispositivoInteligente);
 
-            cliente.Inteligentes.Add(inteligente);
-
+            repoZona.Create(zona);
+            cliente.Transformador.ZonaId = zona.Id;
             repoCliente.Create(cliente);
 
-            Transformador transformador = new Transformador() {
-                Latitud = 10,
-                Longitud = 11
-            };
-            transformador.Clientes.Add(cliente);
+            Transformador transformador = cliente.Transformador;
 
-            repoTransformador.Create(transformador);
+            //repoTransformador.Create(transformador);
 
             Console.WriteLine("Consumo por hogar en el período '" + fechaDesde.ToShortDateString() + "' y '" + fechaHasta.ToShortDateString() + "': " +
                 Reporte.consumoPorHogarYPeriodo(cliente.Id, fechaDesde, fechaHasta));
@@ -276,7 +268,8 @@ namespace SGE.Tests.Entrega {
             Console.WriteLine("Consumo por transformador en el período '" + fechaDesde.ToShortDateString() + "' y '" + fechaHasta.ToShortDateString() + "': " +
                 Reporte.consumoTransformadorPorPeriodo(transformador.Id, fechaDesde, fechaHasta));
 
-            Inteligente inteligenteConsultado = repoTransformador.Single(t => t.Id == transformador.Id).Clientes[0].Inteligentes[0];
+            int idInteligente = cliente.Inteligentes.First().Id;
+            Inteligente inteligenteConsultado = repoInteligente.Single(i => i.Id == idInteligente);
             inteligenteConsultado.ConsumoEnergia = inteligenteConsultado.ConsumoEnergia * 10;
 
             repoInteligente.Update(inteligenteConsultado);
