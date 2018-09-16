@@ -12,6 +12,7 @@ namespace SGE.Entidades.Transformadores
     {
         #region Propiedades
         public int Id { get; set; }
+        public int codigo { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }
 

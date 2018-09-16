@@ -1,22 +1,15 @@
-﻿using System;
-using SGE.Entidades.Categorias;
-using SGE.Entidades.Dispositivos;
+﻿using SGE.Entidades.Transformadores;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.ComponentModel.DataAnnotations.Schema;
-using SGE.Entidades.Usuarios;
 using System.ComponentModel.DataAnnotations;
-using SGE.Entidades.Transformadores;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Zonas
-{
+namespace SGE.Entidades.Zonas {
     [Table("Zona")]
     public class Zona
     {
         #region Propiedades
-        [Key]
         public int Id { get; set; }
+        public int codigo { get; set; }
         [MaxLength(15)]
         public string Nombre { get; set; }
         public double Latitud { get; set; }

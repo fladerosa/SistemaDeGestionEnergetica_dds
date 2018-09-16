@@ -7,6 +7,7 @@ using SGE.Entidades.Drivers;
 using SGE.Entidades.Zonas;
 using SGE.Entidades.Transformadores;
 using SGE.Entidades.Repositorio;
+using System.Linq;
 
 namespace SGE.Tests.Entidades
 {
@@ -168,7 +169,7 @@ namespace SGE.Tests.Entidades
 
             var ListaZonas = repoZona.GetAll();
 
-            Assert.AreEqual(ListaZonas.Count, 1);
+            Assert.IsTrue(ListaZonas.Any(z => z.Nombre == zonaNueva.Nombre));
             repoZona.Delete(zonaNueva);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades.Categorias;
 using SGE.Entidades.Repositorio;
+using System.Linq;
 
 namespace SGE.Tests.Categorias
 {
@@ -25,7 +26,7 @@ namespace SGE.Tests.Categorias
 
             var ListaCategorias = repoCategoria.GetAll();
 
-            Assert.AreEqual(ListaCategorias.Count, 1);
+            Assert.IsTrue(ListaCategorias.Any(c => c.Codigo == categoriaNueva.Codigo));
             repoCategoria.Delete(categoriaNueva);
         }
     }

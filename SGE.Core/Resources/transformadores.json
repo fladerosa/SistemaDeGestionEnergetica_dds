@@ -1,70 +1,70 @@
 [
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "1",
+    "codigo": "1",
     "latitud": "5.4",
     "longitud": "5.44",
     "zona": "9"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "2",
+    "codigo": "2",
     "latitud": "5.4",
     "longitud": "5.4",
     "zona": "9"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "3",
+    "codigo": "3",
     "latitud": "5.42",
     "longitud": "5.42",
     "zona": "9"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "4",
+    "codigo": "4",
     "latitud": "5.38",
     "longitud": "5.42",
     "zona": "9"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "5",
+    "codigo": "5",
     "latitud": "5.42",
     "longitud": "5.44",
     "zona": "9"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "6",
+    "codigo": "6",
     "latitud": "5.2",
     "longitud": "5.22",
     "zona": "9"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "7",
+    "codigo": "7",
     "latitud": "0",
     "longitud": "0.2",
     "zona": "1"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "8",
+    "codigo": "8",
     "latitud": "0",
     "longitud": "-0.2",
     "zona": "1"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "9",
+    "codigo": "9",
     "latitud": "0.2",
     "longitud": "0",
     "zona": "1"
   },
   {
     "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-    "id": "10",
+    "codigo": "10",
     "latitud": "-0.2",
     "longitud": "0",
     "zona": "1"

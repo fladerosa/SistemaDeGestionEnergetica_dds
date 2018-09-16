@@ -35,6 +35,7 @@ namespace SGE.Tests.Entrega {
         public void TestInitialize() {
             //se carga una zona para evitar que rompa por fk de transformador
             zona = new Zona() {
+                codigo = 99,
                 Nombre = "zona_02",
                 Latitud = 35,
                 Longitud = 45,
@@ -62,6 +63,7 @@ namespace SGE.Tests.Entrega {
             });
 
             cliente.Transformador = new Transformador() {
+                codigo = 99,
                 Latitud = 5,
                 Longitud = 15,
                 ZonaId = zona.Id
@@ -169,7 +171,7 @@ namespace SGE.Tests.Entrega {
         {
             //persisto las zonas para poder luego persistir los transformadores
             ZonasHelper zonaHelper = new ZonasHelper();
-            BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
+
             foreach (Core.Entidades.Zona z in zonaHelper.Zonas)
             {
                 repoZona.Create(AsignarAtributosZona(z));
@@ -178,10 +180,14 @@ namespace SGE.Tests.Entrega {
 
             //Persisto los transformadores que el ENRE envia
             TransformadoresHelper transHelper = new TransformadoresHelper();
-            BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
             foreach (Core.Entidades.Transformador t in transHelper.Transformadores)
             {
-                repoTransformador.Create(AsignarAtributosTransformador(t));
+                repoTransformador.Create(new Transformador() {
+                    codigo = t.codigo,
+                    Latitud = (double)t.Latitud,
+                    Longitud = (double)t.Longitud,
+                    ZonaId = t.Zona
+                });
             }
 
             //Recupero los transformadores persistidos
@@ -193,42 +199,51 @@ namespace SGE.Tests.Entrega {
             //persistimos los transformadores
             foreach (Core.Entidades.Transformador t in transHelperMasUno.Transformadores)
             {
-                var retorno = repoTransformador.Single(s => s.Id == t.Id);
+                Transformador retorno = repoTransformador.Single(s => s.codigo == t.codigo);
                 if (retorno != null)
                 {
-                    repoTransformador.Update(AsignarAtributosTransformador(t));
-                }
-                else
-                {
-                    repoTransformador.Create(AsignarAtributosTransformador(t));
+                    retorno.codigo = t.codigo;
+                    retorno.Latitud = (double)t.Latitud;
+                    retorno.Longitud = (double)t.Longitud;
+                    retorno.ZonaId = t.Zona;
+                    repoTransformador.Update(retorno);
+                } else {
+                    repoTransformador.Create(new Transformador() {
+                        codigo = t.codigo,
+                        Latitud = (double)t.Latitud,
+                        Longitud = (double)t.Longitud,
+                        ZonaId = t.Zona
+                    });
                 }
 
             }
             List<Transformador> transPerMasUno = repoTransformador.GetAll();
 
             // Evaluo que la cantidad actual sea la anterior + 1
-            Assert.AreEqual(transPer.Count + 1, transPerMasUno.Count);
+            Assert.IsTrue(transHelperMasUno.Transformadores.Count <= transPerMasUno.Count);
 
             //eliminamos los registros con los que hicimos las pruebas
-            foreach (Core.Entidades.Zona z in zonaHelper.Zonas)
-            {
-                repoZona.Delete(AsignarAtributosZona(z));
+            foreach (Core.Entidades.Transformador transformador in transHelperMasUno.Transformadores) {
+                Transformador transformadorDB = repoTransformador.Single(t => t.codigo == transformador.codigo);
+                if (transformadorDB != null) {
+                    repoTransformador.Delete(transformadorDB);
+                }
+            }
+
+            //eliminamos los registros con los que hicimos las pruebas
+            foreach (Core.Entidades.Zona zona in zonaHelper.Zonas) {
+                Zona zonaDB = repoZona.Single(z => z.codigo == zona.codigo);
+                if(zonaDB != null) {
+                    repoZona.Delete(zonaDB);
+                }
             }
         }
-        private Transformador AsignarAtributosTransformador(Core.Entidades.Transformador xT)
-        {
-            Transformador transformadorReturn = new Transformador();
-            transformadorReturn.Id = xT.Id;
-            transformadorReturn.Latitud = (double)xT.Latitud;
-            transformadorReturn.Longitud = (double)xT.Longitud;
-            transformadorReturn.ZonaId = xT.Zona;
-            return transformadorReturn;
 
-        }
         private Zona AsignarAtributosZona(Core.Entidades.Zona xZ)
         {
             Zona zonaReturn = new Zona();
             zonaReturn.Id = xZ.Id;
+            zonaReturn.codigo = xZ.codigo;
             zonaReturn.Nombre = xZ.Nombre;
             zonaReturn.Latitud = (double)xZ.Latitud;
             zonaReturn.Longitud = (double)xZ.Longitud;
