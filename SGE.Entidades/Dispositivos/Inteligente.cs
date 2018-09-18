@@ -161,14 +161,20 @@ namespace SGE.Entidades.Dispositivos
         public decimal ObtenerConsumoDeUltimasNHoras(int cantidadHoras)
         {
             DateTime fechaBusqueda = (DateTime.Now).AddHours((-1) * cantidadHoras);
-            List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaBusqueda).ToList<Activacion>();
-            return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
+            if (this.RegistroDeActivaciones != null && this.RegistroDeActivaciones.Count > 0) {
+                List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaBusqueda).ToList<Activacion>();
+                return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
+            }
+            return 0;
         }
 
         public decimal ObtenerConsumoPeriodo(DateTime fechaDesde, DateTime fechaHasta)
         {
-            List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaDesde && x.FechaDeRegistro <= fechaHasta).ToList<Activacion>();
-            return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
+            if(this.RegistroDeActivaciones != null && this.RegistroDeActivaciones.Count > 0) {
+                List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaDesde && x.FechaDeRegistro <= fechaHasta).ToList<Activacion>();
+                return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
+            }
+            return 0;
         }
 
         private decimal CalcularHorasDeUso(List<Activacion> lista)

@@ -16,6 +16,9 @@ namespace SGE.Entidades.Repositorio
         public List<T> GetAll()
         {
             SGEContext context = new SGEContext();
+            context.Configuration.LazyLoadingEnabled = false;
+            //TODO: se saca el lazy load ya que falla al momento de cargar los dispositivos inteligentes.
+            //TODO: hay que revisar como hacer que convivan lazy load con un único contexto
             List<T> entidad = (List<T>)context.Set<T>().ToList();
             context.Dispose();
             return entidad;
@@ -48,6 +51,8 @@ namespace SGE.Entidades.Repositorio
         public T Single(Expression<Func<T, bool>> predicate)
         {
             SGEContext context = new SGEContext();
+            context.Configuration.LazyLoadingEnabled = false;
+
             T entidad = context.Set<T>().FirstOrDefault(predicate);
             context.Dispose();
             return entidad;

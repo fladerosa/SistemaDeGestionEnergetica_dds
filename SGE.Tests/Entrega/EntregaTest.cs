@@ -113,7 +113,7 @@ namespace SGE.Tests.Entrega {
             ///Modificar su nombre(o cualquier otro atributo editable) y grabarlo.
             ///Recuperarlo y evaluar que el nombre coincida con el esperado.
             repoInteligente.Create(dispositivoInteligente);
-
+            //TODO: si bien la prueba no falla, actualmente está creando varias veces el mismo dispositivo. Esto se debe a que se crean contextos nuevos por cada add, hay que revisar eso.
             dispositivoInteligente.Encender();
             dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-25);
             dispositivoInteligente.Apagar();
