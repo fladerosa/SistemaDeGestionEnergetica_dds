@@ -15,8 +15,9 @@ namespace SGE.Entidades.Usuarios
         public string Password { get; set; }
         public DateTime FechaAlta { get; set; }
         //TODO: este  notMapped me hace ruido, verificar luego la consistencia de este atributo
-        [NotMapped]
+        //[NotMapped]
         public virtual Direccion Direccion { get; set; } //one to one
+       
         public virtual ICollection<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
         public virtual ICollection<Estandar> Estandars { get; set; } //many to many con Dispositivo
 

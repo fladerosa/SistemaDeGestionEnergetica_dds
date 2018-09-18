@@ -2,6 +2,7 @@
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Transformadores;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
@@ -18,8 +19,7 @@ namespace SGE.Entidades.Usuarios
         public int TransformadorId { get; set; } // fk con tabla transformador
         [ForeignKey("TransformadorId")]
         public virtual Transformador Transformador { get; set; } // one to many con  Transformador
-        public virtual int  TipoDocumentoId { get; set; } //one to many
-        //public virtual TipoDocumento TipoDocumento { get; set; } //one to many
+
         public virtual enum_TipoDocumento TipoDocumento { get; set; } 
         
         public virtual ICollection<Telefono> Telefonos { get; set; } // one to many con Cliente
@@ -55,9 +55,12 @@ namespace SGE.Entidades.Usuarios
         }
 
         public enum enum_TipoDocumento {
-            DNI,
-            CUIL,
-            PASAPORTE
+            [Display(Name = "DNI")]
+            DNI = 1,
+            [Display(Name = "CUIL")]
+            CUIL = 2,
+            [Display(Name = "PASAPORTE")]
+            PASAPORTE = 3
         }
 
         #endregion

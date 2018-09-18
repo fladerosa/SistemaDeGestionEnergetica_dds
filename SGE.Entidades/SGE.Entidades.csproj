@@ -125,7 +125,6 @@
     <Compile Include="Reglas\Regla.cs" />
     <Compile Include="Reglas\Medicion.cs" />
     <Compile Include="ValueProviders\Sensor.cs" />
-    <Compile Include="Usuarios\TipoDocumento.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
     <Compile Include="ValueProviders\SensorMap.cs" />
     <Compile Include="ValueProviders\SensorTemperaturaAA.cs" />

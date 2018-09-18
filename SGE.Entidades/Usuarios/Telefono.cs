@@ -11,13 +11,12 @@ namespace SGE.Entidades.Usuarios
     [Table("Telefono")]
     public class Telefono
     {
-        [Key]
         public int Id { get; set; }
         [MaxLength(16)]
         public string Numero { get; set; }
 
-        //public int ClienteId { get; set; } //fk con tabla cliente
-        //[ForeignKey("ClienteId")]
+        public int ClienteId { get; set; } //fk con tabla cliente
+        [ForeignKey("ClienteId")]
         public virtual Cliente Cliente { get; set; } // one to many con  Cliente
     }
 }
