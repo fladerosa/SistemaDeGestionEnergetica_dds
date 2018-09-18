@@ -22,6 +22,11 @@ namespace SGE.Entidades.ValueProviders
             this.driver = driver;
         }
 
+        public SensorTemperaturaAA(decimal medicion, IAireAcondicionadoDriver driver)
+        {
+            this.ultimaMedicion = medicion;
+            this.driver = driver;
+        }
         #endregion
 
         #region Reimplementación de los métodos de Sensor

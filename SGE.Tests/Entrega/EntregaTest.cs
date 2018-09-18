@@ -25,9 +25,18 @@ namespace SGE.Tests.Entrega {
         BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
         BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
         BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
+        BaseRepositorio<SensorTemperaturaAA> repoSensor = new BaseRepositorio<SensorTemperaturaAA>();
+        BaseRepositorio<Medicion> repoMedicion = new BaseRepositorio<Medicion>();
+        BaseRepositorio<SamsungAireAcondicionadoDriver> repoActuador = new BaseRepositorio<SamsungAireAcondicionadoDriver>();
+
         Zona zona = null;
         Cliente cliente = null;
+
         Inteligente dispositivoInteligente = null;
+        SensorTemperaturaAA sensor = null;
+        Medicion medicion = null;
+
+        SamsungAireAcondicionadoDriver actuador = null;
 
         //TODO: se crean los casos de pruebas mínimos para la entrega 3. Para facilitar la lectura se los agrupa en esta clase,
         //sin embargo luego se acomodarán las pruebas en las clases correspondientes.
@@ -76,8 +85,17 @@ namespace SGE.Tests.Entrega {
                 CostoFijo = 300,
                 CostoVariable = 550
             };
+//TODO : inicializacion de sensor y actuador
+// no es la forma mas bonita (pensar en otra), pero en la base genera la fk correspondientes
 
-            dispositivoInteligente = new Inteligente("TV_cp2", 100m, new SonyTVDriver());
+            sensor = new SensorTemperaturaAA(35, new SamsungAireAcondicionadoDriver());
+            dispositivoInteligente = new Inteligente("AireA-x_cp2", 100m, new SamsungAireAcondicionadoDriver());
+            medicion = new Medicion(350, UnidadEnum.CENTIGRADOS);
+
+            actuador = new SamsungAireAcondicionadoDriver() {
+                Mensaje = "PruebaActuador",
+                temperaturaActual = 20
+            };
         }
 
         [TestMethod]
@@ -112,7 +130,15 @@ namespace SGE.Tests.Entrega {
             ///Mostrar por consola todos los intervalos que estuvo encendido durante el último mes.
             ///Modificar su nombre(o cualquier otro atributo editable) y grabarlo.
             ///Recuperarlo y evaluar que el nombre coincida con el esperado.
+            
+            repoSensor.Create(sensor);
+            dispositivoInteligente.SensorId = sensor.Id;
+            medicion.SensorId = sensor.Id;
+            repoActuador.Create(actuador);
+            dispositivoInteligente.ActuadorId = actuador.Id;
             repoInteligente.Create(dispositivoInteligente);
+            repoMedicion.Create(medicion);
+
             //TODO: si bien la prueba no falla, actualmente está creando varias veces el mismo dispositivo. Esto se debe a que se crean contextos nuevos por cada add, hay que revisar eso.
             dispositivoInteligente.Encender();
             dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-25);

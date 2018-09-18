@@ -12,7 +12,7 @@ namespace SGE.Core.Helpers
 
         public ZonasHelper()
         {
-            this.Zonas = JsonConvert.DeserializeObject<List<Zona>>(File.ReadAllText(@"C:\Users\kenny\source\repos\dds-tp-2018-grupo-01\SGE.Core\Resources\zonas.json"));
+            this.Zonas = JsonConvert.DeserializeObject<List<Zona>>(File.ReadAllText(@"C:\Users\Flavia\source\repos\DiseñoSistemasTPAnual\dds-tp-2018-grupo-01\SGE.Core\Resources\zonas.json"));
         }
 
         public Zona GetDispositivo(string id)

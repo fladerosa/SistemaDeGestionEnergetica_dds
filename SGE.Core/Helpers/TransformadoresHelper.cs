@@ -12,12 +12,12 @@ namespace SGE.Core.Helpers
 
         public TransformadoresHelper()
         {
-            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"C:\Users\kenny\source\repos\dds-tp-2018-grupo-01\SGE.Core\Resources\transformadores.json"));
+            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"C:\Users\Flavia\source\repos\DiseñoSistemasTPAnual\dds-tp-2018-grupo-01\SGE.Core\Resources\transformadores.json"));
         }
 
         public TransformadoresHelper(string nombreTransformadorJson)
         {
-            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"C:\Users\kenny\source\repos\dds-tp-2018-grupo-01\SGE.Core\Resources\" + nombreTransformadorJson));
+            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"C:\Users\Flavia\source\repos\DiseñoSistemasTPAnual\dds-tp-2018-grupo-01\SGE.Core\Resources\" + nombreTransformadorJson));
         }
 
         public Transformador GetDispositivo(string id)

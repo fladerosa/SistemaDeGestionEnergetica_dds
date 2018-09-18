@@ -25,10 +25,10 @@ namespace SGE.Entidades.Dispositivos
         public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
        
-        public int? SensorId { get; set; } // fk con tabla Sensor
+        public int SensorId { get; set; } // fk con tabla Sensor
         [ForeignKey("SensorId")]
         public virtual Sensor Sensor { get; set; } // one to many con  Sensor
-        public int? ActuadorId { get; set; } //fk con tabla Actuador
+        public int ActuadorId { get; set; } //fk con tabla Actuador
         [ForeignKey("ActuadorId")]
         public virtual Driver Actuador { get; set; } // one to many con  Actuador
 

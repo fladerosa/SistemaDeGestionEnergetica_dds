@@ -14,11 +14,11 @@ namespace SGE.Entidades.ValueProviders
         #region Campos
         public int Id { get; set; }
         public decimal ultimaMedicion { get; set; }
-        //public virtual Medicion Medicion { get; set; } //one to one
+      
         public List<Inteligente> Inteligentes { get; set; } // one to many  
         public virtual ICollection<Medicion> Mediciones { get; set; } // one to many 
 
-        public List<Inteligente> dispositivos = new List<Inteligente>();
+     //   public List<Inteligente> dispositivos = new List<Inteligente>();
         //TODO: porque tiene dos listados de dispositivos inteligentes?
         #endregion
 
@@ -26,17 +26,17 @@ namespace SGE.Entidades.ValueProviders
 
         public void Agregar(Inteligente dispositivo)
         {
-            this.dispositivos.Add(dispositivo);
+            this.Inteligentes.Add(dispositivo);
         }
 
         public void Quitar(Inteligente dispositivo)
         {
-            this.dispositivos.Remove(dispositivo);
+            this.Inteligentes.Remove(dispositivo);
         }
 
         public void NotificarCambio()
         {
-            foreach(Inteligente dispositivo in this.dispositivos)
+            foreach(Inteligente dispositivo in this.Inteligentes)
             {
                 dispositivo.NotificarNuevaMedicion(this.ultimaMedicion);
             }
