@@ -15,6 +15,7 @@ using System;
 using SGE.Core.Helpers;
 using System.Collections.Generic;
 using System.Linq;
+using SGE.Entidades.Acciones.AA;
 
 namespace SGE.Tests.Entrega {
     [TestClass]
@@ -28,6 +29,9 @@ namespace SGE.Tests.Entrega {
         BaseRepositorio<SensorTemperaturaAA> repoSensor = new BaseRepositorio<SensorTemperaturaAA>();
         BaseRepositorio<Medicion> repoMedicion = new BaseRepositorio<Medicion>();
         BaseRepositorio<SamsungAireAcondicionadoDriver> repoActuador = new BaseRepositorio<SamsungAireAcondicionadoDriver>();
+        BaseRepositorio<EstablecerTemperaturaAireAcondicionado> repoAccion = new BaseRepositorio<EstablecerTemperaturaAireAcondicionado>();
+        BaseRepositorio<Regla> repoRegla = new BaseRepositorio<Regla>();
+        BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>();
 
         Zona zona = null;
         Cliente cliente = null;
@@ -37,6 +41,9 @@ namespace SGE.Tests.Entrega {
         Medicion medicion = null;
 
         SamsungAireAcondicionadoDriver actuador = null;
+        EstablecerTemperaturaAireAcondicionado accion = null;
+        Regla regla = null;
+        Condicion condicion = null;
 
         //TODO: se crean los casos de pruebas mínimos para la entrega 3. Para facilitar la lectura se los agrupa en esta clase,
         //sin embargo luego se acomodarán las pruebas en las clases correspondientes.
@@ -85,8 +92,9 @@ namespace SGE.Tests.Entrega {
                 CostoFijo = 300,
                 CostoVariable = 550
             };
-//TODO : inicializacion de sensor y actuador
+//TODO : inicializacion de sensor, actuador, medicion, accion, regla y condicion
 // no es la forma mas bonita (pensar en otra), pero en la base genera la fk correspondientes
+// se usa en caso 2 y 3. 
 
             sensor = new SensorTemperaturaAA(35, new SamsungAireAcondicionadoDriver());
             dispositivoInteligente = new Inteligente("AireA-x_cp2", 100m, new SamsungAireAcondicionadoDriver());
@@ -96,6 +104,18 @@ namespace SGE.Tests.Entrega {
                 Mensaje = "PruebaActuador",
                 temperaturaActual = 20
             };
+
+            accion = new EstablecerTemperaturaAireAcondicionado()
+            {
+                Descripcion = "CambiarTemperaturaAire"
+            };
+
+            regla = new Regla() {
+                Nombre = "ReglaAhorroTemperatura"
+            };
+
+            condicion = new Condicion(new Mayor(), 30);
+           
         }
 
         [TestMethod]
@@ -134,10 +154,16 @@ namespace SGE.Tests.Entrega {
             repoSensor.Create(sensor);
             dispositivoInteligente.SensorId = sensor.Id;
             medicion.SensorId = sensor.Id;
+
             repoActuador.Create(actuador);
             dispositivoInteligente.ActuadorId = actuador.Id;
             repoInteligente.Create(dispositivoInteligente);
             repoMedicion.Create(medicion);
+
+            accion.ActuadorId = actuador.Id;
+            repoRegla.Create(regla);
+            accion.ReglaId = regla.ReglaId;
+            repoAccion.Create(accion);
 
             //TODO: si bien la prueba no falla, actualmente está creando varias veces el mismo dispositivo. Esto se debe a que se crean contextos nuevos por cada add, hay que revisar eso.
             dispositivoInteligente.Encender();
@@ -179,17 +205,42 @@ namespace SGE.Tests.Entrega {
             ///Recuperarla y ejecutarla.
             ///Modificar alguna condición y persistirla.
             ///Recuperarla y evaluar que la condición modificada posea la última modificación.
-            Inteligente dispositivo = new Inteligente("TV_cp3", 100m, new SonyTVDriver());
+            /*    Inteligente dispositivo = new Inteligente("TV_cp3", 100m, new SonyTVDriver());
 
-            repoInteligente.Create(dispositivo);
+                repoInteligente.Create(dispositivo);
 
-            Regla regla = new Regla();
-            regla.Nombre = "ReglaCalorEncenderAire";
-            regla.Condiciones.Add(new Condicion(new SensorTemperaturaAA(new SamsungAireAcondicionadoDriver()), new Mayor(), 30));
-            regla.Accions.Add(new Encender(new AireAcondicionado(new SamsungAireAcondicionadoDriver(), "AA Samsung", 100)));
-            
+                Regla regla = new Regla();
+                regla.Nombre = "ReglaCalorEncenderAire";
+                regla.Condiciones.Add(new Condicion(new SensorTemperaturaAA(new SamsungAireAcondicionadoDriver()), new Mayor(), 30));
+                regla.Accions.Add(new Encender(new AireAcondicionado(new SamsungAireAcondicionadoDriver(), "AA Samsung", 100)));
+               */
             //TODO: no puedo mapear las reglas a los dispositivos....
+            
+            repoSensor.Create(sensor);
+            dispositivoInteligente.SensorId = sensor.Id;
+            medicion.SensorId = sensor.Id;
 
+            repoActuador.Create(actuador);
+            dispositivoInteligente.ActuadorId = actuador.Id;
+            repoInteligente.Create(dispositivoInteligente);
+            repoMedicion.Create(medicion);
+
+            repoRegla.Create(regla);
+            accion.ActuadorId = actuador.Id;
+            condicion.ReglaId = regla.ReglaId;
+                        
+            repoCondicion.Create(condicion);
+            accion.ReglaId = regla.ReglaId;
+            repoAccion.Create(accion);
+            //Se crea la regla con la inicializacion usada en el caso 2, 
+            // y probando el mapeo relacional, protegiendo las fk
+
+            //se crea regla en la BD y se muestra por aplicacion
+            Console.WriteLine(regla.Nombre);
+            //se modifica  y se muestra
+            regla.Nombre = "ReglaControlTemperatura";
+            repoRegla.Update(regla);
+            Console.WriteLine(regla.Nombre);
         }
 
         [TestMethod]

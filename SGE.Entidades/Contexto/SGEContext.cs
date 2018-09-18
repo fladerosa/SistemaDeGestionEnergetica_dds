@@ -18,7 +18,6 @@ namespace SGE.Entidades.Contexto {
         }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Direccion> Direcciones { get; set; }
-        //public DbSet<TipoDocumento> TipoDocumentos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
         public DbSet<Dispositivo> Dispositivos { get; set; }
@@ -37,7 +36,7 @@ namespace SGE.Entidades.Contexto {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new UsuarioMap()); //mapeo herencia Usuario
-            //modelBuilder.Configurations.Add(new DispositivoMap()); // mapeo herencia Dispositivo
+            modelBuilder.Configurations.Add(new DispositivoMap()); // mapeo herencia Dispositivo
             modelBuilder.Configurations.Add(new SensorMap()); // mapeo herencia sensor
             modelBuilder.Configurations.Add(new DriverMap()); // mapeo herencia Actuador
             modelBuilder.Configurations.Add(new AccionMap()); // mapeo herencia Accion

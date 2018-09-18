@@ -11,15 +11,15 @@ namespace SGE.Entidades.Drivers {
             Property(x => x.Mensaje);
 
             Map<DreanLavarropasDriver>(x => x.Requires("Tipo_Actuador")
-                                            .HasValue("Lav")
-                                            .HasMaxLength(3));
+                                            .HasValue("TipoLavado")
+                                            .HasMaxLength(15));
             Map<SamsungAireAcondicionadoDriver>(x => x.Requires("Tipo_Actuador")
-                                            .HasValue("Aco")
-                                            .HasMaxLength(3));
+                                            .HasValue("Temperatura")
+                                            .HasMaxLength(15));
 
             Map<SonyTVDriver>(x => x.Requires("Tipo_Actuador")
-                                            .HasValue("TV")
-                                            .HasMaxLength(3));
+                                            .HasValue("Volumen")
+                                            .HasMaxLength(15));
         }
     }
 }

@@ -23,6 +23,9 @@ namespace SGE.Entidades.Acciones.AA
             this.dispositivo = dispositivo;
             this.temperatura = valorTemperatura;
         }
+        public EstablecerTemperaturaAireAcondicionado()
+        {
+        }
 
         #endregion
 

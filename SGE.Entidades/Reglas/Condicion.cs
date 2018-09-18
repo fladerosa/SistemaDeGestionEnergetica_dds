@@ -14,7 +14,7 @@ namespace SGE.Entidades.Reglas
         public int CondicionId { get; set; }
         private IValueProvider provider;
         private IOperador operador;
-        private decimal valorReferencia;
+        public decimal valorReferencia { get; set; }
 
         public int ReglaId { get; set; } // fk con tabla regla
         [ForeignKey("ReglaId")]
@@ -30,6 +30,13 @@ namespace SGE.Entidades.Reglas
             this.operador = operador;
             this.valorReferencia = valorReferencia;
         }
+
+        public Condicion(IOperador operador, decimal valorReferencia)
+        {
+            this.operador = operador;
+            this.valorReferencia = valorReferencia;
+        }
+
 
         #endregion
 
