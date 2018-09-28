@@ -7,15 +7,26 @@ using SGE.Entidades.Transformadores;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
 using SGE.Entidades.Zonas;
+using System;
 using System.Data.Entity;
 
 namespace SGE.Entidades.Contexto {
     public class SGEContext : DbContext
     {
-        public SGEContext() : base("ConnSGEDb")
+        protected SGEContext() : base("ConnSGEDb")
         {
           Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
         }
+
+        private static SGEContext Instancia = null;
+
+        public static SGEContext instancia() {
+            if(Instancia ==null)
+                Instancia = new SGEContext();
+
+            return Instancia;
+        }
+
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<Categoria> Categorias { get; set; }

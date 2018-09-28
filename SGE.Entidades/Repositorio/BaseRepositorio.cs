@@ -4,32 +4,29 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace SGE.Entidades.Repositorio
-{
-    public class BaseRepositorio<T> : IRepositorio<T> where T : class
-    {
+namespace SGE.Entidades.Repositorio {
+    public class BaseRepositorio<T> : IRepositorio<T> where T : class {
+        private SGEContext context {
+            get {
+                return SGEContext.instancia();
+            }
+        }
 
-        public List<T> GetAll()
-        {
-            SGEContext context = new SGEContext();
+        public List<T> GetAll() {
             context.Configuration.LazyLoadingEnabled = false;
             //TODO: se saca el lazy load ya que falla al momento de cargar los dispositivos inteligentes.
             //TODO: hay que revisar como hacer que convivan lazy load con un único contexto
             List<T> entidad = (List<T>)context.Set<T>().ToList();
-            context.Dispose();
             return entidad;
         }
 
-        public List<T> GetAll(List<Expression<Func<T, object>>> includes)
-        {
+        public List<T> GetAll(List<Expression<Func<T, object>>> includes) {
             List<string> includelist = new List<string>();
 
-            foreach (var item in includes)
-            {
+            foreach (var item in includes) {
                 MemberExpression body = item.Body as MemberExpression;
                 if (body == null)
                     throw new ArgumentException("The body must be a member expression");
@@ -37,33 +34,24 @@ namespace SGE.Entidades.Repositorio
                 includelist.Add(body.Member.Name);
             }
 
-            using (SGEContext context = new SGEContext())
-            {
-                DbQuery<T> query = context.Set<T>();
+            DbQuery<T> query = context.Set<T>();
 
-                includelist.ForEach(x => query = query.Include(x));
+            includelist.ForEach(x => query = query.Include(x));
 
-                return (List<T>)query.ToList();
-            }
-
+            return (List<T>)query.ToList();
         }
 
-        public T Single(Expression<Func<T, bool>> predicate)
-        {
-            SGEContext context = new SGEContext();
+        public T Single(Expression<Func<T, bool>> predicate) {
             context.Configuration.LazyLoadingEnabled = false;
 
             T entidad = context.Set<T>().FirstOrDefault(predicate);
-            context.Dispose();
             return entidad;
         }
 
-        public T Single(Expression<Func<T, bool>> predicate, List<Expression<Func<T, object>>> includes)
-        {
+        public T Single(Expression<Func<T, bool>> predicate, List<Expression<Func<T, object>>> includes) {
             List<string> includelist = new List<string>();
 
-            foreach (var item in includes)
-            {
+            foreach (var item in includes) {
                 MemberExpression body = item.Body as MemberExpression;
                 if (body == null)
                     throw new ArgumentException("The body must be a member expression");
@@ -71,30 +59,21 @@ namespace SGE.Entidades.Repositorio
                 includelist.Add(body.Member.Name);
             }
 
-            using (SGEContext context = new SGEContext())
-            {
-                DbQuery<T> query = context.Set<T>();
+            DbQuery<T> query = context.Set<T>();
 
-                includelist.ForEach(x => query = query.Include(x));
+            includelist.ForEach(x => query = query.Include(x));
 
-                return query.FirstOrDefault(predicate);
-            }
+            return query.FirstOrDefault(predicate);
         }
 
-        public List<T> Filter(Expression<Func<T, bool>> predicate)
-        {
-            using (SGEContext context = new SGEContext())
-            {
-                return (List<T>)context.Set<T>().Where(predicate).ToList();
-            }
+        public List<T> Filter(Expression<Func<T, bool>> predicate) {
+            return (List<T>)context.Set<T>().Where(predicate).ToList();
         }
 
-        public List<T> Filter(Expression<Func<T, bool>> predicate, List<Expression<Func<T, object>>> includes)
-        {
+        public List<T> Filter(Expression<Func<T, bool>> predicate, List<Expression<Func<T, object>>> includes) {
             List<string> includelist = new List<string>();
 
-            foreach (var item in includes)
-            {
+            foreach (var item in includes) {
                 MemberExpression body = item.Body as MemberExpression;
                 if (body == null)
                     throw new ArgumentException("The body must be a member expression");
@@ -102,27 +81,19 @@ namespace SGE.Entidades.Repositorio
                 includelist.Add(body.Member.Name);
             }
 
-            using (SGEContext context = new SGEContext())
-            {
-                DbQuery<T> query = context.Set<T>();
+            DbQuery<T> query = context.Set<T>();
 
-                includelist.ForEach(x => query = query.Include(x));
+            includelist.ForEach(x => query = query.Include(x));
 
-                return (List<T>)query.Where(predicate).ToList();
-            }
+            return (List<T>)query.Where(predicate).ToList();
         }
 
-        public void Create(T entity)
-        {
-            SGEContext context = new SGEContext();
+        public void Create(T entity) {
             context.Set<T>().Add(entity);
             // context.SaveChanges();
-            try
-            {
+            try {
                 context.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
+            } catch (DbEntityValidationException ex) {
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
                         .SelectMany(x => x.ValidationErrors)
@@ -136,14 +107,10 @@ namespace SGE.Entidades.Repositorio
 
                 // Throw a new DbEntityValidationException with the improved exception message.
                 throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-            } finally {
-                context.Dispose();
             }
         }
 
-        public void Update(T entity)
-        {
-            SGEContext context = new SGEContext();
+        public void Update(T entity) {
             context.Entry(entity).State = EntityState.Modified;
             try {
                 context.SaveChanges();
@@ -161,14 +128,10 @@ namespace SGE.Entidades.Repositorio
 
                 // Throw a new DbEntityValidationException with the improved exception message.
                 throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-            } finally {
-                context.Dispose();
             }
         }
 
-        public void Delete(T entity)
-        {
-            SGEContext context = new SGEContext();
+        public void Delete(T entity) {
             context.Entry(entity).State = EntityState.Deleted;
             try {
                 context.SaveChanges();
@@ -192,18 +155,13 @@ namespace SGE.Entidades.Repositorio
 
                 // Throw a new DbEntityValidationException with the improved exception message.
                 throw new DbEntityValidationException(exceptionMessage);
-            } finally {
-                context.Dispose();
             }
         }
 
-        public void Delete(Expression<Func<T, bool>> predicate)
-        {
-            SGEContext context = new SGEContext();
+        public void Delete(Expression<Func<T, bool>> predicate) {
             var entities = context.Set<T>().Where(predicate).ToList();
             entities.ForEach(x => context.Entry(x).State = EntityState.Deleted);
             context.SaveChanges();
-            context.Dispose();
         }
 
     }

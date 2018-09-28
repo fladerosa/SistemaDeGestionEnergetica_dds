@@ -28,6 +28,7 @@ namespace SGE.Tests.Entidades
             };
 
             repoAdmin.Create(adminNuevo);
+            repoAdmin.Delete(adminNuevo);
         }
         
     }

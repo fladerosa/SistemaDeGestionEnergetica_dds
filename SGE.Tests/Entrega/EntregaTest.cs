@@ -184,9 +184,9 @@ namespace SGE.Tests.Entrega {
             dispositivoInteligente.Nombre = "nombre modificado";
 
             //TODO: Se debe persistir en el momento en el que cambia de estado, no aca
-            foreach (Activacion activacion in dispositivoInteligente.RegistroDeActivaciones) {
-                repoActivacion.Create(activacion);
-            }
+            //foreach (Activacion activacion in dispositivoInteligente.RegistroDeActivaciones) {
+            //    repoActivacion.Create(activacion);
+            //}
 
             repoInteligente.Update(dispositivoInteligente);
 
@@ -194,6 +194,14 @@ namespace SGE.Tests.Entrega {
 
             Assert.AreEqual(dispositivoModificado.Nombre, "nombre modificado");
 
+            //-----------------------------------
+            //repoAccion.Delete(accion);
+            //repoRegla.Delete(regla);
+            //repoMedicion.Delete(medicion);
+            //repoActivacion.Delete(a => a.Id >= 1);
+            //repoInteligente.Delete(dispositivoInteligente);
+            //repoSensor.Delete(sensor);
+            //repoActuador.Delete(actuador);
         }
 
         [TestMethod]
@@ -241,6 +249,16 @@ namespace SGE.Tests.Entrega {
             regla.Nombre = "ReglaControlTemperatura";
             repoRegla.Update(regla);
             Console.WriteLine(regla.Nombre);
+
+            ///////////////////////////////////////////////////////////////////////
+            repoAccion.Delete(accion);
+            repoCondicion.Delete(condicion);
+            repoRegla.Delete(regla);
+            repoMedicion.Delete(medicion);
+            repoInteligente.Delete(dispositivoInteligente);
+            repoActuador.Delete(actuador);
+            repoSensor.Delete(sensor);
+            
         }
 
         [TestMethod]

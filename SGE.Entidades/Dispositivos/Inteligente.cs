@@ -1,6 +1,7 @@
 ﻿using SGE.Entidades.Drivers;
 using SGE.Entidades.Drivers.Interfaces;
 using SGE.Entidades.Managers;
+using SGE.Entidades.Repositorio;
 using SGE.Entidades.Usuarios;
 using SGE.Entidades.ValueProviders;
 using System;
@@ -25,10 +26,10 @@ namespace SGE.Entidades.Dispositivos
         public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
        
-        public int SensorId { get; set; } // fk con tabla Sensor
+        public int? SensorId { get; set; } // fk con tabla Sensor
         [ForeignKey("SensorId")]
         public virtual Sensor Sensor { get; set; } // one to many con  Sensor
-        public int ActuadorId { get; set; } //fk con tabla Actuador
+        public int? ActuadorId { get; set; } //fk con tabla Actuador
         [ForeignKey("ActuadorId")]
         public virtual Driver Actuador { get; set; } // one to many con  Actuador
 
@@ -98,7 +99,10 @@ namespace SGE.Entidades.Dispositivos
                     InteligenteId = this.Id
                 };
 
-                this.RegistroDeActivaciones.Add(activacion);
+                BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+                repoActivacion.Create(activacion);
+
+                //this.RegistroDeActivaciones.Add(activacion);
             }
         }
 
@@ -132,11 +136,17 @@ namespace SGE.Entidades.Dispositivos
             {
                 this.Estado = EstadoDispositivo.Apagado;
                 this.Driver.Apagar();
-                this.RegistroDeActivaciones.Add(new Activacion(this.Estado) {
+
+                Activacion activacion = new Activacion(this.Estado) {
                     Inteligente = this,
                     FechaDeRegistro = DateTime.Now,
                     InteligenteId = this.Id
-                });
+                };
+
+                BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+                repoActivacion.Create(activacion);
+
+                //this.RegistroDeActivaciones.Add(activacion);
             }
         }
 
@@ -147,11 +157,17 @@ namespace SGE.Entidades.Dispositivos
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
             this.Driver.PonerEnModoAhorroEnergia();
-            this.RegistroDeActivaciones.Add(new Activacion(this.Estado) {
+
+            Activacion activacion = new Activacion(this.Estado) {
                 Inteligente = this,
                 FechaDeRegistro = DateTime.Now,
                 InteligenteId = this.Id
-            });
+            };
+
+            BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+            repoActivacion.Create(activacion);
+
+            //this.RegistroDeActivaciones.Add(activacion);
         }
 
         #endregion
