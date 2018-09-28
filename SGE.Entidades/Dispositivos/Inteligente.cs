@@ -22,7 +22,7 @@ namespace SGE.Entidades.Dispositivos
         /// Indica el estado del dispositivo
         /// </summary>
         protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
-        public virtual ICollection<Usuario> Usuarios { get; set; } //many to many con Usuarios
+        public virtual ICollection<Cliente> Clientes { get; set; } //many to many con Clientes
         public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
        

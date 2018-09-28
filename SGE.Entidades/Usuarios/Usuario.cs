@@ -17,9 +17,6 @@ namespace SGE.Entidades.Usuarios
         //TODO: este  notMapped me hace ruido, verificar luego la consistencia de este atributo
         //[NotMapped]
         public virtual Direccion Direccion { get; set; } //one to one
-       
-        public virtual ICollection<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
-        public virtual ICollection<Estandar> Estandars { get; set; } //many to many con Dispositivo
 
         public Usuario()
         {

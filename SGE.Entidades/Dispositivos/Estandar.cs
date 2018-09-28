@@ -7,7 +7,7 @@ namespace SGE.Entidades.Dispositivos
     [Table(name: "Estandar")]
     public class Estandar : Dispositivo
     {
-        public virtual ICollection<Usuario> Usuarios { get; set; } //many to many con Usuario
+        public virtual ICollection<Cliente> Clientes { get; set; } //many to many con Cliente
 
         #region Constructor
         public Estandar() {

@@ -26,6 +26,8 @@ namespace SGE.Entidades.Usuarios
         public int CategoriaId { get; set; } //fk con tabla cliente
         [ForeignKey("CategoriaId")]
         public virtual Categoria Categoria { get; set; } // one to many con  Categoria
+        public virtual ICollection<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
+        public virtual ICollection<Estandar> Estandars { get; set; } //many to many con Dispositivo
 
         public Cliente()
         {

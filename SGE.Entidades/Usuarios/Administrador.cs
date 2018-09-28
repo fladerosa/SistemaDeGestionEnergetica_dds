@@ -8,7 +8,6 @@ namespace SGE.Entidades.Usuarios
     [Table(name: "Administrador")]
     public class Administrador : Usuario
     {
-        //TODO: el cliente tambien tiene listados de dispositivos, no se podrían poner en la clase "Usuario"?
         public string Nui { get; set; }
  
         public int Antiguedad()

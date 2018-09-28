@@ -11,8 +11,7 @@ namespace SGE.Entidades.Usuarios {
         public string Calle { get; set; }
         [MaxLength(7)]
         public string Nro { get; set; }
-       // public int UsuarioId { get; set; }
-       // [ForeignKey("UsuarioId")]
+
         public virtual Usuario Usuario { get; set; } //one to one
 
     }

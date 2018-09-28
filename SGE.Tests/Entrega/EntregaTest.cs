@@ -48,8 +48,7 @@ namespace SGE.Tests.Entrega {
         //TODO: se crean los casos de pruebas mínimos para la entrega 3. Para facilitar la lectura se los agrupa en esta clase,
         //sin embargo luego se acomodarán las pruebas en las clases correspondientes.
         [TestInitialize]
-        public void TestInitialize() {
-            //se carga una zona para evitar que rompa por fk de transformador
+        public void TestInitialize() {           
             zona = new Zona() {
                 codigo = 99,
                 Nombre = "zona_02",
@@ -59,19 +58,19 @@ namespace SGE.Tests.Entrega {
             };
 
             cliente = new Cliente() {
-                Nombre = "Nombre_test_cp2",
-                Apellido = "Apellido_test_cp2",
-                NombreUsuario = "NombreUsuario_test_cp2",
-                Password = "Password_test_02",
+                Nombre = "Nombre_test_cp1",
+                Apellido = "Apellido_test_cp1",
+                NombreUsuario = "NombreUsuario_test_cp1",
+                Password = "81dc9bdb52d04dc20036dbd8313ed055", //la pass es 1234 (MD5)
 
                 NumeroDocumento = "2345678",
-                Latitud = 3,
-                Longitud = 4,
+                Latitud = 60,
+                Longitud = 29,
                 Telefonos = new List<Telefono>()
             };
             cliente.TipoDocumento = Cliente.enum_TipoDocumento.DNI;
             cliente.Direccion = new Direccion() {
-                Calle = "calle_cp2",
+                Calle = "calle_cp1",
                 Nro = "468"
             };
             cliente.Telefonos.Add(new Telefono() {
@@ -93,11 +92,10 @@ namespace SGE.Tests.Entrega {
                 CostoVariable = 550
             };
 //TODO : inicializacion de sensor, actuador, medicion, accion, regla y condicion
-// no es la forma mas bonita (pensar en otra), pero en la base genera la fk correspondientes
 // se usa en caso 2 y 3. 
 
             sensor = new SensorTemperaturaAA(35, new SamsungAireAcondicionadoDriver());
-            dispositivoInteligente = new Inteligente("AireA-x_cp2", 100m, new SamsungAireAcondicionadoDriver());
+            dispositivoInteligente = new Inteligente("AireA-x_cp2", 100, new SamsungAireAcondicionadoDriver());
             medicion = new Medicion(350, UnidadEnum.CENTIGRADOS);
 
             actuador = new SamsungAireAcondicionadoDriver() {
@@ -129,7 +127,9 @@ namespace SGE.Tests.Entrega {
             repoZona.Create(zona);
             cliente.Transformador.ZonaId = zona.Id;
             repoCliente.Create(cliente);
-
+         
+            Console.WriteLine("Cliente Persistido: " + cliente.Apellido + " Latitud: " + cliente.Latitud + " Longitud: " + cliente.Longitud);
+           
             Cliente clienteConsultado = repoCliente.Single(c => c.Id == cliente.Id);
 
             clienteConsultado.Latitud = 3;
@@ -137,6 +137,7 @@ namespace SGE.Tests.Entrega {
 
             repoCliente.Update(clienteConsultado);
 
+            Console.WriteLine("Cliente Modificado: " + cliente.Apellido + "Latitud: " + cliente.Latitud + "Longitud: " + cliente.Longitud);
             Cliente clienteConsultado2 = repoCliente.Single(c => c.Id == cliente.Id);
 
             Assert.AreEqual(clienteConsultado2.Latitud, 3);
@@ -146,11 +147,18 @@ namespace SGE.Tests.Entrega {
 
         [TestMethod]
         public void CasoDePrueba2() {
-            ///Recuperar un dispositivo.
+            ///Recuperar un dispositivo. (o sea que ya pertenece a un cliente)
             ///Mostrar por consola todos los intervalos que estuvo encendido durante el último mes.
             ///Modificar su nombre(o cualquier otro atributo editable) y grabarlo.
             ///Recuperarlo y evaluar que el nombre coincida con el esperado.
-            
+
+            cliente.Nombre = "Test_cp2";
+            cliente.NumeroDocumento = "3521634";
+            cliente.TipoDocumento = Cliente.enum_TipoDocumento.PASAPORTE;
+            repoZona.Create(zona);
+            cliente.Transformador.ZonaId = zona.Id;
+            repoCliente.Create(cliente);
+
             repoSensor.Create(sensor);
             dispositivoInteligente.SensorId = sensor.Id;
             medicion.SensorId = sensor.Id;
@@ -167,18 +175,18 @@ namespace SGE.Tests.Entrega {
 
             //TODO: si bien la prueba no falla, actualmente está creando varias veces el mismo dispositivo. Esto se debe a que se crean contextos nuevos por cada add, hay que revisar eso.
             dispositivoInteligente.Encender();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-25);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-65);
             dispositivoInteligente.Apagar();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-4);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-40);
             dispositivoInteligente.Encender();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-3);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-23);
             dispositivoInteligente.Apagar();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-1);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-5);
 
             List<string> intervalosEncendido = dispositivoInteligente.ObtenerIntervalosEncendidoPorPeriodo(DateTime.Now.AddMonths(-1), DateTime.Now);
 
             foreach (string intervaloEncendido in intervalosEncendido) {
-                Console.WriteLine(intervaloEncendido);
+                Console.WriteLine(intervaloEncendido); //TODO: no se esta mostrando por consola el intervaloEncendido
             }
 
             dispositivoInteligente.Nombre = "nombre modificado";
@@ -236,12 +244,21 @@ namespace SGE.Tests.Entrega {
             repoRegla.Create(regla);
             accion.ActuadorId = actuador.Id;
             condicion.ReglaId = regla.ReglaId;
-                        
+
+            //se crea condicion en la BD y se muestra por aplicacion
             repoCondicion.Create(condicion);
+           
+
             accion.ReglaId = regla.ReglaId;
             repoAccion.Create(accion);
             //Se crea la regla con la inicializacion usada en el caso 2, 
             // y probando el mapeo relacional, protegiendo las fk
+
+            Console.WriteLine("Valor de condicion: " + condicion.valorReferencia);
+            //se modifica  y se muestra
+            condicion.valorReferencia = 150;
+            repoCondicion.Update(condicion);
+            Console.WriteLine("Valor de condicion Modificado: " + condicion.valorReferencia);
 
             //se crea regla en la BD y se muestra por aplicacion
             Console.WriteLine(regla.Nombre);
@@ -251,14 +268,16 @@ namespace SGE.Tests.Entrega {
             Console.WriteLine(regla.Nombre);
 
             ///////////////////////////////////////////////////////////////////////
-            repoAccion.Delete(accion);
+       /*   TODO: Si se borran los repos, no se persisten a la base, entonces no se puede comprobar
+        *   la creacion y modificacion de la regla y condicion, asociada al dispositivo
+        *   repoAccion.Delete(accion);
             repoCondicion.Delete(condicion);
             repoRegla.Delete(regla);
             repoMedicion.Delete(medicion);
             repoInteligente.Delete(dispositivoInteligente);
             repoActuador.Delete(actuador);
             repoSensor.Delete(sensor);
-            
+         */   
         }
 
         [TestMethod]
@@ -283,11 +302,12 @@ namespace SGE.Tests.Entrega {
                     Longitud = (double)t.Longitud,
                     ZonaId = t.Zona
                 });
+             
             }
 
             //Recupero los transformadores persistidos
             List<Transformador> transPer = repoTransformador.GetAll();
-
+           
             //cargamos los transformadores desde el json con una instancia de transformador mas
             string nombreArchivoJsonMasUno = "transformadoresConUnoMas.json";
             TransformadoresHelper transHelperMasUno = new TransformadoresHelper(nombreArchivoJsonMasUno);
@@ -316,22 +336,23 @@ namespace SGE.Tests.Entrega {
 
             // Evaluo que la cantidad actual sea la anterior + 1
             Assert.IsTrue(transHelperMasUno.Transformadores.Count <= transPerMasUno.Count);
+            Console.WriteLine("Cantidad de Transformadores: " + transPerMasUno.Count);
+            /* TODO: si ejecuto los foreach y elimino los transformadores, no se persisten los datos a la base
+                        //eliminamos los registros con los que hicimos las pruebas
+                        foreach (Core.Entidades.Transformador transformador in transHelperMasUno.Transformadores) {
+                            Transformador transformadorDB = repoTransformador.Single(t => t.codigo == transformador.codigo);
+                            if (transformadorDB != null) {
+                                repoTransformador.Delete(transformadorDB);
+                            }
+                        }
 
-            //eliminamos los registros con los que hicimos las pruebas
-            foreach (Core.Entidades.Transformador transformador in transHelperMasUno.Transformadores) {
-                Transformador transformadorDB = repoTransformador.Single(t => t.codigo == transformador.codigo);
-                if (transformadorDB != null) {
-                    repoTransformador.Delete(transformadorDB);
-                }
-            }
-
-            //eliminamos los registros con los que hicimos las pruebas
-            foreach (Core.Entidades.Zona zona in zonaHelper.Zonas) {
-                Zona zonaDB = repoZona.Single(z => z.codigo == zona.codigo);
-                if(zonaDB != null) {
-                    repoZona.Delete(zonaDB);
-                }
-            }
+                        //eliminamos los registros con los que hicimos las pruebas
+                        foreach (Core.Entidades.Zona zona in zonaHelper.Zonas) {
+                            Zona zonaDB = repoZona.Single(z => z.codigo == zona.codigo);
+                            if(zonaDB != null) {
+                                repoZona.Delete(zonaDB);
+                            }
+                        } */
         }
 
         private Zona AsignarAtributosZona(Core.Entidades.Zona xZ)
@@ -359,8 +380,11 @@ namespace SGE.Tests.Entrega {
             DateTime fechaDesde = fechaHasta.AddMonths(-1);
 
             cliente.Nombre = "Test_cp5";
-            cliente.Id = 0;
-
+            cliente.NumeroDocumento = "1521634";
+            cliente.TipoDocumento = Cliente.enum_TipoDocumento.DNI;
+            //    cliente.Id = 1;          
+            //TODO: se toman los datos de inicializacion de todo el modelo, sobre todo de Activacion, dado que
+            // sino la funcion CalcularHorasDeUso(), que utiliza la funcion ObtenerConsumoPeriodo(), trae 0 dado que no habria registros en la tabla
             cliente.Inteligentes.Add(dispositivoInteligente);
 
             repoZona.Create(zona);
@@ -369,7 +393,29 @@ namespace SGE.Tests.Entrega {
 
             Transformador transformador = cliente.Transformador;
 
+            repoSensor.Create(sensor);
+            dispositivoInteligente.SensorId = sensor.Id;
+            medicion.SensorId = sensor.Id;
+
+            repoActuador.Create(actuador);
+            dispositivoInteligente.ActuadorId = actuador.Id;
+            repoInteligente.Create(dispositivoInteligente);
+            repoMedicion.Create(medicion);
+
+            accion.ActuadorId = actuador.Id;
+            repoRegla.Create(regla);
+            accion.ReglaId = regla.ReglaId;
+            repoAccion.Create(accion);
             //repoTransformador.Create(transformador);
+
+            dispositivoInteligente.Encender();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-65);
+            dispositivoInteligente.Apagar();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-40);
+            dispositivoInteligente.Encender();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-23);
+            dispositivoInteligente.Apagar();
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-5);
 
             Console.WriteLine("Consumo por hogar en el período '" + fechaDesde.ToShortDateString() + "' y '" + fechaHasta.ToShortDateString() + "': " +
                 Reporte.consumoPorHogarYPeriodo(cliente.Id, fechaDesde, fechaHasta));
@@ -384,7 +430,7 @@ namespace SGE.Tests.Entrega {
 
             repoInteligente.Update(inteligenteConsultado);
 
-            Console.WriteLine("Consumo por transformador en el período '" + fechaDesde.ToShortDateString() + "' y '" + fechaHasta.ToShortDateString() + "': " +
+            Console.WriteLine("Consumo Incrementado por transformador en el período '" + fechaDesde.ToShortDateString() + "' y '" + fechaHasta.ToShortDateString() + "': " +
                 Reporte.consumoTransformadorPorPeriodo(transformador.Id, fechaDesde, fechaHasta));
         }
     }
