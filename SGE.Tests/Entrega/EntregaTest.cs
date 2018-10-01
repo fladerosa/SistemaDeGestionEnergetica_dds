@@ -61,7 +61,7 @@ namespace SGE.Tests.Entrega {
                 Nombre = "Nombre_test_cp1",
                 Apellido = "Apellido_test_cp1",
                 NombreUsuario = "NombreUsuario_test_cp1",
-                Password = "81dc9bdb52d04dc20036dbd8313ed055", //la pass es 1234 (MD5)
+                Password = "1234", //la pass es 1234 (MD5)
 
                 NumeroDocumento = "2345678",
                 Latitud = 60,

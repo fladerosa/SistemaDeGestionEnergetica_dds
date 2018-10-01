@@ -8,11 +8,12 @@ namespace SGE.Web.Controllers
 {
     public class HomeController : Controller
     {
+        //Inicio
         public ActionResult Index()
         {
             return View();
         }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

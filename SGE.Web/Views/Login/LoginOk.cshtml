@@ -1,0 +1,21 @@
+﻿
+@{
+    /* Layout = null;
+
+        if (Session["Id"] == null)
+        {
+        Response.Redirect("~/Login/Index");
+        }*/
+
+    ViewBag.Title = "LoginOk";
+}
+
+<div class="jumbotron"> 
+    <h3>Bienvenido Usuario : @Session["NombreUsuario"].ToString() </h3>
+    <a href="@Url.Action("LogOut", "Login")">Cerrar Sesion</a>
+</div>
+
+<div style="text-align: center;">
+    <img src="~/Images/1.jpg" alt="SGE">
+</div>
+
