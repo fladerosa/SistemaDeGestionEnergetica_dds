@@ -51,6 +51,26 @@ namespace SGE.Entidades.Contexto {
             modelBuilder.Configurations.Add(new SensorMap()); // mapeo herencia sensor
             modelBuilder.Configurations.Add(new DriverMap()); // mapeo herencia Actuador
             modelBuilder.Configurations.Add(new AccionMap()); // mapeo herencia Accion
+
+            modelBuilder.Entity<Inteligente>()
+                .HasMany<Cliente>(s => s.Clientes)
+                .WithMany(c => c.Inteligentes)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("InteligenteId");
+                    cs.MapRightKey("ClienteId");
+                    cs.ToTable("Inteligente_X_Cliente");
+                });
+
+            modelBuilder.Entity<Estandar>()
+                .HasMany<Cliente>(s => s.Clientes)
+                .WithMany(c => c.Estandars)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("EstandarId");
+                    cs.MapRightKey("ClienteId");
+                    cs.ToTable("Estandar_X_Cliente");
+                });
         }
     }
 }

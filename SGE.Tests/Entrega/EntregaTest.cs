@@ -113,7 +113,7 @@ namespace SGE.Tests.Entrega {
             };
 
             condicion = new Condicion(new Mayor(), 30);
-           
+          
         }
 
         [TestMethod]
@@ -137,7 +137,7 @@ namespace SGE.Tests.Entrega {
 
             repoCliente.Update(clienteConsultado);
 
-            Console.WriteLine("Cliente Modificado: " + cliente.Apellido + "Latitud: " + cliente.Latitud + "Longitud: " + cliente.Longitud);
+            Console.WriteLine("Cliente Modificado: " + cliente.Apellido + " Latitud: " + cliente.Latitud + " Longitud: " + cliente.Longitud);
             Cliente clienteConsultado2 = repoCliente.Single(c => c.Id == cliente.Id);
 
             Assert.AreEqual(clienteConsultado2.Latitud, 3);
@@ -173,20 +173,19 @@ namespace SGE.Tests.Entrega {
             accion.ReglaId = regla.ReglaId;
             repoAccion.Create(accion);
 
-            //TODO: si bien la prueba no falla, actualmente está creando varias veces el mismo dispositivo. Esto se debe a que se crean contextos nuevos por cada add, hay que revisar eso.
             dispositivoInteligente.Encender();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-65);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-165);
             dispositivoInteligente.Apagar();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-40);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(1).FechaDeRegistro.AddHours(-80);
             dispositivoInteligente.Encender();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-23);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(2).FechaDeRegistro.AddHours(-43);
             dispositivoInteligente.Apagar();
-            dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-5);
+            dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro = dispositivoInteligente.RegistroDeActivaciones.ElementAt(3).FechaDeRegistro.AddHours(-15);
 
             List<string> intervalosEncendido = dispositivoInteligente.ObtenerIntervalosEncendidoPorPeriodo(DateTime.Now.AddMonths(-1), DateTime.Now);
 
             foreach (string intervaloEncendido in intervalosEncendido) {
-                Console.WriteLine(intervaloEncendido); //TODO: no se esta mostrando por consola el intervaloEncendido
+                Console.WriteLine(intervaloEncendido); 
             }
 
             dispositivoInteligente.Nombre = "nombre modificado";
@@ -230,7 +229,6 @@ namespace SGE.Tests.Entrega {
                 regla.Condiciones.Add(new Condicion(new SensorTemperaturaAA(new SamsungAireAcondicionadoDriver()), new Mayor(), 30));
                 regla.Accions.Add(new Encender(new AireAcondicionado(new SamsungAireAcondicionadoDriver(), "AA Samsung", 100)));
                */
-            //TODO: no puedo mapear las reglas a los dispositivos....
             
             repoSensor.Create(sensor);
             dispositivoInteligente.SensorId = sensor.Id;

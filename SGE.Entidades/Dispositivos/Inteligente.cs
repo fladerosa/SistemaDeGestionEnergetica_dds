@@ -114,12 +114,13 @@ namespace SGE.Entidades.Dispositivos
 
             for (var i = 0; i < activacionesDentroPeriodo.Count; i++) {
                 activacion = activacionesDentroPeriodo[i];
+
                 if(activacion.Estado == EstadoDispositivo.Encendido) {
                     //Busco la posicion siguiente para saber cuando se apagó, si no la encuentro asumo que nunca se apagó, por lo que asumo que sigue encendido hasta la fecha máxima indicada
                     if(activacionesDentroPeriodo.ElementAtOrDefault(i+1) != null) {
-                        intervalosEncendido.Add("Encendido desde '" + activacion.FechaDeRegistro.ToShortDateString() + "' hasta '" + activacionesDentroPeriodo[i + 1].FechaDeRegistro.ToShortDateString());
+                        intervalosEncendido.Add("Encendido desde '" + activacion.FechaDeRegistro + "' hasta '" + activacionesDentroPeriodo[i + 1].FechaDeRegistro + "' Consumo en hs: '" + Math.Truncate((activacionesDentroPeriodo[i + 1].FechaDeRegistro - activacion.FechaDeRegistro).TotalHours));
                     } else {
-                        intervalosEncendido.Add("Encendido desde '" + activacion.FechaDeRegistro.ToShortDateString() + "' hasta (al menos) '" + fechaHasta.ToShortDateString());
+                        intervalosEncendido.Add("Encendido desde '" + activacion.FechaDeRegistro + "' hasta (al menos) '" + fechaHasta + "' Consumo en hs: '" + Math.Truncate((fechaHasta - activacion.FechaDeRegistro).TotalHours));
                     }
                 }
             }

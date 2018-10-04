@@ -29,6 +29,8 @@ namespace SGE.Entidades.Usuarios
         public virtual ICollection<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo
         public virtual ICollection<Estandar> Estandars { get; set; } //many to many con Dispositivo
 
+        public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; } //one to many con Activacion
+
         public Cliente()
         {
             this.Inteligentes = new List<Inteligente>();

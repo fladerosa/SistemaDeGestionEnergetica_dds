@@ -1,6 +1,7 @@
 ﻿using SGE.Entidades.Acciones;
 using SGE.Entidades.Reglas.Operadores;
 using SGE.Entidades.ValueProviders;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,7 +20,8 @@ namespace SGE.Entidades.Reglas
         public int ReglaId { get; set; } // fk con tabla regla
         [ForeignKey("ReglaId")]
         public Regla Regla { get; set; } // one to many con  regla 
-        
+
+        public virtual ICollection<Medicion> Mediciones { get; set; }
         #endregion
 
         #region Constructores

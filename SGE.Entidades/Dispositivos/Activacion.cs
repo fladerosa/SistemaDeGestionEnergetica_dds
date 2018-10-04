@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGE.Entidades.Usuarios;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Dispositivos {
@@ -12,6 +13,11 @@ namespace SGE.Entidades.Dispositivos {
         public int InteligenteId { get; set; } //fk con tabla Inteligente
         [ForeignKey("InteligenteId")]
         public virtual Inteligente Inteligente { get; set; } // one to many con  Inteligente
+
+        public int ? ClienteId { get; set; } //fk con tabla Cliente
+        [ForeignKey("ClienteId")]
+        public virtual Cliente Cliente { get; set; } // one to many con  Cliente
+
 
         public Activacion() {
         }

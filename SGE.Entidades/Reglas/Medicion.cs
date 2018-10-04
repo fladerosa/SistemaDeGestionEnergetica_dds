@@ -19,6 +19,10 @@ namespace SGE.Entidades.Reglas
         [ForeignKey("SensorId")]
         public Sensor Sensor { get; set; } // one to many con  Sensor
 
+        public int ? CondicionId { get; set; } // fk con tabla Condicion
+        [ForeignKey("CondicionId")]
+        public Condicion Condicion { get; set; } // one to many con Condicion
+
         #endregion
 
         #region Constructores
