@@ -70,7 +70,7 @@
     "Tipo": "TELEVISOR",
     "Inteligente": "S",
     "BajoConsumo": "S",
-    "Consumo": "90.04",
+    "Consumo": "1234.04",
     "Reemplazable":  "N",
     "Caracteristicas": [
 		  "COLOR",
@@ -150,7 +150,7 @@
     "Tipo": "LAVARROPAS",
     "Inteligente": "S",
     "BajoConsumo": "S",
-    "Consumo": "0.175",
+    "Consumo": "4321.175",
     "Reemplazable":  "N",
     "Caracteristicas": [
 		  "AUTOMATICO",

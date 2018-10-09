@@ -16,14 +16,17 @@ namespace SGE.Entidades.Simplex
     /// </summary>
     public class SimplexBuilder
     {
-        private double ValorOptimo { get; set; }
+        private const double VALOR_OPTIMO_DEFAULT = 440640;
+        private const double HORAS_MINIMAS = 0;
+        private const double HORAS_MAXIMAS = 720;
+
         private SolverContext Context { get; set; }
         private Model Model { get; set; }
         private int Minimos { get; set; }
         private int Maximos { get; set; }
         private double ConsumoTotal { get; set; }
         private Dictionary<string, double> Coeficientes { get; set; }
-        private Dictionary<string, string> ListaDeDispositivo { get; set; }
+        private Dictionary<string, string> Dispositivos { get; set; }
         public Dictionary<string, double> Resultado { get; private set; }
 
 
@@ -33,19 +36,40 @@ namespace SGE.Entidades.Simplex
             this.Model = Context.CreateModel();
             this.Minimos = 0;
             this.Maximos = 0;
-            this.ValorOptimo = 612;
             this.CargarCoeficientes();
-            this.ListaDeDispositivo = new Dictionary<string, string>();
+            this.Dispositivos = new Dictionary<string, string>();
         }
 
 
         #region METODOS_PUBLICOS
 
         /// <summary>
+        /// Agrega una restriccion minima y maxima para un determinado dispositivo.
+        /// </summary>
+        public SimplexBuilder AgregarRestriccion(KeyValuePair<string, string> par, double valor)
+        {
+            if (DispositivosHelper.GetInstace().Existe(par.Key) && !DispositivosHelper.GetInstace().GetDispositivo(par.Key).EsReemplazable && valor >= HORAS_MINIMAS && valor <= HORAS_MAXIMAS)
+            {
+                this.Dispositivos.Add(par.Value, par.Key);
+
+                Decision decision = new Decision(Domain.RealNonnegative, par.Value);
+                this.Model.AddDecision(decision);
+                this.Model.AddConstraint("Minimo" + this.Minimos++, decision >= HORAS_MINIMAS);
+                this.Model.AddConstraint("Maximo" + this.Maximos++, decision <= HORAS_MAXIMAS - valor);
+            }
+            else
+            {
+                throw new Exception(); //TODO completar
+            }
+            return this;
+        }
+
+        /// <summary>
         /// Agrega una restriccion minima para un determinado dispositivo.
         /// En caso de que el identificador del dispositivo suministrado no exista en el modelo, se agrega y luego se agrega la restriccion minima.
+        /// DEPRECADO
         /// </summary>
-        public SimplexBuilder AgregarRestriccionMinimo(KeyValuePair<string, string> par, double valor)
+        private SimplexBuilder AgregarRestriccionMinimo(KeyValuePair<string, string> par, double valor)
         {
             // Busca el ID del dispositivo en la lista de variables y agrega una restriccion.
             foreach (Decision d in this.Model.Decisions)
@@ -58,7 +82,7 @@ namespace SGE.Entidades.Simplex
             // De no encontrar el dipositivo, lo agrega como nueva variable y agrega una restriccion.
             if (DispositivosHelper.GetInstace().Existe(par.Key) && !DispositivosHelper.GetInstace().GetDispositivo(par.Key).EsReemplazable)
             {
-                this.ListaDeDispositivo.Add(par.Value, par.Key);
+                this.Dispositivos.Add(par.Value, par.Key);
 
                 Decision decision = new Decision(Domain.RealNonnegative, par.Value);
                 this.Model.AddDecision(decision);
@@ -70,8 +94,9 @@ namespace SGE.Entidades.Simplex
         /// <summary>
         /// Agrega una restriccion maxima para un determinado dispositivo.
         /// En caso de que el identificador del dispositivo suministrado no exista en el modelo, se agrega y luego se agrega la restriccion maxima.
+        /// DEPRECADO
         /// </summary>
-        public SimplexBuilder AgregarRestriccionMaximo(KeyValuePair<string, string> par, double valor)
+        private SimplexBuilder AgregarRestriccionMaximo(KeyValuePair<string, string> par, double valor)
         {
             // Busca el ID del dispositivo en la lista de variables y agrega una restriccion.
             foreach (Decision d in this.Model.Decisions)
@@ -84,7 +109,7 @@ namespace SGE.Entidades.Simplex
             // De no encontrar el dipositivo, lo agrega como nueva variable y agrega una restriccion.
             if (DispositivosHelper.GetInstace().Existe(par.Key) && !DispositivosHelper.GetInstace().GetDispositivo(par.Key).EsReemplazable)
             {
-                this.ListaDeDispositivo.Add(par.Value, par.Key);
+                this.Dispositivos.Add(par.Value, par.Key);
 
                 Decision decision = new Decision(Domain.RealNonnegative, par.Value);
                 this.Model.AddDecision(decision);
@@ -98,7 +123,6 @@ namespace SGE.Entidades.Simplex
         /// </summary>
         public void Resolver()
         {
-            this.AgregarRestriccionExtremosAbsolutos();
             this.AgregarRestriccionConsumoMensualMaximo();
             this.AgregarFuncionEconomica();
 
@@ -106,8 +130,8 @@ namespace SGE.Entidades.Simplex
             List<Goal> listaObjetivos = new List<Goal>();
             listaObjetivos.AddRange(solution.Goals);
             Resultado = ParsearResultado(solution.Decisions);
-            Resultado.Add("TotalHoras", listaObjetivos[0].ToDouble());
-            Resultado.Add("TotalConsumo", CalcularConsumoTotal(Resultado));
+            Resultado.Add("TotalHorasRestantes", listaObjetivos[0].ToDouble());
+            Resultado.Add("ConsumoRestanteTotal", CalcularConsumoTotal(Resultado));
         }
         #endregion METODOS_PUBLICOS
 
@@ -115,24 +139,12 @@ namespace SGE.Entidades.Simplex
 
         #region METODOS_PRIVADOS
 
-        private void AgregarRestriccionExtremosAbsolutos()
-        {
-            int max = 0, min = 0;
-            // Por cada variable agrego una restriccion minima y maxima absolutas.
-            // Ya que nunca se puede, por mes, dar un uso < 0hs o > 720hs
-            foreach (Decision d in this.Model.Decisions)
-            {
-                this.Model.AddConstraint("MinimoAbsoluto" + min++, d >= 0);
-                this.Model.AddConstraint("MaximoAbsoluto" + max++, d <= 720);
-            }
-        }
-
         private void AgregarRestriccionConsumoMensualMaximo()
         {
             Term term = 0;
             foreach (Decision d in this.Model.Decisions)
-                term += d * this.Coeficientes[this.ListaDeDispositivo[d.Name]];
-            this.Model.AddConstraint("ConsumoMensualMaximo", term <= this.ValorOptimo * 24 * 30);
+                term += d * this.Coeficientes[this.Dispositivos[d.Name]];
+            this.Model.AddConstraint("ConsumoMensualMaximo", term <= this.CalcularValorOptimo());
         }
 
         private void AgregarFuncionEconomica()
@@ -175,13 +187,28 @@ namespace SGE.Entidades.Simplex
 
             foreach (KeyValuePair<string, double> elemento in resultado)
             {
-                if (!elemento.Key.Contains("TotalHoras"))
+                if (!elemento.Key.Contains("TotalHorasRestantes"))
                 {
-                    consumo += elemento.Value * this.Coeficientes[this.ListaDeDispositivo[elemento.Key]];
+                    consumo += elemento.Value * this.Coeficientes[this.Dispositivos[elemento.Key]];
                 }
             }
 
             return consumo;
+        }
+
+        private double CalcularValorOptimo()
+        {
+            string[] vec;
+            double consumo = 0;
+
+            foreach (var con in this.Model.Constraints)
+                if (con.Name.StartsWith("Maximo"))
+                {
+                    vec = con.Expression.Split(' ');
+                    consumo += (720 - double.Parse(vec[2])) * this.Coeficientes[this.Dispositivos[vec[0]]];
+                }
+
+            return (VALOR_OPTIMO_DEFAULT - consumo) < 0 ? 0 : VALOR_OPTIMO_DEFAULT - consumo;
         }
 
 

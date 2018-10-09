@@ -1,4 +1,5 @@
-﻿using SGE.Entidades.Drivers;
+﻿using SGE.Core.Helpers;
+using SGE.Entidades.Drivers;
 using SGE.Entidades.Drivers.Interfaces;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Repositorio;
@@ -77,6 +78,14 @@ namespace SGE.Entidades.Dispositivos
         {
             this.RegistroDeActivaciones = new List<Activacion>();
             this.Driver = driver;
+        }
+
+        public Inteligente(string nombre, IDriver driver, string id) : base(nombre)
+        {
+            this.RegistroDeActivaciones = new List<Activacion>();
+            this.Driver = driver;
+            this.ConsumoEnergia = Convert.ToDecimal(DispositivosHelper.GetInstace().Dispositivos.Where(x => x.Id == id).Single().Consumo);
+            this.IdentificadorFabrica = id;
         }
 
         #endregion
@@ -189,7 +198,47 @@ namespace SGE.Entidades.Dispositivos
         {
             if(this.RegistroDeActivaciones != null && this.RegistroDeActivaciones.Count > 0) {
                 List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaDesde && x.FechaDeRegistro <= fechaHasta).ToList<Activacion>();
+                if(lista == null || lista.Count == 0)
+                {
+                    Activacion ultimaActivacion = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro == (this.RegistroDeActivaciones.Max(y => y.FechaDeRegistro))).Single();
+                    if(ultimaActivacion.Estado == EstadoDispositivo.Encendido)
+                    {
+                        lista.Add(new Activacion()
+                        {
+                            Estado = EstadoDispositivo.Encendido,
+                            Inteligente = this,
+                            FechaDeRegistro = fechaDesde,
+                            InteligenteId = this.Id
+                        });
+                    }
+
+                }
                 return this.ConsumoEnergia * this.CalcularHorasDeUso(lista);
+            }
+            return 0;
+        }
+
+        public decimal ObtenerHorasPeriodo(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            if (this.RegistroDeActivaciones != null && this.RegistroDeActivaciones.Count > 0)
+            {
+                List<Activacion> lista = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro >= fechaDesde && x.FechaDeRegistro <= fechaHasta).ToList<Activacion>();
+                if (lista == null || lista.Count == 0)
+                {
+                    Activacion ultimaActivacion = this.RegistroDeActivaciones.Where(x => x.FechaDeRegistro == (this.RegistroDeActivaciones.Max(y => y.FechaDeRegistro))).Single();
+                    if (ultimaActivacion.Estado == EstadoDispositivo.Encendido)
+                    {
+                        lista.Add(new Activacion()
+                        {
+                            Estado = EstadoDispositivo.Encendido,
+                            Inteligente = this,
+                            FechaDeRegistro = fechaDesde,
+                            InteligenteId = this.Id
+                        });
+                    }
+
+                }
+                return this.CalcularHorasDeUso(lista);
             }
             return 0;
         }
@@ -215,7 +264,7 @@ namespace SGE.Entidades.Dispositivos
             }
 
             if (activacionAnterior != null && activacionAnterior.Estado != EstadoDispositivo.Apagado && flag)
-                horas += Math.Abs(activacionAnterior.FechaDeRegistro.Subtract(DateTime.Now).Hours);
+                horas += Math.Abs(Convert.ToInt32(activacionAnterior.FechaDeRegistro.Subtract(DateTime.Now).TotalHours));
 
             return horas;
         }
@@ -223,7 +272,11 @@ namespace SGE.Entidades.Dispositivos
 
         public double ObtenerCantidadDeHoraDeUsoMensual()
         {
-            return 10; //TODO todo...
+            DateTime now = DateTime.Now;
+            DateTime ini = new DateTime(now.Year, now.Month, 1);
+            DateTime fin = ini.AddMonths(1).AddDays(-1).AddHours(23).AddMinutes(59).AddSeconds(59);
+
+            return decimal.ToDouble(this.ObtenerHorasPeriodo(ini, fin));
         }
         #endregion
 
