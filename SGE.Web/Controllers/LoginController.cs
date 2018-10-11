@@ -22,7 +22,7 @@ namespace SGE.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autorizado(SGE.Web.Models.Usuario modeloUsuario)
+        public ActionResult Autorizacion(SGE.Web.Models.Usuario modeloUsuario)
         {
             using(SGEDbEntities db = new SGEDbEntities())
             {
@@ -36,7 +36,9 @@ namespace SGE.Web.Controllers
                 {
                     Session["Id"] = detalleUsuario.Id;
                     Session["NombreUsuario"] = detalleUsuario.NombreUsuario;
+                    
                     return RedirectToAction("LoginOk", "Login");
+                    
                 }
             }
 

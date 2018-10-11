@@ -68,7 +68,7 @@ namespace SGE.Entidades.Simplex.Tests
             Thread.Sleep(3000);
             pl.Detener();
 
-            Assert.IsFalse(Tele.EstaApagado);
+            Assert.IsTrue(Tele.EstaApagado);
         }
 
         [TestMethod()]

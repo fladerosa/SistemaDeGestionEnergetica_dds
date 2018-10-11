@@ -1,64 +1,44 @@
 ﻿@model SGE.Web.Models.Usuario
 
 @{
-    Layout = null;
-   /* ViewBag.Title = "Ingreso";*/
+
+    ViewBag.Title = "Login";
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="~/Content/Login.css">
-    <title>Login</title>
-
-</head>
-<body>
-    <h3> @Html.ActionLink("Volver", "Index", "Home")</h3>
-        <div id="Login-div">
-            <h2 style="text-decoration: underline;text-align:center;"> Acceso a SGE </h2>
-            <div class="imgcontainer">
-                <img src="~/Images/avatar.png" alt="Avatar" class="avatar">
+<h3> @Html.ActionLink("Volver", "Index", "Home")</h3>
+<div id="Imagen_login" style="background-image:url('/Images/login.jpg'); background-size:cover; height:470px;">
+    
+    @using (Html.BeginForm("Autorizacion", "Login", FormMethod.Post))
+    {
+        <form id="form_login" runat="server">
+            <div id="Login-div" style="text-align:center; margin-left:370px; margin-right: 470px; background-color:darkgray; opacity:0.8;">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <img class="img-rounded" src="~/Images/SGE.png" alt="SGE_login">
+                        <h3 id="">Ingreso al sistema</h3>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">                              
+                                <input for="inputlg" type="text" placeholder="Usuario" @Html.EditorFor(model => model.NombreUsuario) />
+                               
+                                <br />
+                                @Html.ValidationMessageFor(model => model.NombreUsuario)
+                                <br />
+                               
+                                <input for="inputlg" type="password" placeholder="Contraseña"  @Html.EditorFor(model => model.Password) />
+                            
+                                <br />
+                                <input type="checkbox" name="Recordar" checked>Recordar Contraseña
+                                <label class="field-validation-error">@Html.DisplayFor(model => model.MensajeDeErrorLogueo)</label>
+                                <br />
+                                <br />
+                                <button type="submit" class="btn btn-default btn-lg">Login</button>
+                                <button type="reset" class="btn btn-default btn-lg">Borrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            @using (Html.BeginForm("Autorizado", "Login", FormMethod.Post))
-        {
-            <table>
-                <tr>
-                    <td></td>
-                </tr>
-                <tr name="usuario">
-                    <td>@Html.LabelFor(model => model.NombreUsuario)</td>
-                    <td>@Html.EditorFor(model => model.NombreUsuario)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => model.NombreUsuario)</td>
-                </tr>
-                <tr name="contrasenia">
-                    <td>@Html.LabelFor(model => model.Password)</td>
-                    <td>@Html.EditorFor(model => model.Password)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => model.Password)</td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label class="field-validation-error">@Html.DisplayFor(model => model.MensajeDeErrorLogueo)</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" name="name" value="Aceptar" /></td>
-                    <!-- <td><input type="reset" name="name" value="Borrar" /></td>-->
-                </tr>
-            </table>
-
+        </form>
     }
-        </div>
-            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-            <script src="~/Scripts/jquery.validate.min.js"></script>
-            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-        </body>
-</html> 
+</div>
+
+
