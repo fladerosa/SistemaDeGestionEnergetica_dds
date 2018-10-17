@@ -176,24 +176,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Login.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Login.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Login.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Login.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Login.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Login.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Usuario.cs">
-      <DependentUpon>Login.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -205,29 +187,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\avatar.png" />
-    <Content Include="Images\login.jpg" />
+	<Content Include="Images\login.jpg" />
     <Content Include="Images\SGE.PNG" />
-    <Content Include="Models\Login.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Login.edmx</DependentUpon>
-      <LastGenOutput>Login.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Login.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Login.edmx</DependentUpon>
-      <LastGenOutput>Login.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap-filestyle.js" />
     <Content Include="Scripts\bootstrap-filestyle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Login.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Login.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Login.edmx.diagram">
-      <DependentUpon>Login.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

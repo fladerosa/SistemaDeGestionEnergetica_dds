@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace SGE.Web.Controllers
 {
+    [Authorize]
     public class UploadController : Controller
     {
         #region Campos
