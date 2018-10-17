@@ -1,12 +1,9 @@
-﻿using SGE.Web.Models;
-using System;
-using System.Collections.Generic;
+﻿using SGE.Entidades.Contexto;
+using SGE.Entidades.Usuarios;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
-namespace SGE.Web.Controllers
-{
+namespace SGE.Web.Controllers {
     public class LoginController : Controller
     {
         // GET: Login
@@ -22,24 +19,20 @@ namespace SGE.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autorizado(SGE.Web.Models.Usuario modeloUsuario)
+        public ActionResult Autorizado(Usuario modeloUsuario)
         {
-            using(SGEDbEntities db = new SGEDbEntities())
+            var detalleUsuario = SGEContext.instancia().Usuarios.Where(x => x.NombreUsuario == modeloUsuario.NombreUsuario && x.Password == modeloUsuario.Password).FirstOrDefault();
+            if(detalleUsuario == null)
             {
-                var detalleUsuario = db.Usuario.Where(x => x.NombreUsuario == modeloUsuario.NombreUsuario && x.Password == modeloUsuario.Password).FirstOrDefault();
-                if(detalleUsuario == null)
-                {
-                    modeloUsuario.MensajeDeErrorLogueo = "Usuario y/o contraseña erronea.";
-                    return View("Index", modeloUsuario);
-                }
-                else
-                {
-                    Session["Id"] = detalleUsuario.Id;
-                    Session["NombreUsuario"] = detalleUsuario.NombreUsuario;
-                    return RedirectToAction("LoginOk", "Login");
-                }
+                modeloUsuario.MensajeDeErrorLogueo = "Usuario y/o contraseña erronea.";
+                return View("Index", modeloUsuario);
             }
-
+            else
+            {
+                Session["Id"] = detalleUsuario.Id;
+                Session["NombreUsuario"] = detalleUsuario.NombreUsuario;
+                return RedirectToAction("LoginOk", "Login");
+            }
         }
         public ActionResult LogOut()
         {

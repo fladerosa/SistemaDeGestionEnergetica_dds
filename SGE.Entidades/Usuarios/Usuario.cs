@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SGE.Entidades.Usuarios
 {
     [Table(name: "Usuario")]
-    public abstract class Usuario
+    public class Usuario
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -17,6 +17,7 @@ namespace SGE.Entidades.Usuarios
         //TODO: este  notMapped me hace ruido, verificar luego la consistencia de este atributo
         //[NotMapped]
         public virtual Direccion Direccion { get; set; } //one to one
+        public string MensajeDeErrorLogueo { get; set; }
 
         public Usuario()
         {

@@ -15,7 +15,7 @@ namespace SGE.Entidades.Contexto {
     {
         protected SGEContext() : base("ConnSGEDb")
         {
-          Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
+          //Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
         }
 
         private static SGEContext Instancia = null;
