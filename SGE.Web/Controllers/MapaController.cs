@@ -27,5 +27,16 @@ namespace SGE.Web.Controllers
 
             return View();
         }
+
+        public FilePathResult ZonasJson()
+        {
+            return File(Server.MapPath("../Resources/zonas.json"), "text/x-json");
+        }
+
+
+        public FilePathResult TransformadoresJson()
+        {
+            return File(Server.MapPath("../Resources/transformadores.json"), "text/x-json");
+        }
     }
 }

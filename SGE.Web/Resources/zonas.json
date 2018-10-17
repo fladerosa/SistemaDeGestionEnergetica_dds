@@ -1,0 +1,20 @@
+
+
+{"Zonas":[
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "1",
+    "nombre": "A",
+    "latitud": "-34.551505",
+    "longitud": "-58.490982",
+    "radio": "150"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "2",
+    "nombre": "B",
+    "latitud": "-34.559988",
+    "longitud": "-58.44326",
+    "radio": "150"
+  }
+]}

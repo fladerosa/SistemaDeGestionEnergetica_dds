@@ -35,14 +35,25 @@
 			    fillOpacity: 0.1,
 			    radius: 500
 			}).addTo(mapa).on('click', onMapClick);
+            
+		$.getJSON('Mapa/ZonasJson', function (result) {
+		    debugger;
+		    for (zona in result.Zonas) {
+		        L.circle([result.Zonas[zona].latitud, result.Zonas[zona].longitud], {
+		            color: 'blue',
+		            fillColor: '#f03',
+		            fillOpacity: 0.5,
+		            radius: result.Zonas[zona].radio
+		        }).addTo(mapa);
+		    }
+		});
 
-
-			var circle = L.circle([-34.697878, -58.468897], {
-										    color: 'blue',
-										    fillColor: '#f03',
-										    fillOpacity: 0.5,
-										    radius: 500
-										}).addTo(mapa);
+			//var circle = L.circle([-34.697878, -58.468897], {
+			//							    color: 'blue',
+			//							    fillColor: '#f03',
+			//							    fillOpacity: 0.5,
+			//							    radius: 500
+			//							}).addTo(mapa);
 
 		function onMapClick(e) {
 		    alert("Latitud y Longitud: " + e.latlng);
