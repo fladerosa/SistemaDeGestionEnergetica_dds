@@ -22,6 +22,10 @@ namespace SGE.Entidades.Dispositivos
             this.Nombre = nombre;
             this.ConsumoEnergia = consumo;
         }
+        protected Dispositivo(string nombre)
+        {
+            this.Nombre = nombre;
+        }
 
         #endregion
     }

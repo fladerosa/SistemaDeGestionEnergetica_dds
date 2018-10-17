@@ -11,8 +11,7 @@ namespace SGE.Entidades.Dispositivos
             HasKey(x => x.Id);
             Property(x => x.Nombre).HasMaxLength(25).IsRequired();
             Property(x => x.ConsumoEnergia).IsRequired();
-
-            Property(x => x.IdentificadorFabrica).HasMaxLength(15);
+            Property(x => x.IdentificadorFabrica).HasMaxLength(50);
 
             Map<Estandar>(x => x.Requires("Tipo_Dispositivo")
                                             .HasValue("E")

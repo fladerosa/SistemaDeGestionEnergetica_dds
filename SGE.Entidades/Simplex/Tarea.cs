@@ -18,18 +18,15 @@ namespace SGE.Entidades.Simplex
             SimplexBuilder simplex = new SimplexBuilder();
 
             foreach (Inteligente dispositivo in dispositivos)
-            {
-                simplex.AgregarRestriccionMaximo(new KeyValuePair<string, string>(dispositivo.IdentificadorFabrica, dispositivo.Nombre), dispositivo.ObtenerCantidadDeHoraDeUsoMensual());
-                // agregar minimo???? como??? de donde sale ese dato??
-            }
+                simplex.AgregarRestriccion(new KeyValuePair<string, string>(dispositivo.IdentificadorFabrica, dispositivo.Nombre), dispositivo.ObtenerCantidadDeHoraDeUsoMensual());
 
             simplex.Resolver();
 
             // Si da un consumo de energia elevado, pone los dispositivos en modo ahorro de energia
-            if ( !(simplex.Resultado["TotalConsumo"] > 0 && simplex.Resultado["TotalConsumo"] <= 440640))
+            if (simplex.Resultado["ConsumoRestanteTotal"] == 0)
             {
                 foreach (Inteligente dispositivo in dispositivos)
-                    dispositivo.ColocarEnAhorroEnergia();
+                    dispositivo.Apagar();
             }
         }
     }
