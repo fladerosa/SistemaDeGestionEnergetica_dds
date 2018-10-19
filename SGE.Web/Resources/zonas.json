@@ -5,16 +5,134 @@
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
     "codigo": "1",
     "nombre": "A",
-    "latitud": "-34.551505",
-    "longitud": "-58.490982",
-    "radio": "150"
+    "latitud": "-34.547401",
+    "longitud": "-58.46468",
+    "radio": "2000"
   },
   {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
     "codigo": "2",
     "nombre": "B",
-    "latitud": "-34.559988",
-    "longitud": "-58.44326",
-    "radio": "150"
+    "latitud": "-34.58370",
+    "longitud": "-58.46468",
+    "radio": "2000"
+  },
+    {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "3",
+    "nombre": "C",
+    "latitud": "-34.619850",
+    "longitud": "-58.46468",
+    "radio": "2000"
+  },
+      {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "4",
+    "nombre": "D",
+    "latitud": "-34.656000",
+    "longitud": "-58.46468",
+    "radio": "2000"
+  },
+        {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "5",
+    "nombre": "E",
+    "latitud": "-34.692100",
+    "longitud": "-58.46468",
+    "radio": "2000"
+  },
+  
+  
+          {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "6",
+    "nombre": "F",
+    "latitud": "-34.547401",
+    "longitud": "-58.42050",
+    "radio": "2000"
+  },
+            {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "6",
+    "nombre": "F",
+    "latitud": "-34.58370",
+    "longitud": "-58.42050",
+    "radio": "2000"
+  },
+      {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "3",
+    "nombre": "C",
+    "latitud": "-34.619850",
+    "longitud": "-58.42050",
+    "radio": "2000"
+  },
+      {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "4",
+    "nombre": "D",
+    "latitud": "-34.656000",
+    "longitud": "-58.42050",
+    "radio": "2000"
+  },
+  
+  
+    {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "1",
+    "nombre": "A",
+    "latitud": "-34.547401",
+    "longitud": "-58.50880",
+    "radio": "2000"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "2",
+    "nombre": "B",
+    "latitud": "-34.58370",
+    "longitud": "-58.50880",
+    "radio": "2000"
+  },
+    {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "3",
+    "nombre": "C",
+    "latitud": "-34.619850",
+    "longitud": "-58.50880",
+    "radio": "2000"
+  },
+      {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "4",
+    "nombre": "D",
+    "latitud": "-34.656000",
+    "longitud": "-58.50880",
+    "radio": "2000"
+  },
+  
+  
+            {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "6",
+    "nombre": "F",
+    "latitud": "-34.58370",
+    "longitud": "-58.37650",
+    "radio": "2000"
+  },
+      {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "3",
+    "nombre": "C",
+    "latitud": "-34.619850",
+    "longitud": "-58.37650",
+    "radio": "2000"
+  },
+      {
+    "$type": "SGE.Core.Entidades.Zona, SGE.Core",
+    "codigo": "4",
+    "nombre": "D",
+    "latitud": "-34.656000",
+    "longitud": "-58.37650",
+    "radio": "2000"
   }
 ]}
