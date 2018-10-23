@@ -22,21 +22,31 @@
 
 		//var marker2 = L.marker([-34.659438,-58.4704135]).addTo(mapa).on('click', onClick);
 		//L.imageOverlay(imageUrl, imageBounds).addTo(mapa);
-		var myIcon = L.icon({
-		    //iconUrl: 'my-icon.png',
-		    iconUrl: 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
-		    iconRetinaUrl: 'my-icon@2x.png',
-		    iconSize: [38, 95],
-		    iconAnchor: [22, 94],
-		    popupAnchor: [-3, -76],
-		    //shadowUrl: 'my-icon-shadow.png',
-		    shadowUrl: 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
-		    shadowRetinaUrl: 'my-icon-shadow@2x.png',
-		    shadowSize: [68, 95],
-		    shadowAnchor: [22, 94]
-		});
+		//var myIcon = L.icon({
+		//    //iconUrl: 'my-icon.png',
+		//    iconUrl: 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
+		//    iconRetinaUrl: 'my-icon@2x.png',
+		//    iconSize: [38, 95],
+		//    iconAnchor: [22, 94],
+		//    popupAnchor: [-3, -76],
+		//    //shadowUrl: 'my-icon-shadow.png',
+		//    shadowUrl: 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
+		//    shadowRetinaUrl: 'my-icon-shadow@2x.png',
+		//    shadowSize: [68, 95],
+		//    shadowAnchor: [22, 94]
+		//});
 
-		L.marker([-34.659438, -58.4704135], { icon: myIcon }).addTo(mapa);
+		//L.marker([-34.659438, -58.4704135], { icon: myIcon }).addTo(mapa);
+
+        // an image overlay that will be added to the overlays of a layer switcher
+		//var image = L.imageOverlay(
+        //    'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
+        //    [[-34.697878, -58.468897], [-34.686919, -58.486813]], {
+        //        opacity: .6
+        //    }).addTo(mapa);
+		var imageUrl = 'Images/transformador.png';
+        //imageBounds = [[-34.697878, -58.468897], [-34.68924, -58.458313]];
+		//L.imageOverlay(imageUrl, imageBounds).addTo(mapa);
 
 		var polygon = L.polygon([
 				[-34.697878, -58.468897],
@@ -55,8 +65,14 @@
 			    radius: 500
 			}).addTo(mapa).on('click', onMapClick);
             
+		$.getJSON('Mapa/TransformadoresJson', function (result) {
+		    for (indice in result.Transformadores) {
+		        imageBounds = [[result.Transformadores[indice].latitud, result.Transformadores[indice].longitud], [parseFloat(result.Transformadores[indice].latitud) + parseFloat('0.005'), parseFloat(result.Transformadores[indice].longitud) + parseFloat('0.005')]];
+		        L.imageOverlay(imageUrl, imageBounds).addTo(mapa);
+		    }
+		});
+
 		$.getJSON('Mapa/ZonasJson', function (result) {
-		    debugger;
 		    for (zona in result.Zonas) {
 		        L.circle([result.Zonas[zona].latitud, result.Zonas[zona].longitud], {
 		            color: '#ABEBC6',

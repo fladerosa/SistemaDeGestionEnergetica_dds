@@ -53,24 +53,24 @@
   },
             {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "6",
-    "nombre": "F",
+    "codigo": "7",
+    "nombre": "G",
     "latitud": "-34.58370",
     "longitud": "-58.42050",
     "radio": "2000"
   },
       {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "3",
-    "nombre": "C",
+    "codigo": "8",
+    "nombre": "H",
     "latitud": "-34.619850",
     "longitud": "-58.42050",
     "radio": "2000"
   },
       {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "4",
-    "nombre": "D",
+    "codigo": "9",
+    "nombre": "I",
     "latitud": "-34.656000",
     "longitud": "-58.42050",
     "radio": "2000"
@@ -79,32 +79,32 @@
   
     {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "1",
-    "nombre": "A",
+    "codigo": "10",
+    "nombre": "J",
     "latitud": "-34.547401",
     "longitud": "-58.50880",
     "radio": "2000"
   },
   {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "2",
-    "nombre": "B",
+    "codigo": "11",
+    "nombre": "K",
     "latitud": "-34.58370",
     "longitud": "-58.50880",
     "radio": "2000"
   },
     {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "3",
-    "nombre": "C",
+    "codigo": "12",
+    "nombre": "L",
     "latitud": "-34.619850",
     "longitud": "-58.50880",
     "radio": "2000"
   },
       {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "4",
-    "nombre": "D",
+    "codigo": "13",
+    "nombre": "M",
     "latitud": "-34.656000",
     "longitud": "-58.50880",
     "radio": "2000"
@@ -113,24 +113,24 @@
   
             {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "6",
-    "nombre": "F",
+    "codigo": "14",
+    "nombre": "N",
     "latitud": "-34.58370",
     "longitud": "-58.37650",
     "radio": "2000"
   },
       {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "3",
-    "nombre": "C",
+    "codigo": "15",
+    "nombre": "O",
     "latitud": "-34.619850",
     "longitud": "-58.37650",
     "radio": "2000"
   },
       {
     "$type": "SGE.Core.Entidades.Zona, SGE.Core",
-    "codigo": "4",
-    "nombre": "D",
+    "codigo": "16",
+    "nombre": "P",
     "latitud": "-34.656000",
     "longitud": "-58.37650",
     "radio": "2000"
