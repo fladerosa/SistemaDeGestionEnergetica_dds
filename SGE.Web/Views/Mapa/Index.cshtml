@@ -68,7 +68,7 @@
 		$.getJSON('Mapa/TransformadoresJson', function (result) {
 		    for (indice in result.Transformadores) {
 		        imageBounds = [[result.Transformadores[indice].latitud, result.Transformadores[indice].longitud], [parseFloat(result.Transformadores[indice].latitud) + parseFloat('0.005'), parseFloat(result.Transformadores[indice].longitud) + parseFloat('0.005')]];
-		        L.imageOverlay(imageUrl, imageBounds).addTo(mapa);
+		        L.imageOverlay(imageUrl, imageBounds).addTo(mapa).on('click', obtenerConsumoTransformador);
 		    }
 		});
 
@@ -92,6 +92,10 @@
 			//							}).addTo(mapa);
 
 		function onMapClick(e) {
+		    alert("Latitud y Longitud: " + e.latlng);
+		}
+
+		function obtenerConsumoTransformador(e) {
 		    alert("Latitud y Longitud: " + e.latlng);
 		}
 	});
