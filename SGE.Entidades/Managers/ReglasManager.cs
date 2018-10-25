@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Reglas;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Reglas;
 
-namespace SGE.Entidades.Managers
+namespace SGE.WebconAutenticacion.Managers
 {
     public class ReglasManager
     {

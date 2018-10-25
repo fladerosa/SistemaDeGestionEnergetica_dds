@@ -1,21 +1,21 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Acciones;
-using SGE.Entidades.Categorias;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
-using SGE.Entidades.Reglas;
-using SGE.Entidades.Reglas.Operadores;
-using SGE.Entidades.Reportes;
-using SGE.Entidades.Repositorio;
-using SGE.Entidades.Transformadores;
-using SGE.Entidades.Usuarios;
-using SGE.Entidades.ValueProviders;
-using SGE.Entidades.Zonas;
+using SGE.WebconAutenticacion.Acciones;
+using SGE.WebconAutenticacion.Categorias;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Drivers;
+using SGE.WebconAutenticacion.Reglas;
+using SGE.WebconAutenticacion.Reglas.Operadores;
+using SGE.WebconAutenticacion.Reportes;
+using SGE.WebconAutenticacion.Repositorio;
+using SGE.WebconAutenticacion.Transformadores;
+using SGE.WebconAutenticacion.Usuarios;
+using SGE.WebconAutenticacion.ValueProviders;
+using SGE.WebconAutenticacion.Zonas;
 using System;
 using SGE.Core.Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using SGE.Entidades.Acciones.AA;
+using SGE.WebconAutenticacion.Acciones.AA;
 
 namespace SGE.Tests.Entrega {
     [TestClass]
@@ -61,7 +61,7 @@ namespace SGE.Tests.Entrega {
                 Nombre = "Nombre_test_cp1",
                 Apellido = "Apellido_test_cp1",
                 NombreUsuario = "NombreUsuario_test_cp1",
-                Password = "1234", //la pass es 1234 (MD5)
+                Password = "Cam_167", 
 
                 NumeroDocumento = "2345678",
                 Latitud = 60,

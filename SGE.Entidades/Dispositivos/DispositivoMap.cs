@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace SGE.Entidades.Dispositivos
+namespace SGE.WebconAutenticacion.Dispositivos
 {
     public class DispositivoMap : EntityTypeConfiguration<Dispositivo>
     {

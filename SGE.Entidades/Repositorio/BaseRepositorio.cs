@@ -1,4 +1,4 @@
-﻿using SGE.Entidades.Contexto;
+﻿using SGE.WebconAutenticacion.Contexto;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace SGE.Entidades.Repositorio {
+namespace SGE.WebconAutenticacion.Repositorio {
     public class BaseRepositorio<T> : IRepositorio<T> where T : class {
         private SGEContext context {
             get {

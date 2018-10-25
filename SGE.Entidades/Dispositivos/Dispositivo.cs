@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Dispositivos
+namespace SGE.WebconAutenticacion.Dispositivos
 {
     [Table(name: "Dispositivo")]
     public abstract class Dispositivo

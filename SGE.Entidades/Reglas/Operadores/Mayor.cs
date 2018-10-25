@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades.Reglas.Operadores
+namespace SGE.WebconAutenticacion.Reglas.Operadores
 {
     public class Mayor : IOperador
     {

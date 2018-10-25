@@ -1,16 +1,16 @@
 ﻿using SGE.Core.Helpers;
-using SGE.Entidades.Drivers;
-using SGE.Entidades.Drivers.Interfaces;
-using SGE.Entidades.Managers;
-using SGE.Entidades.Repositorio;
-using SGE.Entidades.Usuarios;
-using SGE.Entidades.ValueProviders;
+using SGE.WebconAutenticacion.Drivers;
+using SGE.WebconAutenticacion.Drivers.Interfaces;
+using SGE.WebconAutenticacion.Managers;
+using SGE.WebconAutenticacion.Repositorio;
+using SGE.WebconAutenticacion.Usuarios;
+using SGE.WebconAutenticacion.ValueProviders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SGE.Entidades.Dispositivos
+namespace SGE.WebconAutenticacion.Dispositivos
 {
     [Table(name: "Inteligente")]
     public class Inteligente : Dispositivo

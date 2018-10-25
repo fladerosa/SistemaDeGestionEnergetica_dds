@@ -105,7 +105,6 @@
     <Compile Include="Entrega\EntregaTest.cs" />
     <Compile Include="Helpers\DispositivosHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Entidades\Simplex\SimplexBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,12 +124,10 @@
       <Project>{943DDEFD-ADE3-4A8C-9CFA-5BCEF9A624F1}</Project>
       <Name>SGE.Entidades</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SGE.Web\SGE.Web.csproj">
-      <Project>{53B5CD1D-4C25-4548-AAEB-B50028BFA29C}</Project>
-      <Name>SGE.Web</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

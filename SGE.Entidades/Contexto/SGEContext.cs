@@ -1,19 +1,19 @@
-﻿using SGE.Entidades.Acciones;
-using SGE.Entidades.Categorias;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
-using SGE.Entidades.Reglas;
-using SGE.Entidades.Transformadores;
-using SGE.Entidades.Usuarios;
-using SGE.Entidades.ValueProviders;
-using SGE.Entidades.Zonas;
+﻿using SGE.WebconAutenticacion.Acciones;
+using SGE.WebconAutenticacion.Categorias;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Drivers;
+using SGE.WebconAutenticacion.Reglas;
+using SGE.WebconAutenticacion.Transformadores;
+using SGE.WebconAutenticacion.Usuarios;
+using SGE.WebconAutenticacion.ValueProviders;
+using SGE.WebconAutenticacion.Zonas;
 using System;
 using System.Data.Entity;
 
-namespace SGE.Entidades.Contexto {
+namespace SGE.WebconAutenticacion.Contexto {
     public class SGEContext : DbContext
     {
-        protected SGEContext() : base("ConnSGEDb")
+        public SGEContext() : base("ConnSGEDb")
         {
           //Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
         }

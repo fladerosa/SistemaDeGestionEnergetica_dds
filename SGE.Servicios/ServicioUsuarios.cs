@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SGE.Core.Helpers;
-using SGE.Entidades.Usuarios;
+using SGE.WebconAutenticacion.Usuarios;
 using System.Collections.Generic;
 using System.IO;
 

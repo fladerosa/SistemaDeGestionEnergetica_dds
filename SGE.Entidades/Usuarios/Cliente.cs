@@ -1,12 +1,12 @@
-﻿using SGE.Entidades.Categorias;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Transformadores;
+﻿using SGE.WebconAutenticacion.Categorias;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Transformadores;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SGE.Entidades.Usuarios
+namespace SGE.WebconAutenticacion.Usuarios
 {
     [Table(name: "Cliente")]
     public class Cliente : Usuario

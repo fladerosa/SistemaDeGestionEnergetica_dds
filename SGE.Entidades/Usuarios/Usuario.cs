@@ -1,9 +1,10 @@
-﻿using SGE.Entidades.Dispositivos;
+﻿using SGE.WebconAutenticacion.Dispositivos;
+//using SGE.WebconAutenticacion.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Usuarios
+namespace SGE.WebconAutenticacion.Usuarios
 {
     [Table(name: "Usuario")]
     public class Usuario
@@ -14,11 +15,9 @@ namespace SGE.Entidades.Usuarios
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
         public DateTime FechaAlta { get; set; }
-        //TODO: este  notMapped me hace ruido, verificar luego la consistencia de este atributo
-        //[NotMapped]
+     
         public virtual Direccion Direccion { get; set; } //one to one
-        public string MensajeDeErrorLogueo { get; set; }
-
+  
         public Usuario()
         {
             this.FechaAlta = DateTime.Now;

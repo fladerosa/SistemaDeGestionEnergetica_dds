@@ -1,5 +1,5 @@
-﻿using SGE.Entidades.Contexto;
-using SGE.Entidades.Usuarios;
+﻿using SGE.WebconAutenticacion.Contexto;
+using SGE.WebconAutenticacion.Usuarios;
 using System.Linq;
 using System.Web.Mvc;
 

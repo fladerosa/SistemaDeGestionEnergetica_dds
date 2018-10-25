@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.Entidades.Dispositivos;
+using SGE.WebconAutenticacion.Dispositivos;
 
-namespace SGE.Entidades.Acciones.TV
+namespace SGE.WebconAutenticacion.Acciones.TV
 {
     public class CambiarCanal: Accion
     {

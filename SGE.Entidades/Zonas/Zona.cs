@@ -1,9 +1,9 @@
-﻿using SGE.Entidades.Transformadores;
+﻿using SGE.WebconAutenticacion.Transformadores;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Zonas {
+namespace SGE.WebconAutenticacion.Zonas {
     [Table("Zona")]
     public class Zona
     {

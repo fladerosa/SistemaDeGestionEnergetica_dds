@@ -1,11 +1,11 @@
-﻿using SGE.Entidades.Drivers.Interfaces;
+﻿using SGE.WebconAutenticacion.Drivers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades.ValueProviders
+namespace SGE.WebconAutenticacion.ValueProviders
 {
     public class SensorTemperaturaAA : Sensor
     {

@@ -1,11 +1,11 @@
-﻿using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Repositorio;
-using SGE.Entidades.Transformadores;
-using SGE.Entidades.Usuarios;
+﻿using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Repositorio;
+using SGE.WebconAutenticacion.Transformadores;
+using SGE.WebconAutenticacion.Usuarios;
 using System;
 using System.Collections.Generic;
 
-namespace SGE.Entidades.Reportes
+namespace SGE.WebconAutenticacion.Reportes
 {
     public static class Reporte {
         //• Consumo por hogar/periodo.

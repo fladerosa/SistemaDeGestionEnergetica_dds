@@ -1,8 +1,8 @@
-﻿using SGE.Entidades.Drivers.Interfaces;
+﻿using SGE.WebconAutenticacion.Drivers.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace SGE.Entidades.Dispositivos
+namespace SGE.WebconAutenticacion.Dispositivos
 {
     [NotMapped]
     public class Lavarropas: Inteligente

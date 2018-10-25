@@ -1,10 +1,10 @@
-﻿using SGE.Entidades.Acciones;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers.Interfaces;
+﻿using SGE.WebconAutenticacion.Acciones;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Drivers.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Drivers {
+namespace SGE.WebconAutenticacion.Drivers {
     //Se crea esta clase abstracta Driver para poder establecer un Actuador generico y cuando se realice la carga, se puede elegir entre los disponibles (TV, Lavarropas, AA)
     // Todo : Habria que evaluar una mejor forma de establecer los actuadores
 

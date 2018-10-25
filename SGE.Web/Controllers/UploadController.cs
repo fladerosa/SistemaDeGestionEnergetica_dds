@@ -1,5 +1,5 @@
 ﻿using SGE.Core.Helpers;
-using SGE.Entidades.Usuarios;
+using SGE.WebconAutenticacion.Usuarios;
 using SGE.Servicios;
 using System;
 using System.Collections.Generic;

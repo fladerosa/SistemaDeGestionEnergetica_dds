@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades.Drivers.Interfaces
+namespace SGE.WebconAutenticacion.Drivers.Interfaces
 {
     public interface IAireAcondicionadoDriver: IDriver
     {

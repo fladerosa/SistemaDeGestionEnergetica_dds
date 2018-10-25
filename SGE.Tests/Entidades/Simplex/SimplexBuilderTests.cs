@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Drivers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace SGE.Entidades.Simplex.Tests
+namespace SGE.WebconAutenticacion.Simplex.Tests
 {
     [TestClass()]
     public class SimplexBuilderTests

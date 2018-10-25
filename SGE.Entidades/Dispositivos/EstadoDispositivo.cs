@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SGE.Entidades.Dispositivos
+namespace SGE.WebconAutenticacion.Dispositivos
 {
     public enum EstadoDispositivo
     {

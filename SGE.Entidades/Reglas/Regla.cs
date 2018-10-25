@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SGE.Entidades.Acciones;
+using SGE.WebconAutenticacion.Acciones;
 using System.Linq;
 
-namespace SGE.Entidades.Reglas
+namespace SGE.WebconAutenticacion.Reglas
 {
     [Table("Regla")]
     public class Regla

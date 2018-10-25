@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Usuarios {
+namespace SGE.WebconAutenticacion.Usuarios {
     [Table("Direccion")]
     public class Direccion
     {

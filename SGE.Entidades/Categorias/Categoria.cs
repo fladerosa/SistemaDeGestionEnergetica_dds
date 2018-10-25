@@ -1,9 +1,9 @@
-﻿using SGE.Entidades.Usuarios;
+﻿using SGE.WebconAutenticacion.Usuarios;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Categorias
+namespace SGE.WebconAutenticacion.Categorias
 {
     [Table("Categoria")]
     public class Categoria

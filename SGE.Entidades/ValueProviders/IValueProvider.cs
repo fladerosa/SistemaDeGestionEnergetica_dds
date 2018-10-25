@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.Entidades.ValueProviders
+namespace SGE.WebconAutenticacion.ValueProviders
 {
     public interface IValueProvider
     {

@@ -1,4 +1,4 @@
-﻿namespace SGE.Entidades.Reglas
+﻿namespace SGE.WebconAutenticacion.Reglas
 {
     public enum UnidadEnum
     {

@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace SGE.Entidades.Drivers {
+namespace SGE.WebconAutenticacion.Drivers {
     public class DriverMap : EntityTypeConfiguration<Driver>
     {
         public DriverMap()

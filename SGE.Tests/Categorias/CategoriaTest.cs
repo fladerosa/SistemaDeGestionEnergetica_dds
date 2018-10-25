@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Categorias;
-using SGE.Entidades.Repositorio;
+using SGE.WebconAutenticacion.Categorias;
+using SGE.WebconAutenticacion.Repositorio;
 using System.Linq;
 
 namespace SGE.Tests.Categorias

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.Entidades.Dispositivos;
+using SGE.WebconAutenticacion.Dispositivos;
 
-namespace SGE.Entidades.Acciones.Lavarropa
+namespace SGE.WebconAutenticacion.Acciones.Lavarropa
 {
     public class LavarRopaAlgodon: Accion
     {

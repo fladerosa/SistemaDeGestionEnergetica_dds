@@ -4,10 +4,9 @@
 
     ViewBag.Title = "Login";
 }
-<h3> @Html.ActionLink("Volver", "Index", "Home")</h3>
-<div id="Imagen_login" style="background-image:url('/Images/login.jpg'); background-size:cover; height:470px;">
+<div id="Imagen_login" style="background-image:url('/Images/login.jpg'); background-size:cover; height:470px;margin-top:25px;">
     
-    @using (Html.BeginForm("Autorizacion", "Login", FormMethod.Post))
+    @using (Html.BeginForm("Autorizado", "Login", FormMethod.Post))
     {
         <form id="form_login" runat="server">
             <div id="Login-div" style="text-align:center; margin-left:370px; margin-right: 470px; background-color:darkgray; opacity:0.8;">

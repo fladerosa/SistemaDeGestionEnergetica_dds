@@ -1,9 +1,9 @@
-﻿using SGE.Entidades.ValueProviders;
+﻿using SGE.WebconAutenticacion.ValueProviders;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.Entidades.Reglas
+namespace SGE.WebconAutenticacion.Reglas
 {
     [Table("Medicion")]
     public class Medicion

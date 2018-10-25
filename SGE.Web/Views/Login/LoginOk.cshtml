@@ -10,7 +10,7 @@
     ViewBag.Title = "LoginOk";
 }
 
-<div class="jumbotron"> 
+<div class="jumbotron">
     <h3>Bienvenido Usuario : @Session["NombreUsuario"].ToString() </h3>
     <a href="@Url.Action("LogOut", "Login")">Cerrar Sesion</a>
 </div>

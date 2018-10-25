@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.Entidades.Acciones;
-using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Reglas;
+using SGE.WebconAutenticacion.Acciones;
+using SGE.WebconAutenticacion.Dispositivos;
+using SGE.WebconAutenticacion.Reglas;
 
-namespace SGE.Entidades.Managers
+namespace SGE.WebconAutenticacion.Managers
 {
   
     public class DispositivosManager
