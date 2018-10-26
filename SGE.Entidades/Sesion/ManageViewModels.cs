@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace SGE.WebconAutenticacion.Models
+namespace SGE.Entidades.Sesion
 {
     public class IndexViewModel
     {

@@ -1,5 +1,5 @@
-﻿using SGE.WebconAutenticacion.Drivers;
-using SGE.WebconAutenticacion.Reglas;
+﻿using SGE.Entidades.Drivers;
+using SGE.Entidades.Reglas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.Acciones
+namespace SGE.Entidades.Acciones
 {
     //Esta clase se genera para establecer una Accion generica y poder mapear los diferentes tipos
     [Table("Accion")]

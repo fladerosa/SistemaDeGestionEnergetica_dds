@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SGE.WebconAutenticacion.Simplex
+namespace SGE.Entidades.Simplex
 {
     /// <summary>
     /// Clase encargada de resolver la optimizacion energetica del uso de dispositivos.

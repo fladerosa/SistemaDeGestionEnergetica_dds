@@ -1,11 +1,11 @@
-﻿using SGE.WebconAutenticacion.Usuarios;
-using SGE.WebconAutenticacion.Zonas;
+﻿using SGE.Entidades.Usuarios;
+using SGE.Entidades.Zonas;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SGE.WebconAutenticacion.Transformadores
+namespace SGE.Entidades.Transformadores
 {
     [Table("Transformador")]
     public class Transformador

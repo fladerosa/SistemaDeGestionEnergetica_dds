@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Managers;
-using SGE.WebconAutenticacion.Reglas;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Managers;
+using SGE.Entidades.Reglas;
 
-namespace SGE.WebconAutenticacion.Acciones
+namespace SGE.Entidades.Acciones
 {
     public class ColocarEnAhorroEnergia: Accion
     {

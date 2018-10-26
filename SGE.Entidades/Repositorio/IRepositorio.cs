@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.Repositorio
+namespace SGE.Entidades.Repositorio
 {
     //La clase del repositorio permitirá definir las acciones sobre la persistencia que serán comunes para todas las entidades.
     public interface IRepositorio<T> where T : class

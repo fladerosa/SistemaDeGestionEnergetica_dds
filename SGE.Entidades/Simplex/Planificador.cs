@@ -1,11 +1,11 @@
 ﻿using Quartz;
 using Quartz.Impl;
-using SGE.WebconAutenticacion.Dispositivos;
+using SGE.Entidades.Dispositivos;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace SGE.WebconAutenticacion.Simplex
+namespace SGE.Entidades.Simplex
 {
     public class Planificador
     {

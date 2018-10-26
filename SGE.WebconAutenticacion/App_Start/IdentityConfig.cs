@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using SGE.WebconAutenticacion.Models;
+using SGE.Entidades.Sesion;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion
-{
+namespace SGE.WebconAutenticacion {
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

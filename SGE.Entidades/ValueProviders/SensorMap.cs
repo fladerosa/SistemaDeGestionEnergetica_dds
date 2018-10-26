@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.ValueProviders
+namespace SGE.Entidades.ValueProviders
 {
     public class SensorMap : EntityTypeConfiguration<Sensor>
     {

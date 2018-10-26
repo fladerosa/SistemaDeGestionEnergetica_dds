@@ -1,11 +1,11 @@
-﻿using SGE.WebconAutenticacion.Acciones;
-using SGE.WebconAutenticacion.Reglas.Operadores;
-using SGE.WebconAutenticacion.ValueProviders;
+﻿using SGE.Entidades.Acciones;
+using SGE.Entidades.Reglas.Operadores;
+using SGE.Entidades.ValueProviders;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.WebconAutenticacion.Reglas
+namespace SGE.Entidades.Reglas
 {
     [Table("Condicion")]
     public class Condicion

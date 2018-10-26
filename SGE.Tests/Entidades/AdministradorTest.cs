@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion.Repositorio;
-using SGE.WebconAutenticacion.Usuarios;
+using SGE.Entidades.Repositorio;
+using SGE.Entidades.Usuarios;
 
 namespace SGE.Tests.Entidades
 {

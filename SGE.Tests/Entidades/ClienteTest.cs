@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion.Usuarios;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Drivers;
+using SGE.Entidades.Usuarios;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
 using System.Linq;
 
 namespace SGE.Tests.Entidades

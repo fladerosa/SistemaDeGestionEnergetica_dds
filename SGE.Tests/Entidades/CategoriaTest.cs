@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion.Categorias;
+using SGE.Entidades.Categorias;
 using System;
 
 namespace SGE.Tests.Entidades

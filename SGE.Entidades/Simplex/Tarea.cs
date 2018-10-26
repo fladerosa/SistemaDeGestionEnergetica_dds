@@ -1,9 +1,9 @@
 ﻿using Quartz;
-using SGE.WebconAutenticacion.Dispositivos;
+using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.Simplex
+namespace SGE.Entidades.Simplex
 {
     public class Tarea : IJob
     {

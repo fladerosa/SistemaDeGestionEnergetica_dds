@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion;
-using SGE.WebconAutenticacion.Acciones;
-using SGE.WebconAutenticacion.Actuadores;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Drivers;
-using SGE.WebconAutenticacion.Reglas;
-using SGE.WebconAutenticacion.Reglas.Operadores;
-using SGE.WebconAutenticacion.ValueProviders;
+using SGE.Entidades;
+using SGE.Entidades.Acciones;
+using SGE.Entidades.Actuadores;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
+using SGE.Entidades.Reglas;
+using SGE.Entidades.Reglas.Operadores;
+using SGE.Entidades.ValueProviders;
 
 namespace SGE.Tests.Reglas
 {

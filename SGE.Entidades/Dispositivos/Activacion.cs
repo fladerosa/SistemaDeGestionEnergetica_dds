@@ -1,8 +1,8 @@
-﻿using SGE.WebconAutenticacion.Usuarios;
+﻿using SGE.Entidades.Usuarios;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.WebconAutenticacion.Dispositivos {
+namespace SGE.Entidades.Dispositivos {
     [Table("Activacion")]
     public class Activacion
     {

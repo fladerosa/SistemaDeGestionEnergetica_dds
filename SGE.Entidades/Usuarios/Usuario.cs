@@ -1,11 +1,7 @@
-﻿using SGE.WebconAutenticacion.Dispositivos;
-//using SGE.WebconAutenticacion.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.WebconAutenticacion.Usuarios
-{
+namespace SGE.Entidades.Usuarios {
     [Table(name: "Usuario")]
     public class Usuario
     {

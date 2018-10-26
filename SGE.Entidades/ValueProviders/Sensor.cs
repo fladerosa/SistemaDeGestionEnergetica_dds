@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Drivers.Interfaces;
-using SGE.WebconAutenticacion.Reglas;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers.Interfaces;
+using SGE.Entidades.Reglas;
 
-namespace SGE.WebconAutenticacion.ValueProviders
+namespace SGE.Entidades.ValueProviders
 {
     [Table("Sensor")]
     public abstract class Sensor: IValueProvider

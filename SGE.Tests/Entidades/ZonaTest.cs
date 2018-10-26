@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Core.Helpers;
-using SGE.WebconAutenticacion.Usuarios;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Drivers;
-using SGE.WebconAutenticacion.Zonas;
-using SGE.WebconAutenticacion.Transformadores;
-using SGE.WebconAutenticacion.Repositorio;
+using SGE.Entidades.Usuarios;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
+using SGE.Entidades.Zonas;
+using SGE.Entidades.Transformadores;
+using SGE.Entidades.Repositorio;
 using System.Linq;
 
 namespace SGE.Tests.Entidades

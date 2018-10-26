@@ -1,9 +1,9 @@
-﻿using SGE.WebconAutenticacion.Dispositivos;
+﻿using SGE.Entidades.Dispositivos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.WebconAutenticacion.Usuarios
+namespace SGE.Entidades.Usuarios
 {
     [Table(name: "Administrador")]
     public class Administrador : Usuario

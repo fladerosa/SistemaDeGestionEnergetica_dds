@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.Reglas.Operadores
+namespace SGE.Entidades.Reglas.Operadores
 {
     public class Igual: IOperador
     {

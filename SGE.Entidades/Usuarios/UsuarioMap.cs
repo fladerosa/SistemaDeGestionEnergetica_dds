@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace SGE.WebconAutenticacion.Usuarios
+namespace SGE.Entidades.Usuarios
 {
     public class UsuarioMap : EntityTypeConfiguration<Usuario>
     {

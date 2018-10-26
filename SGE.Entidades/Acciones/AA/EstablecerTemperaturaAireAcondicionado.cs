@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.WebconAutenticacion.Dispositivos;
+using SGE.Entidades.Dispositivos;
 
-namespace SGE.WebconAutenticacion.Acciones.AA
+namespace SGE.Entidades.Acciones.AA
 {
     public class EstablecerTemperaturaAireAcondicionado : Accion
     {

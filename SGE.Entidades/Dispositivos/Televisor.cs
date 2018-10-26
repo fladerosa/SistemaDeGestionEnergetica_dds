@@ -1,7 +1,7 @@
-﻿using SGE.WebconAutenticacion.Drivers.Interfaces;
+﻿using SGE.Entidades.Drivers.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGE.WebconAutenticacion.Dispositivos
+namespace SGE.Entidades.Dispositivos
 {
     [NotMapped]
     public class Televisor: Inteligente

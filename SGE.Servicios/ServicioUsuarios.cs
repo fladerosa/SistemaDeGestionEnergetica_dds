@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using SGE.Core.Helpers;
-using SGE.WebconAutenticacion.Usuarios;
+using SGE.Entidades.Usuarios;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SGE.Servicios
-{
+namespace SGE.Servicios {
     public class ServicioUsuarios
     {
         #region Obtención

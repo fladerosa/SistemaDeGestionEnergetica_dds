@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SGE.WebconAutenticacion.Models
-{
+namespace SGE.Entidades.Sesion {
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

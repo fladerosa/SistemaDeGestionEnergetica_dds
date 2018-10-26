@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using SGE.Entidades.Sesion;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using SGE.WebconAutenticacion.Models;
 
-namespace SGE.WebconAutenticacion.Controllers
-{
+namespace SGE.WebconAutenticacion.Controllers {
     [Authorize]
     public class ManageController : Controller
     {

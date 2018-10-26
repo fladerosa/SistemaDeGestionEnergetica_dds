@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion.Drivers;
+using SGE.Entidades.Drivers;
 using System.Linq;
 
-namespace SGE.WebconAutenticacion.Dispositivos.Tests
+namespace SGE.Entidades.Dispositivos.Tests
 {
     [TestClass()]
     public class InteligenteTests

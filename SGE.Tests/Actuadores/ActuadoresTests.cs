@@ -1,11 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion.Acciones;
-using SGE.WebconAutenticacion.Acciones.TV;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Drivers;
+using SGE.Entidades.Acciones;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
 
-namespace SGE.WebconAutenticacion.Actuadores.Tests
-{
+namespace SGE.Entidades.Actuadores.Tests {
     [TestClass()]
     public class ActuadoresTests
     {

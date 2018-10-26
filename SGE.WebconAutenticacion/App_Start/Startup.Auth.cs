@@ -1,14 +1,12 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using SGE.WebconAutenticacion.Models;
+using SGE.Entidades.Sesion;
+using System;
 
-namespace SGE.WebconAutenticacion
-{
+namespace SGE.WebconAutenticacion {
     public partial class Startup
     {
         // Para obtener más información sobre cómo configurar la autenticación, visite https://go.microsoft.com/fwlink/?LinkId=301864

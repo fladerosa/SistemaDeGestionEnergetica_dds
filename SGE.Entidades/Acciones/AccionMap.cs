@@ -1,6 +1,6 @@
-﻿using SGE.WebconAutenticacion.Acciones.AA;
-using SGE.WebconAutenticacion.Acciones.Lavarropa;
-using SGE.WebconAutenticacion.Acciones.TV;
+﻿using SGE.Entidades.Acciones.AA;
+using SGE.Entidades.Acciones.Lavarropa;
+using SGE.Entidades.Acciones.TV;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.Acciones
+namespace SGE.Entidades.Acciones
 {
     public class AccionMap : EntityTypeConfiguration<Accion>
     {

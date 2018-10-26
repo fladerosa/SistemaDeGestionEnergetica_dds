@@ -2,11 +2,10 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
-using SGE.WebconAutenticacion.Models;
+using SGE.Entidades.Sesion;
 
 [assembly: OwinStartupAttribute(typeof(SGE.WebconAutenticacion.Startup))]
-namespace SGE.WebconAutenticacion
-{
+namespace SGE.WebconAutenticacion {
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)

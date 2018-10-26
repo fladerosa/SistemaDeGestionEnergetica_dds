@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.WebconAutenticacion.Usuarios;
-using SGE.WebconAutenticacion.Dispositivos;
-using SGE.WebconAutenticacion.Drivers;
-using SGE.WebconAutenticacion.Transformadores;
+using SGE.Entidades.Usuarios;
+using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Drivers;
+using SGE.Entidades.Transformadores;
 
 namespace SGE.Tests.Entidades
 {

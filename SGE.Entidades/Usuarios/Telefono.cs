@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGE.WebconAutenticacion.Usuarios
+namespace SGE.Entidades.Usuarios
 {
     [Table("Telefono")]
     public class Telefono

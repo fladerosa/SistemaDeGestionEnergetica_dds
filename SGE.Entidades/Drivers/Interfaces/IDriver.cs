@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGE.WebconAutenticacion.Reglas;
+using SGE.Entidades.Reglas;
 
-namespace SGE.WebconAutenticacion.Drivers.Interfaces
+namespace SGE.Entidades.Drivers.Interfaces
 {
     public interface IDriver
     {
