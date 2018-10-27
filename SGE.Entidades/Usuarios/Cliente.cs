@@ -16,14 +16,14 @@ namespace SGE.Entidades.Usuarios
         public double Latitud { get; set; }  
         public double Longitud { get; set; }
         
-        public int TransformadorId { get; set; } // fk con tabla transformador
+        public int? TransformadorId { get; set; } // fk con tabla transformador
         [ForeignKey("TransformadorId")]
         public virtual Transformador Transformador { get; set; } // one to many con  Transformador
 
         public virtual enum_TipoDocumento TipoDocumento { get; set; } 
         
         public virtual ICollection<Telefono> Telefonos { get; set; } // one to many con Cliente
-        public int CategoriaId { get; set; } //fk con tabla cliente
+        public int? CategoriaId { get; set; } //fk con tabla cliente
         [ForeignKey("CategoriaId")]
         public virtual Categoria Categoria { get; set; } // one to many con  Categoria
         public virtual ICollection<Inteligente> Inteligentes { get; set; } //many to many con Dispositivo

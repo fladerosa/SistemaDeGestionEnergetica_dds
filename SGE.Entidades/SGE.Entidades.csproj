@@ -129,6 +129,15 @@
     <Compile Include="Drivers\SonyTVDriver.cs" />
     <Compile Include="Managers\DispositivosManager.cs" />
     <Compile Include="Managers\ReglasManager.cs" />
+    <Compile Include="Migrations\201810170027358_InitialCreate.cs" />
+    <Compile Include="Migrations\201810170027358_InitialCreate.Designer.cs">
+      <DependentUpon>201810170027358_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271558042_cambiosCliente.cs" />
+    <Compile Include="Migrations\201810271558042_cambiosCliente.Designer.cs">
+      <DependentUpon>201810271558042_cambiosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Repositorio\BaseRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
@@ -178,7 +187,14 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810170027358_InitialCreate.resx">
+      <DependentUpon>201810170027358_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271558042_cambiosCliente.resx">
+      <DependentUpon>201810271558042_cambiosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -164,11 +164,7 @@ namespace SGE.WebconAutenticacion.Controllers {
                                         Apellido = model.Apellido,
                                         NombreUsuario = model.NombreUsuario,
                                         Password = model.Password,
-
-                                        NumeroDocumento = model.NumeroDocumento, 
-                                        //no me gusta harcodear la fk, por el momento para ir laburando con las vistas, sirve..
-                                        TransformadorId = 1,
-                                        CategoriaId = 1,
+                                        NumeroDocumento = model.NumeroDocumento
                                         };
                
                 repocliente.Create(cliente);
