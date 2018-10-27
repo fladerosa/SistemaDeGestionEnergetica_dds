@@ -63,6 +63,14 @@ namespace SGE.Entidades.Sesion {
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Nombre")]
+        public string Nombre { get; set; }
+
+        [Required]
+        [Display(Name = "Apellido")]
+        public string Apellido { get; set; }
+
+        [Required]
         [Display(Name = "Nombre de Usuario")]
         public string NombreUsuario { get; set; }
 

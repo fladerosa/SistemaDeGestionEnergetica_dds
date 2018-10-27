@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SGE.Entidades.Repositorio;
 using SGE.Entidades.Sesion;
+using SGE.Entidades.Usuarios;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -151,6 +153,19 @@ namespace SGE.WebconAutenticacion.Controllers {
             {
                 var user = new ApplicationUser { UserName = model.NombreUsuario, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                BaseRepositorio<Usuario> repoUsuario = new BaseRepositorio<Usuario>();
+
+                Usuario usuario = null;
+                usuario = new Usuario()
+                {
+                    Nombre = model.Nombre,
+                    Apellido = model.Apellido,
+                    NombreUsuario = model.NombreUsuario,
+                    Password = model.Password,
+                };
+                repoUsuario.Create(usuario);
+
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
