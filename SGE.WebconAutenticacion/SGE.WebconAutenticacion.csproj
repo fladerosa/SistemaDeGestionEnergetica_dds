@@ -186,6 +186,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DispositivosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HogaresController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportesController.cs" />
+    <Compile Include="Areas\Cliente\ClienteAreaRegistration.cs" />
+    <Compile Include="Areas\Cliente\Controllers\ConsumoController.cs" />
+    <Compile Include="Areas\Cliente\Controllers\DispositivosController.cs" />
+    <Compile Include="Areas\Cliente\Controllers\HogarController.cs" />
+    <Compile Include="Areas\Cliente\Controllers\ReglasController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -216,6 +225,19 @@
     </Content>
     <Content Include="Resources\transformadores.json" />
     <Content Include="Resources\zonas.json" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Hogares\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dispositivos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Reportes\Index.cshtml" />
+    <Content Include="Areas\Cliente\Views\web.config" />
+    <Content Include="Areas\Cliente\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Cliente\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Cliente\Views\Consumo\Index.cshtml" />
+    <Content Include="Areas\Cliente\Views\Dispositivos\Index.cshtml" />
+    <Content Include="Areas\Cliente\Views\Hogar\Index.cshtml" />
+    <Content Include="Areas\Cliente\Views\Reglas\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,9 +287,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Mapa\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
