@@ -4,6 +4,8 @@ using Microsoft.Owin.Security;
 using SGE.Entidades.Repositorio;
 using SGE.Entidades.Sesion;
 using SGE.Entidades.Usuarios;
+using SGE.Entidades.Zonas;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -150,26 +152,32 @@ namespace SGE.WebconAutenticacion.Controllers {
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.NombreUsuario, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                BaseRepositorio<Usuario> repoUsuario = new BaseRepositorio<Usuario>();
+            {           
+                var user = new ApplicationUser {  UserName = model.NombreUsuario, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);           
 
-                Usuario usuario = null;
-                usuario = new Usuario()
-                {
-                    Nombre = model.Nombre,
-                    Apellido = model.Apellido,
-                    NombreUsuario = model.NombreUsuario,
-                    Password = model.Password,
-                };
-                repoUsuario.Create(usuario);
+                BaseRepositorio<Cliente> repocliente = new BaseRepositorio<Cliente>();              
+                Cliente cliente = null;
 
+                cliente = new Cliente(){
+                                        Nombre = model.Nombre,
+                                        Apellido = model.Apellido,
+                                        NombreUsuario = model.NombreUsuario,
+                                        Password = model.Password,
 
+                                        NumeroDocumento = model.NumeroDocumento, 
+                                        //no me gusta harcodear la fk, por el momento para ir laburando con las vistas, sirve..
+                                        TransformadorId = 1,
+                                        CategoriaId = 1,
+                                        };
+               
+                repocliente.Create(cliente);
+               
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //se vincula el rol cliente a todos los registrados desde la pagina
+                    var result1 = UserManager.AddToRole(user.Id, "Cliente");
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

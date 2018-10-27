@@ -1,5 +1,12 @@
 # dds-tp-2018-grupo-01
 
+27-10-2018
+Registracion: Todos los que se registren desde la pagina, asumen el rol de clientes, por defecto. 
+ADMIN Se carga un super admin desde la clase startup.cs, mantiene las vinculaciones en ambos contextos.
+CLIENTE (FEO)se tuvo que harcodear las fk a transformador y categoria, para poder instanciar un cliente desde la pagina de registracion..
+Login: Trae los usuarios registrados de la pagina, sean clientes o administradores. No esta trayendo los usuarios que se cargaron con los casos de prueba.
+
+----------------------------------------------------------------------------------------------
 01-10-2018
 Primera Aproximacion WEB -LOGIN (Aun en Desarrollo)
 Ejecutar las Pruebas unitarias y probar con alguno de los username que se carguen en la base SGEDb.

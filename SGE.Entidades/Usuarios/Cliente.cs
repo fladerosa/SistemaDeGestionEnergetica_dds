@@ -15,7 +15,7 @@ namespace SGE.Entidades.Usuarios
         public string NumeroDocumento { get; set; }
         public double Latitud { get; set; }  
         public double Longitud { get; set; }
-
+        
         public int TransformadorId { get; set; } // fk con tabla transformador
         [ForeignKey("TransformadorId")]
         public virtual Transformador Transformador { get; set; } // one to many con  Transformador
