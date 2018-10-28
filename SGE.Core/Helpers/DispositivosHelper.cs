@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SGE.Core.Entidades;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -12,7 +13,7 @@ namespace SGE.Core.Helpers
 
         private DispositivosHelper()
         {
-            this.Dispositivos = JsonConvert.DeserializeObject<List<Dispositivo>>(File.ReadAllText(@"Resources\dispositivos.json"));
+            this.Dispositivos = JsonConvert.DeserializeObject<List<Dispositivo>>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\dispositivos.json")));
         }
 
         /// <summary>

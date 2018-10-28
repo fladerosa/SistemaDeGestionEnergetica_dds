@@ -1,0 +1,299 @@
+﻿[
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "A06C86E69C7A4858A38B3CBB5F5F881C",
+    "Tipo": "AIREACONDICIONADO",
+    "Inteligente": "S",
+    "BajoConsumo": "N",
+    "Consumo": "99.613",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+      "3500 FG"
+    ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "A2DC1DAA5B104DC88E564D49D5FAFE39",
+    "Tipo": "AIREACONDICIONADO",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "50.013",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+      "2200 FG"
+    ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "E01AA01B163B4AE883F28802D6EBD95C",
+    "Tipo": "TELEVISOR",
+    "Inteligente": "N",
+    "BajoConsumo": "N",
+    "Consumo": "50.075",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "COLOR",
+		  "TUBO",
+		  "21 IN"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "A20218669B834E53939C94C8849F456C",
+    "Tipo": "TELEVISOR",
+    "Inteligente": "N",
+    "BajoConsumo": "N",
+    "Consumo": "50.175",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "COLOR",
+		  "29 IN - 34 IN"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "E0BD49B5FC4D48F1B66B55F543238E1E",
+    "Tipo": "TELEVISOR",
+    "Inteligente": "N",
+    "BajoConsumo": "N",
+    "Consumo": "10.18",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "COLOR",
+		  "LCD",
+		  "40 IN"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "DDEAEA7C1ADE458991D496812D5D41FA",
+    "Tipo": "TELEVISOR",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "1234.04",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "COLOR",
+		  "LED",
+		  "24 IN"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "F54967C2F1224B57ACCEFD4453EFF110",
+    "Tipo": "TELEVISOR",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "10.055",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "COLOR",
+		  "LED",
+		  "32 IN"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "C1A4EA2E9769487C8CC837332EC153B5",
+    "Tipo": "TELEVISOR",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.08",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "COLOR",
+		  "LED",
+		  "40 IN"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "E6533BACF5A74210A5D9708C8A0B3EE8",
+    "Tipo": "HELADERA",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.09",
+    "Reemplazable":  "S",
+    "Caracteristicas": [
+		  "CONFREEZER"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "A72F1F7DA258485DBB3C2773CBC5BA21",
+    "Tipo": "HELADERA",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.075",
+    "Reemplazable":  "S",
+    "Caracteristicas": [
+		  "SIN FREEZER"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "AA63D8C46C8344A19B034995555C49CD",
+    "Tipo": "LAVARROPAS",
+    "Inteligente": "N",
+    "BajoConsumo": "N",
+    "Consumo": "0.875",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "AUTOMATICO",
+		  "5 KG",
+		  "CALENTAMIENTO AGUA"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "A0BA3245EAFC4EC994CC841698B835C0",
+    "Tipo": "LAVARROPAS",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "4321.175",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "AUTOMATICO",
+		  "5 KG"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "C921A7D2BDB64EB68B78EB12B777E382",
+    "Tipo": "LAVARROPAS",
+    "Inteligente": "N",
+    "BajoConsumo": "S",
+    "Consumo": "0.1275",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "SEMIAUTOMATICO",
+		  "5 KG"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "E82D0A8FF83F4287878B0B88EDA5FACC",
+    "Tipo": "VENTILADOR",
+    "Inteligente": "N",
+    "BajoConsumo": "S",
+    "Consumo": "99.09",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "PIE"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "AA281A020F744F33A954162FBF05F727",
+    "Tipo": "VENTILADOR",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.06",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "TECHO"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "D1F63BD974D74BA0982977546CE3732D",
+    "Tipo": "LAMPARA",
+    "Inteligente": "S",
+    "BajoConsumo": "N",
+    "Consumo": "0.04",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "HALOGENA",
+		  "40 W"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "F866E8CA43C54612AE1247E83C81C5DC",
+    "Tipo": "LAMPARA",
+    "Inteligente": "S",
+    "BajoConsumo": "N",
+    "Consumo": "0.06",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "HALOGENA",
+		  "60 W"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "B828ACB3CE814113A01093F465552AC4",
+    "Tipo": "LAMPARA",
+    "Inteligente": "S",
+    "BajoConsumo": "N",
+    "Consumo": "0.15",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "HALOGENA",
+		  "100 W"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "D3BCD9DE8EB146C4AA7CBD686C55E9DB",
+    "Tipo": "LAMPARA",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.11",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "LED",
+		  "11 W"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "D1348C1EBFCE46DD8AF0B08ECE6280E4",
+    "Tipo": "LAMPARA",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.015",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "LED",
+		  "15 W"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "EB140D2819394E41B1FF1E07B5039C77",
+    "Tipo": "LAMPARA",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.02",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "LED",
+		  "20 W"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "E4F01376AC81478E80E1E5FBC847633A",
+    "Tipo": "COMPUTADORA",
+    "Inteligente": "S",
+    "BajoConsumo": "S",
+    "Consumo": "0.075",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "LAPTOP"
+	  ]
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Core",
+    "Id": "CF0043D6152F4F90AD5E485E21FDF8C2",
+    "Tipo": "MICROONDAS",
+    "Inteligente": "N",
+    "BajoConsumo": "N",
+    "Consumo": "0.99",
+    "Reemplazable":  "N",
+    "Caracteristicas": [
+		  "DESCONGELADOR"
+	  ]
+  }
+]

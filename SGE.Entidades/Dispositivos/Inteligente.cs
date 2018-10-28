@@ -180,6 +180,19 @@ namespace SGE.Entidades.Dispositivos
             //this.RegistroDeActivaciones.Add(activacion);
         }
 
+        public void LevantarDispositivosArchivo() {
+            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
+
+            foreach (Core.Entidades.Dispositivo dispositivo in DispositivosHelper.GetInstace().Dispositivos) {
+                if(repoInteligente.Single(d => d.Nombre == dispositivo.Tipo) ==null)
+                    repoInteligente.Create(new Inteligente() {
+                        Nombre  = dispositivo.Tipo,
+                        ConsumoEnergia  = (decimal)dispositivo.Consumo,
+                        IdentificadorFabrica = dispositivo.Id.Substring(0, 14)
+                    });
+            }
+        }
+
         #endregion
 
         #region Estadisticas

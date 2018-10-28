@@ -1,74 +1,72 @@
-{"Transformadores":
-  [
+[
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "1",
-    "latitud": "-34.547401",
-    "longitud": "-58.46468",
-      "zona": "1"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "1",
+        "latitud": "5.4",
+        "longitud": "5.44",
+        "zona": "9"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "2",
-    "latitud": "-34.58370",
-    "longitud": "-58.46468",
-      "zona": "2"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "2",
+        "latitud": "5.4",
+        "longitud": "5.4",
+        "zona": "9"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "3",
-    "latitud": "-34.619850",
-    "longitud": "-58.46468",
-      "zona": "3"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "3",
+        "latitud": "5.42",
+        "longitud": "5.42",
+        "zona": "9"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "4",
-    "latitud": "-34.656000",
-    "longitud": "-58.46468",
-      "zona": "4"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "4",
+        "latitud": "5.38",
+        "longitud": "5.42",
+        "zona": "9"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "5",
-    "latitud": "-34.692100",
-    "longitud": "-58.46468",
-      "zona": "5"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "5",
+        "latitud": "5.42",
+        "longitud": "5.44",
+        "zona": "9"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "6",
-    "latitud": "-34.547401",
-    "longitud": "-58.42050",
-      "zona": "6"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "6",
+        "latitud": "5.2",
+        "longitud": "5.22",
+        "zona": "9"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "7",
-    "latitud": "-34.58370",
-    "longitud": "-58.42050",
-      "zona": "7"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "7",
+        "latitud": "0",
+        "longitud": "0.2",
+        "zona": "1"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "8",
-    "latitud": "-34.619850",
-    "longitud": "-58.42050",
-      "zona": "8"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "8",
+        "latitud": "0",
+        "longitud": "-0.2",
+        "zona": "1"
     },
     {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "9",
-    "latitud": "-34.656000",
-    "longitud": "-58.42050",
-      "zona": "9"
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "9",
+        "latitud": "0.2",
+        "longitud": "0",
+        "zona": "1"
     },
-            {
-      "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
-      "codigo": "10",
-    "latitud": "-34.557401",
-    "longitud": "-58.50120",
-      "zona": "10"
+    {
+        "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
+        "codigo": "10",
+        "latitud": "-0.2",
+        "longitud": "0",
+        "zona": "1"
     }
-  ]
-}
+]

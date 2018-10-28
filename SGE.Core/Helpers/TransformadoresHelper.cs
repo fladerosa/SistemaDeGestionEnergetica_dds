@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SGE.Core.Entidades;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -12,7 +13,7 @@ namespace SGE.Core.Helpers
 
         public TransformadoresHelper()
         {
-            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(@"Resources\transformadores.json"));
+            this.Transformadores = JsonConvert.DeserializeObject<List<Transformador>>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\transformadores.json")));
         }
 
         public TransformadoresHelper(string nombreTransformadorJson)

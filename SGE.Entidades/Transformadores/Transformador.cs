@@ -1,12 +1,12 @@
-﻿using SGE.Entidades.Usuarios;
+﻿using SGE.Core.Helpers;
+using SGE.Entidades.Repositorio;
+using SGE.Entidades.Usuarios;
 using SGE.Entidades.Zonas;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SGE.Entidades.Transformadores
-{
+namespace SGE.Entidades.Transformadores {
     [Table("Transformador")]
     public class Transformador
     {
@@ -35,6 +35,21 @@ namespace SGE.Entidades.Transformadores
                 consumo += cliente.Inteligentes.Sum(i => i.ConsumoEnergia);
             }
             return consumo;
+        }
+
+        public void ProcesarDatosEnre() {
+            BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
+            TransformadoresHelper transHelper = new TransformadoresHelper();
+
+            foreach (Core.Entidades.Transformador transformador in transHelper.Transformadores) {
+                if(repoTransformador.Single(t => t.codigo == transformador.codigo) == null)
+                    repoTransformador.Create(new Transformador() {
+                        codigo = transformador.codigo,
+                        Latitud = (double)transformador.Latitud,
+                        Longitud = (double)transformador.Longitud,
+                        ZonaId = transformador.Zona
+                    });
+            }
         }
         #endregion
     }
