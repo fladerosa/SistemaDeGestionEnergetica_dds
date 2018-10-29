@@ -1,5 +1,6 @@
 ﻿using SGE.Entidades.Categorias;
 using SGE.Entidades.Dispositivos;
+using SGE.Entidades.Simplex;
 using SGE.Entidades.Transformadores;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -57,6 +58,15 @@ namespace SGE.Entidades.Usuarios
         public int CantidadTotalDispositivos()
         {
             return this.Estandars.Count;
+        }
+
+        public decimal HogarEficiente() {
+            SimplexBuilder simplex = new SimplexBuilder();
+            simplex.AgregarRestriccion(new KeyValuePair<string, string>("DDEAEA7C1ADE458991D496812D5D41FA", "elem_1"), 204);
+            simplex.AgregarRestriccion(new KeyValuePair<string, string>("A0BA3245EAFC4EC994CC841698B835C0", "elem_2"), 40);
+            simplex.Resolver();
+
+            return (decimal)simplex.Resultado["ConsumoRestanteTotal"];
         }
 
         public enum enum_TipoDocumento {

@@ -17,11 +17,12 @@ namespace SGE.Entidades.Acciones
         #region Campos
         
         private Inteligente dispositivo;
-      
+
         #endregion
 
         #region Constructores
-
+        public Apagar() {
+        }
         public Apagar(Inteligente dispositivo)
         {
             this.dispositivo = dispositivo;

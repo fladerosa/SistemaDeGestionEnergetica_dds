@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.TV
         #endregion
 
         #region Constructores
-
+        public BajarVolumen() {
+        }
         public BajarVolumen(Televisor dispositivo)
         {
             this.dispositivo = dispositivo;

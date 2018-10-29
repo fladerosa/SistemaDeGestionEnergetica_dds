@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.TV
         #endregion
 
         #region Constructores
-
+        public CambiarEntrada() {
+        }
         public CambiarEntrada(Televisor dispositivo)
         {
             this.dispositivo = dispositivo;

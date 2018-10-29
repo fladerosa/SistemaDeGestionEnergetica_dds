@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.TV
         #endregion
 
         #region Constructores
-
+        public Mute() {
+        }
         public Mute(Televisor dispositivo)
         {
             this.dispositivo = dispositivo;

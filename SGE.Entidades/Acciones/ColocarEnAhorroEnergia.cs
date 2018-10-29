@@ -16,11 +16,12 @@ namespace SGE.Entidades.Acciones
         #region Campos
             
         private Inteligente dispositivo;
-       
+
         #endregion
 
         #region Constructores
-
+        public ColocarEnAhorroEnergia() {
+        }
         public ColocarEnAhorroEnergia(Inteligente dispositivo)
         {
             this.dispositivo = dispositivo;

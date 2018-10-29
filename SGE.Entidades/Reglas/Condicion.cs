@@ -16,6 +16,7 @@ namespace SGE.Entidades.Reglas
         private IValueProvider provider;
         private IOperador operador;
         public decimal valorReferencia { get; set; }
+        public TipoOperacion tipoOperacion { get; set; }
 
         public int ReglaId { get; set; } // fk con tabla regla
         [ForeignKey("ReglaId")]
@@ -25,7 +26,8 @@ namespace SGE.Entidades.Reglas
         #endregion
 
         #region Constructores
-
+        public Condicion() {
+        }
         public Condicion(IValueProvider provider, IOperador operador, decimal valorReferencia)
         {
             this.provider = provider;
@@ -37,6 +39,19 @@ namespace SGE.Entidades.Reglas
         {
             this.operador = operador;
             this.valorReferencia = valorReferencia;
+        }
+
+        public enum TipoOperacion {
+            [Display(Name = "Igual")]
+            Igual,
+            [Display(Name = "Menor")]
+            Menor,
+            [Display(Name = "Menor o igual")]
+            MenorOIgual,
+            [Display(Name = "Mayor")]
+            Mayor,
+            [Display(Name = "Mayor o igual")]
+            MayorOIgual,
         }
 
 

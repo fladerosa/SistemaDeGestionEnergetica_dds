@@ -17,7 +17,8 @@ namespace SGE.Entidades.Acciones.TV
         #endregion
 
         #region Constructores
-
+        public CambiarCanal() {
+        }
         public CambiarCanal(Televisor dispositivo, decimal canal)
         {
             this.dispositivo = dispositivo;

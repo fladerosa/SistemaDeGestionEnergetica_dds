@@ -18,9 +18,11 @@ namespace SGE.Entidades.Acciones
         public string Descripcion { get; set; }
 
         public int ReglaId { get; set; } // fk con tabla regla
-        public Regla Regla { get; set; } // one to many con  regla 
+        [ForeignKey("ReglaId")]
+        public virtual Regla Regla { get; set; } // one to many con  regla 
         public int ActuadorId { get; set; } //fk con Driver
-        public Driver Actuador { get; set; } // one to many con Actuador (Driver)
+        [ForeignKey("ActuadorId")]
+        public virtual Driver Actuador { get; set; } // one to many con Actuador (Driver)
 
         public void Ejecutar()
         {

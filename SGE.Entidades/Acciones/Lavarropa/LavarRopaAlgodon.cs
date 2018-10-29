@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.Lavarropa
         #endregion
 
         #region Constructores
-
+        public LavarRopaAlgodon() {
+        }
         public LavarRopaAlgodon(Lavarropas dispositivo)
         {
             this.dispositivo = dispositivo;

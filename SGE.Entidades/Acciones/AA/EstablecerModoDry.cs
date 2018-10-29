@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.AA
         #endregion
 
         #region Constructores
-
+        public EstablecerModoDry() {
+        }
         public EstablecerModoDry(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;

@@ -20,7 +20,8 @@ namespace SGE.Entidades.Acciones
         #endregion
 
         #region Constructores
-
+        public Encender() {
+        }
         public Encender(Inteligente dispositivo)
         {
             this.dispositivo = dispositivo;

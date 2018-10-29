@@ -26,7 +26,8 @@ namespace SGE.Entidades.Reglas
         #endregion
 
         #region Constructores
-
+        public Medicion() {
+        }
         public Medicion(decimal valor, UnidadEnum unidad)
         {
             this.Valor = valor;

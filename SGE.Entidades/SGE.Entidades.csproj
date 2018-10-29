@@ -99,7 +99,7 @@
     <Compile Include="Acciones\Apagar.cs" />
     <Compile Include="Acciones\ColocarEnAhorroEnergia.cs" />
     <Compile Include="Acciones\Encender.cs" />
-    <Compile Include="Acciones\Lavarropa\BajarVolumen.cs" />
+    <Compile Include="Acciones\TV\BajarVolumen.cs" />
     <Compile Include="Acciones\TV\CambiarCanal.cs" />
     <Compile Include="Acciones\AA\CambiarDireccion.cs" />
     <Compile Include="Acciones\AA\DecrementarVelocidadVentilador.cs" />
@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201810282241116_persistenciaEstadoInteligente.cs" />
     <Compile Include="Migrations\201810282241116_persistenciaEstadoInteligente.Designer.cs">
       <DependentUpon>201810282241116_persistenciaEstadoInteligente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810290459050_enumTipoOperacion.cs" />
+    <Compile Include="Migrations\201810290459050_enumTipoOperacion.Designer.cs">
+      <DependentUpon>201810290459050_enumTipoOperacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reportes\Reporte.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810282241116_persistenciaEstadoInteligente.resx">
       <DependentUpon>201810282241116_persistenciaEstadoInteligente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810290459050_enumTipoOperacion.resx">
+      <DependentUpon>201810290459050_enumTipoOperacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

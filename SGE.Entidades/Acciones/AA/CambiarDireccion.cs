@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.AA
         #endregion
 
         #region Constructores
-
+        public CambiarDireccion() {
+        }
         public CambiarDireccion(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;

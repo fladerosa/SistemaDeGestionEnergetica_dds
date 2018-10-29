@@ -1,7 +1,127 @@
-﻿
+﻿@using System.Collections.Generic;
+
 @{
     ViewBag.Title = "Hogar";
 }
 
-<h2>Hogar</h2>
+<h2>Últimas mediciones</h2>
 
+<table class="table table-hover">
+    <tr>
+        <th>
+            Dispositivo
+        </th>
+        <th>
+            Sensor
+        </th>
+        <th>
+            Valor obtenido [Unidad de medida]
+        </th>
+        <th>
+            Fecha de medición
+        </th>
+    </tr>
+
+    @foreach (var medicion in ViewBag.ultimasMediciones) {
+        <tr>
+            <td>
+                @medicion.dispositivo
+            </td>
+            <td>
+                @medicion.sensor
+            </td>
+            <td>
+                @if (medicion.medicion == null) {
+                    @Html.Raw("<i>No existe medición<i>")
+                } else {
+                    @Html.Raw(medicion.medicion.Valor + " [" + medicion.medicion.Unidad + "]")
+                }
+            </td>
+            <td>
+                @if (medicion.medicion == null) {
+                    @Html.Raw("<i>No existe medición<i>")
+                } else {
+                    @Html.Raw(medicion.medicion.FechaRegistro.ToShortDateString())
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<h2>Consumo del último mes</h2>
+
+<p>@ViewBag.consumo KW</p>
+
+<br />
+<br />
+
+<h2>Estado por dispositivo</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            Dispositivo
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Fecha de activación
+        </th>
+    </tr>
+
+    @foreach (var dispositivo in ViewBag.dispositivosEstado) {
+
+        <tr>
+            <td>
+                @dispositivo.Nombre
+            </td>
+            <td>
+                @if (dispositivo.RegistroDeActivaciones.Count == 0) {
+                    @dispositivo.Estado
+                } else {
+                    @*@dispositivo.RegistroDeActivaciones.Last().Estado*@
+                    @dispositivo.RegistroDeActivaciones[dispositivo.RegistroDeActivaciones.Count - 1].Estado
+                }
+            </td>
+            <td>
+                @if (dispositivo.RegistroDeActivaciones.Count == 0) {
+                    @Html.Raw("<i>Nunca se encendió<i>")
+                } else {
+                    @dispositivo.RegistroDeActivaciones[dispositivo.RegistroDeActivaciones.Count - 1].FechaDeRegistro.ToShortDateString()
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<h2>Reglas activas</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            Regla
+        </th>
+        <th>
+            Condición
+        </th>
+    </tr>
+
+    @foreach (var regla in ViewBag.reglasActivas) {
+        <tr>
+            <td>
+                @regla.regla
+            </td>
+            <td>
+                @regla.condicion
+            </td>
+        </tr>
+    }
+
+</table>

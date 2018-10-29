@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.AA
         #endregion
 
         #region Constructores
-
+        public DecrementarVelocidadVentilador() {
+        }
         public DecrementarVelocidadVentilador(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;

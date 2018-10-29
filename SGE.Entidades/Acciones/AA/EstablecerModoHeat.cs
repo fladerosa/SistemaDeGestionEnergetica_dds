@@ -16,7 +16,8 @@ namespace SGE.Entidades.Acciones.AA
         #endregion
 
         #region Constructores
-
+        public EstablecerModoHeat() {
+        }
         public EstablecerModoHeat(AireAcondicionado dispositivo)
         {
             this.dispositivo = dispositivo;
