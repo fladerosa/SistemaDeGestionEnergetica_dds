@@ -1,22 +1,35 @@
-﻿using SGE.Entidades.Dispositivos;
+﻿using SGE.Entidades.Contexto;
+using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Repositorio;
 using SGE.Entidades.Transformadores;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace SGE.Entidades.Reportes
 {
     public static class Reporte {
         //• Consumo por hogar/periodo.
         public static decimal consumoPorHogarYPeriodo(int idUsuario, DateTime fechaDesde, DateTime fechaHasta) {
-            BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>();
+            SGEContext context = new SGEContext();
+            BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>(context);
             decimal consumo = 0;
 
-            Cliente cliente = repoCliente.Single(u => u.Id == idUsuario);
+            var includesCliente = new List<Expression<Func<Cliente, object>>>() {
+                c => c.Inteligentes
+            };
+            Cliente cliente = repoCliente.Single(u => u.Id == idUsuario, includesCliente);
+
+            var includesInteligente = new List<Expression<Func<Inteligente, object>>>() {
+                    i => i.RegistroDeActivaciones
+                };
 
             foreach (Inteligente inteligente in cliente.Inteligentes) {
-                consumo += inteligente.ObtenerConsumoPeriodo(fechaDesde, fechaHasta);
+                BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(context);
+                Inteligente inte = repoInteligente.Single(i => i.Id == inteligente.Id, includesInteligente);
+
+                consumo += inte.ObtenerConsumoPeriodo(fechaDesde, fechaHasta);
             }
 
             foreach (Estandar estandar in cliente.Estandars) {

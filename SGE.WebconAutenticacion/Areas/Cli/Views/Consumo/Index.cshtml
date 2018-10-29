@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Consumo";
+}
+
+<h2>Consumo</h2>
+
+
+
+<p>Fecha desde: <input type="text" id="fechaDesde" class="fecha-datepicker"></p>
+<p>Fecha hasta (opcional): <input type="text" id="fechaHasta" class="fecha-datepicker"></p>
+
+<input type="button" value="Buscar" class="btn btn-default" onclick="buscar();"/>
+
+<div id="contResultado" style="display: none">
+    <dl class="dl-horizontal">
+        <dt>
+            Consumo: 
+        </dt>
+
+        <dd>
+            <span id="spanResultado"></span> KW
+        </dd>
+    </dl>
+</div>
+
+<script>
+    $(function () {
+        $(".fecha-datepicker").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
+
+    function buscar() {
+        if ($("#fechaDesde").val() == "") {
+            alert("Debe ingresar la fecha de inicio de la consulta");
+            return false;
+        }
+
+        var datos = {
+            fechaDesde: $("#fechaDesde").val(),
+            fechaHasta: $("#fechaHasta").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Cli/Consumo/Buscar",
+            data: datos,
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    $("#spanResultado").html(resultado.resultado);
+                    $("#contResultado").show();
+                } else {
+                    alert("Error vinculando dispositivo: " + resultado.error);
+                }
+            }
+        });
+    }
+</script>

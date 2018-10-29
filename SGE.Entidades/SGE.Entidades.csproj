@@ -137,6 +137,14 @@
     <Compile Include="Migrations\201810271558042_cambiosCliente.Designer.cs">
       <DependentUpon>201810271558042_cambiosCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810282010567_cambioFluentApiInteligente.cs" />
+    <Compile Include="Migrations\201810282010567_cambioFluentApiInteligente.Designer.cs">
+      <DependentUpon>201810282010567_cambioFluentApiInteligente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810282241116_persistenciaEstadoInteligente.cs" />
+    <Compile Include="Migrations\201810282241116_persistenciaEstadoInteligente.Designer.cs">
+      <DependentUpon>201810282241116_persistenciaEstadoInteligente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Repositorio\BaseRepositorio.cs" />
@@ -193,6 +201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810271558042_cambiosCliente.resx">
       <DependentUpon>201810271558042_cambiosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810282010567_cambioFluentApiInteligente.resx">
+      <DependentUpon>201810282010567_cambioFluentApiInteligente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810282241116_persistenciaEstadoInteligente.resx">
+      <DependentUpon>201810282241116_persistenciaEstadoInteligente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

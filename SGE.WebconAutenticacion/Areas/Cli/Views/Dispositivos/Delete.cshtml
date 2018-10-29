@@ -1,0 +1,47 @@
+﻿@model SGE.Entidades.Dispositivos.Inteligente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Seguro que desea eliminar el dispositivo?</h3>
+<div>
+    <h4>Inteligente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoEnergia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoEnergia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentificadorFabrica)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

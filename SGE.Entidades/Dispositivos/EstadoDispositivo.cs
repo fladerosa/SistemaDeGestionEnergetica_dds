@@ -4,10 +4,10 @@ namespace SGE.Entidades.Dispositivos
 {
     public enum EstadoDispositivo
     {
-        [Display(Name = "Encendido")]
-        Encendido = 0,
         [Display(Name = "Apagado")]
-        Apagado = 1,
+        Apagado = 0,
+        [Display(Name = "Encendido")]
+        Encendido = 1,
         [Display(Name = "AhorroEnergia")]
         AhorroEnergia = 2
      }

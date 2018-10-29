@@ -1,4 +1,5 @@
 ﻿using SGE.Core.Helpers;
+using SGE.Entidades.Contexto;
 using SGE.Entidades.Drivers;
 using SGE.Entidades.Drivers.Interfaces;
 using SGE.Entidades.Managers;
@@ -18,11 +19,13 @@ namespace SGE.Entidades.Dispositivos
         #region Propiedades
 
         DispositivosManager dispositivosManager;
+        [NotMapped]
+        public SGEContext context { get; set; }
 
         /// <summary>
         /// Indica el estado del dispositivo
         /// </summary>
-        protected EstadoDispositivo Estado = EstadoDispositivo.Apagado;
+        public EstadoDispositivo Estado { get; set; }
         public virtual ICollection<Cliente> Clientes { get; set; } //many to many con Clientes
         public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; }
         public IDriver Driver { get; set; }
@@ -72,20 +75,27 @@ namespace SGE.Entidades.Dispositivos
         #region Constructor
 
         public Inteligente() {
+            this.Clientes = new HashSet<Cliente>();
+            context = new SGEContext();
+            this.RegistroDeActivaciones = new List<Activacion>();
         }
 
         public Inteligente(string nombre, decimal consumo, IDriver driver) : base(nombre, consumo)
         {
+            this.Clientes = new List<Cliente>();
             this.RegistroDeActivaciones = new List<Activacion>();
             this.Driver = driver;
+            context = new SGEContext();
         }
 
         public Inteligente(string nombre, IDriver driver, string id) : base(nombre)
         {
+            this.Clientes = new List<Cliente>();
             this.RegistroDeActivaciones = new List<Activacion>();
             this.Driver = driver;
             this.ConsumoEnergia = Convert.ToDecimal(DispositivosHelper.GetInstace().Dispositivos.Where(x => x.Id == id).Single().Consumo);
             this.IdentificadorFabrica = id;
+            context = new SGEContext();
         }
 
         #endregion
@@ -100,7 +110,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Encendido)
             {
                 this.Estado = EstadoDispositivo.Encendido;
-                this.Driver.Encender();
+                //this.Driver.Encender();
                 Activacion activacion = new Activacion() {
                     Estado = this.Estado,
                     Inteligente = this,
@@ -108,7 +118,7 @@ namespace SGE.Entidades.Dispositivos
                     InteligenteId = this.Id
                 };
 
-                BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+                BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>(context);
                 repoActivacion.Create(activacion);
 
                 //this.RegistroDeActivaciones.Add(activacion);
@@ -145,7 +155,7 @@ namespace SGE.Entidades.Dispositivos
             if (this.Estado != EstadoDispositivo.Apagado && this.Estado != EstadoDispositivo.AhorroEnergia)
             {
                 this.Estado = EstadoDispositivo.Apagado;
-                this.Driver.Apagar();
+                //this.Driver.Apagar();
 
                 Activacion activacion = new Activacion(this.Estado) {
                     Inteligente = this,
@@ -153,7 +163,7 @@ namespace SGE.Entidades.Dispositivos
                     InteligenteId = this.Id
                 };
 
-                BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+                BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>(context);
                 repoActivacion.Create(activacion);
 
                 //this.RegistroDeActivaciones.Add(activacion);
@@ -166,7 +176,7 @@ namespace SGE.Entidades.Dispositivos
         public void ColocarEnAhorroEnergia()
         {
             this.Estado = EstadoDispositivo.AhorroEnergia;
-            this.Driver.PonerEnModoAhorroEnergia();
+            //this.Driver.PonerEnModoAhorroEnergia();
 
             Activacion activacion = new Activacion(this.Estado) {
                 Inteligente = this,
@@ -174,7 +184,7 @@ namespace SGE.Entidades.Dispositivos
                 InteligenteId = this.Id
             };
 
-            BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>();
+            BaseRepositorio<Activacion> repoActivacion = new BaseRepositorio<Activacion>(context);
             repoActivacion.Create(activacion);
 
             //this.RegistroDeActivaciones.Add(activacion);

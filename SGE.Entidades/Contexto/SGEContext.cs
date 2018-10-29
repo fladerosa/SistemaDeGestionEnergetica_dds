@@ -14,10 +14,13 @@ namespace SGE.Entidades.Contexto {
     {
         public SGEContext() : base("ConnSGEDb")
         {
-         // Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
+            // Database.SetInitializer<SGEContext>(new DropCreateDatabaseAlways<SGEContext>());
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         private static SGEContext Instancia = null;
+
+        public SGEContext contextoHeredable { get; set; }
 
         public static SGEContext instancia() {
             if(Instancia ==null)
@@ -40,6 +43,7 @@ namespace SGE.Entidades.Contexto {
         public DbSet<Driver> Actuador { get; set; }
         public DbSet<Regla> Reglas { get; set; }
         public DbSet<Condicion> Condiciones { get; set; }
+        public DbSet<Inteligente> Inteligentes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,16 +54,6 @@ namespace SGE.Entidades.Contexto {
             modelBuilder.Configurations.Add(new SensorMap()); // mapeo herencia sensor
             modelBuilder.Configurations.Add(new DriverMap()); // mapeo herencia Actuador
             modelBuilder.Configurations.Add(new AccionMap()); // mapeo herencia Accion
-
-            modelBuilder.Entity<Inteligente>()
-                .HasMany<Cliente>(s => s.Clientes)
-                .WithMany(c => c.Inteligentes)
-                .Map(cs =>
-                {
-                    cs.MapLeftKey("InteligenteId");
-                    cs.MapRightKey("ClienteId");
-                    cs.ToTable("Inteligente_X_Cliente");
-                });
 
             modelBuilder.Entity<Estandar>()
                 .HasMany<Cliente>(s => s.Clientes)

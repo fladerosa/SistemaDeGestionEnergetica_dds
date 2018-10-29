@@ -36,17 +36,17 @@
                         var roles = userManager.GetRoles(User.Identity.GetUserId());
 
                         if (roles.Any(r => r == "Admin")) {
-                            <li>@Html.ActionLink("Hogares", "Index", "Hogares", new { area = "Admin" }, null)</li>
-                            <li>@Html.ActionLink("Reportes", "Index", "Reportes", new { area = "Admin" }, null)</li>
-                            <li>@Html.ActionLink("Dispositivos", "Index", "Dispositivos", new { area = "Admin" }, null)</li>
+                            <li>@Html.ActionLink("Hogares", "Index", "Hogares", new { area = "Adm" }, null)</li>
+                            <li>@Html.ActionLink("Reportes", "Index", "Reportes", new { area = "Adm" }, null)</li>
+                            <li>@Html.ActionLink("Dispositivos", "Index", "Dispositivos", new { area = "Adm" }, null)</li>
                         } else {
-                            <li>@Html.ActionLink("Hogar", "Index", "Hogar", new { area = "Cliente" }, null)</li>
-                            <li>@Html.ActionLink("Consumo por período", "Index", "Consumo", new { area = "Cliente" }, null)</li>
-                            <li>@Html.ActionLink("Reglas", "Index", "Reglas", new { area = "Cliente" }, null)</li>
-                            <li>@Html.ActionLink("Dispositivos", "Index", "Dispositivos", new { area = "Cliente" }, null)</li>
+                            <li>@Html.ActionLink("Hogar", "Index", "Hogar", new { area = "Cli" }, null)</li>
+                            <li>@Html.ActionLink("Consumo por período", "Index", "Consumo", new { area = "Cli" }, null)</li>
+                            <li>@Html.ActionLink("Reglas", "Index", "Reglas", new { area = "Cli" }, null)</li>
+                            <li>@Html.ActionLink("Dispositivos", "Index", "Dispositivos", new { area = "Cli" }, null)</li>
                         }
                     }
-                    <li>@Html.ActionLink("Mapa", "Index", "Mapa")</li>
+                    <li>@Html.ActionLink("Mapa", "Index", "Mapa", new { area = "" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

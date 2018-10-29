@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SGE.Entidades.Dispositivos.Inteligente>
+
+@{
+    ViewBag.Title = "Dispositivos";
+}
+
+<h2>Dispositivos actuales</h2>
+
+<p>
+    @Html.ActionLink("Agregar nuevo dispositivo", "Agregar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumoEnergia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaApagado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaPrendido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaEnModoAhorroEnergia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumoEnergia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentificadorFabrica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaApagado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaPrendido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaEnModoAhorroEnergia)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

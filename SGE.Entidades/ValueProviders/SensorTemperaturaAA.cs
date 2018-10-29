@@ -16,7 +16,8 @@ namespace SGE.Entidades.ValueProviders
         #endregion
 
         #region Constructores
-
+        public SensorTemperaturaAA() {
+        }
         public SensorTemperaturaAA(IAireAcondicionadoDriver driver)
         {
             this.driver = driver;

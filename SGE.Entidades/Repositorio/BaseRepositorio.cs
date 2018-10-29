@@ -9,11 +9,22 @@ using System.Linq.Expressions;
 
 namespace SGE.Entidades.Repositorio {
     public class BaseRepositorio<T> : IRepositorio<T> where T : class {
-        private SGEContext context {
-            get {
-                return SGEContext.instancia();
-            }
+        public BaseRepositorio() {
+            this.context = new SGEContext();
         }
+
+        public BaseRepositorio(SGEContext contexto) {
+            this.context = contexto;
+        }
+
+        //private SGEContext context {
+        //    get {
+        //        //return SGEContext.instancia();
+        //        return new SGEContext();
+        //    }
+        //}
+
+        private SGEContext context { get; set; }
 
         public List<T> GetAll() {
             context.Configuration.LazyLoadingEnabled = false;

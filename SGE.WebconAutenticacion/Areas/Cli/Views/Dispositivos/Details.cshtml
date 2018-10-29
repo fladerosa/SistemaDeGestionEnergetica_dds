@@ -1,0 +1,112 @@
+﻿@model SGE.Entidades.Dispositivos.Inteligente
+@using SGE.Entidades.Dispositivos;
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Inteligente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoEnergia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoEnergia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentificadorFabrica)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (Model.EstaApagado) {
+                @Html.Raw("Apagado");
+            } else if (Model.EstaPrendido) {
+                @Html.Raw("Prendido");
+            } else if (Model.EstaEnModoAhorroEnergia) {
+                @Html.Raw("Ahorro energía");
+            } else {
+                @Html.Raw("Desconocido");
+            }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+            @if (!Model.EstaApagado) {
+                @Html.ActionLink("Apagar", "", "", new { id = Model.Id, @class = "apagarLink" });
+                @Html.Raw(" |");
+            }
+
+            @if (!Model.EstaPrendido) {
+                @Html.ActionLink("Encender", "", "", new { id = Model.Id, @class = "encenderLink" });
+                @Html.Raw(" |");
+            }
+
+            @if (!Model.EstaEnModoAhorroEnergia) {
+                @Html.ActionLink("Modo ahorro de energía", "", "", new { id = Model.Id, @class = "ahorroEnergiaLink" });
+                @Html.Raw(" |");
+            }
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Gestionar reglas", "Reglas") |
+    @Html.ActionLink("Volver", "Index")
+</p>
+
+<script>
+    $(document).ready(function () {
+        $('.apagarLink').click(function (e) {
+            e.preventDefault();
+            cambiarEstado(@Model.Id, @((int)EstadoDispositivo.Apagado));
+        });
+
+        $('.encenderLink').click(function (e) {
+            e.preventDefault();
+            cambiarEstado(@Model.Id, @((int)EstadoDispositivo.Encendido));
+        });
+
+        $('.ahorroEnergiaLink').click(function (e) {
+            e.preventDefault();
+            cambiarEstado(@Model.Id, @((int)EstadoDispositivo.AhorroEnergia));
+        });
+    });
+
+    function cambiarEstado(idInteligente, estado) {
+            var datos = {
+                idInteligente: idInteligente,
+                estado: estado
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Cli/Dispositivos/CambiarEstado",
+                data: datos,
+                success: function (resultado) {
+                    if (resultado.success == true) {
+                        location.reload();
+                    } else {
+                        alert("Error cambiando estado: " + resultado.error);
+                    }
+                }
+            });
+    }
+</script>

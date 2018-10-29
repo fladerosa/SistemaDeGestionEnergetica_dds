@@ -33,7 +33,8 @@ namespace SGE.Entidades.Usuarios
 
         public Cliente()
         {
-            this.Inteligentes = new List<Inteligente>();
+            this.Inteligentes = new HashSet<Inteligente>();
+            //this.Inteligentes = new List<Inteligente>();
             this.Estandars = new List<Estandar>();
             this.Telefonos = new List<Telefono>();
         }
