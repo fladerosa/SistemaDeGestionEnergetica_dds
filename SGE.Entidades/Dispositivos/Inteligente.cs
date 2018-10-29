@@ -37,6 +37,9 @@ namespace SGE.Entidades.Dispositivos
         [ForeignKey("ActuadorId")]
         public virtual Driver Actuador { get; set; } // one to many con  Actuador
 
+       // public int? CatalogoId { get; set; } // fk con tabla Catalogo
+        //[ForeignKey("CatalogoId")]
+       // public virtual Catalogo Catalogo { get; set; } // one to many con Catalogo
         /// <summary>
         /// Devuelve un valor que indica si el equipo esta encendido
         /// </summary>

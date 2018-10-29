@@ -44,6 +44,8 @@ namespace SGE.Entidades.Contexto {
         public DbSet<Regla> Reglas { get; set; }
         public DbSet<Condicion> Condiciones { get; set; }
         public DbSet<Inteligente> Inteligentes { get; set; }
+        public DbSet<Catalogo> Catalogos { get; set; }
+        public object Catalogo { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

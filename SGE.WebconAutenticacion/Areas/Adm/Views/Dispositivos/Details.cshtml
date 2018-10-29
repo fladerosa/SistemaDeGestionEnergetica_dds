@@ -1,0 +1,42 @@
+﻿@model SGE.Entidades.Dispositivos.Catalogo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle de Dispositivos en Catalogo</h2>
+
+<div>
+    <h4>Catalogo de Inteligentes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoEnergia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoEnergia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentificadorFabrica)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

@@ -1,6 +1,7 @@
 ﻿using SGE.Entidades.Dispositivos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Usuarios
@@ -9,7 +10,8 @@ namespace SGE.Entidades.Usuarios
     public class Administrador : Usuario
     {
         public string Nui { get; set; }
- 
+
+        public virtual ICollection<Catalogo> Catalogos { get; set; }
         public int Antiguedad()
         {
             return (int)Math.Truncate((DateTime.Now - this.FechaAlta).TotalDays);
