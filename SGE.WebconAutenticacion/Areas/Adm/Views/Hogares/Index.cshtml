@@ -5,3 +5,25 @@
 
 <h2>Hogares</h2>
 
+<table class="table table-hover">
+    <tr>
+        <th>
+            Hogar
+        </th>
+        <th>
+            Consumo
+        </th>
+    </tr>
+
+    @foreach (var cliente in ViewBag.clientes) {
+        <tr>
+            <td>
+                @Html.Raw(cliente.Text)
+            </td>
+            <td>
+                @Html.Raw(cliente.Value)
+            </td>
+        </tr>
+    }
+
+</table>
