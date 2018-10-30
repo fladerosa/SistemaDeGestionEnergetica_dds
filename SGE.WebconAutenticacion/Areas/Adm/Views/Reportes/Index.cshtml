@@ -3,5 +3,112 @@
     ViewBag.Title = "Reportes";
 }
 
-<h2>Reportes</h2>
+<h2>Reportes de consumo</h2>
 
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Hogar por período</a></li>
+        <li><a href="#tabs-2">Tipos de dispositivo por período</a></li>
+        <li><a href="#tabs-3">Transformador por período</a></li>
+    </ul>
+    <div id="tabs-1">
+        <dl class="dl-horizontal">
+            <dt>Hogar de:</dt>
+            <dd>@Html.DropDownList("clientes", null, "Seleccione un cliente", new { @class = "form-control Hogar" })</dd>
+
+            <dt>Fecha desde:</dt>
+            <dd><input type="text" id="fechaDesde_Hogar" class="form-control fecha-datepicker"></dd>
+
+            <dt>Fecha hasta:</dt>
+            <dd><input type="text" id="fechaHasta_Hogar" class="form-control fecha-datepicker"></dd>
+        </dl>
+
+        <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('Hogar')"/>
+        <div id="contHogar" style="display: none;">
+            <dl class="dl-horizontal">
+                <dt>Consumo: </dt>
+                <dd><span id="resultadoHogar"></span></dd>
+            </dl>
+        </div>
+    </div>
+    <div id="tabs-2">
+        <dl class="dl-horizontal">
+            <dt>Tipo dispositivo:</dt>
+            <dd>@Html.DropDownList("tiposDispositivos", null, "Selecciones un tipo", new { @class = "form-control TiposDisp" })</dd>
+
+            <dt>Fecha desde:</dt>
+            <dd><input type="text" id="fechaDesde_TiposDisp" class="form-control fecha-datepicker"></dd>
+
+            <dt>Fecha hasta:</dt>
+            <dd><input type="text" id="fechaHasta_TiposDisp" class="form-control fecha-datepicker"></dd>
+        </dl>
+        <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('TiposDisp')" />
+        <div id="contTiposDisp" style="display: none;">
+            <dl class="dl-horizontal">
+                <dt>Consumo: </dt>
+                <dd><span id="resultadoTiposDisp"></span></dd>
+            </dl>
+        </div>
+    </div>
+    <div id="tabs-3">
+        <dl class="dl-horizontal">
+            <dt>Transformador:</dt>
+            <dd>@Html.DropDownList("transformadores", null, "Seleccione un transformador", new { @class = "form-control Transformador" })</dd>
+
+            <dt>Fecha desde:</dt>
+            <dd><input type="text" id="fechaDesde_Transformador" class="form-control fecha-datepicker"></dd>
+
+            <dt>Fecha hasta:</dt>
+            <dd><input type="text" id="fechaHasta_Transformador" class="form-control fecha-datepicker"></dd>
+        </dl>
+        <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('Transformador')" />
+        <div id="contTransformador" style="display: none;">
+            <dl class="dl-horizontal">
+                <dt>Consumo: </dt>
+                <dd><span id="resultadoTransformador"></span></dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(".fecha-datepicker").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
+
+    function consultar(tipoReporte) {
+        if ($("#fechaDesde_" + tipoReporte).val() == "" || $("." + tipoReporte).val() == "") {
+            alert("Debe ingresar la fecha de inicio y seleccionar un valor del combo");
+            return false;
+        }
+
+        var datos = {
+            fechaDesde: $("#fechaDesde_" + tipoReporte).val(),
+            fechaHasta: $("#fechaHasta_" + tipoReporte).val(),
+            tipoReporte: tipoReporte,
+            idObjeto: $("." + tipoReporte).val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Adm/Reportes/Consultar",
+            data: datos,
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    $("#resultado" + resultado.tipoReporte).html(resultado.resultado);
+                    $("#cont" + resultado.tipoReporte).show();
+                } else {
+                    alert(resultado.error);
+                }
+            }
+        });
+    }
+</script>

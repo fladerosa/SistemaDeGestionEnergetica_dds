@@ -58,8 +58,10 @@ namespace SGE.Entidades.Reportes
         private static decimal consumoDispositivosInteligentesPorPeriodo(DateTime fechaDesde, DateTime fechaHasta) {
             decimal consumo = 0;
             BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
-
-            List<Inteligente> inteligentes = repoInteligente.GetAll();
+            var includesInteligente = new List<Expression<Func<Inteligente, object>>>() {
+                    i => i.RegistroDeActivaciones
+                };
+            List<Inteligente> inteligentes = repoInteligente.GetAll(includesInteligente);
 
             foreach (Inteligente inteligente in inteligentes) {
                 consumo += inteligente.ObtenerConsumoPeriodo(fechaDesde, fechaHasta);
@@ -85,8 +87,10 @@ namespace SGE.Entidades.Reportes
         public static decimal consumoTransformadorPorPeriodo(int idTransformador, DateTime fechaDesde, DateTime fechaHasta) {
             decimal consumo = 0;
             BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
-
-            Transformador transformador = repoTransformador.Single(t => t.Id == idTransformador);
+            var includesTransformador = new List<Expression<Func<Transformador, object>>>() {
+                    t => t.Clientes
+                };
+            Transformador transformador = repoTransformador.Single(t => t.Id == idTransformador, includesTransformador);
 
             if(transformador != null) {
                 foreach (Cliente cliente in transformador.Clientes) {
