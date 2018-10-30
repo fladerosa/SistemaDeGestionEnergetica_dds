@@ -1,7 +1,34 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Reglas";
 }
 
 <h2>Reglas</h2>
 
+@if (ViewBag.tieneDispositivos) {
+    <p>
+        @Html.ActionLink("Agregar nueva regla", "Agregar")
+    </p>
+}
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            Regla
+        </th>
+        <th>
+            Condición
+        </th>
+    </tr>
+
+    @foreach (var regla in ViewBag.reglas) {
+        <tr>
+            <td>
+                @regla.regla
+            </td>
+            <td>
+                @regla.condicion
+            </td>
+        </tr>
+    }
+
+</table>

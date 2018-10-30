@@ -41,20 +41,7 @@ namespace SGE.Entidades.Reglas
             this.valorReferencia = valorReferencia;
         }
 
-        public enum TipoOperacion {
-            [Display(Name = "Igual")]
-            Igual,
-            [Display(Name = "Menor")]
-            Menor,
-            [Display(Name = "Menor o igual")]
-            MenorOIgual,
-            [Display(Name = "Mayor")]
-            Mayor,
-            [Display(Name = "Mayor o igual")]
-            MayorOIgual,
-        }
-
-
+        
         #endregion
 
         #region Evaluación
@@ -66,5 +53,18 @@ namespace SGE.Entidades.Reglas
         }
 
         #endregion
+    }
+
+    public enum TipoOperacion {
+        [Display(Name = "Igual")]
+        Igual,
+        [Display(Name = "Menor")]
+        Menor,
+        [Display(Name = "Menor o igual")]
+        MenorOIgual,
+        [Display(Name = "Mayor")]
+        Mayor,
+        [Display(Name = "Mayor o igual")]
+        MayorOIgual,
     }
 }

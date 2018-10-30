@@ -1,0 +1,263 @@
+﻿@model IEnumerable<SGE.Entidades.Dispositivos.Inteligente>
+@using SGE.Entidades.Reglas;
+
+@{
+    ViewBag.Title = "Dispositivos";
+}
+
+<div id="contSeleccionDispositivos">
+    <h2>Por favor seleccione el dispositivo al que se le agregará la regla</h2>
+    <br />
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConsumoEnergia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+            </th>
+        </tr>
+
+        @foreach (var inteligente in ViewBag.inteligentes) {
+            <tr style="cursor: pointer;" onclick="seleccionarDispositivo(@inteligente.Id)">
+                <td>
+                    @inteligente.Nombre
+                </td>
+                <td>
+                    @inteligente.ConsumoEnergia
+                </td>
+                <td>
+                    @inteligente.IdentificadorFabrica
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div id="contFormularioRegla" style="display: none">
+    <h2>Por favor complete los datos requeridos para realizar el alta de la regla</h2>
+
+    <br />
+
+    <h3>Regla</h3>
+
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre:
+        </dt>
+
+        <dd>
+            <input type="text" class="form-control" id="inpNombreRegla" />
+        </dd>
+    </dl>
+
+    <br />
+
+    <h3>Condiciones <i class="fas fa-plus-circle" onclick="agregarCondicion()" title="Agregar condición"></i></h3>
+    <div id="datosCondiciones" style="display: none;">
+        <div id="formularioCondicion">
+            <dl class="dl-horizontal">
+                <dt>
+                    Valor de referencia:
+                </dt>
+
+                <dd>
+                    <input type="text" class="form-control" id="inpValorReferencia" title="Valor contra el cual se realizará el análisis" />
+                </dd>
+
+                <dt>
+                    Operación:
+                </dt>
+
+                <dd>
+                    @Html.DropDownList("TipoOperacion", EnumHelper.GetSelectList(typeof(TipoOperacion)), "Seleccione la opreación", new { @class = "form-control" })
+                </dd>
+
+                <dt>
+                </dt>
+
+                <dd>
+                    <button onclick="completarAgregadoCondicion()" class="btn">Agregar</button>
+                </dd>
+            </dl>
+        </div>
+        <br />
+        <div id="listadoCondiciones" style="display: none;">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Valor referencia
+                    </th>
+                    <th>
+                        Operación
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                <tbody id="tBodyCondiciones"></tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <h3>Acciones <i class="fas fa-plus-circle" onclick="agregarAccion()" title="Agregar acción"></i></h3>
+    <div id="datosAcciones" style="display: none;">
+        <div id="formularioAccion">
+            <dl class="dl-horizontal">
+                <dt>
+                    Descripción:
+                </dt>
+
+                <dd>
+                    <input type="text" id="inpDescripcion" title="Descripción de la acción" class="form-control" />
+                </dd>
+
+                <dt>
+                </dt>
+
+                <dd>
+                    <button onclick="completarAgregadoAccion()" class="btn">Agregar</button>
+                </dd>
+            </dl>
+
+        </div>
+        <br />
+        <div id="listadoAcciones" style="display: none;">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                <tbody id="tBodyAcciones"></tbody>
+
+            </table>
+        </div>
+    </div>
+    <br />
+    <button onclick="realizarAlta()" class="btn">Realizar alta</button>
+    <p>
+        @Html.ActionLink("Volver a seleccionar dispositivo", "", "", new { @class = "volverSeleccionDispositivo" })
+    </p>
+</div>
+
+<p>
+    @Html.ActionLink("Listado reglas", "Index")
+</p>
+
+<script>
+    var idInteligenteSeleccionado = -1;
+
+    function seleccionarDispositivo(idInteligente) {
+        idInteligenteSeleccionado = idInteligente;
+        $("#contSeleccionDispositivos").hide();
+        $("#contFormularioRegla").show();
+    }
+
+    function agregarCondicion() {
+        $("#datosCondiciones").show();
+        $("#formularioCondicion").show();
+    }
+
+    function completarAgregadoCondicion() {
+        if ($("#inpValorReferencia").val() == "" || $("#TipoOperacion").val() == "") {
+            alert("Debe completar ambos campos");
+            return false;
+        }
+        $("#formularioCondicion").hide();
+        $("#listadoCondiciones").show();
+
+        var nuevoTr = "<tr>";
+        nuevoTr += "<td>" + $("#inpValorReferencia").val() + "</td>";
+        nuevoTr += "<td>" + $("#TipoOperacion option[value=" + $("#TipoOperacion").val() + "]").html() + "</td>";
+        nuevoTr += "<td><button onclick='eliminarCondicion(this)' class='btn'>Eliminar</button></td>";
+        nuevoTr += "</tr>";
+
+        $("#tBodyCondiciones").append(nuevoTr);
+
+        $("#inpValorReferencia").val("");
+        $("#TipoOperacion").val("");
+    }
+
+    function eliminarCondicion(condicion) {
+        $(condicion)[0].parentElement.parentElement.remove();
+
+        if ($("#tBodyCondiciones").children().length <= 0) {
+            $("#listadoCondiciones").hide();
+            $("#datosCondiciones").hide();
+        }
+    }
+
+    function agregarAccion() {
+        $("#datosAcciones").show();
+        $("#formularioAccion").show();
+    }
+
+    function completarAgregadoAccion() {
+        if ($("#inpDescripcion").val() == "") {
+            alert("Debe completar la descripción");
+            return false;
+        }
+        $("#formularioAccion").hide();
+        $("#listadoAcciones").show();
+
+        var nuevoTr = "<tr>";
+        nuevoTr += "<td>" + $("#inpDescripcion").val() + "</td>";
+        nuevoTr += "<td><button onclick='eliminarAccion(this)' class='btn'>Eliminar</button></td>";
+        nuevoTr += "</tr>";
+
+        $("#tBodyAcciones").append(nuevoTr);
+
+        $("#inpDescripcion").val("");
+    }
+
+    function eliminarAccion(accion) {
+        $(accion)[0].parentElement.parentElement.remove();
+
+        if ($("#tBodyAcciones").children().length <= 0) {
+            $("#listadoAcciones").hide();
+            $("#datosAcciones").hide();
+        }
+    }
+
+    function realizarAlta() {
+
+    }
+
+    $(document).ready(function () {
+        //$('.agregarLink').click(function (e) {
+        //    e.preventDefault();
+        //    var datos = {
+        //        idInteligente: e.target.attributes["id"].value,
+        //    };
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Cli/Dispositivos/Agregar",
+        //        data: datos,
+        //        success: function (resultado) {
+        //            if (resultado.success == true) {
+        //                alert("Dispositivo asociado correctamente!!");
+        //                location.reload();
+        //            } else {
+        //                alert("Error vinculando dispositivo: " + resultado.error);
+        //            }
+        //        }
+        //    });
+        //});
+
+        $(".volverSeleccionDispositivo").click(function (e) {
+            $("#contSeleccionDispositivos").show();
+            $("#contFormularioRegla").hide();
+            return false;
+        });
+    });
+</script>
