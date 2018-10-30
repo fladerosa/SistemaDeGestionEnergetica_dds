@@ -23,6 +23,9 @@ namespace SGE.WebconAutenticacion {
 
             Inteligente inteligente = new Inteligente();
             inteligente.LevantarDispositivosArchivo();
+
+          //  Catalogo catalogo = new Catalogo();
+          //  catalogo.cargarCatalogoInicial();
         }
     }
 }

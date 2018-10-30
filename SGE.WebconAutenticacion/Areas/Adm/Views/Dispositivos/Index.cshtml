@@ -1,7 +1,51 @@
-﻿
+﻿@model IEnumerable<SGE.Entidades.Dispositivos.Catalogo>
+
 @{
-    ViewBag.Title = "Dispositivos";
+    ViewBag.Title = "Index";
 }
 
-<h2>Dispositivos</h2>
+<h2>Dispositivos actuales en Catalogo</h2>
 
+<p>
+    @Html.ActionLink("Agregar nuevo dispositivo a Catalogo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Administrador.NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumoEnergia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Administrador.NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumoEnergia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentificadorFabrica)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -115,6 +115,7 @@
     <Compile Include="Contexto\SGEContext.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
     <Compile Include="Dispositivos\AireAcondicionado.cs" />
+    <Compile Include="Dispositivos\Catalogo.cs" />
     <Compile Include="Dispositivos\DispositivoMap.cs" />
     <Compile Include="Dispositivos\Lavarropas.cs" />
     <Compile Include="Dispositivos\Televisor.cs" />
@@ -148,6 +149,10 @@
     <Compile Include="Migrations\201810290459050_enumTipoOperacion.cs" />
     <Compile Include="Migrations\201810290459050_enumTipoOperacion.Designer.cs">
       <DependentUpon>201810290459050_enumTipoOperacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810292208116_CreacionCatalogo.cs" />
+    <Compile Include="Migrations\201810292208116_CreacionCatalogo.Designer.cs">
+      <DependentUpon>201810292208116_CreacionCatalogo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reportes\Reporte.cs" />
@@ -214,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810290459050_enumTipoOperacion.resx">
       <DependentUpon>201810290459050_enumTipoOperacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810292208116_CreacionCatalogo.resx">
+      <DependentUpon>201810292208116_CreacionCatalogo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
