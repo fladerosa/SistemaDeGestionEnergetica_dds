@@ -14,6 +14,8 @@ namespace SGE.Core.Helpers
         public ZonasHelper()
         {
             this.Zonas = JsonConvert.DeserializeObject<List<Zona>>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\zonas.json")));
+           // this.Zonas = JsonConvert.DeserializeObject<List<Zona>>(File.ReadAllText(@"Resources\zonas.json"));
+
         }
 
         public Zona GetDispositivo(string id)

@@ -1,4 +1,4 @@
-
+{"Transformadores":
   [
     {
       "$type": "SGE.Core.Entidades.Transformador, SGE.Core",
@@ -71,3 +71,4 @@
       "zona": "10"
     }
   ]
+}

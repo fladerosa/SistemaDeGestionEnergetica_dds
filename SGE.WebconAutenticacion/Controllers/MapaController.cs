@@ -30,13 +30,13 @@ namespace SGE.Web.Controllers
 
         public FilePathResult ZonasJson()
         {
-            return File(Server.MapPath("../Resources/zonas.json"), "text/x-json");
+            return File(Server.MapPath("../Resources/zonas2.json"), "text/x-json");
         }
 
 
         public FilePathResult TransformadoresJson()
         {
-            return File(Server.MapPath("../Resources/transformadores.json"), "text/x-json");
+            return File(Server.MapPath("../Resources/transformadores2.json"), "text/x-json");
         }
     }
 }
