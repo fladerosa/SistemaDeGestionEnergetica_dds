@@ -1,11 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
-using System.Linq;
+using SGE.Entidades.Usuarios;
 
-namespace SGE.Tests.Entidades
-{
+namespace SGE.Tests.Entidades {
     [TestClass]
     public class ClienteTest
     {
@@ -18,7 +15,7 @@ namespace SGE.Tests.Entidades
         public void TestInitialize()
         {
             this.cliente = new Cliente();
-            this.d1 = new Inteligente("TV LG", 100m, new SonyTVDriver());
+            this.d1 = new Inteligente("TV LG", 100m);
             this.d3 = new Estandar("TV", 200m);
         }
 

@@ -1,16 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Drivers;
 using System.Linq;
 
-namespace SGE.Entidades.Dispositivos.Tests
-{
+namespace SGE.Entidades.Dispositivos.Tests {
     [TestClass()]
     public class InteligenteTests
     {
         [TestMethod()]
         public void ObtenerConsumoDeUltimasNHoras_2_activacionesTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTVDriver());
+            Inteligente dispositivo = new Inteligente("TV", 100m);
             decimal valor;
 
             dispositivo.Encender();
@@ -24,7 +22,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoDeUltimasNHoras_3_activacionesTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTVDriver());
+            Inteligente dispositivo = new Inteligente("TV", 100m);
             decimal valor;
 
             dispositivo.Encender();
@@ -42,7 +40,7 @@ namespace SGE.Entidades.Dispositivos.Tests
         [TestMethod()]
         public void ObtenerConsumoPeriodoTest()
         {
-            Inteligente dispositivo = new Inteligente("TV", 100m, new SonyTVDriver());
+            Inteligente dispositivo = new Inteligente("TV", 100m);
             decimal valor;
 
             ///TODO: el calculo de las horas está mal, en esta prueba el resultado debería ser 600m en este contexto, pero al momento de obtener 

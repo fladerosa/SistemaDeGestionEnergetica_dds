@@ -1,62 +1,35 @@
-﻿using System;
+﻿using SGE.Entidades.Acciones;
+using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SGE.Entidades.Acciones;
 using System.Linq;
 
-namespace SGE.Entidades.Reglas
-{
+namespace SGE.Entidades.Reglas {
     [Table("Regla")]
-    public class Regla
-    {
-        #region Propiedades
+    public class Regla {
         [Key]
         public int ReglaId { get; set; }
         [MaxLength(25)]
         public string Nombre { get; set; }
+        [ForeignKey("Inteligente")]
+        public int IdInteligente { get; set; }
+        public virtual Inteligente Inteligente { get; set; }
 
-        public virtual List<Accion> Accions{ get; set; } //one to many con Accion  
+        public virtual ICollection<Accion> Acciones { get; set; } //one to many con Accion  
         public virtual ICollection<Condicion> Condiciones { get; set; } //one to many con condicion
 
-        List<IAccion> Acciones { get; set; }
-
-        #endregion
-
-        #region Constructores
         public Regla() {
-        }
-        public Regla(string nombre, List<Condicion> condiciones, List<IAccion> acciones)
-        {
-            this.Nombre = nombre;
-            this.Condiciones = condiciones;
-            this.Acciones = acciones;
+            this.Acciones = new List<Accion>();
+            this.Condiciones = new List<Condicion>();
         }
 
-        #endregion
-
-        #region Metodos
-
-        public void Ejecutar()
-        {
-            bool seVerificanCondiciones = true;
-
-            for (int i = 0; i < this.Condiciones.Count; i++)
-            {
-                if (!this.Condiciones.FirstOrDefault().Evaluar())
-                {
-                    seVerificanCondiciones = false;
-                    i = this.Condiciones.Count;
+        public void Ejecutar() {
+            if(Condiciones.All(c => c.Evaluar())) {
+                foreach (Accion accion in this.Acciones) {
+                    accion.Ejecutar();
                 }
             }
-
-            if (seVerificanCondiciones)
-            {
-                foreach (IAccion accion in this.Acciones)
-                    accion.Ejecutar();
-            }
         }
-       
-        #endregion
     }
 }

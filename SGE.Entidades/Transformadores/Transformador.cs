@@ -39,6 +39,7 @@ namespace SGE.Entidades.Transformadores {
 
         public void ProcesarDatosEnre() {
             BaseRepositorio<Transformador> repoTransformador = new BaseRepositorio<Transformador>();
+            BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
             TransformadoresHelper transHelper = new TransformadoresHelper();
 
             foreach (Core.Entidades.Transformador transformador in transHelper.Transformadores) {
@@ -47,7 +48,7 @@ namespace SGE.Entidades.Transformadores {
                         codigo = transformador.codigo,
                         Latitud = (double)transformador.Latitud,
                         Longitud = (double)transformador.Longitud,
-                        ZonaId = transformador.Zona
+                        ZonaId = repoZona.Single(z => z.codigo == transformador.Zona).Id
                     });
             }
         }

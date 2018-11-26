@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Core.Helpers;
-using SGE.Entidades.Usuarios;
 using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
-using SGE.Entidades.Zonas;
-using SGE.Entidades.Transformadores;
 using SGE.Entidades.Repositorio;
+using SGE.Entidades.Transformadores;
+using SGE.Entidades.Usuarios;
+using SGE.Entidades.Zonas;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace SGE.Tests.Entidades
-{
+namespace SGE.Tests.Entidades {
     [TestClass]
     public class ZonaTest
     {
@@ -23,7 +21,7 @@ namespace SGE.Tests.Entidades
         public void TestInitialize()
         {
             Cliente cliente1 = new Cliente();
-            Inteligente d1 = new Inteligente("TV LG", 100m, new SonyTVDriver());
+            Inteligente d1 = new Inteligente("TV LG", 100m);
             Estandar d2 = new Estandar("TV", 200m);
             cliente1.Inteligentes.Add(d1);
             cliente1.Estandars.Add(d2);
@@ -32,7 +30,7 @@ namespace SGE.Tests.Entidades
             cliente1.TransformadorId = 1;
 
             Cliente cliente2 = new Cliente();
-            Inteligente d3 = new Inteligente("TV LG 55", 200m, new SonyTVDriver());
+            Inteligente d3 = new Inteligente("TV LG 55", 200m);
             Estandar d4 = new Estandar("TV", 200m);
             Estandar d5 = new Estandar("TV", 200m);
             cliente2.Inteligentes.Add(d3);
@@ -54,7 +52,7 @@ namespace SGE.Tests.Entidades
 
 
             Cliente cliente3 = new Cliente();
-            Inteligente d6 = new Inteligente("TV LG", 100m, new SonyTVDriver());
+            Inteligente d6 = new Inteligente("TV LG", 100m);
             Estandar d7 = new Estandar("TV", 200m);
             cliente3.Inteligentes.Add(d6);
             cliente3.Estandars.Add(d7);
@@ -63,7 +61,7 @@ namespace SGE.Tests.Entidades
             cliente3.TransformadorId = 10;
 
             Cliente cliente4 = new Cliente();
-            Inteligente d8 = new Inteligente("TV LG 55", 200m, new SonyTVDriver());
+            Inteligente d8 = new Inteligente("TV LG 55", 200m);
             Estandar d9 = new Estandar("TV", 200m);
             Estandar d10 = new Estandar("TV", 200m);
             cliente4.Inteligentes.Add(d8);

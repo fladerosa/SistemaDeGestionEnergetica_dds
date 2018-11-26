@@ -7,15 +7,14 @@ using SGE.Entidades.Sesion;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Web.Mvc;
 
 namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
-    public class DispositivosController : Controller
-    {
+    public class DispositivosController : Controller {
+        private SGEContext db = new SGEContext();
 
         // GET: Cliente/Inteligentes
         public ActionResult Index() {
@@ -44,16 +43,11 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
         // GET: Cliente/Inteligentes/Create
         public ActionResult Agregar() {
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = UserManager.FindById(User.Identity.GetUserId());
-
-            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
-            var Inteligentes = repoInteligente.Filter(i => !i.Clientes.Any(c => c.NombreUsuario == user.UserName));
-            return View(Inteligentes.ToList());
+            return View(db.Catalogos.Include("Acciones").Include("Sensores").ToList());
         }
 
         [HttpPost]
-        public JsonResult Agregar(int idInteligente) {
+        public JsonResult Agregar(int idCatalogo) {
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var user = UserManager.FindById(User.Identity.GetUserId());
 
@@ -62,13 +56,22 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>(contexto);
             Cliente cliente = repoCliente.Single(c => c.NombreUsuario == user.UserName);
 
-            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(contexto);
-            Inteligente inteligente = repoInteligente.Single(i => i.Id == idInteligente);
+            BaseRepositorio<Catalogo> repoCatalogo = new BaseRepositorio<Catalogo>(contexto);
+            Catalogo Catalogo = repoCatalogo.Single(c => c.Id == idCatalogo);
+
+            Inteligente inteligente = new Inteligente() {
+                ConsumoEnergia = Catalogo.ConsumoEnergia,
+                IdentificadorFabrica = Catalogo.IdentificadorFabrica,
+                Catalogo = Catalogo,
+                CatalogoId = Catalogo.Id,
+                Nombre = Catalogo.Nombre
+            };
 
             inteligente.Clientes.Add(cliente);
-            repoInteligente.Update(inteligente);
+            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(contexto);
+            repoInteligente.Create(inteligente);
 
-            return Json(new { success = true});
+            return Json(new { success = true });
         }
 
         [HttpPost]
@@ -77,7 +80,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(context);
             Inteligente inteligente = repoInteligente.Single(i => i.Id == idInteligente);
-            inteligente.context = context;
+            inteligente.Context = context;
 
             switch (estado) {
                 case EstadoDispositivo.AhorroEnergia:
@@ -92,7 +95,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                 default:
                     return Json(new { success = false, error = "Estado desconocido" });
             }
-            
+
 
             repoInteligente.Update(inteligente);
 
@@ -120,7 +123,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             var user = UserManager.FindById(User.Identity.GetUserId());
 
             SGEContext contexto = new SGEContext();
-            
+
             BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>(contexto);
             Cliente cliente = repoCliente.Single(c => c.NombreUsuario == user.UserName);
 
@@ -138,7 +141,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                SGEContext.instancia().Dispose();
+
             }
             base.Dispose(disposing);
         }

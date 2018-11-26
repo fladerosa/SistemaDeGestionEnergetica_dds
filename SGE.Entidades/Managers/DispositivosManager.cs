@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SGE.Entidades.Acciones;
+﻿using SGE.Entidades.Acciones;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Reglas;
+using System.Collections.Generic;
 
-namespace SGE.Entidades.Managers
-{
-  
+namespace SGE.Entidades.Managers {
+
     public class DispositivosManager
     {
         #region Campos
 
         public List<Inteligente> dispositivos;
    
-        public List<IAccion> Acciones { get; set; }
+        public List<Accion> Acciones { get; set; }
 
         private static object dispositivosManagerSyncLock = new object();
 

@@ -1,12 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace SGE.Entidades.Simplex.Tests
-{
+namespace SGE.Entidades.Simplex.Tests {
     [TestClass()]
     public class SimplexBuilderTests
     {
@@ -46,8 +44,8 @@ namespace SGE.Entidades.Simplex.Tests
         [TestMethod()]
         public void NoPasarAModoAhorroEnergia()
         {
-            Inteligente Tele = new Inteligente("TV", new SonyTVDriver(), "DDEAEA7C1ADE458991D496812D5D41FA");
-            Inteligente LavaRopa = new Inteligente("LAVARROPAS", new DreanLavarropasDriver(), "A0BA3245EAFC4EC994CC841698B835C0");
+            Inteligente Tele = new Inteligente("TV", "DDEAEA7C1ADE458991D496812D5D41FA");
+            Inteligente LavaRopa = new Inteligente("LAVARROPAS", "A0BA3245EAFC4EC994CC841698B835C0");
 
             Tele.Encender();
             Tele.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = Tele.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-300);
@@ -74,8 +72,8 @@ namespace SGE.Entidades.Simplex.Tests
         [TestMethod()]
         public void PasarAModoAhorroEnergia()
         {
-            Inteligente Tele = new Inteligente("TV", new SonyTVDriver(), "DDEAEA7C1ADE458991D496812D5D41FA");
-            Inteligente LavaRopa = new Inteligente("LAVARROPAS", new DreanLavarropasDriver(), "A0BA3245EAFC4EC994CC841698B835C0");
+            Inteligente Tele = new Inteligente("TV", "DDEAEA7C1ADE458991D496812D5D41FA");
+            Inteligente LavaRopa = new Inteligente("LAVARROPAS", "A0BA3245EAFC4EC994CC841698B835C0");
 
             Tele.Encender();
             Tele.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro = Tele.RegistroDeActivaciones.ElementAt(0).FechaDeRegistro.AddHours(-300);

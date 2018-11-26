@@ -93,41 +93,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Acciones\AA\AumentarVelocidadVentilador.cs" />
+    <Compile Include="Acciones\Acciones\AumentarVelocidadVentilador.cs" />
     <Compile Include="Acciones\Accion.cs" />
-    <Compile Include="Acciones\AccionMap.cs" />
-    <Compile Include="Acciones\Apagar.cs" />
-    <Compile Include="Acciones\ColocarEnAhorroEnergia.cs" />
-    <Compile Include="Acciones\Encender.cs" />
-    <Compile Include="Acciones\TV\BajarVolumen.cs" />
-    <Compile Include="Acciones\TV\CambiarCanal.cs" />
-    <Compile Include="Acciones\AA\CambiarDireccion.cs" />
-    <Compile Include="Acciones\AA\DecrementarVelocidadVentilador.cs" />
-    <Compile Include="Acciones\AA\EstablecerModoCool.cs" />
-    <Compile Include="Acciones\AA\EstablecerModoDry.cs" />
-    <Compile Include="Acciones\AA\EstablecerModoHeat.cs" />
-    <Compile Include="Acciones\AA\EstablecerTemperaturaAireAcondicionado.cs" />
-    <Compile Include="Acciones\IAccion.cs" />
-    <Compile Include="Acciones\Lavarropa\LavarRopaAlgodon.cs" />
-    <Compile Include="Acciones\TV\CambiarEntrada.cs" />
-    <Compile Include="Acciones\TV\Mute.cs" />
-    <Compile Include="Acciones\TV\SubirVolumen.cs" />
+    <Compile Include="Acciones\Acciones\Apagar.cs" />
+    <Compile Include="Acciones\Acciones\ColocarEnAhorroEnergia.cs" />
+    <Compile Include="Acciones\Acciones\Encender.cs" />
+    <Compile Include="Acciones\Acciones\BajarVolumen.cs" />
+    <Compile Include="Acciones\Acciones\DecrementarVelocidadVentilador.cs" />
+    <Compile Include="Acciones\Acciones\EstablecerModoFrio.cs" />
+    <Compile Include="Acciones\Acciones\EstablecerModoCalor.cs" />
+    <Compile Include="Acciones\Acciones\EstablecerTemperatura.cs" />
+    <Compile Include="Acciones\Acciones\Mute.cs" />
+    <Compile Include="Acciones\Acciones\SubirVolumen.cs" />
     <Compile Include="Contexto\SGEContext.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
-    <Compile Include="Dispositivos\AireAcondicionado.cs" />
     <Compile Include="Dispositivos\Catalogo.cs" />
     <Compile Include="Dispositivos\DispositivoMap.cs" />
-    <Compile Include="Dispositivos\Lavarropas.cs" />
-    <Compile Include="Dispositivos\Televisor.cs" />
-    <Compile Include="Drivers\DreanLavarropasDriver.cs" />
-    <Compile Include="Drivers\Driver.cs" />
-    <Compile Include="Drivers\DriverMap.cs" />
-    <Compile Include="Drivers\Interfaces\IAireAcondicionadoDriver.cs" />
-    <Compile Include="Drivers\Interfaces\IDriver.cs" />
-    <Compile Include="Drivers\Interfaces\ILavarropasDriver.cs" />
-    <Compile Include="Drivers\Interfaces\ITelevisorDriver.cs" />
-    <Compile Include="Drivers\SamsungAireAcondicionadoDriver.cs" />
-    <Compile Include="Drivers\SonyTVDriver.cs" />
     <Compile Include="Managers\DispositivosManager.cs" />
     <Compile Include="Managers\ReglasManager.cs" />
     <Compile Include="Migrations\201810170027358_InitialCreate.cs" />
@@ -154,10 +135,36 @@
     <Compile Include="Migrations\201810292208116_CreacionCatalogo.Designer.cs">
       <DependentUpon>201810292208116_CreacionCatalogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811251849492_normalizacionAcciones.cs" />
+    <Compile Include="Migrations\201811251849492_normalizacionAcciones.Designer.cs">
+      <DependentUpon>201811251849492_normalizacionAcciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252016127_normalizacionSensores.cs" />
+    <Compile Include="Migrations\201811252016127_normalizacionSensores.Designer.cs">
+      <DependentUpon>201811252016127_normalizacionSensores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252047099_normalizacionCondiciones.cs" />
+    <Compile Include="Migrations\201811252047099_normalizacionCondiciones.Designer.cs">
+      <DependentUpon>201811252047099_normalizacionCondiciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252106377_normalizacionCatalogo.cs" />
+    <Compile Include="Migrations\201811252106377_normalizacionCatalogo.Designer.cs">
+      <DependentUpon>201811252106377_normalizacionCatalogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811260348510_normalizacionInteligente.cs" />
+    <Compile Include="Migrations\201811260348510_normalizacionInteligente.Designer.cs">
+      <DependentUpon>201811260348510_normalizacionInteligente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Reglas\Operador.cs" />
     <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Repositorio\BaseRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
+    <Compile Include="Sensores\Sensores\Estado.cs" />
+    <Compile Include="Sensores\Sensores\EstadoInterno.cs" />
+    <Compile Include="Sensores\Sensores\Temperatura.cs" />
+    <Compile Include="Sensores\Sensores\VelocidadVentilador.cs" />
+    <Compile Include="Sensores\Sensores\Volumen.cs" />
     <Compile Include="Sesion\AccountViewModels.cs" />
     <Compile Include="Sesion\IdentityModels.cs" />
     <Compile Include="Sesion\ManageViewModels.cs" />
@@ -168,15 +175,13 @@
     <Compile Include="Usuarios\Direccion.cs" />
     <Compile Include="Usuarios\Telefono.cs" />
     <Compile Include="Usuarios\UsuarioMap.cs" />
-    <Compile Include="ValueProviders\IValueProvider.cs" />
     <Compile Include="Reglas\Operadores\Igual.cs" />
     <Compile Include="Reglas\Operadores\MayorOIgual.cs" />
     <Compile Include="Reglas\Operadores\Menor.cs" />
-    <Compile Include="Reglas\Operadores\IOperador.cs" />
     <Compile Include="Reglas\Operadores\Mayor.cs" />
     <Compile Include="Reglas\Operadores\MenorOIgual.cs" />
     <Compile Include="Reglas\TipoUnidadEnum.cs" />
-    <Compile Include="Reglas\UnidadEnum.cs" />
+    <Compile Include="Sensores\UnidadEnum.cs" />
     <Compile Include="Usuarios\Administrador.cs" />
     <Compile Include="Categorias\Categoria.cs" />
     <Compile Include="Dispositivos\EstadoDispositivo.cs" />
@@ -187,11 +192,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reglas\Condicion.cs" />
     <Compile Include="Reglas\Regla.cs" />
-    <Compile Include="Reglas\Medicion.cs" />
-    <Compile Include="ValueProviders\Sensor.cs" />
+    <Compile Include="Sensores\Medicion.cs" />
+    <Compile Include="Sensores\Sensor.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
-    <Compile Include="ValueProviders\SensorMap.cs" />
-    <Compile Include="ValueProviders\SensorTemperaturaAA.cs" />
     <Compile Include="Zonas\Zona.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +225,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810292208116_CreacionCatalogo.resx">
       <DependentUpon>201810292208116_CreacionCatalogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251849492_normalizacionAcciones.resx">
+      <DependentUpon>201811251849492_normalizacionAcciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252016127_normalizacionSensores.resx">
+      <DependentUpon>201811252016127_normalizacionSensores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252047099_normalizacionCondiciones.resx">
+      <DependentUpon>201811252047099_normalizacionCondiciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252106377_normalizacionCatalogo.resx">
+      <DependentUpon>201811252106377_normalizacionCatalogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811260348510_normalizacionInteligente.resx">
+      <DependentUpon>201811260348510_normalizacionInteligente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

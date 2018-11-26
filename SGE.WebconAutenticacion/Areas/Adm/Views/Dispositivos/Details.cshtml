@@ -34,6 +34,21 @@
             @Html.DisplayFor(model => model.IdentificadorFabrica)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Sensores)
+        </dt>
+
+        <dd>
+            @Html.Raw(string.Join(",", Model.Sensores.Select(s => s.Descripcion).ToArray()))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acciones)
+        </dt>
+
+        <dd>
+            @Html.Raw(string.Join(",", Model.Acciones.Select(s => s.Descripcion).ToArray()))
+        </dd>
     </dl>
 </div>
 <p>

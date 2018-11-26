@@ -21,8 +21,8 @@ namespace SGE.WebconAutenticacion {
             Transformador transformador = new Transformador();
             transformador.ProcesarDatosEnre();
 
-            Inteligente inteligente = new Inteligente();
-            inteligente.LevantarDispositivosArchivo();
+            //Inteligente inteligente = new Inteligente();
+            //inteligente.LevantarDispositivosArchivo();
 
           //  Catalogo catalogo = new Catalogo();
           //  catalogo.cargarCatalogoInicial();

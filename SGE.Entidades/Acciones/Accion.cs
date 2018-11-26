@@ -1,31 +1,23 @@
-﻿using SGE.Entidades.Drivers;
+﻿using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Reglas;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SGE.Entidades.Acciones
-{
+namespace SGE.Entidades.Acciones {
     //Esta clase se genera para establecer una Accion generica y poder mapear los diferentes tipos
     [Table("Accion")]
-    public abstract class Accion : IAccion
-    { 
-        public int AccionId { get; set; }
+    public abstract class Accion {
+        public int Id { get; set; }
         public string Descripcion { get; set; }
 
-        public int ReglaId { get; set; } // fk con tabla regla
-        [ForeignKey("ReglaId")]
-        public virtual Regla Regla { get; set; } // one to many con  regla 
-        public int ActuadorId { get; set; } //fk con Driver
-        [ForeignKey("ActuadorId")]
-        public virtual Driver Actuador { get; set; } // one to many con Actuador (Driver)
+        public virtual ICollection<Regla> Reglas { get; set; }
 
-        public void Ejecutar()
-        {
-        }
+        public virtual ICollection<Catalogo> Catalogos { get; set; }
+
+        [NotMapped]
+        public Inteligente Dispositivo { get; set; }
+
+        public virtual void Ejecutar() { }
+        public virtual void Ejecutar(string valor) { }
     }
 }

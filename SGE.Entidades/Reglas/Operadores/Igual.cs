@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SGE.Entidades.Reglas.Operadores
-{
-    public class Igual: IOperador
-    {
-        public bool Verificar(decimal referencia, decimal valor)
-        {
+﻿namespace SGE.Entidades.Reglas.Operadores {
+    public class Igual : Operador {
+        public override bool Verificar(string referencia, string valor) {
             return valor == referencia;
         }
     }

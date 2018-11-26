@@ -21,7 +21,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
         // GET: Cliente/Reglas
         public ActionResult Index()
         {
-            ViewBag.reglas = obtenerReglasActivas();
+            ViewBag.reglas = ObtenerReglasActivas();
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -42,7 +42,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             return View();
         }
 
-        private ICollection<dynamic> obtenerReglasActivas() {
+        private ICollection<dynamic> ObtenerReglasActivas() {
             ICollection<dynamic> salida = new List<dynamic>();
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -52,49 +52,42 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(contexto);
             var includesInteligente = new List<Expression<Func<Inteligente, object>>>() {
-                i => i.Actuador
+                i => i.Reglas
             };
 
             var inteligentes = repoInteligente.Filter(i => i.Clientes.Any(c => c.NombreUsuario == user.UserName), includesInteligente);
 
             BaseRepositorio<Accion> repoAccion = new BaseRepositorio<Accion>(contexto);
             var includesAccion = new List<Expression<Func<Accion, object>>>() {
-                a => a.Regla
+                a => a.Reglas
             };
 
             BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>(contexto);
             foreach (Inteligente inteligente in inteligentes) {
-                if (inteligente.ActuadorId != null) {
-                    var acciones = repoAccion.Filter(a => a.ActuadorId == inteligente.ActuadorId, includesAccion);
-                    if (acciones.Count > 0) {
-                        var reglaId = acciones.First().ReglaId;
-                        var condiciones = repoCondicion.Filter(c => c.ReglaId == reglaId);
+                foreach (Regla regla in inteligente.Reglas) {
+                    var reglaId = regla.ReglaId;
+                    var condiciones = repoCondicion.Filter(c => c.ReglaId == reglaId);
 
-                        if (condiciones.Count > 0) {
-                            string strCondiciones = "";
-                            foreach (Condicion condicion in condiciones) {
-                                if (strCondiciones != "") strCondiciones += " | ";
-                                string strTipoOperacion = condicion.tipoOperacion.GetType()
-                                    .GetMember(condicion.tipoOperacion.ToString())
-                                    .First()
-                                    .GetCustomAttribute<DisplayAttribute>()
-                                    .GetName();
-                                strCondiciones += condicion.valorReferencia.ToString() + " " + strTipoOperacion;
-                            }
-
-                            string strAcciones = "";
-                            foreach (Accion accion in acciones) {
-                                if (strAcciones != "") strAcciones += " | ";
-                                strAcciones += accion.Descripcion;
-                            }
-
-
-                            dynamic customRegla = new ExpandoObject();
-                            customRegla.regla = acciones.First().Regla.Nombre;
-                            customRegla.condicion = "{" + strCondiciones + "} => {" + strAcciones + "}";
-
-                            salida.Add(customRegla);
+                    if (condiciones.Count > 0) {
+                        string strCondiciones = "";
+                        foreach (Condicion condicion in condiciones) {
+                            if (strCondiciones != "") strCondiciones += " | ";
+                            string strTipoOperacion = condicion.Operador.Descripcion;
+                            strCondiciones += condicion.ValorReferencia.ToString() + " " + strTipoOperacion;
                         }
+
+                        string strAcciones = "";
+                        foreach (Accion accion in regla.Acciones) {
+                            if (strAcciones != "") strAcciones += " | ";
+                            strAcciones += accion.Descripcion;
+                        }
+
+
+                        dynamic customRegla = new ExpandoObject();
+                        customRegla.regla = regla.Nombre;
+                        customRegla.condicion = "{" + strCondiciones + "} => {" + strAcciones + "}";
+
+                        salida.Add(customRegla);
                     }
                 }
             }

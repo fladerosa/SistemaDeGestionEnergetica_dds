@@ -10,7 +10,10 @@ namespace SGE.Entidades.Dispositivos
         public string Nombre { get; set; }
         public decimal ConsumoEnergia { get; set; }
         public string IdentificadorFabrica { get; set; }
-
+        public int Volumen { get; set; }
+        public decimal Temperatura { get; set; }
+        public EstadosInternosDispositivo EstadoInterno { get; set; }
+        public int VelocidadVentilador { get; set; }
         #endregion
 
         #region Constructor
@@ -28,5 +31,10 @@ namespace SGE.Entidades.Dispositivos
         }
 
         #endregion
+    }
+
+    public enum EstadosInternosDispositivo {
+        modoCalor,
+        modoFrio
     }
 }

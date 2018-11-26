@@ -1,32 +1,28 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SGE.Entidades.Usuarios;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SGE.Entidades.Dispositivos;
-using SGE.Entidades.Drivers;
 using SGE.Entidades.Transformadores;
+using SGE.Entidades.Usuarios;
+using System.Collections.Generic;
 
-namespace SGE.Tests.Entidades
-{
+namespace SGE.Tests.Entidades {
     [TestClass]
     public class TransformadorTest
     {
         Transformador transformador;
         List<Cliente> Clientes;
-        decimal Latitud;
-        decimal Longitud;
 
         [TestInitialize]
         public void TestInitialize()
         {
             Cliente cliente1 = new Cliente();
-            Inteligente d1 = new Inteligente("TV LG", 100m, new SonyTVDriver());
+            Inteligente d1 = new Inteligente("TV LG", 100m);
             Estandar d2 = new Estandar("TV", 200m);
             cliente1.Inteligentes.Add(d1);
             cliente1.Estandars.Add(d2);
             cliente1.TransformadorId = 1;
 
             Cliente cliente2 = new Cliente();
-            Inteligente d3 = new Inteligente("TV LG 55", 200m, new SonyTVDriver());
+            Inteligente d3 = new Inteligente("TV LG 55", 200m);
             Estandar d4 = new Estandar("TV", 200m);
             Estandar d5 = new Estandar("TV", 200m);
             cliente2.Inteligentes.Add(d3);
