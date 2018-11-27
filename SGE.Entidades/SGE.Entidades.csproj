@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201811260348510_normalizacionInteligente.Designer.cs">
       <DependentUpon>201811260348510_normalizacionInteligente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811270416022_clienteMapa.cs" />
+    <Compile Include="Migrations\201811270416022_clienteMapa.Designer.cs">
+      <DependentUpon>201811270416022_clienteMapa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reglas\Operador.cs" />
     <Compile Include="Reportes\Reporte.cs" />
@@ -240,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811260348510_normalizacionInteligente.resx">
       <DependentUpon>201811260348510_normalizacionInteligente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811270416022_clienteMapa.resx">
+      <DependentUpon>201811270416022_clienteMapa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

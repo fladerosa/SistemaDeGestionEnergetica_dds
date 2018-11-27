@@ -1,42 +1,32 @@
-﻿using System;
+﻿using SGE.Entidades.Contexto;
+using SGE.Entidades.Repositorio;
+using SGE.Entidades.Transformadores;
+using SGE.Entidades.Zonas;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
-namespace SGE.Web.Controllers
-{
-    public class MapaController : Controller
-    {
+namespace SGE.Web.Controllers {
+    public class MapaController : Controller {
         //Inicio
-        public ActionResult Index()
-        {
-            return View();
-        }
-        
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+        public ActionResult Index() {
+            var jsonSerialiser = new JavaScriptSerializer();
+            BaseRepositorio<Zona> repoZona = new BaseRepositorio<Zona>();
+            SGEContext db = new SGEContext();
+
+            List<object> objetos = new List<object>();
+
+            foreach (Transformador transformador in db.Transformadores.Include("Clientes").Include("Clientes.Inteligentes").ToList()) {
+                var objeto = Json(new { transformador.Latitud, transformador.Longitud, Consumo = transformador.ObtenerConsumo() }).Data;
+
+                objetos.Add(objeto);
+            }
+
+            ViewBag.transformadores = jsonSerialiser.Serialize(objetos);
+            ViewBag.zonas = jsonSerialiser.Serialize(repoZona.GetAll());
 
             return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public FilePathResult ZonasJson()
-        {
-            return File(Server.MapPath("../Resources/zonas2.json"), "text/x-json");
-        }
-
-
-        public FilePathResult TransformadoresJson()
-        {
-            return File(Server.MapPath("../Resources/transformadores2.json"), "text/x-json");
         }
     }
 }

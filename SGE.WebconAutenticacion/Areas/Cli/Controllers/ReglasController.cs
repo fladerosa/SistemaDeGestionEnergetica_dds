@@ -5,6 +5,7 @@ using SGE.Entidades.Contexto;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Reglas;
 using SGE.Entidades.Repositorio;
+using SGE.Entidades.Sensores;
 using SGE.Entidades.Sesion;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,9 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>();
             ViewBag.inteligentes = repoInteligente.Filter(i => i.Clientes.Any(c => c.NombreUsuario == user.UserName));
+
+            BaseRepositorio<Operador> repoOperador = new BaseRepositorio<Operador>();
+            ViewBag.Operadores = new SelectList(repoOperador.GetAll(), "Id", "Descripcion");
 
             return View();
         }

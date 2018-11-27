@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SGE.Entidades.Contexto;
 using SGE.Entidades.Repositorio;
 using SGE.Entidades.Sesion;
 using SGE.Entidades.Usuarios;
@@ -141,6 +142,8 @@ namespace SGE.WebconAutenticacion.Controllers {
         [AllowAnonymous]
         public ActionResult Register()
         {
+            SGEContext db = new SGEContext();
+            ViewBag.TransformadorId = new SelectList(db.Zonas.Include("Transformadores").Where(z => z.Transformadores.Count > 0).ToList(), "Id", "Nombre");
             return View();
         }
 
@@ -149,7 +152,7 @@ namespace SGE.WebconAutenticacion.Controllers {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, int TransformadorId)
         {
             if (ModelState.IsValid)
             {           
@@ -164,8 +167,9 @@ namespace SGE.WebconAutenticacion.Controllers {
                                         Apellido = model.Apellido,
                                         NombreUsuario = model.NombreUsuario,
                                         Password = model.Password,
-                                        NumeroDocumento = model.NumeroDocumento
-                                        };
+                                        NumeroDocumento = model.NumeroDocumento,
+                                        TransformadorId = TransformadorId
+                };
                
                 repocliente.Create(cliente);
                
