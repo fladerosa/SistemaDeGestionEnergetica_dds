@@ -299,6 +299,7 @@
     <Content Include="Resources\transformadores2.json" />
     <Content Include="Areas\Adm\Views\Dispositivos\Index.cshtml" />
     <Content Include="Areas\Cli\Views\CargaMasiva\Index.cshtml" />
+    <Content Include="Resources\DispositivosCargaMasiva.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
