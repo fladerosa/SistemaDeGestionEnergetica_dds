@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SGE.Entidades.Contexto;
 using SGE.Entidades.Dispositivos;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,19 @@ namespace SGE.Entidades.Simplex.Tests {
             SimplexBuilder simplex = new SimplexBuilder();
             simplex.AgregarRestriccion(new KeyValuePair<string, string>("DDEAEA7C1ADE458991D496812D5D41FA", "elem_1"), 204);
             simplex.AgregarRestriccion(new KeyValuePair<string, string>("A0BA3245EAFC4EC994CC841698B835C0", "elem_2"), 40);
+            simplex.Resolver();
+
+            Assert.IsTrue(simplex.Resultado["ConsumoRestanteTotal"] > 0 && simplex.Resultado["ConsumoRestanteTotal"] < 440640);
+        }
+
+        [TestMethod()]
+        public void SimplexNormal() {
+            SimplexNormal simplex = new SimplexNormal();
+            SGEContext db = new SGEContext();
+            List<Inteligente> inteligentes = db.Inteligentes.Include("RegistroDeActivaciones").ToList();
+
+            simplex.AgregarRestriccion(inteligentes[0]);
+            simplex.AgregarRestriccion(inteligentes[1]);
             simplex.Resolver();
 
             Assert.IsTrue(simplex.Resultado["ConsumoRestanteTotal"] > 0 && simplex.Resultado["ConsumoRestanteTotal"] < 440640);

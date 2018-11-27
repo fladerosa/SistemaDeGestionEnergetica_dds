@@ -60,13 +60,19 @@ namespace SGE.Entidades.Usuarios
             return this.Estandars.Count;
         }
 
-        public decimal HogarEficiente() {
-            SimplexBuilder simplex = new SimplexBuilder();
-            simplex.AgregarRestriccion(new KeyValuePair<string, string>("DDEAEA7C1ADE458991D496812D5D41FA", "elem_1"), 204);
-            simplex.AgregarRestriccion(new KeyValuePair<string, string>("A0BA3245EAFC4EC994CC841698B835C0", "elem_2"), 40);
-            simplex.Resolver();
+        public Dictionary<string, double> HogarEficiente() {
+            if(Inteligentes.Count > 0) {
+                SimplexNormal simplex = new SimplexNormal();
 
-            return (decimal)simplex.Resultado["ConsumoRestanteTotal"];
+                foreach (Inteligente inteligente in Inteligentes) {
+                    simplex.AgregarRestriccion(inteligente);
+                }
+                
+                simplex.Resolver();
+
+                return simplex.Resultado;
+            }
+            return null;
         }
 
         public enum enum_TipoDocumento {

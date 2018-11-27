@@ -4,6 +4,53 @@
 
 <h2>Hogar eficiente</h2>
 
-<h4>Resultado: @ViewBag.hogarEficiente</h4>
+@if (ViewBag.ConsumoRestanteTotal != null && ViewBag.ConsumoRestanteTotal > 0) {
+    <h4>El hogar es eficiente, y quedan '@ViewBag.ConsumoRestanteTotal' horas libres</h4>
+} else {
+    <h4>El hogar NO es eficiente</h4>
+}
 
+@if (ViewBag.ConsumoRestanteTotal != null && ViewBag.ConsumoRestanteTotal > 0) {
+    <h2>Configuración disponible</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Dispositivo
+            </th>
+            <th>
+                Horas disponibles
+            </th>
+        </tr>
 
+        @foreach (var resultadoSimplex in ViewBag.ResultadoSimplex) {
+            <tr>
+                <td>
+                    @resultadoSimplex.Key
+                </td>
+                <td>
+                    @resultadoSimplex.Value
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <input type="button" value="Ejecutar Simplex" onclick="ejecutarSimplex()"/>
+}
+
+<script>
+    function ejecutarSimplex() {
+        $.ajax({
+            type: "POST",
+            url: "/Cli/HogarEficiente/ejecutarSimplex",
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    alert("Ejecución correcta!!");
+                    location.reload();
+                } else {
+                    alert("Error ejecutando simplex: " + resultado.error);
+                }
+            }
+        });
+    }
+</script>

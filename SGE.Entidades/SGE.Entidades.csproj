@@ -173,6 +173,7 @@
     <Compile Include="Sesion\IdentityModels.cs" />
     <Compile Include="Sesion\ManageViewModels.cs" />
     <Compile Include="Simplex\Planificador.cs" />
+    <Compile Include="Simplex\Simplex.cs" />
     <Compile Include="Simplex\SimplexBuilder.cs" />
     <Compile Include="Simplex\Tarea.cs" />
     <Compile Include="Transformadores\Transformador.cs" />
