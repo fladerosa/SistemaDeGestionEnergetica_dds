@@ -1,51 +1,61 @@
-﻿@model IEnumerable<SGE.Entidades.Dispositivos.Catalogo>
+﻿@using System.Collections.Generic;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hogar";
 }
 
-<h2>Dispositivos actuales en Catalogo</h2>
+<h2>Estado por dispositivo</h2>
 
-<p>
-    @Html.ActionLink("Agregar nuevo dispositivo a Catalogo", "Create")
-</p>
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Administrador.NombreUsuario)
+            Dispositivo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ConsumoEnergia)
+            Estado
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdentificadorFabrica)
+            Fecha de activación
         </th>
-        <th></th>
+        <th>
+            Consumo último mes
+        </th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var dispositivo in ViewBag.dispositivosEstado) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Administrador.NombreUsuario)
+            @dispositivo.Nombre
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
+            @dispositivo.Clientes[0].NombreUsuario
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ConsumoEnergia)
+            @if (dispositivo.RegistroDeActivaciones.Count == 0) {
+                @dispositivo.Estado
+            } else {
+                @dispositivo.RegistroDeActivaciones[dispositivo.RegistroDeActivaciones.Count - 1].Estado
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdentificadorFabrica)
+            @if (dispositivo.RegistroDeActivaciones.Count == 0) {
+                @Html.Raw("<i>Nunca se encendió<i>")
+            } else {
+                @dispositivo.RegistroDeActivaciones[dispositivo.RegistroDeActivaciones.Count - 1].FechaDeRegistro.ToShortDateString()
+            }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @{
+                DateTime fDesde = DateTime.Now.AddMonths(-1);
+                DateTime fHasta = DateTime.Now;
+
+                @Html.Raw(dispositivo.ObtenerConsumoPeriodo(fDesde, fHasta))
+            }
         </td>
     </tr>
-}
+    }
 
 </table>

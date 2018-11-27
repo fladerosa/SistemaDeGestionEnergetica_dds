@@ -3,7 +3,6 @@ using SGE.Entidades.Contexto;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Reglas;
 using SGE.Entidades.Repositorio;
-using SGE.Entidades.Sensores;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -63,7 +62,7 @@ namespace SGE.Entidades.Dispositivos {
         #region Constructor
 
         public Inteligente() {
-            this.Clientes = new HashSet<Cliente>();
+            this.Clientes = new List<Cliente>();
             Context = new SGEContext();
             this.RegistroDeActivaciones = new List<Activacion>();
         }

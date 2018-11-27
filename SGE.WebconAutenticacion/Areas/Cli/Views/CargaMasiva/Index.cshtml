@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Carga masiva";
+}
+
+<h2>Hogar eficiente</h2>
+
+<h4>Resultado: @ViewBag.hogarEficiente</h4>
+
+
+@using (Html.BeginForm("SubirArchivo", "CargaMasiva", new { area = "Cli" }, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    <input type="file" value="Subir" name="file" id="file" accept=".json"/>
+    <br />
+    <input type="button" value="Subir" onclick="subir()"/>
+}
+
+    <script>
+        function subir() {
+            //var datos = {
+            //    File: $("#file").val(),
+            //};
+
+            var datos = new FormData();
+            var totalFiles = document.getElementById("file").files.length;
+
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("file").files[i];
+
+                datos.append("File", file);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Cli/CargaMasiva/SubirArchivo",
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                data: datos,
+                success: function (resultado) {
+                    if (resultado.success == true) {
+                        alert("Dispositivos creados correctamente!!");
+                        location.reload();
+                    } else {
+                        alert("Error vinculando dispositivo: " + resultado.error);
+                        console.log(resultado.mensaje);
+                    }
+                }
+            });
+        }
+    </script>

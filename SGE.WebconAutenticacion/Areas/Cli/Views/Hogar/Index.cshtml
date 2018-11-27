@@ -71,10 +71,12 @@
         <th>
             Fecha de activación
         </th>
+        <th>
+            Consumo último mes
+        </th>
     </tr>
 
     @foreach (var dispositivo in ViewBag.dispositivosEstado) {
-
         <tr>
             <td>
                 @dispositivo.Nombre
@@ -83,7 +85,6 @@
                 @if (dispositivo.RegistroDeActivaciones.Count == 0) {
                     @dispositivo.Estado
                 } else {
-                    @*@dispositivo.RegistroDeActivaciones.Last().Estado*@
                     @dispositivo.RegistroDeActivaciones[dispositivo.RegistroDeActivaciones.Count - 1].Estado
                 }
             </td>
@@ -94,8 +95,16 @@
                     @dispositivo.RegistroDeActivaciones[dispositivo.RegistroDeActivaciones.Count - 1].FechaDeRegistro.ToShortDateString()
                 }
             </td>
+            <td>
+                @{ 
+                    DateTime fDesde = DateTime.Now.AddMonths(-1);
+                    DateTime fHasta = DateTime.Now;
+
+                    @Html.Raw(dispositivo.ObtenerConsumoPeriodo(fDesde, fHasta))
+                }
+            </td>
         </tr>
-    }
+                    }
 
 </table>
 
