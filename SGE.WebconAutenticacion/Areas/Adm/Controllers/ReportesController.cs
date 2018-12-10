@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MongoDB.Driver;
 using SGE.Entidades.Contexto;
+using SGE.WebconAutenticacion.App_Start;
+using SGE.Entidades.MongoDB.Modelo;
 using SGE.Entidades.Reportes;
 using SGE.Entidades.Repositorio;
 using SGE.Entidades.Sesion;
@@ -15,7 +18,15 @@ using System.Web.Mvc;
 namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
 {
     public class ReportesController : Controller
-    {
+    {    
+        private MongoDBContext dBContext;
+        private IMongoCollection<ReporteTransformador> reporteTransformadorColeccion;
+        public ReporteTransformador reporteCreado { get; set; }
+        public ReportesController() {
+            dBContext = new MongoDBContext();
+            reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
+            reporteCreado = new ReporteTransformador(); 
+         }
         // GET: Admin/Reportes
         public ActionResult Index()
         {
@@ -60,13 +71,36 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
                     break;
                 case "transformador":
                     consumo = Reporte.consumoTransformadorPorPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
+                    reporteCreado.Codigo = Convert.ToInt32(idObjeto);
+                    reporteCreado.FechaDesde = fDesde;
+                    reporteCreado.FechaHasta = fHasta;
+                    reporteCreado.Consumo = consumo;
+                    dBContext = new MongoDBContext();
+                    reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
+                    reporteTransformadorColeccion.InsertOne(reporteCreado);
+
                     break;
                 default:
                     return Json(new { success = false, error = "No se reconoce el tipo de reporte" });
             }
-
             
             return Json(new { success = true, resultado = consumo, tipoReporte = tipoReporte });
         }
+  /*   public bool InsertarDocumento(ReporteTransformador repotransformador)
+        {
+            try
+            {
+                dBContext = new MongoDBContext();
+                reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
+                reporteTransformadorColeccion.InsertOne(repotransformador);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        */
     }
 }
