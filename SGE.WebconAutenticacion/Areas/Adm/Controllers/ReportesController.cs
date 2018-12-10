@@ -20,13 +20,22 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
     public class ReportesController : Controller
     {    
         private MongoDBContext dBContext;
+
         private IMongoCollection<ReporteTransformador> reporteTransformadorColeccion;
         public ReporteTransformador reporteCreado { get; set; }
+
+        private IMongoCollection<ReporteCliente> reporteClienteColeccion;
+        public ReporteCliente reporteCliente { get; set; }
         public ReportesController() {
+
             dBContext = new MongoDBContext();
+
             reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
-            reporteCreado = new ReporteTransformador(); 
-         }
+            reporteCreado = new ReporteTransformador();
+
+            reporteClienteColeccion = dBContext.database.GetCollection<ReporteCliente>("clientePorPeriodo");
+            reporteCliente = new ReporteCliente();
+        }
         // GET: Admin/Reportes
         public ActionResult Index()
         {
@@ -65,12 +74,22 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
             switch (tipoReporte.ToLower()) {
                 case "hogar":
                     consumo = Reporte.consumoPorHogarYPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
+
+                    reporteCliente.NombreUsuario = idObjeto;
+                    reporteCliente.FechaDesde = fDesde;
+                    reporteCliente.FechaHasta = fHasta;
+                    reporteCliente.Consumo = consumo;
+
+                    dBContext = new MongoDBContext();
+                    reporteClienteColeccion = dBContext.database.GetCollection<ReporteCliente>("clientePorPeriodo");
+                    reporteClienteColeccion.InsertOne(reporteCliente);
                     break;
                 case "tiposdisp":
                     consumo = Reporte.consumoPorTipoDeDispositivoPorPeriodo(idObjeto, fDesde, fHasta);
                     break;
                 case "transformador":
                     consumo = Reporte.consumoTransformadorPorPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
+
                     reporteCreado.Codigo = Convert.ToInt32(idObjeto);
                     reporteCreado.FechaDesde = fDesde;
                     reporteCreado.FechaHasta = fHasta;
@@ -86,21 +105,5 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
             
             return Json(new { success = true, resultado = consumo, tipoReporte = tipoReporte });
         }
-  /*   public bool InsertarDocumento(ReporteTransformador repotransformador)
-        {
-            try
-            {
-                dBContext = new MongoDBContext();
-                reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
-                reporteTransformadorColeccion.InsertOne(repotransformador);
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        */
     }
 }

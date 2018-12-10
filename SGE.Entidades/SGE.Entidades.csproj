@@ -179,6 +179,7 @@
       <DependentUpon>201811270416022_clienteMapa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MongoDB\Modelo\ReporteCliente.cs" />
     <Compile Include="MongoDB\Modelo\ReporteTransformador.cs" />
     <Compile Include="Reglas\Operador.cs" />
     <Compile Include="Reportes\Reporte.cs" />
