@@ -1,5 +1,11 @@
 # dds-tp-2018-grupo-01
+10/12-2018
+MONGODB
+Para poder probar como se genera la base y las colecciones desde la aplicacion SGE, se debe instalar localmente la version de MONGO segun la arquitectura y SO
+de la pc de cada uno. Ejecutar mongod.exe (para conectar con el servidor) y luego mongo.exe (para la conexion del cliente).
+Si bien se puede usar desde consola, en mi caso instale MongoBooster, cuya interfaz me permite trabajar parecido a sqlServer y poder ver las colecciones creadas y los documentos de cada una.
 
+-----------------------------------------------------------------------------------------------
 27-10-2018
 Registracion: Todos los que se registren desde la pagina, asumen el rol de clientes, por defecto. 
 ADMIN Se carga un super admin desde la clase startup.cs, mantiene las vinculaciones en ambos contextos.
