@@ -26,6 +26,10 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
 
         private IMongoCollection<ReporteCliente> reporteClienteColeccion;
         public ReporteCliente reporteCliente { get; set; }
+
+        private IMongoCollection<ReporteDispositivo> reporteDispositivoColeccion;
+        public ReporteDispositivo reporteDispositivo { get; set; }
+
         public ReportesController() {
 
             dBContext = new MongoDBContext();
@@ -35,6 +39,9 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
 
             reporteClienteColeccion = dBContext.database.GetCollection<ReporteCliente>("clientePorPeriodo");
             reporteCliente = new ReporteCliente();
+
+            reporteDispositivoColeccion = dBContext.database.GetCollection<ReporteDispositivo>("dispositivoPorPeriodo");
+            reporteDispositivo = new ReporteDispositivo();
         }
         // GET: Admin/Reportes
         public ActionResult Index()
@@ -83,9 +90,20 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
                     dBContext = new MongoDBContext();
                     reporteClienteColeccion = dBContext.database.GetCollection<ReporteCliente>("clientePorPeriodo");
                     reporteClienteColeccion.InsertOne(reporteCliente);
+         
                     break;
                 case "tiposdisp":
                     consumo = Reporte.consumoPorTipoDeDispositivoPorPeriodo(idObjeto, fDesde, fHasta);
+
+                    reporteDispositivo.Tipo = idObjeto;
+                    reporteDispositivo.FechaDesde = fDesde;
+                    reporteDispositivo.FechaHasta = fHasta;
+                    reporteDispositivo.Consumo = consumo;
+
+                    dBContext = new MongoDBContext();
+                    reporteDispositivoColeccion = dBContext.database.GetCollection<ReporteDispositivo>("dispositivoPorPeriodo");
+                    reporteDispositivoColeccion.InsertOne(reporteDispositivo);
+
                     break;
                 case "transformador":
                     consumo = Reporte.consumoTransformadorPorPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
