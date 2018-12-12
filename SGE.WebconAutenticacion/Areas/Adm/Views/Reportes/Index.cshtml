@@ -54,6 +54,11 @@
             <dd><input type="text" id="fechaHasta_TiposDisp" class="form-control fecha-datepicker"></dd>
         </dl>
         <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('TiposDisp')" />
+        <br />
+        <br />
+        <p>
+            @Html.ActionLink("Ver Historico Dispositivo", "Index", "HistoricoDispositivo", new { area = "Adm" }, null)
+        </p>
         <div id="contTiposDisp" style="display: none;">
             <dl class="dl-horizontal">
                 <dt>Consumo: </dt>

@@ -210,6 +210,7 @@
     <Compile Include="Areas\Adm\Controllers\CatalogosController.cs" />
     <Compile Include="Areas\Adm\Controllers\DispositivosController.cs" />
     <Compile Include="Areas\Adm\Controllers\HistoricoClienteController.cs" />
+    <Compile Include="Areas\Adm\Controllers\HistoricoDispositivoController.cs" />
     <Compile Include="Areas\Adm\Controllers\HogaresController.cs" />
     <Compile Include="Areas\Adm\Controllers\ReportesController.cs" />
     <Compile Include="Areas\Cli\ClienteAreaRegistration.cs" />
@@ -326,6 +327,8 @@
     <Content Include="Areas\Adm\Views\HistoricoTransformador\Details.cshtml" />
     <Content Include="Areas\Adm\Views\HistoricoCliente\Index.cshtml" />
     <Content Include="Areas\Adm\Views\HistoricoCliente\Details.cshtml" />
+    <Content Include="Areas\Adm\Views\HistoricoDispositivo\Index.cshtml" />
+    <Content Include="Areas\Adm\Views\HistoricoDispositivo\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
