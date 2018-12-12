@@ -1,18 +1,13 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using MongoDB.Driver;
-using SGE.Entidades.Contexto;
+﻿using MongoDB.Driver;
 using SGE.WebconAutenticacion.App_Start;
 using SGE.Entidades.MongoDB.Modelo;
 using SGE.Entidades.Reportes;
 using SGE.Entidades.Repositorio;
-using SGE.Entidades.Sesion;
 using SGE.Entidades.Transformadores;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SGE.WebconAutenticacion.Areas.Adm.Controllers

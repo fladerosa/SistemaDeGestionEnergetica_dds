@@ -29,7 +29,12 @@
             <dd><input type="text" id="fechaHasta_Hogar" class="form-control fecha-datepicker"></dd>
         </dl>
 
-        <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('Hogar')"/>
+        <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('Hogar')" />
+        <br />
+        <br />
+        <p>
+            @Html.ActionLink("Ver Historico Hogar", "Index", "HistoricoCliente", new { area = "Adm" }, null)
+        </p>
         <div id="contHogar" style="display: none;">
             <dl class="dl-horizontal">
                 <dt>Consumo: </dt>
