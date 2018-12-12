@@ -219,6 +219,7 @@
     <Compile Include="Areas\Cli\Controllers\HogarEficienteController.cs" />
     <Compile Include="Areas\Cli\Controllers\ReglasController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\Adm\Controllers\HistoricoTransformadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapaController.cs" />
@@ -320,6 +321,8 @@
     <Content Include="Areas\Adm\Views\Dispositivos\Index.cshtml" />
     <Content Include="Areas\Cli\Views\CargaMasiva\Index.cshtml" />
     <Content Include="Resources\DispositivosCargaMasiva.json" />
+    <Content Include="Areas\Adm\Views\HistoricoTransformador\Index.cshtml" />
+    <Content Include="Areas\Adm\Views\HistoricoTransformador\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />

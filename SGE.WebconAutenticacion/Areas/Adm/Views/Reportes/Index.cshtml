@@ -68,14 +68,21 @@
             <dd><input type="text" id="fechaHasta_Transformador" class="form-control fecha-datepicker"></dd>
         </dl>
         <input type="button" value="Consultar" class="btn btn-default" onclick="consultar('Transformador')" />
+        <br />
+        <br />
+        <p>
+            @Html.ActionLink("Ver Historico Transformador", "Index", "HistoricoTransformador", new { area = "Adm" }, null)
+        </p>
+
         <div id="contTransformador" style="display: none;">
             <dl class="dl-horizontal">
                 <dt>Consumo: </dt>
                 <dd><span id="resultadoTransformador"></span></dd>
             </dl>
         </div>
+
     </div>
-</div>
+    </div>
 
 <script>
     $(function () {
