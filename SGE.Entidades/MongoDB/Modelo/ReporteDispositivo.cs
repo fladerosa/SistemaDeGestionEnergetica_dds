@@ -15,9 +15,9 @@ namespace SGE.Entidades.MongoDB.Modelo
         [BsonElement("Tipo")]
         public String Tipo { get; set; }
         [BsonElement("FechaDesde")]
-        public DateTime FechaDesde { get; set; }
+        public String FechaDesde { get; set; }
         [BsonElement("FechaHasta")]
-        public DateTime FechaHasta { get; set; }
+        public String FechaHasta { get; set; }
         [BsonElement("Consumo")]
         public Decimal Consumo { get; set; }
     }

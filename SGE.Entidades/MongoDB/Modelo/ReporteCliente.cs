@@ -12,12 +12,12 @@ namespace SGE.Entidades.MongoDB.Modelo
     {
         [BsonId]
         public ObjectId Id { get; set; }
-        [BsonElement("NombreUsuario")]
-        public String NombreUsuario { get; set; }
+        [BsonElement("IdUsuario")]
+        public String IdUsuario { get; set; }
         [BsonElement("FechaDesde")]
-        public DateTime FechaDesde { get; set; }
+        public String FechaDesde { get; set; }
         [BsonElement("FechaHasta")]
-        public DateTime FechaHasta { get; set; }
+        public String FechaHasta { get; set; }
         [BsonElement("Consumo")]
         public Decimal Consumo { get; set; }
     }

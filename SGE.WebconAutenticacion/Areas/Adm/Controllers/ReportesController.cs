@@ -16,7 +16,6 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
     public class ReportesController : Controller
     {    
         private MongoDBContext dBContext;
-
         private IMongoCollection<ReporteTransformador> reporteTransformadorColeccion;
         public ReporteTransformador reporteCreado { get; set; }
 
@@ -29,7 +28,6 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
         public ReportesController() {
 
             dBContext = new MongoDBContext();
-
             reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
             reporteCreado = new ReporteTransformador();
 
@@ -69,7 +67,6 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
         public JsonResult Consultar(string fechaDesde, string fechaHasta, string tipoReporte, string idObjeto) {
             DateTime fDesde = Convert.ToDateTime(fechaDesde);
             DateTime fHasta = DateTime.Now;
-          //  var busqueda = new { };
 
             if (!String.IsNullOrEmpty(fechaHasta)) {
                 fHasta = Convert.ToDateTime(fechaHasta);
@@ -79,43 +76,68 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
                 case "hogar":
                     consumo = Reporte.consumoPorHogarYPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
 
-                    reporteCliente.NombreUsuario = idObjeto;
-                    reporteCliente.FechaDesde = fDesde;
-                    reporteCliente.FechaHasta = fHasta;
-                    reporteCliente.Consumo = consumo;
-
                     dBContext = new MongoDBContext();
                     reporteClienteColeccion = dBContext.database.GetCollection<ReporteCliente>("clientePorPeriodo");
-                    reporteClienteColeccion.InsertOne(reporteCliente);
-         
+
+                    int busquedaHistoricoHogar = 0;
+                    busquedaHistoricoHogar = (from t in reporteClienteColeccion.AsQueryable<ReporteCliente>()
+                                              where t.IdUsuario == idObjeto
+                                                      && t.FechaDesde == fDesde.ToShortDateString()
+                                                      && (t.FechaHasta == fHasta.ToShortDateString() 
+                                                      || t.FechaHasta == DateTime.Now.ToShortDateString())
+                                                      && t.Consumo == consumo
+                                              select t).Count();
+
+                    if (busquedaHistoricoHogar == 0)
+                    {
+                        reporteCliente.IdUsuario = idObjeto;
+                        reporteCliente.FechaDesde = fDesde.ToShortDateString();
+                        reporteCliente.FechaHasta = fHasta.ToShortDateString();
+                        reporteCliente.Consumo = consumo;
+
+                        reporteClienteColeccion.InsertOne(reporteCliente);
+                    }
                     break;
                 case "tiposdisp":
                     consumo = Reporte.consumoPorTipoDeDispositivoPorPeriodo(idObjeto, fDesde, fHasta);
 
-                    reporteDispositivo.Tipo = idObjeto;
-                    reporteDispositivo.FechaDesde = fDesde;
-                    reporteDispositivo.FechaHasta = fHasta;
-                    reporteDispositivo.Consumo = consumo;
-
                     dBContext = new MongoDBContext();
                     reporteDispositivoColeccion = dBContext.database.GetCollection<ReporteDispositivo>("dispositivoPorPeriodo");
-                    reporteDispositivoColeccion.InsertOne(reporteDispositivo);
 
+                    int busquedaHistoricoDispo = 0;
+                    busquedaHistoricoDispo = (from t in reporteDispositivoColeccion.AsQueryable<ReporteDispositivo>()
+                                where t.Tipo == idObjeto
+                                        && t.FechaDesde == fDesde.ToShortDateString()
+                                        && (t.FechaHasta == fHasta.ToShortDateString()
+                                        || t.FechaHasta == DateTime.Now.ToShortDateString())
+                                        && t.Consumo == consumo
+                                select t).Count();
+
+                    if (busquedaHistoricoDispo == 0)
+                    {
+                        reporteDispositivo.Tipo = idObjeto;
+                        reporteDispositivo.FechaDesde = fDesde.ToShortDateString();
+                        reporteDispositivo.FechaHasta = fHasta.ToShortDateString();
+                        reporteDispositivo.Consumo = consumo;
+
+                        reporteDispositivoColeccion.InsertOne(reporteDispositivo);
+                    }
                     break;
                 case "transformador":
                     consumo = Reporte.consumoTransformadorPorPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
 
                     dBContext = new MongoDBContext();
                     reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
-                    int busqueda = 0;
-                     busqueda = (from t in reporteTransformadorColeccion.AsQueryable<ReporteTransformador>()
+                    int busquedaHistoricoTrans = 0;
+                    busquedaHistoricoTrans = (from t in reporteTransformadorColeccion.AsQueryable<ReporteTransformador>()
                                     where  t.Codigo == Convert.ToInt32(idObjeto)
                                             && t.FechaDesde == fDesde.ToShortDateString()
-                                            && t.FechaHasta == fHasta.ToShortDateString()
+                                            && (t.FechaHasta == fHasta.ToShortDateString()
+                                            || t.FechaHasta == DateTime.Now.ToShortDateString())
                                             && t.Consumo == consumo
                                     select t).Count();
 
-                    if (busqueda == 0)
+                    if (busquedaHistoricoTrans == 0)
                     {
                         reporteCreado.Codigo = Convert.ToInt32(idObjeto);
                         reporteCreado.FechaDesde = fDesde.ToShortDateString();
