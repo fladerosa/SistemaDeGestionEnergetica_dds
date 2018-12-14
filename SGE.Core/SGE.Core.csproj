@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Build.cs" />
     <Compile Include="Entidades\Dispositivo.cs" />
     <Compile Include="Entidades\Transformador.cs" />
     <Compile Include="Entidades\Zona.cs" />

@@ -220,6 +220,7 @@
     <Compile Include="Areas\Cli\Controllers\HogarController.cs" />
     <Compile Include="Areas\Cli\Controllers\HogarEficienteController.cs" />
     <Compile Include="Areas\Cli\Controllers\ReglasController.cs" />
+    <Compile Include="Build.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Adm\Controllers\HistoricoTransformadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

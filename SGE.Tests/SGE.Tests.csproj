@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acciones\AccionesTests.cs" />
+    <Compile Include="Build.cs" />
     <Compile Include="Categorias\CategoriaTest.cs" />
     <Compile Include="Dispositivos\InteligenteTests.cs" />
     <Compile Include="Dispositivos\CatalogoTest.cs" />

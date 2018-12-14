@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using MongoDB.Driver.Linq;
 
 namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
 {
@@ -68,6 +69,7 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
         public JsonResult Consultar(string fechaDesde, string fechaHasta, string tipoReporte, string idObjeto) {
             DateTime fDesde = Convert.ToDateTime(fechaDesde);
             DateTime fHasta = DateTime.Now;
+          //  var busqueda = new { };
 
             if (!String.IsNullOrEmpty(fechaHasta)) {
                 fHasta = Convert.ToDateTime(fechaHasta);
@@ -103,14 +105,26 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
                 case "transformador":
                     consumo = Reporte.consumoTransformadorPorPeriodo(Convert.ToInt32(idObjeto), fDesde, fHasta);
 
-                    reporteCreado.Codigo = Convert.ToInt32(idObjeto);
-                    reporteCreado.FechaDesde = fDesde;
-                    reporteCreado.FechaHasta = fHasta;
-                    reporteCreado.Consumo = consumo;
                     dBContext = new MongoDBContext();
                     reporteTransformadorColeccion = dBContext.database.GetCollection<ReporteTransformador>("transformadorPorPeriodo");
-                    reporteTransformadorColeccion.InsertOne(reporteCreado);
+                    int busqueda = 0;
+                     busqueda = (from t in reporteTransformadorColeccion.AsQueryable<ReporteTransformador>()
+                                    where  t.Codigo == Convert.ToInt32(idObjeto)
+                                            && t.FechaDesde == fDesde.ToShortDateString()
+                                            && t.FechaHasta == fHasta.ToShortDateString()
+                                            && t.Consumo == consumo
+                                    select t).Count();
 
+                    if (busqueda == 0)
+                    {
+                        reporteCreado.Codigo = Convert.ToInt32(idObjeto);
+                        reporteCreado.FechaDesde = fDesde.ToShortDateString();
+                        reporteCreado.FechaHasta = fHasta.ToShortDateString();
+                        reporteCreado.Consumo = consumo;
+
+                        reporteTransformadorColeccion.InsertOne(reporteCreado); //inserta documentos a la coleccion especificada
+                    }
+                   
                     break;
                 default:
                     return Json(new { success = false, error = "No se reconoce el tipo de reporte" });
@@ -118,5 +132,6 @@ namespace SGE.WebconAutenticacion.Areas.Adm.Controllers
             
             return Json(new { success = true, resultado = consumo, tipoReporte = tipoReporte });
         }
+      
     }
 }

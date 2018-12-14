@@ -124,6 +124,7 @@
     <Compile Include="Acciones\Acciones\EstablecerTemperatura.cs" />
     <Compile Include="Acciones\Acciones\Mute.cs" />
     <Compile Include="Acciones\Acciones\SubirVolumen.cs" />
+    <Compile Include="Build.cs" />
     <Compile Include="Contexto\SGEContext.cs" />
     <Compile Include="Dispositivos\Activacion.cs" />
     <Compile Include="Dispositivos\Catalogo.cs" />

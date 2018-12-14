@@ -15,9 +15,9 @@ namespace SGE.Entidades.MongoDB.Modelo
         [BsonElement("Codigo")]
         public int Codigo { get; set; }
         [BsonElement("FechaDesde")]
-        public DateTime FechaDesde { get; set; }
+        public string FechaDesde { get; set; }
         [BsonElement("FechaHasta")]
-        public DateTime FechaHasta { get; set; }
+        public string FechaHasta { get; set; }
         [BsonElement("Consumo")]
         public Decimal Consumo { get; set; }
     }
