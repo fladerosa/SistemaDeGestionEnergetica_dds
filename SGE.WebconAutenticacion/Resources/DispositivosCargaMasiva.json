@@ -1,0 +1,123 @@
+﻿[
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "1",
+    "Nombre": "Aire Acondicionado 1",
+    "IdentificadorFabrica": "AA-2590",
+    "ConsumoEnergia": "120.00",
+    "Volumen": "0",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "2",
+    "Nombre": "Aire Acondicionado 2",
+    "IdentificadorFabrica": "AA-2591",
+    "ConsumoEnergia": "220.00",
+    "Volumen": "0",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "3",
+    "Nombre": "Aire Acondicionado 3",
+    "IdentificadorFabrica": "AA-2594",
+    "ConsumoEnergia": "320.00",
+    "Volumen": "3",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "4",
+    "Nombre": "Lavarropas 1",
+    "IdentificadorFabrica": "LV-8520",
+    "ConsumoEnergia": "320.00",
+    "Volumen": "4",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "5",
+    "Nombre": "Lavarropas 2",
+    "IdentificadorFabrica": "LV-8522",
+    "ConsumoEnergia": "330.00",
+    "Volumen": "11",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "6",
+    "Nombre": "Televisor 1",
+    "IdentificadorFabrica": "TV-2591",
+    "ConsumoEnergia": "175.00",
+    "Volumen": "8",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "7",
+    "Nombre": "Televisor 2",
+    "IdentificadorFabrica": "TV-2592",
+    "ConsumoEnergia": "325.00",
+    "Volumen": "7",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "8",
+    "Nombre": "Ventilador",
+    "IdentificadorFabrica": "VT-2593",
+    "ConsumoEnergia": "256.00",
+    "Volumen": "3",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "9",
+    "Nombre": "Ventilador Turbo",
+    "IdentificadorFabrica": "VT-2595",
+    "ConsumoEnergia": "275.00",
+    "Volumen": "0",
+    "Temperatura":  "3",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "10",
+    "Nombre": "Lampara bajo consumo",
+    "IdentificadorFabrica": "LP-00005",
+    "ConsumoEnergia": "5.00",
+    "Volumen": "0",
+    "Temperatura":  "1",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "11",
+    "Nombre": "Lampara mini",
+    "IdentificadorFabrica": "LP-00002",
+    "ConsumoEnergia": "2.00",
+    "Volumen": "0",
+    "Temperatura":  "0",
+    "VelocidadVentilador": "0"
+  },
+  {
+    "$type": "SGE.Core.Entidades.Dispositivo, SGE.Entidades",
+    "CatalogoId": "12",
+    "Nombre": "Plancha",
+    "IdentificadorFabrica": "PH-2596",
+    "ConsumoEnergia": "150.00",
+    "Volumen": "0",
+    "Temperatura":  "17",
+    "VelocidadVentilador": "0"
+  }
+  
+]
