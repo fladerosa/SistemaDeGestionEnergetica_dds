@@ -9,12 +9,11 @@ using SGE.Entidades.Sensores;
 using SGE.Entidades.Sesion;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
     public class ReglasController : Controller
@@ -46,6 +45,51 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             return View();
         }
 
+        [HttpPost]
+        public JsonResult CargarAccionesYSensores(int idInteligente) {
+            SGEContext db = new SGEContext();
+
+            var jsonSerialiser = new JavaScriptSerializer();
+            List<object> acciones = new List<object>();
+
+            Inteligente inteligente = db.Inteligentes.First(i => i.Id == idInteligente);
+            Catalogo catalogo = db.Catalogos.Include("Acciones").Include("Sensores").First(c => c.Id == inteligente.CatalogoId);
+
+            foreach (Accion accion in catalogo.Acciones) {
+                var objeto = Json(new { accion.Id, accion.Descripcion }).Data;
+
+                acciones.Add(objeto);
+            }
+
+            List<object> sensores = new List<object>();
+
+            foreach (Sensor sensor in catalogo.Sensores) {
+                var objeto = Json(new { sensor.Id, sensor.Descripcion }).Data;
+
+                sensores.Add(objeto);
+            }
+
+            return Json(new { success = true, sensores = jsonSerialiser.Serialize(sensores), acciones = jsonSerialiser.Serialize(acciones) });
+        }
+
+        [HttpPost]
+        public JsonResult AgregarRegla(string nombreRegla, int idInteligente, long[] idsAcciones, List<Condicion> condiciones) {
+            SGEContext db = new SGEContext();
+            BaseRepositorio<Regla> repoRegla = new BaseRepositorio<Regla>(db);
+            Regla regla = new Regla() {
+                Nombre = nombreRegla,
+                IdInteligente = idInteligente,
+                Condiciones = condiciones
+            };
+
+            regla.Acciones = db.Acciones.Where(a => idsAcciones.Any(x => x == a.Id)).ToList();
+
+            repoRegla.Create(regla);
+
+            return Json(new { success = true });
+        }
+        
+
         private ICollection<dynamic> ObtenerReglasActivas() {
             ICollection<dynamic> salida = new List<dynamic>();
 
@@ -67,10 +111,14 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             };
 
             BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>(contexto);
+            var includesCondicion = new List<Expression<Func<Condicion, object>>>() {
+                c => c.Operador
+            };
+
             foreach (Inteligente inteligente in inteligentes) {
                 foreach (Regla regla in inteligente.Reglas) {
                     var reglaId = regla.ReglaId;
-                    var condiciones = repoCondicion.Filter(c => c.ReglaId == reglaId);
+                    var condiciones = repoCondicion.Filter(c => c.ReglaId == reglaId, includesCondicion);
 
                     if (condiciones.Count > 0) {
                         string strCondiciones = "";
@@ -81,7 +129,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         }
 
                         string strAcciones = "";
-                        foreach (Accion accion in regla.Acciones) {
+                        foreach (Accion accion in repoAccion.Filter(a => a.Reglas.Any(r => r.ReglaId == reglaId))) {
                             if (strAcciones != "") strAcciones += " | ";
                             strAcciones += accion.Descripcion;
                         }

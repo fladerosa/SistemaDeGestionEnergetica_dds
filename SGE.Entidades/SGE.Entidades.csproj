@@ -159,6 +159,10 @@
     <Compile Include="Migrations\201811270416022_clienteMapa.Designer.cs">
       <DependentUpon>201811270416022_clienteMapa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812150307495_idOperador.cs" />
+    <Compile Include="Migrations\201812150307495_idOperador.Designer.cs">
+      <DependentUpon>201812150307495_idOperador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reglas\Operador.cs" />
     <Compile Include="Reportes\Reporte.cs" />
@@ -248,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811270416022_clienteMapa.resx">
       <DependentUpon>201811270416022_clienteMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150307495_idOperador.resx">
+      <DependentUpon>201812150307495_idOperador.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

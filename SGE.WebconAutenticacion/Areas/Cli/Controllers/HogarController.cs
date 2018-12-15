@@ -107,10 +107,13 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             };
 
             BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>(contexto);
+            var includesCondicion = new List<Expression<Func<Condicion, object>>>() {
+                c => c.Operador
+            };
             foreach (Inteligente inteligente in inteligentes) {
                 foreach (Regla regla in inteligente.Reglas) {
                     var reglaId = regla.ReglaId;
-                    var condiciones = repoCondicion.Filter(c => c.ReglaId == reglaId);
+                    var condiciones = repoCondicion.Filter(c => c.ReglaId == reglaId, includesCondicion);
 
                     if (condiciones.Count > 0) {
                         string strCondiciones = "";

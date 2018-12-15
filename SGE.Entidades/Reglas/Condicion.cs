@@ -8,6 +8,8 @@ namespace SGE.Entidades.Reglas {
     public class Condicion {
         [Key]
         public int CondicionId { get; set; }
+        public int OperadorId { get; set; }
+        [ForeignKey("OperadorId")]
         public Operador Operador { get; set; }
         public string ValorReferencia { get; set; }
 
