@@ -18,17 +18,58 @@
         <th>
             Condición
         </th>
+        <th>
+            Acción
+        </th>
     </tr>
 
     @foreach (var regla in ViewBag.reglas) {
-        <tr>
-            <td>
-                @regla.regla
-            </td>
-            <td>
-                @regla.condicion
-            </td>
-        </tr>
+    <tr id="tr_@regla.id">
+        <td>
+            @regla.regla
+        </td>
+        <td>
+            @regla.condicion
+        </td>
+        <td>
+            <button onclick="eliminarRegla(@regla.id)" class="btn">Eliminar</button> | <button onclick="ejecutarRegla(@regla.id)" class="btn">Ejecutar</button> | @Html.ActionLink("Editar", "Editar", new { idRegla = regla.id })
+        </td>
+    </tr>
     }
 
 </table>
+
+<script>
+    function eliminarRegla(IdRegla) {
+        $.ajax({
+            type: "POST",
+            url: "/Cli/Reglas/EliminarRegla",
+            dataType: "json",
+            data: { IdRegla: IdRegla },
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    $("#tr_" + IdRegla).remove();
+                    alert("Regla eliminada correctamente");
+                } else {
+                    alert("Error vinculando dispositivo: " + resultado.error);
+                }
+            }
+        });
+    }
+
+    function ejecutarRegla(IdRegla) {
+        $.ajax({
+            type: "POST",
+            url: "/Cli/Reglas/EjecutarRegla",
+            dataType: "json",
+            data: { IdRegla: IdRegla },
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    alert("Regla ejecutada correctamente");
+                } else {
+                    alert("Error vinculando dispositivo: " + resultado.error);
+                }
+            }
+        });
+    }
+</script>

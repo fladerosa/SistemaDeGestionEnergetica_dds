@@ -13,5 +13,9 @@ namespace SGE.Entidades.Sensores {
         public int SensorId { get; set; } // fk con tabla Sensor
         [ForeignKey("SensorId")]
         public virtual Sensor Sensor { get; set; } // one to many con  Sensor
+
+        public Medicion() {
+            FechaRegistro = DateTime.Now;
+        }
     }
 }

@@ -1,0 +1,331 @@
+﻿@model SGE.Entidades.Reglas.Regla
+
+@using SGE.Entidades.Acciones;
+@using SGE.Entidades.Reglas;
+
+@{
+    ViewBag.Title = "Dispositivos";
+}
+
+<div id="contFormularioRegla" style="display: none">
+    <h2>Realice las modificaciones correspondientes</h2>
+
+    <br />
+    <h3>Regla</h3>
+
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre:
+        </dt>
+
+        <dd>
+            <input type="text" class="form-control" id="inpNombreRegla" value="@Model.Nombre" />
+        </dd>
+    </dl>
+
+    <br />
+
+    <h3>Condiciones <i class="fas fa-plus-circle" onclick="agregarCondicion()" title="Agregar condición"></i></h3>
+    <div id="datosCondiciones">
+        <div id="formularioCondicion" style="display: none;">
+            <dl class="dl-horizontal">
+                <dt>
+                    Sensor:
+                </dt>
+
+                <dd>
+                    <select name="selectSensores" id="selectSensores" class="form-control"></select>
+                </dd>
+                <dt>
+                    Valor de referencia:
+                </dt>
+
+                <dd>
+                    <input type="text" class="form-control" id="inpValorReferencia" title="Valor contra el cual se realizará el análisis" />
+                </dd>
+
+                <dt>
+                    Operación:
+                </dt>
+
+                <dd>
+                    @Html.DropDownList("TipoOperacion", (SelectList)ViewBag.Operadores, "Seleccione la opreación", new { @class = "form-control" })
+                </dd>
+
+                <dt>
+                </dt>
+
+                <dd>
+                    <button onclick="completarAgregadoCondicion()" class="btn">Agregar</button>
+                </dd>
+            </dl>
+        </div>
+        <br />
+        <div id="listadoCondiciones">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Sensor
+                    </th>
+                    <th>
+                        Valor referencia
+                    </th>
+                    <th>
+                        Operación
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                <tbody id="tBodyCondiciones">
+                    @{ 
+                        foreach (Condicion condicion in ViewBag.Condiciones) {
+                            <tr>
+                            <td>@condicion.Sensor.Descripcion</td>
+                            <td>@condicion.ValorReferencia</td>
+                            <td>@condicion.Operador.Descripcion</td>
+                            <td><button onclick='eliminarCondicion(this)' class='btn'>Eliminar</button></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <h3>Acciones <i class="fas fa-plus-circle" onclick="agregarAccion()" title="Agregar acción"></i></h3>
+    <div id="datosAcciones">
+        <div id="formularioAccion" style="display: none;">
+            <dl class="dl-horizontal">
+                <dt>
+                    Acción:
+                </dt>
+
+                <dd>
+                    <select name="selectAcciones" id="selectAcciones" class="form-control"></select>
+                </dd>
+
+                <dt>
+                </dt>
+
+                <dd>
+                    <button onclick="completarAgregadoAccion()" class="btn">Agregar</button>
+                </dd>
+            </dl>
+
+        </div>
+        <br />
+        <div id="listadoAcciones">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                <tbody id="tBodyAcciones">
+                    @{
+                        foreach (Accion accion in Model.Acciones) {
+                            <tr>
+                            <td >@accion.Descripcion</td>
+                            <td><button onclick='eliminarAccion(this)' class='btn'>Eliminar</button></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <br />
+    <button onclick="realizarAlta()" class="btn">Realizar alta</button>
+    <p>
+        @Html.ActionLink("Volver a listado de reglas", "", "", new { @class = "volverSeleccionDispositivo" })
+    </p>
+</div>
+
+<p>
+    @Html.ActionLink("Listado reglas", "Index")
+</p>
+
+<script>
+    var idInteligenteSeleccionado = -1;
+
+    function seleccionarDispositivo(idInteligente) {
+        idInteligenteSeleccionado = idInteligente;
+        $("#contSeleccionDispositivos").hide();
+        $("#contFormularioRegla").show();
+        $.ajax({
+            type: "POST",
+            url: "/Cli/Reglas/CargarAccionesYSensores",
+            dataType: "json",
+            data: { idInteligente: idInteligente },
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    var dropdown = $('#selectAcciones');
+
+                    dropdown.empty();
+                    dropdown.append('<option selected="true" disabled>Seleccione una acción</option>');
+                    dropdown.prop('selectedIndex', 0);
+                    var acciones = JSON.parse(resultado.acciones);
+                    for (indice in acciones) {
+                        var accion = acciones[indice];
+                        dropdown.append($('<option></option>').attr('value', accion.Id).text(accion.Descripcion));
+                    }
+
+                    var dropdown = $('#selectSensores');
+
+                    dropdown.empty();
+                    dropdown.append('<option selected="true" disabled>Seleccione un sensor</option>');
+                    dropdown.prop('selectedIndex', 0);
+                    var sensores = JSON.parse(resultado.sensores);
+                    for (indice in sensores) {
+                        var sensor = sensores[indice];
+                        dropdown.append($('<option></option>').attr('value', sensor.Id).text(sensor.Descripcion));
+                    }
+
+                } else {
+                    alert("Error vinculando dispositivo: " + resultado.error);
+                }
+            }
+        });
+    }
+
+    function agregarCondicion() {
+        $("#datosCondiciones").show();
+        $("#formularioCondicion").show();
+    }
+
+    function completarAgregadoCondicion() {
+        if ($("#inpValorReferencia").val() == "" || $("#TipoOperacion").val() == "") {
+            alert("Debe completar ambos campos");
+            return false;
+        }
+        $("#formularioCondicion").hide();
+        $("#listadoCondiciones").show();
+
+        var nuevoTr = "<tr>";
+        nuevoTr += "<td>" + $("#selectSensores option[value=" + $("#selectSensores").val() + "]").html() + "</td>";
+        nuevoTr += "<td>" + $("#inpValorReferencia").val() + "</td>";
+        nuevoTr += "<td>" + $("#TipoOperacion option[value=" + $("#TipoOperacion").val() + "]").html() + "</td>";
+        nuevoTr += "<td><button onclick='eliminarCondicion(this)' class='btn'>Eliminar</button></td>";
+        nuevoTr += "</tr>";
+
+        $("#tBodyCondiciones").append(nuevoTr);
+
+        $("#inpValorReferencia").val("");
+        $("#TipoOperacion").val("");
+    }
+
+    function eliminarCondicion(condicion) {
+        $(condicion)[0].parentElement.parentElement.remove();
+
+        if ($("#tBodyCondiciones").children().length <= 0) {
+            $("#listadoCondiciones").hide();
+            $("#datosCondiciones").hide();
+        }
+    }
+
+    function agregarAccion() {
+        $("#datosAcciones").show();
+        $("#formularioAccion").show();
+    }
+
+    function completarAgregadoAccion() {
+        if ($("#selectAcciones").val() == "") {
+            alert("Debe elegir una acción");
+            return false;
+        }
+        $("#formularioAccion").hide();
+        $("#listadoAcciones").show();
+
+        var nuevoTr = "<tr>";
+        nuevoTr += "<td >" + $("#selectAcciones option[value=" + $("#selectAcciones").val() + "]").html() + "</td>";
+        nuevoTr += "<td><button onclick='eliminarAccion(this)' class='btn'>Eliminar</button></td>";
+        nuevoTr += "</tr>";
+
+        $("#tBodyAcciones").append(nuevoTr);
+
+        $("#selectAcciones").val("");
+    }
+
+    function eliminarAccion(accion) {
+        $(accion)[0].parentElement.parentElement.remove();
+
+        if ($("#tBodyAcciones").children().length <= 0) {
+            $("#listadoAcciones").hide();
+            $("#datosAcciones").hide();
+        }
+    }
+
+    function realizarAlta() {
+        var formData = {
+            nombreRegla : $("#inpNombreRegla").val(),
+            idInteligente : idInteligenteSeleccionado,
+            idsAcciones: cargarIdsAcciones(),
+            condiciones: cargarCondiciones(),
+            idRegla: @Model.ReglaId
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/Cli/Reglas/EditarRegla",
+            dataType: "json",
+            data: formData,
+            success: function (resultado) {
+                if (resultado.success == true) {
+                    //algo
+                    alert("Regla dada de alta correctamente");
+                } else {
+                    alert("Error vinculando dispositivo: " + resultado.error);
+                }
+            }
+        });
+    }
+
+    function cargarIdsAcciones() {
+        var ids = [];
+
+        //for (var indiceTr in $("#tBodyAcciones tr")) {
+        for (var i = 0; i < $("#tBodyAcciones tr").length; i++) {
+            var tr = $("#tBodyAcciones tr")[i];
+
+            var descAccion = $(tr).find("td")[0].innerHTML;
+            ids.push($("#selectAcciones option:contains('" + descAccion + "')").val());
+        }
+
+        return ids;
+    }
+
+    function cargarCondiciones() {
+        var condiciones = [];
+
+        for (var i = 0; i < $("#tBodyCondiciones tr").length; i++) {
+            var tr = $("#tBodyCondiciones tr")[i];
+
+            var descSensor = $(tr).find("td")[0].innerHTML;
+            var valorReferencia = $(tr).find("td")[1].innerHTML;
+            var descCondicion = $(tr).find("td")[2].innerHTML;
+
+            condiciones.push({
+                OperadorId: $("#TipoOperacion option:contains('" + descCondicion + "')").val(),
+                ValorReferencia: valorReferencia + "",
+                SensorId: $("#selectSensores option:contains('" + descSensor + "')").val()
+            });
+        }
+
+        return condiciones;
+    }
+
+    $(document).ready(function () {
+        $(".volverSeleccionDispositivo").click(function (e) {
+            $("#contSeleccionDispositivos").show();
+            $("#contFormularioRegla").hide();
+            return false;
+        });
+        seleccionarDispositivo(@Model.IdInteligente);
+    });
+</script>

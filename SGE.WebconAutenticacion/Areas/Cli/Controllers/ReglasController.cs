@@ -112,7 +112,8 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>(contexto);
             var includesCondicion = new List<Expression<Func<Condicion, object>>>() {
-                c => c.Operador
+                c => c.Operador,
+                c => c.Sensor
             };
 
             foreach (Inteligente inteligente in inteligentes) {
@@ -125,7 +126,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         foreach (Condicion condicion in condiciones) {
                             if (strCondiciones != "") strCondiciones += " | ";
                             string strTipoOperacion = condicion.Operador.Descripcion;
-                            strCondiciones += condicion.ValorReferencia.ToString() + " " + strTipoOperacion;
+                            strCondiciones += condicion.Sensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
                         }
 
                         string strAcciones = "";
@@ -138,6 +139,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         dynamic customRegla = new ExpandoObject();
                         customRegla.regla = regla.Nombre;
                         customRegla.condicion = "{" + strCondiciones + "} => {" + strAcciones + "}";
+                        customRegla.id = regla.ReglaId;
 
                         salida.Add(customRegla);
                     }
@@ -145,6 +147,80 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             }
 
             return salida;
+        }
+
+        [HttpPost]
+        public JsonResult EliminarRegla(int IdRegla) {
+            SGEContext db = new SGEContext();
+            BaseRepositorio<Regla> repoRegla = new BaseRepositorio<Regla>(db);
+            Regla regla = repoRegla.Single(r => r.ReglaId == IdRegla);
+
+            repoRegla.Delete(regla);
+
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        public JsonResult EjecutarRegla(int IdRegla) {
+            SGEContext db = new SGEContext();
+            BaseRepositorio<Regla> repoRegla = new BaseRepositorio<Regla>(db);
+            var includesRegla = new List<Expression<Func<Regla, object>>>() {
+                r => r.Acciones,
+                r => r.Condiciones,
+                r => r.Inteligente
+            };
+            Regla regla = repoRegla.Single(r => r.ReglaId == IdRegla, includesRegla);
+
+            BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>(db);
+            var includesCondicion = new List<Expression<Func<Condicion, object>>>() {
+                c => c.Sensor,
+                c => c.Operador
+            };
+
+            regla.Acciones.ToList().ForEach(a => a.Dispositivo = regla.Inteligente);
+
+            regla.Condiciones.ToList().ForEach(c => c = repoCondicion.Single(co => co.CondicionId == c.CondicionId, includesCondicion));
+
+            regla.Condiciones.ToList().ForEach(c => c.Sensor.Dispositivo = regla.Inteligente);
+
+
+            regla.Ejecutar();
+
+            repoRegla.Update(regla);
+
+            return Json(new { success = true });
+        }
+
+        public ActionResult Editar(int idRegla) {
+
+            SGEContext db = new SGEContext();
+
+            BaseRepositorio<Operador> repoOperador = new BaseRepositorio<Operador>();
+            ViewBag.Operadores = new SelectList(repoOperador.GetAll(), "Id", "Descripcion");
+
+            Regla regla = db.Reglas.Include("Acciones").FirstOrDefault(r => r.ReglaId == idRegla);
+
+            ViewBag.Condiciones = db.Condiciones.Include("Sensor").Include("Operador").Where(c => c.ReglaId == regla.ReglaId);
+
+            return View(regla);
+        }
+
+        [HttpPost]
+        public JsonResult EditarRegla(string nombreRegla, int idInteligente, int idRegla, long[] idsAcciones, List<Condicion> condiciones) {
+            SGEContext db = new SGEContext();
+            BaseRepositorio<Regla> repoRegla = new BaseRepositorio<Regla>(db);
+            Regla regla = repoRegla.Single(r => r.ReglaId == idRegla);
+
+            regla.Nombre = nombreRegla;
+            regla.IdInteligente = idInteligente;
+            regla.Condiciones.Clear();
+            regla.Condiciones = condiciones;
+            regla.Acciones.Clear();
+            regla.Acciones = db.Acciones.Where(a => idsAcciones.Any(x => x == a.Id)).ToList();
+
+            repoRegla.Update(regla);
+
+            return Json(new { success = true });
         }
     }
 }

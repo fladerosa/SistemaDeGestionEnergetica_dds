@@ -108,7 +108,8 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             BaseRepositorio<Condicion> repoCondicion = new BaseRepositorio<Condicion>(contexto);
             var includesCondicion = new List<Expression<Func<Condicion, object>>>() {
-                c => c.Operador
+                c => c.Operador,
+                c => c.Sensor
             };
             foreach (Inteligente inteligente in inteligentes) {
                 foreach (Regla regla in inteligente.Reglas) {
@@ -120,7 +121,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         foreach (Condicion condicion in condiciones) {
                             if (strCondiciones != "") strCondiciones += " | ";
                             string strTipoOperacion = condicion.Operador.Descripcion;
-                            strCondiciones += condicion.ValorReferencia.ToString() + " " + strTipoOperacion;
+                            strCondiciones += condicion.Sensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
                         }
 
                         string strAcciones = "";
