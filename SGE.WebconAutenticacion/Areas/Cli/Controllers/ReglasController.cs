@@ -9,6 +9,7 @@ using SGE.Entidades.Sensores;
 using SGE.Entidades.Sesion;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -16,11 +17,9 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
-    public class ReglasController : Controller
-    {
+    public class ReglasController : Controller {
         // GET: Cliente/Reglas
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             ViewBag.reglas = ObtenerReglasActivas();
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -88,7 +87,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             return Json(new { success = true });
         }
-        
+
 
         private ICollection<dynamic> ObtenerReglasActivas() {
             ICollection<dynamic> salida = new List<dynamic>();
@@ -209,16 +208,18 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
         public JsonResult EditarRegla(string nombreRegla, int idInteligente, int idRegla, long[] idsAcciones, List<Condicion> condiciones) {
             SGEContext db = new SGEContext();
             BaseRepositorio<Regla> repoRegla = new BaseRepositorio<Regla>(db);
-            Regla regla = repoRegla.Single(r => r.ReglaId == idRegla);
+            Regla reglaExistente = repoRegla.Single(r => r.ReglaId == idRegla);
+            repoRegla.Delete(reglaExistente);
 
-            regla.Nombre = nombreRegla;
-            regla.IdInteligente = idInteligente;
-            regla.Condiciones.Clear();
-            regla.Condiciones = condiciones;
-            regla.Acciones.Clear();
+            Regla regla = new Regla() {
+                Nombre = nombreRegla,
+                IdInteligente = idInteligente,
+                Condiciones = condiciones
+            };
+
             regla.Acciones = db.Acciones.Where(a => idsAcciones.Any(x => x == a.Id)).ToList();
 
-            repoRegla.Update(regla);
+            repoRegla.Create(regla);
 
             return Json(new { success = true });
         }

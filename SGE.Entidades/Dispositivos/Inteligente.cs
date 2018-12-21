@@ -3,6 +3,7 @@ using SGE.Entidades.Contexto;
 using SGE.Entidades.Managers;
 using SGE.Entidades.Reglas;
 using SGE.Entidades.Repositorio;
+using SGE.Entidades.Sensores;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace SGE.Entidades.Dispositivos {
         public EstadoDispositivo Estado { get; set; }
         public virtual ICollection<Cliente> Clientes { get; set; } //many to many con Clientes
         public virtual ICollection<Activacion> RegistroDeActivaciones { get; set; }
+        public virtual ICollection<SensorFisico> Sensores { get; set; }
 
         public virtual ICollection<Regla> Reglas { get; set; }
 
@@ -264,15 +266,7 @@ namespace SGE.Entidades.Dispositivos {
             return decimal.ToDouble(this.ObtenerHorasPeriodo(ini, fin));
         }
         #endregion
-
-        #region Nuevas Mediciones
-
-        public void NotificarNuevaMedicion(string valor) {
-
-        }
-
-        #endregion
-
+        
         #region Observer
 
         public void Agregar(DispositivosManager manager) {

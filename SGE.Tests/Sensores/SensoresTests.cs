@@ -9,7 +9,7 @@ namespace SGE.Tests.Sensores {
     [TestClass]
     public class SensoresTests {
         private Inteligente dispositivo;
-        private Sensor sensor;
+        private SensorFisico sensor;
         private Accion accion;
 
         [TestInitialize]

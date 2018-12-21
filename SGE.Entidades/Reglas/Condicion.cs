@@ -15,7 +15,7 @@ namespace SGE.Entidades.Reglas {
 
         public int SensorId { get; set; }
         [ForeignKey("SensorId")]
-        public Sensor Sensor { get; set; }
+        public SensorFisico Sensor { get; set; }
 
         public int ReglaId { get; set; } // fk con tabla regla
         [ForeignKey("ReglaId")]

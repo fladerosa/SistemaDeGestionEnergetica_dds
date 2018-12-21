@@ -72,11 +72,11 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             BaseRepositorio<Medicion> repoMedicion = new BaseRepositorio<Medicion>(contexto);
             foreach (Inteligente inteligente in inteligentes) {
                 if (inteligente.Catalogo.Sensores != null && inteligente.Catalogo.Sensores.Count > 0) {
-                    foreach (Sensor sensor in inteligente.Catalogo.Sensores) {
+                    foreach (SensorFisico sensor in inteligente.Catalogo.Sensores) {
                         dynamic customMedicion = new ExpandoObject();
                         customMedicion.dispositivo = inteligente.Nombre;
                         customMedicion.sensor = sensor.Id;
-                        customMedicion.medicion = sensor.UltimaMedicion;
+                        customMedicion.medicion = sensor.Mediciones.LastOrDefault();
 
                         salida.Add(customMedicion);
                     }

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace SGE.Entidades.Sensores.Sensores {
-    public class Estado : Sensor{
+    public class Estado : SensorFisico{
         public override Medicion RealizarMedicion() {
             return new Medicion() {
                 Unidad = UnidadEnum.OTROS,

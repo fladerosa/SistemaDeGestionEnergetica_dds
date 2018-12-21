@@ -141,10 +141,7 @@
         </div>
     </div>
     <br />
-    <button onclick="realizarAlta()" class="btn">Realizar alta</button>
-    <p>
-        @Html.ActionLink("Volver a listado de reglas", "", "", new { @class = "volverSeleccionDispositivo" })
-    </p>
+    <button onclick="realizarModificacion()" class="btn">Modificar</button>
 </div>
 
 <p>
@@ -261,14 +258,14 @@
         }
     }
 
-    function realizarAlta() {
+    function realizarModificacion() {
         var formData = {
-            nombreRegla : $("#inpNombreRegla").val(),
-            idInteligente : idInteligenteSeleccionado,
+            nombreRegla: $("#inpNombreRegla").val(),
+            idInteligente: idInteligenteSeleccionado,
             idsAcciones: cargarIdsAcciones(),
             condiciones: cargarCondiciones(),
             idRegla: @Model.ReglaId
-        }
+        };
 
         $.ajax({
             type: "POST",
@@ -278,7 +275,8 @@
             success: function (resultado) {
                 if (resultado.success == true) {
                     //algo
-                    alert("Regla dada de alta correctamente");
+                    alert("Regla modificada correctamente");
+                    window.location.href = "/Cli/Reglas";
                 } else {
                     alert("Error vinculando dispositivo: " + resultado.error);
                 }

@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201812150307495_idOperador.Designer.cs">
       <DependentUpon>201812150307495_idOperador.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812210219182_creacionSensorDispositivo.cs" />
+    <Compile Include="Migrations\201812210219182_creacionSensorDispositivo.Designer.cs">
+      <DependentUpon>201812210219182_creacionSensorDispositivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MongoDB\Modelo\ReporteCliente.cs" />
     <Compile Include="MongoDB\Modelo\ReporteDispositivo.cs" />
@@ -191,6 +195,7 @@
     <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Repositorio\BaseRepositorio.cs" />
     <Compile Include="Repositorio\IRepositorio.cs" />
+    <Compile Include="Sensores\SensorFisico.cs" />
     <Compile Include="Sensores\Sensores\Estado.cs" />
     <Compile Include="Sensores\Sensores\EstadoInterno.cs" />
     <Compile Include="Sensores\Sensores\Temperatura.cs" />
@@ -278,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812150307495_idOperador.resx">
       <DependentUpon>201812150307495_idOperador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812210219182_creacionSensorDispositivo.resx">
+      <DependentUpon>201812210219182_creacionSensorDispositivo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

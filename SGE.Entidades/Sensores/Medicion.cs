@@ -7,12 +7,12 @@ namespace SGE.Entidades.Sensores {
         public int Id { get; set; }
         public string Valor { get; set; }
         public UnidadEnum Unidad { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime FechaRegistro { get; set; }
 
         public int SensorId { get; set; } // fk con tabla Sensor
         [ForeignKey("SensorId")]
-        public virtual Sensor Sensor { get; set; } // one to many con  Sensor
+        [InverseProperty("Mediciones")]
+        public virtual SensorFisico Sensor { get; set; } // one to many con  Sensor
 
         public Medicion() {
             FechaRegistro = DateTime.Now;
