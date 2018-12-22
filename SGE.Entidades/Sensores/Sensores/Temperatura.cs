@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace SGE.Entidades.Sensores.Sensores {
-    public class Temperatura : SensorFisico {
+    public class Temperatura : Sensor {
         public override Medicion RealizarMedicion() {
             return new Medicion() {
                 Unidad = UnidadEnum.CENTIGRADOS,

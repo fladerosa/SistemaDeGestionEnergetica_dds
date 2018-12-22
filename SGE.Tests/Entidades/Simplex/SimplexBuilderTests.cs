@@ -38,7 +38,7 @@ namespace SGE.Entidades.Simplex.Tests {
             List<Inteligente> inteligentes = db.Inteligentes.Include("RegistroDeActivaciones").ToList();
 
             simplex.AgregarRestriccion(inteligentes[0]);
-            simplex.AgregarRestriccion(inteligentes[1]);
+            //simplex.AgregarRestriccion(inteligentes[1]);
             simplex.Resolver();
 
             Assert.IsTrue(simplex.Resultado["ConsumoRestanteTotal"] > 0 && simplex.Resultado["ConsumoRestanteTotal"] < 440640);

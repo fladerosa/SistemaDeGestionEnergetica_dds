@@ -125,7 +125,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         foreach (Condicion condicion in condiciones) {
                             if (strCondiciones != "") strCondiciones += " | ";
                             string strTipoOperacion = condicion.Operador.Descripcion;
-                            strCondiciones += condicion.Sensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
+                            strCondiciones += condicion.Sensor.TipoSensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
                         }
 
                         string strAcciones = "";

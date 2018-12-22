@@ -4,6 +4,7 @@ using SGE.Entidades.Acciones.Acciones;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Reglas;
 using SGE.Entidades.Reglas.Operadores;
+using SGE.Entidades.Sensores;
 using SGE.Entidades.Sensores.Sensores;
 
 namespace SGE.Tests.Reglas {
@@ -21,8 +22,11 @@ namespace SGE.Tests.Reglas {
             this.condicion1 = new Condicion() {
                 Operador = new Igual(),
                 ValorReferencia = "Apagado",
-                Sensor = new Estado() {
-                    Dispositivo = dispositivo
+                Sensor = new SensorFisico() {
+                    Dispositivo = dispositivo,
+                    TipoSensor = new Estado() {
+                        Dispositivo = dispositivo
+                    }
                 }
             };
             this.accion1 = new Encender() {

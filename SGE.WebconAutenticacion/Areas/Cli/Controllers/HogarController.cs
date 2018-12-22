@@ -72,7 +72,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             BaseRepositorio<Medicion> repoMedicion = new BaseRepositorio<Medicion>(contexto);
             foreach (Inteligente inteligente in inteligentes) {
                 if (inteligente.Catalogo.Sensores != null && inteligente.Catalogo.Sensores.Count > 0) {
-                    foreach (SensorFisico sensor in inteligente.Catalogo.Sensores) {
+                    foreach (SensorFisico sensor in inteligente.Sensores) {
                         dynamic customMedicion = new ExpandoObject();
                         customMedicion.dispositivo = inteligente.Nombre;
                         customMedicion.sensor = sensor.Id;
@@ -121,7 +121,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         foreach (Condicion condicion in condiciones) {
                             if (strCondiciones != "") strCondiciones += " | ";
                             string strTipoOperacion = condicion.Operador.Descripcion;
-                            strCondiciones += condicion.Sensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
+                            strCondiciones += condicion.Sensor.TipoSensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
                         }
 
                         string strAcciones = "";

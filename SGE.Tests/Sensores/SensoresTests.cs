@@ -9,7 +9,7 @@ namespace SGE.Tests.Sensores {
     [TestClass]
     public class SensoresTests {
         private Inteligente dispositivo;
-        private SensorFisico sensor;
+        private Sensor sensor;
         private Accion accion;
 
         [TestInitialize]
@@ -28,7 +28,7 @@ namespace SGE.Tests.Sensores {
             sensor = new Temperatura();
             sensor.Dispositivo = dispositivo;
 
-            Medicion medicion = sensor.Medir();
+            Medicion medicion = sensor.RealizarMedicion();
 
             Assert.AreEqual(dispositivo.Temperatura.ToString(), medicion.Valor);
         }

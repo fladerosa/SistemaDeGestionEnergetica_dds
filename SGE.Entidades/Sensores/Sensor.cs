@@ -5,11 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SGE.Entidades.Sensores {
     [Table("Sensor")]
     public class Sensor {
-        #region Campos
         public int Id { get; set; }
         public string Descripcion { get; set; }
-
+        [NotMapped]
+        public virtual Inteligente Dispositivo { get; set; }
         public virtual ICollection<Catalogo> Catalogos { get; set; }
-        #endregion
+
+        public virtual Medicion RealizarMedicion() {
+            return null;
+        }
     }
 }

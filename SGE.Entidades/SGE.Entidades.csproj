@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201812210219182_creacionSensorDispositivo.Designer.cs">
       <DependentUpon>201812210219182_creacionSensorDispositivo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812220404519_normalizacionSensores1.cs" />
+    <Compile Include="Migrations\201812220404519_normalizacionSensores1.Designer.cs">
+      <DependentUpon>201812220404519_normalizacionSensores1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MongoDB\Modelo\ReporteCliente.cs" />
     <Compile Include="MongoDB\Modelo\ReporteDispositivo.cs" />
@@ -286,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812210219182_creacionSensorDispositivo.resx">
       <DependentUpon>201812210219182_creacionSensorDispositivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220404519_normalizacionSensores1.resx">
+      <DependentUpon>201812220404519_normalizacionSensores1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
