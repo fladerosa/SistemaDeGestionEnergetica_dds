@@ -10,6 +10,7 @@ namespace SGE.Entidades.Sensores {
         [NotMapped]
         public virtual Inteligente Dispositivo { get; set; }
         public virtual ICollection<Catalogo> Catalogos { get; set; }
+        public virtual ICollection<SensorFisico> SensoresFisicos { get; set; }
 
         public Sensor() {
             this.Catalogos = new List<Catalogo>();
