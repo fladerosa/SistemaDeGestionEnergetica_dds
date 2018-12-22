@@ -68,6 +68,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             };
             string nombreInteligente = Catalogo.Nombre + "_" + DateTime.Now.ToString("ddMMyyHHmmss");
             if (nombreInteligente.Length > 25) { nombreInteligente = nombreInteligente.Substring(0, 25); };
+            nombreInteligente = nombreInteligente.Replace(" ", "_");
             inteligente.Nombre = nombreInteligente;
 
             inteligente.Clientes.Add(cliente);
