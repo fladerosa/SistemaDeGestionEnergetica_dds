@@ -76,7 +76,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             db = new SGEContext();
             List<Sensor> sensores = db.Sensores.Where(s => s.Catalogos.Any(c => c.Id == Catalogo.Id)).ToList();
-            BaseRepositorio<SensorFisico> repoSensorFisico = new BaseRepositorio<SensorFisico>(db);
+            
             foreach (Sensor sensor in sensores) {
                 SGEContext db2 = new SGEContext();
                 SensorFisico sensorFisico = new SensorFisico() {

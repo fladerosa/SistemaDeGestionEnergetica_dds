@@ -4,11 +4,13 @@ using Newtonsoft.Json;
 using SGE.Entidades.Contexto;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Repositorio;
+using SGE.Entidades.Sensores;
 using SGE.Entidades.Sesion;
 using SGE.Entidades.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -57,6 +59,23 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                             repoInteligente.Update(inteligente);
                         } else {
                             repoInteligente.Create(inteligente);
+                        }
+
+                        List<Sensor> sensores = contexto.Sensores.Where(s => s.Catalogos.Any(c => c.Id == Catalogo.Id)).ToList();
+
+                        foreach (Sensor sensor in sensores) {
+                            SGEContext db2 = new SGEContext();
+                            SensorFisico sensorFisico = new SensorFisico() {
+                                //TipoSensor = sensor,
+                                //Dispositivo = inteligente,
+                                IdDispositivo = inteligente.Id,
+                                IdTipoSensor = sensor.Id,
+                                Descripcion = sensor.Descripcion
+                            };
+                            sensorFisico.Mediciones = null;
+                            //repoSensorFisico.Create(sensorFisico);
+                            db2.SensoresFisicos.Add(sensorFisico);
+                            db2.SaveChanges();
                         }
                     }
                 }
