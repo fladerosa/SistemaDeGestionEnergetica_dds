@@ -62,7 +62,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
 
             List<object> sensores = new List<object>();
 
-            foreach (Sensor sensor in catalogo.Sensores) {
+            foreach (SensorFisico sensor in db.SensoresFisicos.Where(s => s.IdDispositivo == idInteligente).ToList()) {
                 var objeto = Json(new { sensor.Id, sensor.Descripcion }).Data;
 
                 sensores.Add(objeto);
