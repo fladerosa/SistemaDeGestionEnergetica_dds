@@ -9,7 +9,7 @@ namespace SGE.Entidades.Dispositivos
             //mapeo de la herencia de dispositivo
 
             HasKey(x => x.Id);
-            Property(x => x.Nombre).HasMaxLength(25).IsRequired();
+            Property(x => x.Nombre).HasMaxLength(128).IsRequired();
             Property(x => x.ConsumoEnergia).IsRequired();
             Property(x => x.IdentificadorFabrica).HasMaxLength(50);
 

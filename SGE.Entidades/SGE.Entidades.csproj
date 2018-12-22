@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201812220609273_cambio6.Designer.cs">
       <DependentUpon>201812220609273_cambio6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812221240262_largoNombreDispositivo.cs" />
+    <Compile Include="Migrations\201812221240262_largoNombreDispositivo.Designer.cs">
+      <DependentUpon>201812221240262_largoNombreDispositivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MongoDB\Modelo\ReporteCliente.cs" />
     <Compile Include="MongoDB\Modelo\ReporteDispositivo.cs" />
@@ -344,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812220609273_cambio6.resx">
       <DependentUpon>201812220609273_cambio6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812221240262_largoNombreDispositivo.resx">
+      <DependentUpon>201812221240262_largoNombreDispositivo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

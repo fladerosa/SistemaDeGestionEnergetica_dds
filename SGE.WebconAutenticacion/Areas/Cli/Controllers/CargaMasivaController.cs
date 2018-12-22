@@ -48,7 +48,6 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                             return Json(new { success = false, error = "El dispositivo '" + inteligente.Nombre + "' esta asociado a un catálogo inexistente" });
                         }
                         string nombreInteligente = Catalogo.Nombre + "_" + DateTime.Now.ToString("ddMMyyHHmmss");
-                        if(nombreInteligente.Length > 25) { nombreInteligente = nombreInteligente.Substring(0, 25); };
                         nombreInteligente = nombreInteligente.Replace(" ", "_");
                         inteligente.Nombre = nombreInteligente;
                         inteligente.Clientes.Clear();

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGE.Entidades.Dispositivos
 {
@@ -7,6 +8,7 @@ namespace SGE.Entidades.Dispositivos
     {
         #region Propiedades
         public int Id { get; set; }
+        [StringLength(128)]
         public string Nombre { get; set; }
         public decimal ConsumoEnergia { get; set; }
         public string IdentificadorFabrica { get; set; }
