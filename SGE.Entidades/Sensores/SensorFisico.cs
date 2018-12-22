@@ -6,6 +6,7 @@ namespace SGE.Entidades.Sensores {
     [Table("SensorFisico")]
     public class SensorFisico {
         public int Id { get; set; }
+        public string Descripcion { get; set; }
         public int IdDispositivo { get; set; }
         [ForeignKey("IdDispositivo")]
         public virtual Inteligente Dispositivo { get; set; }
@@ -14,7 +15,9 @@ namespace SGE.Entidades.Sensores {
         public virtual Sensor TipoSensor { get; set; }
         public virtual ICollection<Medicion> Mediciones { get; set; } // one to many 
 
-
+        public SensorFisico() {
+            this.Mediciones = new List<Medicion>();
+        }
         /// <summary>
         /// Función principal de medicion
         /// </summary>

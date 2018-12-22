@@ -33,6 +33,7 @@ namespace SGE.Entidades.Contexto {
         public DbSet<Inteligente> Inteligentes { get; set; }
         public DbSet<Catalogo> Catalogos { get; set; }
         public DbSet<Operador> Operadores { get; set; }
+        public DbSet<SensorFisico> SensoresFisicos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

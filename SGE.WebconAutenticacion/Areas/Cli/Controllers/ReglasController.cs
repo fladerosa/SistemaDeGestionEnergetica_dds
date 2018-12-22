@@ -125,7 +125,7 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
                         foreach (Condicion condicion in condiciones) {
                             if (strCondiciones != "") strCondiciones += " | ";
                             string strTipoOperacion = condicion.Operador.Descripcion;
-                            strCondiciones += condicion.Sensor.TipoSensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
+                            strCondiciones += condicion.Sensor.Descripcion + " " + strTipoOperacion.ToLower() + " a " + condicion.ValorReferencia.ToString() + " ";
                         }
 
                         string strAcciones = "";
@@ -181,6 +181,9 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             regla.Condiciones.ToList().ForEach(c => c = repoCondicion.Single(co => co.CondicionId == c.CondicionId, includesCondicion));
 
             regla.Condiciones.ToList().ForEach(c => c.Sensor.Dispositivo = regla.Inteligente);
+
+            regla.Condiciones.ToList().ForEach(c => c.Sensor.TipoSensor = db.Sensores.Include("Catalogos").First(s => s.Id == c.SensorId));
+            regla.Condiciones.ToList().ForEach(c => c.Sensor.TipoSensor.Dispositivo = regla.Inteligente);
 
 
             regla.Ejecutar();

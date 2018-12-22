@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using SGE.Entidades.Contexto;
 using SGE.Entidades.Dispositivos;
 using SGE.Entidades.Repositorio;
+using SGE.Entidades.Sensores;
 using SGE.Entidades.Sesion;
 using SGE.Entidades.Usuarios;
 using System;
@@ -51,25 +52,45 @@ namespace SGE.WebconAutenticacion.Areas.Cli.Controllers {
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var user = UserManager.FindById(User.Identity.GetUserId());
 
-            SGEContext contexto = new SGEContext();
+            SGEContext db = new SGEContext();
 
-            BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>(contexto);
+            BaseRepositorio<Cliente> repoCliente = new BaseRepositorio<Cliente>(db);
             Cliente cliente = repoCliente.Single(c => c.NombreUsuario == user.UserName);
 
-            BaseRepositorio<Catalogo> repoCatalogo = new BaseRepositorio<Catalogo>(contexto);
+            BaseRepositorio<Catalogo> repoCatalogo = new BaseRepositorio<Catalogo>(db);
             Catalogo Catalogo = repoCatalogo.Single(c => c.Id == idCatalogo);
 
             Inteligente inteligente = new Inteligente() {
                 ConsumoEnergia = Catalogo.ConsumoEnergia,
                 IdentificadorFabrica = Catalogo.IdentificadorFabrica,
                 Catalogo = Catalogo,
-                CatalogoId = Catalogo.Id,
-                Nombre = Catalogo.Nombre
+                CatalogoId = Catalogo.Id
             };
+            string nombreInteligente = Catalogo.Nombre + "_" + DateTime.Now.ToString("ddMMyyHHmmss");
+            if (nombreInteligente.Length > 25) { nombreInteligente = nombreInteligente.Substring(0, 25); };
+            inteligente.Nombre = nombreInteligente;
 
             inteligente.Clientes.Add(cliente);
-            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(contexto);
+            BaseRepositorio<Inteligente> repoInteligente = new BaseRepositorio<Inteligente>(db);
             repoInteligente.Create(inteligente);
+
+            db = new SGEContext();
+            List<Sensor> sensores = db.Sensores.Where(s => s.Catalogos.Any(c => c.Id == Catalogo.Id)).ToList();
+            BaseRepositorio<SensorFisico> repoSensorFisico = new BaseRepositorio<SensorFisico>(db);
+            foreach (Sensor sensor in sensores) {
+                SGEContext db2 = new SGEContext();
+                SensorFisico sensorFisico = new SensorFisico() {
+                    //TipoSensor = sensor,
+                    //Dispositivo = inteligente,
+                    IdDispositivo = inteligente.Id,
+                    IdTipoSensor = sensor.Id,
+                    Descripcion = sensor.Descripcion
+                };
+                sensorFisico.Mediciones = null;
+                //repoSensorFisico.Create(sensorFisico);
+                db2.SensoresFisicos.Add(sensorFisico);
+                db2.SaveChanges();
+            }
 
             return Json(new { success = true });
         }

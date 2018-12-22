@@ -67,11 +67,13 @@ namespace SGE.Entidades.Dispositivos {
             this.Clientes = new List<Cliente>();
             Context = new SGEContext();
             this.RegistroDeActivaciones = new List<Activacion>();
+            this.Sensores = new List<SensorFisico>();
         }
 
         public Inteligente(string nombre, decimal consumo) : base(nombre, consumo) {
             this.Clientes = new List<Cliente>();
             this.RegistroDeActivaciones = new List<Activacion>();
+            this.Sensores = new List<SensorFisico>();
             Context = new SGEContext();
         }
 
@@ -80,6 +82,7 @@ namespace SGE.Entidades.Dispositivos {
             this.RegistroDeActivaciones = new List<Activacion>();
             this.ConsumoEnergia = Convert.ToDecimal(DispositivosHelper.GetInstace().Dispositivos.Where(x => x.Id == id).Single().Consumo);
             this.IdentificadorFabrica = id;
+            this.Sensores = new List<SensorFisico>();
             Context = new SGEContext();
         }
 

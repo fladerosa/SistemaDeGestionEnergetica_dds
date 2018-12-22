@@ -191,6 +191,34 @@
     <Compile Include="Migrations\201812220404519_normalizacionSensores1.Designer.cs">
       <DependentUpon>201812220404519_normalizacionSensores1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812220454547_cambio.cs" />
+    <Compile Include="Migrations\201812220454547_cambio.Designer.cs">
+      <DependentUpon>201812220454547_cambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220457046_cambio1.cs" />
+    <Compile Include="Migrations\201812220457046_cambio1.Designer.cs">
+      <DependentUpon>201812220457046_cambio1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220504003_cambio2.cs" />
+    <Compile Include="Migrations\201812220504003_cambio2.Designer.cs">
+      <DependentUpon>201812220504003_cambio2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220511026_cambio3.cs" />
+    <Compile Include="Migrations\201812220511026_cambio3.Designer.cs">
+      <DependentUpon>201812220511026_cambio3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220550418_cambio4.cs" />
+    <Compile Include="Migrations\201812220550418_cambio4.Designer.cs">
+      <DependentUpon>201812220550418_cambio4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220606108_cambio5.cs" />
+    <Compile Include="Migrations\201812220606108_cambio5.Designer.cs">
+      <DependentUpon>201812220606108_cambio5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220609273_cambio6.cs" />
+    <Compile Include="Migrations\201812220609273_cambio6.Designer.cs">
+      <DependentUpon>201812220609273_cambio6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MongoDB\Modelo\ReporteCliente.cs" />
     <Compile Include="MongoDB\Modelo\ReporteDispositivo.cs" />
@@ -245,7 +273,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +323,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812220404519_normalizacionSensores1.resx">
       <DependentUpon>201812220404519_normalizacionSensores1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220454547_cambio.resx">
+      <DependentUpon>201812220454547_cambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220457046_cambio1.resx">
+      <DependentUpon>201812220457046_cambio1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220504003_cambio2.resx">
+      <DependentUpon>201812220504003_cambio2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220511026_cambio3.resx">
+      <DependentUpon>201812220511026_cambio3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220550418_cambio4.resx">
+      <DependentUpon>201812220550418_cambio4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220606108_cambio5.resx">
+      <DependentUpon>201812220606108_cambio5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220609273_cambio6.resx">
+      <DependentUpon>201812220609273_cambio6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
