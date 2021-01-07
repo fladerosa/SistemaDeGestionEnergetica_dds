@@ -27,3 +27,8 @@ Para poder inicializar la creacion de La BD SGEDb, con las tablas que se persist
 y sus mapeo relacional correspondiente, se debe setear el el Data Source del ConnectionString 
 (por el nombre de tu Servidor Local de SQL SERVER) del archivo App.Config que se encuentra en: SGE.Test.  
 
+
+-----------------------------------------------------------------------------------------------
+
+Se agrega documentacion de testing correspondiente a la comprobacion de los requerimientos funcionales que la aplicacion web debe cumplir.
+
